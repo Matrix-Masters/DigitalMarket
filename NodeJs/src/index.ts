@@ -7,7 +7,7 @@ const connect=new ConnectMongo(uri);
 
  connect.ConnectToBd().then(()=>{
    connect.server(app,PORT);
-   eurekaHelper.registerWithEureka('nodeJs-service', PORT);
+   eurekaHelper.registerWithEureka('nodeJs-service', PORT);//enregistrer dans Eureka
  }).catch((error:any)=>{
    console.log(error);
  })
