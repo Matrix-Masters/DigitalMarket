@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ES6",                    // Version d'ECMAScript cible (par exemple, ES5, ES6)
+    "module": "CommonJS",               // Type de module (par exemple, CommonJS, ES6)
+    "outDir": "./dist",                 // Dossier de sortie pour les fichiers JavaScript transcompilés
+    "rootDir": "./src",                 // Dossier source où se trouvent vos fichiers TypeScript
+    "strict": true,                     // Activer le mode strict pour des vérifications plus strictes
+    "esModuleInterop": true,            // Permettre l'interopérabilité avec les modules ES6
+    "skipLibCheck": true,               // Ignorer la vérification des fichiers de définition de type
+    "forceConsistentCasingInFileNames": true, // Assurer la cohérence de la casse des noms de fichiers
+    "resolveJsonModule": true,          // Permettre l'importation de fichiers JSON en tant que modules
+    "allowSyntheticDefaultImports": true // Autoriser les imports synthétiques par défaut pour les modules CommonJS
+  },
+  "include": [
+    "src/**/*.ts"                      // Inclure les fichiers TypeScript dans ce répertoire
+  ],
+  "exclude": [
+    "node_modules"                     // Exclure le dossier node_modules
+  ]
+}
