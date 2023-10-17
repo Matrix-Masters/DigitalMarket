@@ -40,7 +40,7 @@ public class CategoryController {
 	}
 	
 	@GetMapping("/getCatg")
-	public Category getCat() {
-		return cateRepo.findAll().get(0);
+	public List<Category> getCat() {
+		return cateRepo.findAll();
 	}
  }
