@@ -13,7 +13,11 @@ export class AdminServiceService {
     return this.http.get(`${port}/PRODUCT-SERVICE/categories/getCatg`);
   }
 
-  getProducts(){
-    return this.http.get(`${port}/PRODUCT-SERVICE/products/AllProduct`);
+  ProductsWithoutCategory(){
+    return this.http.get(`${port}/PRODUCT-SERVICE/products/ProductsWithoutCategory`);
+  }
+
+  ProductsByIdCategorie(id:number){
+    return this.http.get(`${port}/PRODUCT-SERVICE/products/ProductsByIdCategorie?id=`+id);
   }
 }
