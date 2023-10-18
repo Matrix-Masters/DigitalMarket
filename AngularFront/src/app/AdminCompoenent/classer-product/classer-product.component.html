@@ -1,79 +1,27 @@
-<!-- <div class="container mt-2 py-2 d-flex justify-content-center">
-    <div class="card">
-        <div  *ngFor="let item of Categories" class="card-text d-flex justify-content-start flex-wrap" 
-                cdkDropList
-                [cdkDropListData]="Categories"
-                [cdkDropListConnectedTo]="[product]"
-                class="example-list"
-                (cdkDropListDropped)="drop($event)">
-            <div class="category" cdkDrag>
-                 {{item['nom']}}
-            </div>
-        </div>
-    </div>
-</div> -->
 
-
-<!-- <div class="container mt-2 py-2 d-flex justify-content-center">
-    <div class="card">
-        <div cdkDropList
-        #product="cdkDropList"
-        [cdkDropListData]="Products"
-        class="example-list"
-        (cdkDropListDropped)="drop($event)" class="card-text d-flex justify-content-start flex-wrap">
-            <div class="category" *ngFor="let item of Products"  cdkDrag>
-                 {{item['name']}}
-            </div>
-        </div>
-    </div>
-</div> -->
-
-<!-- <div class="card_content">
-<div *ngFor="let item of Categories">
-    <div class="example-container">
-        <h2>{{item['nom']}}</h2>
-        <div
-          cdkDropList
-          class="example-list"
-        >
-          <div class="example-box" *ngFor="let item of Categories" cdkDrag>{{item['nom']}}</div>
-        </div>
-      </div>
-</div>
-</div>
-
-<div class="container mt-2 py-2 d-flex justify-content-center">
-    <div class="card">
-        <div
-        cdkDropList
-        #product="cdkDropList"
-        [cdkDropListData]="Products"
-        class="example-list"
-        (cdkDropListDropped)="drop($event)" class="card-text d-flex justify-content-start flex-wrap">
-            <div class="category" *ngFor="let item of Products"  cdkDrag>
-                 {{item['name']}}
-            </div>
-        </div>
-    </div>
-</div>  -->
-
-<div class="card_content">
-    <div *ngFor="let category of Categories">
-      <div class="example-container">
-        <h2>{{ category['nom'] }}</h2>
-        <div cdkDropList 
-          class="example-list" (cdkDropListDropped)="dropProductInCategory($event, category)">
-          <div class="example-box" *ngFor="let product of category.products" cdkDrag>{{ product['name'] }}</div>
-        </div>
+<div cdkDropListGroup>
+  List Categories
+  <div class="example-container" *ngFor="let itemCat of Categories">
+    <h2>{{itemCat['nom']}}</h2>
+    <div
+      cdkDropList
+      [cdkDropListData]="Categories"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box"  cdkDragHandle *ngFor="let item of itemCat['Products']">
+           {{item['name']}}
       </div>
     </div>
-</div>
-  
-<div class="container mt-2 py-2 d-flex justify-content-center">
-    <div class="card">
-      <div cdkDropList  class="example-list" (cdkDropListDropped)="dropProduct($event)">
-        <div class="category" *ngFor="let product of Products" cdkDrag>{{ product['name'] }}</div>
-      </div>
-    </div>
-</div>
+  </div>
 
+  <div class="example-container">
+    <h2>Products</h2>
+    <div
+      cdkDropList
+      [cdkDropListData]="Products"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of Products" cdkDrag>{{item['name']}}</div>
+    </div>
+  </div>
+</div>
