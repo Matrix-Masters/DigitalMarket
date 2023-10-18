@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminServiceService } from 'src/app/Service/admin-service.service';
+import {MatSnackBar } from '@angular/material/snack-bar';
 
 import {
   CdkDragDrop,
@@ -14,17 +15,28 @@ import {
   styleUrls: ['./classer-product.component.scss'],
 })
 export class ClasserProductComponent implements OnInit {
-  constructor(private AdminServiceService: AdminServiceService) {}
+  constructor(private AdminServiceService: AdminServiceService,private _snackBar: MatSnackBar) {}
 
-  drop(event: CdkDragDrop<any[]>): void {
+  drop(event: CdkDragDrop<any[]>,category?:any): void {
     if (event.previousContainer === event.container) {
-      var idproduct=this.Products[event.previousIndex].id;
-      var idcat = event.container.data[event.currentIndex].id;
-      console.log("idcat "+idcat + "  "+"idprod "+idproduct);
+      alert("dgd")
     } else {
-      var idproduct=this.Products[event.previousIndex].id;
-      var idcat= event.container.data[event.currentIndex].id;
-      console.log("idcat "+idcat + "  "+"idprod "+idproduct);
+        console.log(typeof(this.Products[event.previousIndex].id));
+        this.AdminServiceService.UpdateIdProducts(this.Products[event.previousIndex].id,category).subscribe((res:any)=>{
+          this.Categories=[];
+          this.Products=[];
+          this._snackBar.open(`Product ${this.Products[event.previousIndex].name} Classer Au Category ${category.nom}`, 'Undo', {
+            duration: 3000
+          });
+          this.GetCatg();
+          this.ProductsWithoutCategory();
+        },(error:any)=>{
+          this._snackBar.open(`Product ${this.Products[event.previousIndex].name} Classer Au Category ${category.nom}`, 'close', {
+            duration: 3000
+          });
+          this.GetCatg();
+          this.ProductsWithoutCategory();
+        })
     }
   }
 

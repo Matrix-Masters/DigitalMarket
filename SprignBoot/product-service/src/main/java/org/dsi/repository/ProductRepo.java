@@ -16,4 +16,7 @@ public interface ProductRepo extends JpaRepository<Product,Long> {
 	   
 	   @Query(value = "SELECT p FROM Product p WHERE p.category.id = null")
 	   List<Product> ProductsWithoutCategory();
+	   
+	   @Query(value = "SELECT p FROM Product p WHERE p.id = :id")
+	   Product ProductWithId(long id);
 }

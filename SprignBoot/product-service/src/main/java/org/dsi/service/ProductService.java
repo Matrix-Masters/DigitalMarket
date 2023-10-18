@@ -1,17 +1,14 @@
 package org.dsi.service;
 
-import java.io.Console;
+
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.UUID;
-
 import org.dsi.entity.Product;
 import org.dsi.repository.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.util.StringUtils;
 import Payload.ProducInfo;
 
 

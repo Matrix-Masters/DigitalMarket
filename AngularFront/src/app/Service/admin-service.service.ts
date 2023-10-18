@@ -20,4 +20,8 @@ export class AdminServiceService {
   ProductsByIdCategorie(id:number){
     return this.http.get(`${port}/PRODUCT-SERVICE/products/ProductsByIdCategorie?id=`+id);
   }
+
+  UpdateIdProducts(id:number,cat:any){
+    return this.http.put(`${port}/PRODUCT-SERVICE/products/UpdateIdProducts?id=${id}`,cat);
+  }
 }
