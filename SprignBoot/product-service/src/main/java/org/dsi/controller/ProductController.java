@@ -48,5 +48,15 @@ public class ProductController {
 		return ResponseEntity.ok(ProductRepo.findAll());
 	}
 	
+	@GetMapping("/ProductsWithoutCategory")
+	public ResponseEntity<?> ProductsWithoutCategory(){
+		return ResponseEntity.ok(ProductRepo.ProductsWithoutCategory());
+	}
+	
+	@GetMapping("/ProductsByIdCategorie")
+	public ResponseEntity<?> ProductsByIdCategorie(@RequestParam("id") long id){
+		return ResponseEntity.ok(ProductRepo.getProductsByCategoryId(id));
+	}
+	
 
 }

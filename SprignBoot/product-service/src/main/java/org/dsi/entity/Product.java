@@ -1,15 +1,18 @@
 package org.dsi.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.sun.istack.Nullable;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import net.minidev.json.annotate.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder.Default;
 
@@ -35,9 +38,10 @@ public class Product {
     private double prix;
     
     private long IdUser=0;
-    
+
     @Nullable
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id")
     private Category category;
     
     
