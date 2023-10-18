@@ -8,7 +8,7 @@ import { MaterialModule } from './material/material.module';
 import {FormsModule,ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { DragAndDropModule } from 'angular-draggable-droppable';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,8 +22,7 @@ import { DragAndDropModule } from 'angular-draggable-droppable';
     FormsModule,
     ReactiveFormsModule,
     DragDropModule,
-    HttpClientModule,
-    DragAndDropModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
