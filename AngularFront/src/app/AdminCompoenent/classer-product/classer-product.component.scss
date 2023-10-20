@@ -1,4 +1,8 @@
+@import "../../app.component.scss";
 
+*{
+  background-color: $BackgroundColor;
+}
 
 .title{
   color: #000;
@@ -72,7 +76,5 @@
     align-items: center;
     vertical-align: top;
   }
-  .product{
-    
-  }
+
 }

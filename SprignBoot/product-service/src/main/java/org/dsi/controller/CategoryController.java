@@ -23,9 +23,7 @@ public class CategoryController {
 	@Autowired
 	CategoryRepo cateRepo;
 	
-	
-	
-	
+
 	@PostMapping("/AddCat")
 	public ResponseEntity<?> AddCategory(@RequestBody Category cat){
 		try {
