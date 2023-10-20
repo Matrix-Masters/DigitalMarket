@@ -29,6 +29,8 @@ public class Product {
     
     private String Name;
     
+    private String description;
+    
     private String ImageProduct;
     
     private int status=0;

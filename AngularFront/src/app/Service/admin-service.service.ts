@@ -24,4 +24,6 @@ export class AdminServiceService {
   UpdateIdProducts(id:number,cat:any){
     return this.http.put(`${port}/PRODUCT-SERVICE/products/UpdateIdProducts?id=${id}`,cat);
   }
+
+  
 }
