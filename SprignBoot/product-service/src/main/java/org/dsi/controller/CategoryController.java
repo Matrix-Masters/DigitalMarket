@@ -54,5 +54,34 @@ public class CategoryController {
 		}
 	}
 
+	@GetMapping("/getAll")
+	public ResponseEntity<?> getAll(@RequestParam(name="search",defaultValue="") String name){
+
+		try {
+
+			if(name.isEmpty()==true) {
+
+				return ResponseEntity.ok(cateRepo.getAllCategory());
+
+			}else if (cateRepo.getCategorySearchName(name)!=null) {
+
+				return ResponseEntity.ok(cateRepo.getCategorySearchName(name));
+
+			}else {
+
+				return ResponseEntity.ok("Category Not Found , please try again ");
+			}
+
+		}catch(DataAccessException e) {
+
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while accessing the database.");
+		}catch(Exception e) {
+
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while fetching  category.");
+		}
+
+
+	}
+
 
  }
