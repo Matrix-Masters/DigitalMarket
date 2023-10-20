@@ -114,4 +114,21 @@ public class CategoryController {
 	}
 
 
+	@DeleteMapping("/DeleteCategoryById")
+	public ResponseEntity<?> DeleteProductById(@RequestParam("id") long id){
+		Category category = cateRepo.findCategoryById(id);
+		try {
+			if(category == null) {
+				String message = "This category is not available , please check again";
+				return ResponseEntity.ok(message);
+			}else {
+				cateRepo.delete(category);
+				return ResponseEntity.ok("category deleted successfully");
+			}
+		}catch(Exception e) {
+
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while deleting the category.");
+		}
+	}
+
 }
