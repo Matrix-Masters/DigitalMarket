@@ -84,4 +84,34 @@ public class CategoryController {
 	}
 
 
- }
+	@PostMapping("/updateCategorie")
+	public ResponseEntity<?> updateCategorie(@RequestParam("id") Long id, @RequestBody Category newCategory) {
+
+		try {
+
+			Category updatedCategory = cateRepo.findCategoryById(id);
+
+			if (updatedCategory == null) {
+
+				return ResponseEntity.ok("This category is not available , please check again ");
+
+			} else {
+
+				updatedCategory.setNom(newCategory.getNom());
+				cateRepo.save(updatedCategory);
+				return ResponseEntity.ok("Category  updated successfuly ");
+
+			}
+		} catch (HttpClientErrorException.NotFound e) {
+
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+
+		} catch (Exception e) {
+
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred: " + e.getMessage());
+		}
+
+	}
+
+
+}
