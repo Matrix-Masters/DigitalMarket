@@ -10,6 +10,7 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatChipsModule} from '@angular/material/chips';
 import {DialogModule} from '@angular/cdk/dialog';
+import {MatButtonModule} from '@angular/material/button';
 @NgModule({
   imports:[
     MatIconModule,
@@ -22,7 +23,8 @@ import {DialogModule} from '@angular/cdk/dialog';
     ScrollingModule,
     MatSnackBarModule,
     MatChipsModule,
-    DialogModule
+    DialogModule,
+    MatButtonModule
   ],
 
   exports:[
@@ -36,7 +38,8 @@ import {DialogModule} from '@angular/cdk/dialog';
     ScrollingModule,
     MatSnackBarModule,
     MatChipsModule,
-    DialogModule
+    DialogModule,
+    MatButtonModule
 ]
 
 })
