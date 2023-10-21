@@ -12,7 +12,7 @@
         <div class="search">
           <mat-form-field appearance="fill">
             <mat-label>Search</mat-label>
-            <input matInput placeholder="Search By Nom">
+            <input [(ngModel)]="Search"  (input)="serachWithProduct()" matInput placeholder="Search By Nom">
             <mat-icon matSuffix>search</mat-icon>
           </mat-form-field>
         </div>
@@ -38,7 +38,7 @@
                 </mat-card-header>
                 <mat-card-actions align="end">
                   <mat-icon class="text-danger mx-2">delete</mat-icon>
-                  <mat-icon class="text-primary">info</mat-icon>
+                  <mat-icon class="text-primary" (click)="openDialog(item)">info</mat-icon>
                 </mat-card-actions>
               </mat-card>
             </div>
@@ -71,7 +71,7 @@
               {{item['name']}}
             </div>
             <div>
-              <mat-icon class="text-primary mx-2" (click)="openDialog(item['id'])">info</mat-icon>
+              <mat-icon class="text-primary mx-2" (click)="openDialog(item)">info</mat-icon>
               <mat-icon class="text-info" (click)="LibererProduct(item['id'])">recycling</mat-icon>
             </div>
           </div>

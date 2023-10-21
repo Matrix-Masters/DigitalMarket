@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminServiceService } from 'src/app/Service/admin-service.service';
 import {MatSnackBar } from '@angular/material/snack-bar';
-
+import {Dialog, DialogRef} from '@angular/cdk/dialog';
 import {
   CdkDragDrop,
   CdkDrag,
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
+import { DialogInfoComponent } from './dialog-info/dialog-info.component';
 
 @Component({
   selector: 'app-classer-product',
@@ -15,7 +16,7 @@ import {
   styleUrls: ['./classer-product.component.scss'],
 })
 export class ClasserProductComponent implements OnInit {
-  constructor(private AdminServiceService: AdminServiceService,private _snackBar: MatSnackBar) {}
+  constructor(private AdminServiceService: AdminServiceService,private _snackBar: MatSnackBar,private dialog:Dialog) {}
 
   drop(event: CdkDragDrop<any[]>,category?:any): void {
     if (event.previousContainer === event.container) {
@@ -50,13 +51,16 @@ export class ClasserProductComponent implements OnInit {
      })
   }
 
-  openDialog(id:number){
-    
+  openDialog(product:any){
+    this.dialog.open<string>(DialogInfoComponent,{
+      data:product
+    });
   }
 
   Categories:any;
   Products:any;
   Product:any;
+  Search:String=""
 
   ngOnInit(): void {
     this.GetCatg();
@@ -78,5 +82,15 @@ export class ClasserProductComponent implements OnInit {
     this.AdminServiceService.ProductsWithoutCategory().subscribe((res: any) => {
       this.Products = res;
     });
+  }
+
+  serachWithProduct() {
+    if (this.Search !== '') {
+      this.Products = this.Products.filter((product:any) =>
+        product.name.toLowerCase().includes(this.Search.toLowerCase())
+      );
+    } else {
+      this.ProductsWithoutCategory();
+    }
   }
 }
