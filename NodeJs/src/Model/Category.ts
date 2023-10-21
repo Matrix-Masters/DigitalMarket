@@ -7,12 +7,7 @@ let CategorySchema=new mongoose.Schema({
     image:{
         type:String,
         required:true
-    },
-    productId:{
-        type:Number,
-        required:false,
-        default:null
-    }  
+    }
 })
 
 const category=mongoose.model("category",CategorySchema)
