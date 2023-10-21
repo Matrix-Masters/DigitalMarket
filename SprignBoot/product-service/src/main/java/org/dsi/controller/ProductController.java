@@ -91,6 +91,16 @@ public class ProductController {
 		return ResponseEntity.ok(ProductRepo.ProductsWithoutCategory());
 	}
 	
+	@PutMapping("/LibererProduct")
+	public ResponseEntity<?> LibererProduct(@RequestParam("id") long id){
+		try {
+			ProductService.LibereProd(id);
+			return  ResponseEntity.ok().body("Product Upated");
+		}catch (Exception e) {
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
+		}
+	}
+	
 	@GetMapping("/ProductsByIdCategorie")
 	public ResponseEntity<?> ProductsByIdCategorie(@RequestParam("id") long id){
 		return ResponseEntity.ok(ProductRepo.getProductsByCategoryId(id));

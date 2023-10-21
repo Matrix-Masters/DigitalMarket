@@ -36,5 +36,15 @@ public class ProductService {
 			}
 	  }
 	  
+	  public void LibereProd(long id)throws Exception {
+		  	Product prod=ProductRepo.ProductWithId(id);
+		  	if(prod==null) {
+		  	   throw new Exception("Product Not Found");
+		  	}else {
+		  		prod.setCategory(null);
+				ProductRepo.save(prod);
+		  	}
+	  }
+	  
 	  
 }
