@@ -9,7 +9,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatChipsModule} from '@angular/material/chips';
-
+import {DialogModule} from '@angular/cdk/dialog';
 @NgModule({
   imports:[
     MatIconModule,
@@ -21,7 +21,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatToolbarModule,
     ScrollingModule,
     MatSnackBarModule,
-    MatChipsModule
+    MatChipsModule,
+    DialogModule
   ],
 
   exports:[
@@ -34,7 +35,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatToolbarModule,
     ScrollingModule,
     MatSnackBarModule,
-    MatChipsModule
+    MatChipsModule,
+    DialogModule
 ]
 
 })
