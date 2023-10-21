@@ -40,8 +40,23 @@ export class ClasserProductComponent implements OnInit {
     }
   }
 
+  LibererProduct(id:number){
+     this.AdminServiceService.LibererProduct(id).subscribe((res:any)=>{
+      this.ProductsWithoutCategory();
+      this.GetCatg();
+     },(error:any)=>{
+      this.ProductsWithoutCategory();
+      this.GetCatg();
+     })
+  }
+
+  openDialog(id:number){
+    
+  }
+
   Categories:any;
   Products:any;
+  Product:any;
 
   ngOnInit(): void {
     this.GetCatg();

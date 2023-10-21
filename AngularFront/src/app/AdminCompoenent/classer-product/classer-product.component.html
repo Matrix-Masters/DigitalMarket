@@ -71,8 +71,8 @@
               {{item['name']}}
             </div>
             <div>
-              <mat-icon class="text-primary mx-2" >info</mat-icon>
-              <mat-icon class="text-info">recycling</mat-icon>
+              <mat-icon class="text-primary mx-2" (click)="openDialog(item['id'])">info</mat-icon>
+              <mat-icon class="text-info" (click)="LibererProduct(item['id'])">recycling</mat-icon>
             </div>
           </div>
         </div>
