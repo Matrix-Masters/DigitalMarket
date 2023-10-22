@@ -32,9 +32,13 @@ let ProductSchema=new mongoose.Schema({
         required:true,
     },
     categoryId:{
-        type:Number,
-        required:false,
-        default:null
+      type: String,
+        required: false,
+        default: null,
+    },
+    idSpring:{
+        type:String,
+        required:true,
     }  
 })
 ProductSchema.plugin(mongoosePaginate)
