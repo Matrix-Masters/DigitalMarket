@@ -22,7 +22,6 @@ export const addProduct = async (req: Request, res: Response) => {
 }
 
 
-
 export const LibererProduct = async (req: Request, res: Response) => {
   try {
     const product = await Product.findOneAndUpdate({idSpring:req.params.id}, { categoryId: null });
