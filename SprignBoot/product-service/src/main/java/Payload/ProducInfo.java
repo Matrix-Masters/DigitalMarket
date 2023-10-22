@@ -15,4 +15,6 @@ public class ProducInfo {
   int Quantite;
   double prix;
   Category category=null;
+  String description;
+ 
 }

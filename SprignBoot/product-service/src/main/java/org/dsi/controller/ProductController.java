@@ -37,18 +37,15 @@ public class ProductController {
 	@Autowired
 	ProductRepo ProductRepo;
 	
-	@Autowired
-	private NodeSync nodesync;
+
 	
 	@PostMapping("/AddProduct")
 	public ResponseEntity<?> AddProduct(@RequestParam("file") MultipartFile file,
+			@RequestParam("description") String desc,
 			@RequestParam("name") String name,@RequestParam("Quantite") int Quantite,
 			@RequestParam("prix") double prix,@RequestParam(name="category",required = false) Category category){
-		  			ProducInfo product=new ProducInfo(name,Quantite,prix,category);
+		  			ProducInfo product=new ProducInfo(name,Quantite,prix,category,desc);
 		  			ProductService.AddProductService(product,file);
-		  			JSONObject jsoUser=new JSONObject();
-		  			jsoUser.appendField("title",name);
-		  			String prod=nodesync.addProd(jsoUser);
 		  			return new ResponseEntity<ProducInfo>(product,HttpStatus.OK);
 	 }
 	
