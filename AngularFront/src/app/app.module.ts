@@ -8,11 +8,15 @@ import { MaterialModule } from './material/material.module';
 import {FormsModule,ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { NavbarComponent } from './home/navbar/navbar.component';
+import { HomeComponent } from './home/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ClasserProductComponent
+    ClasserProductComponent,
+    NavbarComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
