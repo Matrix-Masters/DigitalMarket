@@ -6,6 +6,31 @@ let ProductSchema=new mongoose.Schema({
         type:String,
         required:true
     },
+    Description:{
+        type:String,
+        required:true
+    },
+    ImageProduct:{
+        type:String,
+        required:false
+    },
+    status:{
+        type:Number,
+        required:false,
+        default:0
+    },
+    Quantite:{
+        type:Number,
+        required:true,
+    },
+    prix:{
+        type:Number,
+        required:true,
+    },
+    idUser:{
+        type:Number,
+        required:true,
+    },
     categoryId:{
         type:Number,
         required:false,
