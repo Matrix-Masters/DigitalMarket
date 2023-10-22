@@ -145,6 +145,80 @@ public class ProductController {
 		
 		
 	}
+	@PutMapping("/AcceptProduct")
+	public ResponseEntity<?> AcceptProduct(@RequestParam("id") long id){
+		Product prod=ProductRepo.ProductWithId(id);
+		prod.setStatus(1);
+		ProductRepo.save(prod);
+		return  ResponseEntity.ok().body("Product accepted");
+	}
+	@PutMapping("/RefuseProduct")
+	public ResponseEntity<?> RefuseProduct(@RequestParam("id") long id){
+		Product prod=ProductRepo.ProductWithId(id);
+		prod.setStatus(2);
+		ProductRepo.save(prod);
+		return  ResponseEntity.ok().body("Product refused");
+	}
+	@PutMapping("/PendingProduct")
+	public ResponseEntity<?> PendingProduct(@RequestParam("id") long id){
+		Product prod=ProductRepo.ProductWithId(id);
+		prod.setStatus(0);
+		ProductRepo.save(prod);
+		return  ResponseEntity.ok().body("Product pending");
+	}
+	@GetMapping("/RefusedProducts")
+	public ResponseEntity<?> getRefusedProducts(
+			@RequestParam(name = "page", defaultValue = "0") int page,
+			@RequestParam(name = "per_page", defaultValue = "2") int size){
+		if (page < 0 || size <= 0 ) {
+	        return ResponseEntity.badRequest().body("Invalid page or per_page values.");
+	 		}
+		
+		try {
+			Page<Product> RefusedProduct;
+			RefusedProduct=ProductRepo.getRefusedProducts(PageRequest.of(page, size));
+	        int total = RefusedProduct.getTotalPages();
+	        int[] count_page = new int[total];
+	        for (int i = 0; i < total; i++) {
+	            count_page[i] = i;
+	        }
+
+	        PaginateInfo data = new PaginateInfo(count_page, RefusedProduct, page);
+	        return ResponseEntity.ok(data);
+	        
+	    } catch (Exception e) {
+	    	
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while fetching paginated products.");
+	    }
+		
+	}
+	@GetMapping("/PendingProduct")
+	public ResponseEntity<?> getPundingProduct(
+			@RequestParam(name = "page", defaultValue = "0") int page,
+			@RequestParam(name = "per_page", defaultValue = "2") int size){
+		if (page < 0 || size <= 0 ) {
+	        return ResponseEntity.badRequest().body("Invalid page or per_page values.");
+	 		}
+		
+		try {
+			Page<Product> pendingProduct;
+			pendingProduct=ProductRepo.getPendingProducts(PageRequest.of(page, size));
+	        int total = pendingProduct.getTotalPages();
+	        int[] count_page = new int[total];
+	        for (int i = 0; i < total; i++) {
+	            count_page[i] = i;
+	        }
+
+	        PaginateInfo data = new PaginateInfo(count_page, pendingProduct, page);
+	        return ResponseEntity.ok(data);
+	        
+	    } catch (Exception e) {
+	    	
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while fetching paginated products.");
+	    }
+		
+	}
+
 	
 
 }
