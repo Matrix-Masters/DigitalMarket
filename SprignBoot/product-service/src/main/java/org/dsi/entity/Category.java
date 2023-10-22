@@ -30,6 +30,7 @@ public class Category {
  	private long id;
     
     private String nom;
+    private String image;
     
     @OneToMany(mappedBy = "category", cascade = CascadeType.REMOVE,  fetch = FetchType.EAGER)
     @JsonIgnore
