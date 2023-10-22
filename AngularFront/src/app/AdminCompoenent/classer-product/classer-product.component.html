@@ -37,7 +37,7 @@
                   <mat-card-subtitle>Prix : {{item['prix']}} Dt</mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-actions align="end">
-                  <mat-icon class="text-danger mx-2">delete</mat-icon>
+                  <mat-icon class="text-danger mx-2" (click)="openDialogAlert(item)">delete</mat-icon>
                   <mat-icon class="text-primary" (click)="openDialog(item)">info</mat-icon>
                 </mat-card-actions>
               </mat-card>
