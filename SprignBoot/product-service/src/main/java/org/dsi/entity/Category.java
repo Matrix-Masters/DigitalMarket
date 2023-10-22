@@ -31,8 +31,6 @@ public class Category {
     
     private String nom;
     
-    private long IdUser=0;
-    
     @OneToMany(mappedBy = "category", cascade = CascadeType.REMOVE,  fetch = FetchType.EAGER)
     @JsonIgnore
     private List<Product> products;
