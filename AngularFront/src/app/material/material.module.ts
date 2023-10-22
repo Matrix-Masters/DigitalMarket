@@ -10,6 +10,8 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list';
 @NgModule({
   imports:[
     MatIconModule,
@@ -22,7 +24,9 @@ import {MatButtonModule} from '@angular/material/button';
     ScrollingModule,
     MatSnackBarModule,
     MatMenuModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDividerModule,
+    MatListModule
 
   ],
 
@@ -37,7 +41,9 @@ import {MatButtonModule} from '@angular/material/button';
     ScrollingModule,
     MatSnackBarModule,
     MatMenuModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDividerModule,
+    MatListModule
 ]
 
 })
