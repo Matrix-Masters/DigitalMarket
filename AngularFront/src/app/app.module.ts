@@ -8,11 +8,13 @@ import { MaterialModule } from './material/material.module';
 import {FormsModule,ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { GererProduitComponent } from './AdminCompoenent/gerer-produit/gerer-produit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ClasserProductComponent
+    ClasserProductComponent,
+    GererProduitComponent
   ],
   imports: [
     BrowserModule,
