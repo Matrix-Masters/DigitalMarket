@@ -49,18 +49,5 @@ export const UpdateIdProducts = async (req: Request, res: Response) => {
   }
 }
 
-export const RejectProduct = async (req: Request, res: Response) => {
-  try {
-    const product = await Product.findOneAndUpdate({idSpring:req.params.id}, { status: 2 });
-    if (!product) {
-      return res.status(404).send("Product not found");
-    }
-    const updatedProduct = await Product.findOne({idSpring:req.params.id});
-    return res.status(200).send(updatedProduct);
-  } catch (err) {
-    return res.status(500).send(err);
-  }
-}
-
 
 
