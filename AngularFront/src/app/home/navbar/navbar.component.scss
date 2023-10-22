@@ -91,6 +91,17 @@ li > i {
   width: 100%;
 }
 
+.list-title{
+  font-size: 20px;
+
+}
+
+.list-items{
+cursor: pointer;
+}
+
+
+
 
 
 @media (max-width: 1326px) {
@@ -108,7 +119,7 @@ li > i {
     margin: 0px  60px 0px  0px;
   }
 }
-@media (max-width: 703px) {
+@media (max-width: 715px) {
 
   .navbar-brand{
     margin-left: 2%;
@@ -124,7 +135,7 @@ li > i {
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 587px) {
 
   .navbar-brand{
     margin-left: 2%;
