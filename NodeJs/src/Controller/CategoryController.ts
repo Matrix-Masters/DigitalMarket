@@ -26,6 +26,27 @@ export const getAllCategories = async(req:Request , res : Response)=>
           res.status(500).send('Failed to add category');
         }
       }
+
+
+    export const UpdateCategory = async (req: Request, res: Response) =>
+    {
+        try{
+            let categoryId = req.params.id;
+            let data = req.body;
+            let updatedCategory = await Category.findByIdAndUpdate(categoryId,data,{new:true})
+            if(!updatedCategory)
+            {
+                res.status(404).send("Category not found");
+            }
+            res.status(200).send("Category updated successfully");
+        }catch(err)
+        {
+            res.status(500).send("Failed to update Category");
+        }
+    }
+      
+
+
       
 
       
