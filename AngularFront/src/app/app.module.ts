@@ -8,11 +8,14 @@ import { MaterialModule } from './material/material.module';
 import {FormsModule,ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-
+import { DialogInfoComponent } from './AdminCompoenent/classer-product/dialog-info/dialog-info.component';
+import { SideBarCompComponent } from './Layout/side-bar-comp/side-bar-comp.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ClasserProductComponent
+    ClasserProductComponent,
+    DialogInfoComponent,
+    SideBarCompComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +25,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     FormsModule,
     ReactiveFormsModule,
     DragDropModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

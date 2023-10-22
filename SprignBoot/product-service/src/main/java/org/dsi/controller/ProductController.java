@@ -37,18 +37,15 @@ public class ProductController {
 	@Autowired
 	ProductRepo ProductRepo;
 	
-	@Autowired
-	private NodeSync nodesync;
+
 	
 	@PostMapping("/AddProduct")
 	public ResponseEntity<?> AddProduct(@RequestParam("file") MultipartFile file,
+			@RequestParam("description") String desc,
 			@RequestParam("name") String name,@RequestParam("Quantite") int Quantite,
 			@RequestParam("prix") double prix,@RequestParam(name="category",required = false) Category category){
-		  			ProducInfo product=new ProducInfo(name,Quantite,prix,category);
+		  			ProducInfo product=new ProducInfo(name,Quantite,prix,category,desc);
 		  			ProductService.AddProductService(product,file);
-		  			JSONObject jsoUser=new JSONObject();
-		  			jsoUser.appendField("title",name);
-		  			String prod=nodesync.addProd(jsoUser);
 		  			return new ResponseEntity<ProducInfo>(product,HttpStatus.OK);
 	 }
 	
@@ -91,6 +88,16 @@ public class ProductController {
 		return ResponseEntity.ok(ProductRepo.ProductsWithoutCategory());
 	}
 	
+	@PutMapping("/LibererProduct")
+	public ResponseEntity<?> LibererProduct(@RequestParam("id") long id){
+		try {
+			ProductService.LibereProd(id);
+			return  ResponseEntity.ok("Product Upated");
+		}catch (Exception e) {
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
+		}
+	}
+	
 	@GetMapping("/ProductsByIdCategorie")
 	public ResponseEntity<?> ProductsByIdCategorie(@RequestParam("id") long id){
 		return ResponseEntity.ok(ProductRepo.getProductsByCategoryId(id));
@@ -98,10 +105,23 @@ public class ProductController {
 	
 	@PutMapping("/UpdateIdProducts")
 	public ResponseEntity<?> UpdateIdProduct(@RequestParam("id") long id,@RequestBody Category cat){
-		Product prod=ProductRepo.ProductWithId(id);
-		prod.setCategory(cat);
-		ProductRepo.save(prod);
-		return  ResponseEntity.ok().body("Product Upated");
+		try {
+			ProductService.UpdateIdProduct(id, cat);
+			return  ResponseEntity.ok("Product Upated");
+		}catch (Exception e) {
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
+		}
+	}
+	
+
+	@PutMapping("/RejectProduct")
+	public ResponseEntity<?> RejectProduct(@RequestParam("id") long id){
+		try {
+			ProductService.RejectProduct(id);
+			return  ResponseEntity.ok("Product Upated");
+		}catch (Exception e) {
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
+		}
 	}
 	
 	@DeleteMapping("/DeleteAll")

@@ -1,28 +1,57 @@
 
 <div cdkDropListGroup class="classer_product">
-  <div >
-    <div class="example-container product">
+
+  <div class="product" >
+    <div class="example-container  mt-3 mx-2" >
       <h2 class="text-center">Products</h2>
       <div
         cdkDropList
         [cdkDropListData]="Products"
         class="example-list"
         (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of Products" cdkDrag>
-          <img *cdkDragPreview src="../../../favicon.ico">
-          <mat-card class="example-card">
-            <mat-card-header>
-              <mat-card-title> {{item['name']}}</mat-card-title>
-              <mat-card-subtitle>Qte : {{item['quantite']}}</mat-card-subtitle>
-              <mat-card-subtitle>Prix : {{item['prix']}} Dt</mat-card-subtitle>
-            </mat-card-header>
-          </mat-card>
+        <div class="search">
+          <mat-form-field appearance="fill">
+            <mat-label>Search</mat-label>
+            <input [(ngModel)]="Search"  (input)="serachWithProduct()" matInput placeholder="Search By Nom">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
         </div>
+        <div  *ngIf="Products=='';else ProductExiste">
+            <div class="NotFoundProduct">
+              <p>
+                  No Product
+              </p>
+              <p>
+                <mat-icon class="text-dark">search_off</mat-icon>
+              </p>
+            </div>
+        </div>
+        <ng-template #ProductExiste  >
+          <div class="mt-5">
+            <div class="example-box " *ngFor="let item of Products" cdkDrag>
+              <img *cdkDragPreview src="../../../favicon.ico">
+              <mat-card class="example-card">
+                <mat-card-header>
+                  <mat-card-title class="titre_card"> {{item['name']}}</mat-card-title>
+                  <mat-card-subtitle>Qte : {{item['quantite']}}</mat-card-subtitle>
+                  <mat-card-subtitle>Prix : {{item['prix']}} Dt</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-actions align="end">
+                  <mat-icon class="text-danger mx-2" (click)="openDialogAlert(item)">delete</mat-icon>
+                  <mat-icon class="text-primary" (click)="openDialog(item)">info</mat-icon>
+                </mat-card-actions>
+              </mat-card>
+            </div>
+          </div>
+        </ng-template>
+        
       </div>
     </div>
   </div>
-  <div>
-  <h2 class="text-center mt-3">List Categorie</h2>
+
+
+  <div class="category" style="max-height:750px;overflow-y: scroll;">
+  <h2 class="text-center mt-3 mb-5 py-2">List Categories</h2>
   <div class="example-container category" *ngFor="let itemCat of Categories">
     <p class="text-center mt-2">{{itemCat['nom']}}</p>
     <div
@@ -30,14 +59,22 @@
       [cdkDropListData]="Categories"
       class="example-list"
       (cdkDropListDropped)="drop($event,itemCat)">
-      <div class="example-box " *ngIf="itemCat['Products']=='';else elseBlock">
-        <div class="text-center">
+      <div class="example-box" *ngIf="itemCat['Products']=='';else elseBlock">
+        <div>
           No Product
         </div>
       </div>
       <ng-template #elseBlock>
         <div class="example-box"  *ngFor="let item of itemCat['Products']">
-          {{item['name']}}
+          <div class="card-product">
+            <div class="titre_card">
+              {{item['name']}}
+            </div>
+            <div>
+              <mat-icon class="text-primary mx-2" (click)="openDialog(item)">info</mat-icon>
+              <mat-icon class="text-info" (click)="LibererProduct(item['id'])">recycling</mat-icon>
+            </div>
+          </div>
         </div>
       </ng-template>
     </div>

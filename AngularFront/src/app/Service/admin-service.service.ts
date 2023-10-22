@@ -24,6 +24,13 @@ export class AdminServiceService {
   UpdateIdProducts(id:number,cat:any){
     return this.http.put(`${port}/PRODUCT-SERVICE/products/UpdateIdProducts?id=${id}`,cat);
   }
+ 
+  LibererProduct(id:number){
+    return this.http.put(`${port}/PRODUCT-SERVICE/products/LibererProduct?id=${id}`,{});
+  }
 
+  RejectProduct(id:number){
+    return this.http.put(`${port}/PRODUCT-SERVICE/products/RejectProduct?id=${id}`,{});
+  }
   
 }
