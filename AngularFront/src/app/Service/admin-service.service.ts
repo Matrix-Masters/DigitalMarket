@@ -28,5 +28,9 @@ export class AdminServiceService {
   LibererProduct(id:number){
     return this.http.put(`${port}/PRODUCT-SERVICE/products/LibererProduct?id=${id}`,{});
   }
+
+  RejectProduct(id:number){
+    return this.http.put(`${port}/PRODUCT-SERVICE/products/RejectProduct?id=${id}`,{});
+  }
   
 }
