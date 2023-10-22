@@ -4,9 +4,12 @@ package org.dsi.service;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import org.dsi.entity.Category;
 import org.dsi.entity.Product;
 import org.dsi.repository.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import Payload.ProducInfo;
@@ -42,6 +45,26 @@ public class ProductService {
 		  	   throw new Exception("Product Not Found");
 		  	}else {
 		  		prod.setCategory(null);
+				ProductRepo.save(prod);
+		  	}
+	  }
+	  
+	  public void RejectProduct(long id) throws Exception{
+		  Product prod=ProductRepo.ProductWithId(id);
+		  	if(prod==null) {
+		  	   throw new Exception("Product Not Found");
+		  	}else {
+		  		prod.setStatus(2);
+				ProductRepo.save(prod);
+		  	}
+	  }
+	  
+	  public void UpdateIdProduct(long id,Category cat) throws Exception{
+		  Product prod=ProductRepo.ProductWithId(id);
+		  	if(prod==null) {
+		  	   throw new Exception("Product Not Found");
+		  	}else {
+		  		prod.setCategory(cat);
 				ProductRepo.save(prod);
 		  	}
 	  }

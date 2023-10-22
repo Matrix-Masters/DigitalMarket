@@ -108,10 +108,23 @@ public class ProductController {
 	
 	@PutMapping("/UpdateIdProducts")
 	public ResponseEntity<?> UpdateIdProduct(@RequestParam("id") long id,@RequestBody Category cat){
-		Product prod=ProductRepo.ProductWithId(id);
-		prod.setCategory(cat);
-		ProductRepo.save(prod);
-		return  ResponseEntity.ok("Product Upated");
+		try {
+			ProductService.UpdateIdProduct(id, cat);
+			return  ResponseEntity.ok("Product Upated");
+		}catch (Exception e) {
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
+		}
+	}
+	
+
+	@PutMapping("/RejectProduct")
+	public ResponseEntity<?> RejectProduct(@RequestParam("id") long id){
+		try {
+			ProductService.RejectProduct(id);
+			return  ResponseEntity.ok("Product Upated");
+		}catch (Exception e) {
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
+		}
 	}
 	
 	@DeleteMapping("/DeleteAll")
