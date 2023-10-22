@@ -4,6 +4,7 @@
   text-align: center;
   width: 100%;
   margin-top: 20px;
+  height:570px;
 }
 img{
   width: fit-content;
@@ -15,7 +16,7 @@ img{
 .carousel-container img.image-active{
   display: block;
   width: 100%;
-  height: 400px;
+  height: 500px;
 }
 
 .carousel-dot-container{
@@ -26,7 +27,7 @@ img{
   display: flex;
   justify-content: center;
   padding: 0;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .dot{
@@ -96,4 +97,14 @@ cursor: pointer;
 .icon-carousel:active{
   opacity: 0.5;
 }
+
+.divider{
+  height: 70px;
+  background-color: #323232;
+}
+
+.new-arrivals{
+  height: 100vh;
+}
+
 
