@@ -60,15 +60,3 @@ export const getAllCategories = async(req:Request , res : Response)=>
         }
     }
 
-      
-
-
-      
-
-      
-
-
-
-    
-
-
