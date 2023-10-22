@@ -8,6 +8,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatButtonModule} from '@angular/material/button';
 @NgModule({
   imports:[
     MatIconModule,
@@ -18,7 +20,10 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatSelectModule,
     MatToolbarModule,
     ScrollingModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatMenuModule,
+    MatButtonModule
+
   ],
 
   exports:[
@@ -30,7 +35,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatSelectModule,
     MatToolbarModule,
     ScrollingModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatMenuModule,
+    MatButtonModule
 ]
 
 })
