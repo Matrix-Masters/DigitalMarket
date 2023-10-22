@@ -31,7 +31,7 @@ public class CategoryController {
 			
 			return ResponseEntity.ok("Category Added");
 		}catch (Exception e) {
-			return new ResponseEntity<String>(e.getMessage(),HttpStatus.FOUND);
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
 		}
 	}
 	

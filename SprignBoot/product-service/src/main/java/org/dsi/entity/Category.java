@@ -32,8 +32,6 @@ public class Category {
     private String nom;
     private String image;
     
-
-    
     @OneToMany(mappedBy = "category", cascade = CascadeType.REMOVE,  fetch = FetchType.EAGER)
     @JsonIgnore
     private List<Product> products;

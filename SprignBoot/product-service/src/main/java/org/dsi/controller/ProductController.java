@@ -37,18 +37,15 @@ public class ProductController {
 	@Autowired
 	ProductRepo ProductRepo;
 	
-	@Autowired
-	private NodeSync nodesync;
+
 	
 	@PostMapping("/AddProduct")
 	public ResponseEntity<?> AddProduct(@RequestParam("file") MultipartFile file,
+			@RequestParam("description") String desc,
 			@RequestParam("name") String name,@RequestParam("Quantite") int Quantite,
 			@RequestParam("prix") double prix,@RequestParam(name="category",required = false) Category category){
-		  			ProducInfo product=new ProducInfo(name,Quantite,prix,category);
+		  			ProducInfo product=new ProducInfo(name,Quantite,prix,category,desc);
 		  			ProductService.AddProductService(product,file);
-		  			JSONObject jsoUser=new JSONObject();
-		  			jsoUser.appendField("title",name);
-		  			String prod=nodesync.addProd(jsoUser);
 		  			return new ResponseEntity<ProducInfo>(product,HttpStatus.OK);
 	 }
 	
@@ -91,6 +88,16 @@ public class ProductController {
 		return ResponseEntity.ok(ProductRepo.ProductsWithoutCategory());
 	}
 	
+	@PutMapping("/LibererProduct")
+	public ResponseEntity<?> LibererProduct(@RequestParam("id") long id){
+		try {
+			ProductService.LibereProd(id);
+			return  ResponseEntity.ok("Product Upated");
+		}catch (Exception e) {
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
+		}
+	}
+	
 	@GetMapping("/ProductsByIdCategorie")
 	public ResponseEntity<?> ProductsByIdCategorie(@RequestParam("id") long id){
 		return ResponseEntity.ok(ProductRepo.getProductsByCategoryId(id));
@@ -98,10 +105,23 @@ public class ProductController {
 	
 	@PutMapping("/UpdateIdProducts")
 	public ResponseEntity<?> UpdateIdProduct(@RequestParam("id") long id,@RequestBody Category cat){
-		Product prod=ProductRepo.ProductWithId(id);
-		prod.setCategory(cat);
-		ProductRepo.save(prod);
-		return  ResponseEntity.ok().body("Product Upated");
+		try {
+			ProductService.UpdateIdProduct(id, cat);
+			return  ResponseEntity.ok("Product Upated");
+		}catch (Exception e) {
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
+		}
+	}
+	
+
+	@PutMapping("/RejectProduct")
+	public ResponseEntity<?> RejectProduct(@RequestParam("id") long id){
+		try {
+			ProductService.RejectProduct(id);
+			return  ResponseEntity.ok("Product Upated");
+		}catch (Exception e) {
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
+		}
 	}
 	
 	@DeleteMapping("/DeleteAll")
@@ -145,6 +165,80 @@ public class ProductController {
 		
 		
 	}
+	@PutMapping("/AcceptProduct")
+	public ResponseEntity<?> AcceptProduct(@RequestParam("id") long id){
+		Product prod=ProductRepo.ProductWithId(id);
+		prod.setStatus(1);
+		ProductRepo.save(prod);
+		return  ResponseEntity.ok().body("Product accepted");
+	}
+	@PutMapping("/RefuseProduct")
+	public ResponseEntity<?> RefuseProduct(@RequestParam("id") long id){
+		Product prod=ProductRepo.ProductWithId(id);
+		prod.setStatus(2);
+		ProductRepo.save(prod);
+		return  ResponseEntity.ok().body("Product refused");
+	}
+	@PutMapping("/PendingProduct")
+	public ResponseEntity<?> PendingProduct(@RequestParam("id") long id){
+		Product prod=ProductRepo.ProductWithId(id);
+		prod.setStatus(0);
+		ProductRepo.save(prod);
+		return  ResponseEntity.ok().body("Product pending");
+	}
+	@GetMapping("/RefusedProducts")
+	public ResponseEntity<?> getRefusedProducts(
+			@RequestParam(name = "page", defaultValue = "0") int page,
+			@RequestParam(name = "per_page", defaultValue = "2") int size){
+		if (page < 0 || size <= 0 ) {
+	        return ResponseEntity.badRequest().body("Invalid page or per_page values.");
+	 		}
+		
+		try {
+			Page<Product> RefusedProduct;
+			RefusedProduct=ProductRepo.getRefusedProducts(PageRequest.of(page, size));
+	        int total = RefusedProduct.getTotalPages();
+	        int[] count_page = new int[total];
+	        for (int i = 0; i < total; i++) {
+	            count_page[i] = i;
+	        }
+
+	        PaginateInfo data = new PaginateInfo(count_page, RefusedProduct, page);
+	        return ResponseEntity.ok(data);
+	        
+	    } catch (Exception e) {
+	    	
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while fetching paginated products.");
+	    }
+		
+	}
+	@GetMapping("/PendingProduct")
+	public ResponseEntity<?> getPundingProduct(
+			@RequestParam(name = "page", defaultValue = "0") int page,
+			@RequestParam(name = "per_page", defaultValue = "2") int size){
+		if (page < 0 || size <= 0 ) {
+	        return ResponseEntity.badRequest().body("Invalid page or per_page values.");
+	 		}
+		
+		try {
+			Page<Product> pendingProduct;
+			pendingProduct=ProductRepo.getPendingProducts(PageRequest.of(page, size));
+	        int total = pendingProduct.getTotalPages();
+	        int[] count_page = new int[total];
+	        for (int i = 0; i < total; i++) {
+	            count_page[i] = i;
+	        }
+
+	        PaginateInfo data = new PaginateInfo(count_page, pendingProduct, page);
+	        return ResponseEntity.ok(data);
+	        
+	    } catch (Exception e) {
+	    	
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while fetching paginated products.");
+	    }
+		
+	}
+
 	
 
 }

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
+import {MatIconModule} from '@angular/material/icon';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -8,6 +8,10 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatChipsModule} from '@angular/material/chips';
+import {DialogModule} from '@angular/cdk/dialog';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog';
 @NgModule({
   imports:[
     MatIconModule,
@@ -18,7 +22,11 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatSelectModule,
     MatToolbarModule,
     ScrollingModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatChipsModule,
+    DialogModule,
+    MatButtonModule,
+    MatDialogModule
   ],
 
   exports:[
@@ -30,7 +38,11 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatSelectModule,
     MatToolbarModule,
     ScrollingModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatChipsModule,
+    DialogModule,
+    MatButtonModule,
+    MatDialogModule
 ]
 
 })
