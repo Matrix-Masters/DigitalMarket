@@ -10,13 +10,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NavbarComponent } from './home/navbar/navbar.component';
 import { HomeComponent } from './home/home/home.component';
+import { BodyComponent } from './home/body/body.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ClasserProductComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    BodyComponent
   ],
   imports: [
     BrowserModule,
