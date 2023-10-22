@@ -44,6 +44,22 @@ export const getAllCategories = async(req:Request , res : Response)=>
             res.status(500).send("Failed to update Category");
         }
     }
+    export const DeleteCategory = async (req: Request, res: Response) =>
+    {
+        try{
+            let categoryId = req.params.id
+            let DeletedCategory = await Category.findByIdAndDelete(categoryId)
+            if(!DeletedCategory)
+            {
+                res.status(404).send("Category not found");
+            }
+            res.status(200).send("Category Deleted successfully");
+        }catch(err)
+        {
+            res.status(500).send("Failed to delete Category");
+        }
+    }
+
       
 
 
