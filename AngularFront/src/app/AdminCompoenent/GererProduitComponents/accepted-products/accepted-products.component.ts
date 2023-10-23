@@ -7,6 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class AcceptedProductsComponent {
   @Input() type = '';
+  @Input() products=[];
   modalVisible: boolean = false;
 
   showProductInfo() {
