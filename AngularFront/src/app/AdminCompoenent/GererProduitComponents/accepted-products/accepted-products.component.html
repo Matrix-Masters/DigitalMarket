@@ -1,0 +1,57 @@
+<div class="tab-show container ">
+  <h1 class="text-center"> {{ type }} Products </h1>
+  <div class="row gap-3">
+    <div class="card col d-flex justify-content-center" style="width: 200px !important;">
+      <div class="card-image">
+        <img src="../../../assets/bny_mellon_logo.jpg" style="height: 100px; width: 100px;" alt="product-image"
+          class="thumbnail-image" />
+      </div>
+      <div class="card-header">
+        <h2 class="text-center">Product 1</h2>
+      </div>
+      <div class="card-content text-center">
+        <p>Price</p>
+        <p>Quantity</p>
+        <p>Status</p>
+      </div>
+      <div class="card-actions text-center">
+        <button class="btn" (click)="showProductInfo()"><mat-icon>info</mat-icon></button>
+      </div>
+    </div>
+    <div class="card col d-flex justify-content-center" style="width: 200px !important;">
+      <div class="card-image">
+        <img src="../../../assets/bny_mellon_logo.jpg" style="height: 100px; width: 100px;" alt="product-image"
+          class="thumbnail-image" />
+      </div>
+      <div class="card-header">
+        <h2 class="text-center">Product 1</h2>
+      </div>
+      <div class="card-content text-center">
+        <p>Price</p>
+        <p>Quantity</p>
+        <p>Status</p>
+      </div>
+      <div class="card-actions text-center">
+        <button class="btn"><mat-icon>info</mat-icon></button>
+      </div>
+    </div>
+    <div class="card col d-flex justify-content-center" style="width: 200px !important;">
+      <div class="card-image">
+        <img src="../../../assets/bny_mellon_logo.jpg" style="height: 100px; width: 100px;" alt="product-image"
+          class="thumbnail-image" />
+      </div>
+      <div class="card-header">
+        <h2 class="text-center">Product 1</h2>
+      </div>
+      <div class="card-content text-center">
+        <p>Price</p>
+        <p>Quantity</p>
+        <p>Status</p>
+      </div>
+      <div class="card-actions text-center">
+        <button class="btn"><mat-icon>info</mat-icon></button>
+      </div>
+    </div>
+    <app-info-produit [visible]="modalVisible" (hide)="hideModal($event)"></app-info-produit>
+  </div>
+</div>
