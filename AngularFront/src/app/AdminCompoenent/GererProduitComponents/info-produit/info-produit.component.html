@@ -1,25 +1,44 @@
-<div class="modal" [class.show]="visible" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Product Details</h5>
-        <button type="button" class="close" (click)="hideModal()">
-          <span>&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Product Information</p>
+<div>
 
-        <hr>
-        <h5>Supplier Information</h5>
-        <img src="./../../../../assets/bny_mellon_logo.jpg" alt="Supplier Image" class="img-fluid mb-3"
-          style="max-width: 100px;">
-        <p>Supplier Information</p>
-        <button class="btn btn-primary">View Profile</button>
-        <hr>
-        <h5>Other Products by Supplier</h5>
-
+  <div class="product">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+      data-bs-backdrop="false">
+      <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-black">Product Details</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-8 text-black">
+                <!-- Product Information -->
+                <div class="text-center">
+                  <img src="./../../../../assets/bny_mellon_logo.jpg" alt="Product Image" class="img-fluid mb-3"
+                    style="max-width: 100px;">
+                  <p>Product Information</p>
+                  <button class="btn btn-primary me-2">Accept</button>
+                  <button class="btn btn-dark">Refuse</button>
+                </div>
+              </div>
+              <div class="col-4">
+                <!-- Supplier Information Sidebar -->
+                <div class="p-3" style="box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); background-color: white;">
+                  <h5 class="text-black">Supplier Information</h5>
+                  <img src="./../../../../assets/bny_mellon_logo.jpg" alt="Supplier Image" class="img-fluid mb-3"
+                    style="max-width: 100px;">
+                  <p class="text-black">Supplier Information</p>
+                  <button class="btn btn-primary">View Profile</button>
+                  <hr style="border-top: 1px solid black;">
+                  <h5 class="text-black">Other Products by Supplier</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+
+
   </div>
 </div>
