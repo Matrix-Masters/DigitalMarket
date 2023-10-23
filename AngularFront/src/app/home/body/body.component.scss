@@ -1,3 +1,9 @@
+*{
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+
 .carousel-container{
   position: relative;
   margin: auto;
@@ -128,6 +134,13 @@ cursor: pointer;
     margin-left: 5%;
     margin-right: 5%;
   }
+  .ads{
+    width: min-content;
+  }
+
+  .ads p{
+    font-size: 20px;
+  }
 }
 
 .btn-prev-products{
@@ -149,7 +162,13 @@ cursor: pointer;
 
 
 .ads{
-
+  margin-top: 70px;
+  height: 200px;
+  background-image: url("../../../assets/ads.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-bottom: 70px;
 }
 
 

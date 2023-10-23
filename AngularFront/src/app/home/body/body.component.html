@@ -29,8 +29,8 @@
 <div class="container new-arrivals " style="margin-top: 70px;">
 
   <div class="d-flex">
-    <span class="title">New arrivals</span>
-    <span class="mini-title">see all</span>
+    <span class="title" style="padding-top: 20px;">New arrivals</span>
+    <span class="mini-title" style="padding-top: 20px;">see all</span>
   </div>
 
 </div>
@@ -38,7 +38,7 @@
  <!-- ---------------------------section 1 -------------------------->
 <div class="procucts d-flex" style="width: 100%;">
 
-  <button class="align-self-center  btn-prev-products"><i class="bi bi-arrow-left" style=" font-size: 35px;"></i></button>
+  <button class="align-self-center  btn-prev-products d-none d-sm-block"><i class="bi bi-arrow-left" style=" font-size: 35px;"></i></button>
 
   <div class="products-paginate container " style="margin-top: 70px;">
     <div class="row2 row d-flex justify-content-between">
@@ -48,19 +48,58 @@
     </div>
   </div>
 
+  <button class="align-self-center  btn-prev-products d-none d-sm-block"><i class="bi bi-arrow-right" style=" font-size: 35px;"></i></button>
+
+
+</div>
+
+<div class="arrows-sm d-flex justify-content-center d-block d-sm-none" style="padding-top: 30px;padding-bottom: 30px;">
+  <button class="align-self-center  btn-prev-products"><i class="bi bi-arrow-left" style=" font-size: 35px;"></i></button>
   <button class="align-self-center  btn-prev-products"><i class="bi bi-arrow-right" style=" font-size: 35px;"></i></button>
 </div>
- <!-- --------------------------- /section 1 -------------------------->
 
- <!-- ---------------------------section 2 -------------------------->
 
- <div class="container ads">
-
+ <div class="container ads d-none d-sm-block">
+  <p class="" style="font-size: 30px;margin-bottom: 30px;padding-top: 40px;font-weight:bold;padding-bottom: 20px;">50% off All Items</p>
+  <button class="" style="padding: 10px;background-color: #fff;">Shop now</button>
  </div>
 
+ <!-- --------------------------- /section 1 -------------------------->
+
+
+
+<!-- ---------------------------section 2 -------------------------->
+
+<div class="d-flex container" style="margin-top: 140px;">
+  <span class="title" style="padding-top: 20px;">Top Seller</span>
+  <span class="mini-title" style="padding-top: 20px;">see all</span>
+</div>
+
+<div class="top-seller procucts d-flex" style="width: 100%;">
+
+  <button class="align-self-center  btn-prev-products d-none d-sm-block"><i class="bi bi-arrow-left" style=" font-size: 35px;"></i></button>
+
+  <div class="products-paginate container " style="margin-top: 70px;">
+    <div class="row2 row d-flex justify-content-between">
+      <div class="col2 col-lg-3 col-md-4 col-sm-6 col-12" style="margin-bottom: 40px;position: relative;" *ngFor="let _ of [1,2,3,4]">
+        <app-card ></app-card>
+      </div>
+    </div>
+  </div>
+
+  <button class="align-self-center  btn-prev-products d-none d-sm-block"><i class="bi bi-arrow-right" style=" font-size: 35px;"></i></button>
+</div>
+
+<div class="arrows-sm d-flex justify-content-center d-block d-sm-none" style="padding-top: 30px;padding-bottom: 30px;">
+  <button class="align-self-center  btn-prev-products"><i class="bi bi-arrow-left" style=" font-size: 35px;"></i></button>
+  <button class="align-self-center  btn-prev-products"><i class="bi bi-arrow-right" style=" font-size: 35px;"></i></button>
+</div>
+
+<div class="container ads d-none d-sm-block">
+  <p class="" style="font-size: 30px;margin-bottom: 30px;padding-top: 40px;font-weight:bold;padding-bottom: 20px;">50% off All Items</p>
+  <button class="" style="padding: 10px;background-color: #fff;">Shop now</button>
+ </div>
  <!-- --------------------------- /section 2 -------------------------->
-
-
 
 
 
