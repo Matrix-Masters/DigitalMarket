@@ -11,6 +11,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NavbarComponent } from './home/navbar/navbar.component';
 import { HomeComponent } from './home/home/home.component';
 import { BodyComponent } from './home/body/body.component';
+import { CardComponent } from './home/card/card.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { BodyComponent } from './home/body/body.component';
     ClasserProductComponent,
     NavbarComponent,
     HomeComponent,
-    BodyComponent
+    BodyComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
