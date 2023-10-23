@@ -10,7 +10,7 @@ export class AcceptedProductsComponent {
   modalVisible: boolean = false;
 
   showProductInfo() {
-    this.modalVisible = true;
+    this.modalVisible = false;
   }
   hideModal($event : any){
     this.modalVisible=false;
