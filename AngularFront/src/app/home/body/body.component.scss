@@ -5,6 +5,8 @@
   width: 100%;
   margin-top: 20px;
   height:570px;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 img{
   width: fit-content;
@@ -76,7 +78,7 @@ cursor: pointer;
   cursor: pointer;
   }
 
-.btn-prev{
+-product{
   left: 0;
 }
 
@@ -84,14 +86,14 @@ cursor: pointer;
   right: 0;
 }
 .icon-carousel{
-  color: #FFF;
+  color: #939393;
   opacity: 0.5;
   transition: all 0.15s ease;
   font-size: 35px;
   margin-left: 5px;
 }
 .icon-carousel:hover{
-  opacity: 0.9;
+  opacity: 1;
 }
 
 .icon-carousel:active{
@@ -104,7 +106,56 @@ cursor: pointer;
 }
 
 .new-arrivals{
-  height: 100vh;
+  height: auto;
 }
+
+.title{
+  font-size: 30px;
+  text-transform: uppercase;
+  margin-right: 20px;
+}
+
+.mini-title{
+  font-size: 20px;
+  text-decoration: underline;
+  cursor: pointer;
+  padding-bottom: 5px;
+  margin-top: 4px;
+}
+
+@media (max-width:575px){
+  .row2{
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+}
+
+.btn-prev-products{
+  padding: 10px;
+  border: 0;
+  background-color: #FFF;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.btn-prev-products button icon{
+  color:#010101;
+  font-size: 35px;
+}
+
+.btn-prev-products:hover{
+  background-color: #e1e1e1;
+}
+
+
+.ads{
+
+}
+
+
+
+
+
+
 
 
