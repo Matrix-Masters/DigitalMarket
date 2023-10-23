@@ -1,0 +1,25 @@
+<div class="modal" [class.show]="visible" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Product Details</h5>
+        <button type="button" class="close" (click)="hideModal()">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Product Information</p>
+
+        <hr>
+        <h5>Supplier Information</h5>
+        <img src="./../../../../assets/bny_mellon_logo.jpg" alt="Supplier Image" class="img-fluid mb-3"
+          style="max-width: 100px;">
+        <p>Supplier Information</p>
+        <button class="btn btn-primary">View Profile</button>
+        <hr>
+        <h5>Other Products by Supplier</h5>
+
+      </div>
+    </div>
+  </div>
+</div>
