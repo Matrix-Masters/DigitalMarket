@@ -8,13 +8,18 @@ import { MaterialModule } from './material/material.module';
 import {FormsModule,ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { GererProduitComponent } from './AdminCompoenent/gerer-produit/gerer-produit.component';
+import { GererProduitComponent } from './AdminCompoenent/GererProduitComponents/gerer-produit/gerer-produit.component';
+import { AcceptedProductsComponent } from './AdminCompoenent/GererProduitComponents/accepted-products/accepted-products.component';
+import { InfoProduitComponent } from './AdminCompoenent/GererProduitComponents/info-produit/info-produit.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     ClasserProductComponent,
-    GererProduitComponent
+    GererProduitComponent,
+    AcceptedProductsComponent,
+    InfoProduitComponent
   ],
   imports: [
     BrowserModule,
