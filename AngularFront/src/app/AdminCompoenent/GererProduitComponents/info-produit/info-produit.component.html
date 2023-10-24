@@ -4,38 +4,63 @@
       data-bs-backdrop="false">
       <div class="modal-dialog modal-fullscreen">
         <div class="modal-content" style="background-color: white;">
-          <div class="modal-header bg-dark">
+          <div class="modal-header" style="background-color: #2E2C5E;">
             <h1 class="modal-title text-white">Product Details</h1>
-            <button type="button" style="background-color: white;" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" style="background-color: white;" class="btn-close text-white" data-bs-dismiss="modal"
+              aria-label="Close"></button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body" *ngIf="Product!=null">
             <div class="row">
               <div class="col-8">
-                <!-- Product Information -->
-                <div class="text-center">
-                  <img src="./../../../../assets/bny_mellon_logo.jpg" alt="Product Image" class="img-fluid mb-3"
-                    style="max-width: 300px; display: block; margin-left: auto; margin-right: auto;">
-                  <p class="text-black text-center"
-                    style="font-size: 24px; font-weight: bold; text-transform: uppercase;">Product Information</p>
-                  <div class="card-content text-center" *ngIf="Product!=null" style="font-size: 18px;">
-                    <p class="text-black">Price: {{ Product['prix'] }}</p>
-                    <p class="text-black">Quantity: {{ Product['quantite'] }}</p>
-                    <p class="text-black">Status: {{ Product['status']==1 ? 'accepted' : 'pending' }}</p>
+                <div class="container shadow-lg">
+                  <div class="row">
+                    <div class="col-4" style="height: 70vh;">
+                      <img src="../../../../assets/bny_mellon_logo.jpg" height="400px" width="400px" />
+                      <div class="desciption">
+                        <h3 class="text-black text-center" style="font-size: 20px; font-weight: bold;"> description : {{
+                          Product['description'] }}</h3>
+                      </div>
+                    </div>
+                    <div class="col-8">
+                      <h1 class="text-black text-center mt-4" style="font-size: 28px; font-weight: bold;">
+                        {{Product['name']}}
+                      </h1>
+                      <div class="container">
+                        <p class="text-center mt-5" style="font-size: 20px; font-weight: bold;">Quantity <span
+                            class="ml-5" style="margin-left: 50%;">{{Product.quantite}}</span></p>
+                        <hr style="width: 450px;margin-left: 15%;height: 3px;
+                        background-color: #2E2C5E;">
+                        <p class="text-center mt-5" style="font-size: 20px; font-weight: bold;">Price <span class="ml-5"
+                            style="margin-left: 50%;">{{Product.prix}} $</span></p>
+                        <hr style="width: 450px;margin-left: 15%;height: 3px;
+                        background-color: #2E2C5E;">
+                        <p class="text-center mt-5" style="font-size: 20px; font-weight: bold;">Status <span
+                            class="text-warning" style="margin-left: 50%;">{{Product.status==0 ?
+                            "pending":"refused"}}</span>
+                        </p>
+                        <hr style="width: 450px;margin-left: 15%;height: 3px;
+                        background-color: #2E2C5E;">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="text-center mt-5">
+                      <button class="btn  btn-lg me-4 text-white"
+                        style="background-color: #77D593;border: #4E775A 7px;font-weight: bold;">Accept</button>
+                      <button class="btn  btn-lg me-4 text-white"
+                        style="background-color: #F16674 ;border: #AE4F59 7px;font-weight: bold;">Refuse</button>
+                    </div>
                   </div>
                 </div>
-                <div class="text-center mt-5">
-                  <button class="btn btn-dark btn-lg me-4">Accept</button>
-                  <button class="btn btn-dark btn-lg me-4">Refuse</button>
-                  <button class="btn btn-dark btn-lg">Pending</button>
-                </div>
               </div>
-              <div class="col-4" style="background-color: black; color: white; border-radius: 10px;">
+              <div class="col-4" style="background-color: #2E2C5E ;color: white; border-radius: 10px;">
                 <div class="p-3">
                   <h2 class="text-white">supplier info</h2>
                   <div class="text-center">
-                    <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Supplier Image"
+                    <img src="../../../../assets/Screenshot 2023-10-24 202314.png" alt="Supplier Image"
                       class="img-fluid rounded-circle mb-3" style="max-width: 100px;">
-                    <p class="text-white" style="font-size: 24px; font-weight: bold; text-transform: uppercase;">Joe Doe
+                    <p class="text-white" style="font-size: 24px; font-weight: bold; text-transform: uppercase;">Hkimi
+                      Mohamed Amin
                     </p>
                     <div class="d-flex justify-content-center">
                       <div style="margin-right: 20px;">
@@ -57,15 +82,15 @@
                 <hr style="border-top: 1px solid white;">
                 <h5 style="font-size: 20px;">Other Products by Supplier</h5>
                 <div class="d-flex justify-content-around" style="flex-wrap: wrap;">
-                  <img src="https://via.placeholder.com/150" alt="Product 1"
+                  <img src="./../../../../assets/bny_mellon_logo.jpg" height="150px" width="150px" alt="Product 1"
                     style="max-width: 150px; margin-bottom: 10px;">
-                  <img src="https://via.placeholder.com/150" alt="Product 2"
+                  <img src="./../../../../assets/bny_mellon_logo.jpg" height="150px" width="150px" alt="Product 2"
                     style="max-width: 150px; margin-bottom: 10px;">
-                  <img src="https://via.placeholder.com/150" alt="Product 3"
+                  <img src="./../../../../assets/bny_mellon_logo.jpg" height="150px" width="150px" alt="Product 3"
                     style="max-width: 150px; margin-bottom: 10px;">
-                  <img src="https://via.placeholder.com/150" alt="Product 4"
+                  <img src="./../../../../assets/bny_mellon_logo.jpg" height="150px" width="150px" alt="Product 4"
                     style="max-width: 150px; margin-bottom: 10px;">
-                  <img src="https://via.placeholder.com/150" alt="Product 5"
+                  <img src="./../../../../assets/bny_mellon_logo.jpg" height="150px" width="150px" alt="Product 5"
                     style="max-width: 150px; margin-bottom: 10px;">
                 </div>
               </div>

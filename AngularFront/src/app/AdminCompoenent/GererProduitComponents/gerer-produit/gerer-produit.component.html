@@ -3,8 +3,7 @@
 
     <h1 class="color-secondary"> Gerer Produit</h1>
     <mat-tab-group>
-      <mat-tab label="accepted" color="green">
-
+      <mat-tab label="accepted" color="green" matBadge="10" [matBadgeColor]="'warn'">
         <app-accepted-products [type]="accepted" [products]="AcceptedProducts"></app-accepted-products>
       </mat-tab>
       <mat-tab label="pending" color="orange">
