@@ -10,12 +10,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DialogInfoComponent } from './AdminCompoenent/classer-product/dialog-info/dialog-info.component';
 import { SideBarCompComponent } from './Layout/side-bar-comp/side-bar-comp.component';
+import { NavbarCompComponent } from './Layout/navbar-comp/navbar-comp.component';
 @NgModule({
   declarations: [
     AppComponent,
     ClasserProductComponent,
     DialogInfoComponent,
-    SideBarCompComponent
+    SideBarCompComponent,
+    NavbarCompComponent
   ],
   imports: [
     BrowserModule,

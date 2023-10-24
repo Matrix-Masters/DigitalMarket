@@ -4,12 +4,11 @@
 
 .category{
   .example-container {
-    width: 350px;
-    margin: 0 25px 25px 0;
+    width: 300px;
   }
   .example-list {
     border: solid 1px #ccc;
-    max-height: 300px;
+    max-height: 280px;
     overflow-y: scroll;
     margin: 15px 25px;
     border-radius: 4px;
@@ -29,7 +28,8 @@
 
 .titre_card{
   color:#000 !important;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 400;
 }
 .product{
   
@@ -37,10 +37,12 @@
     width: 250px;
     margin: 0 25px 25px 0;
   }
-
+  .example-card{
+    height: 100px !important;
+  }
   .example-list {
     background: #fff;
-    height: 90vh;
+    height: 82vh;
     overflow-y: scroll; 
     border-radius: 4px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
@@ -87,7 +89,7 @@
 
 
 .example-list::-webkit-scrollbar-thumb {
-  background: #000;
+  background: #272343;
   border-radius: 2px;
 }
 
@@ -95,7 +97,10 @@
   scrollbar-width: thin;
   scrollbar-color: #E3F6F5 #f1f1f1;
 }
-
+.title_cat{
+  font-size: 15px;
+  font-weight: bold;
+}
 .NotFoundProduct{
   color:#000 !important;
   display: flex;
@@ -105,16 +110,17 @@
   font-size: 15px !important; 
 }
 .search{
-  position: fixed;
+  position: absolute;
   z-index: 999999;
 }
 .classer_product{
-  background-color: $BackgroundColorAdmin;
-  width: 100%;
-  height: 100vh;
-  color:  #BAE8E8;
+  background-color: #fff;
   display: flex;
-  gap: 5px;
+  color:  #000;
+  border:2px thick #131122;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  border-radius: 12px;
+  margin: 15px;
   .category{      
     display:inline-block;
     vertical-align: top;
