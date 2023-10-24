@@ -10,11 +10,11 @@
               aria-label="Close"></button>
           </div>
           <div class="modal-body" *ngIf="Product!=null">
-            <div class="row">
+            <div class="row ">
               <div class="col-8">
                 <div class="container shadow-lg">
                   <div class="row">
-                    <div class="col-4" style="height: 70vh;">
+                    <div class="col-4" style="height: 70vh;border-radius: 10px">
                       <img src="../../../../assets/bny_mellon_logo.jpg" height="400px" width="400px" />
                       <div class="desciption">
                         <h3 class="text-black text-center" style="font-size: 20px; font-weight: bold;"> description : {{
@@ -44,10 +44,10 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="text-center mt-5">
-                      <button class="btn  btn-lg me-4 text-white"
+                    <div class="text-center mt-5 mb-5">
+                      <button class="btn  btn-lg me-4 text-white" (click)="AcceptProduit(Product.id)"
                         style="background-color: #77D593;border: #4E775A 7px;font-weight: bold;">Accept</button>
-                      <button class="btn  btn-lg me-4 text-white"
+                      <button class="btn  btn-lg me-4 text-white" (click)="RefuseProduct(Product.id)"
                         style="background-color: #F16674 ;border: #AE4F59 7px;font-weight: bold;">Refuse</button>
                     </div>
                   </div>

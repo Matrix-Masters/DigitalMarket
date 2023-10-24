@@ -24,7 +24,7 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatSnackBarModule,
     MatTabsModule,
     MatDialogModule,
-    MatBadgeModule
+    MatBadgeModule,
   ],
 
   exports:[
@@ -39,7 +39,7 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatSnackBarModule,
     MatTabsModule,
     MatDialogModule,
-    MatBadgeModule
+    MatBadgeModule,
 ]
 
 })
