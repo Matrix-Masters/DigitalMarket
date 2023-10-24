@@ -16,12 +16,12 @@
         <p>Status: {{ product['status']==1 ? 'accepted' : 'pending' }}</p>
       </div>
       <div class="card-actions text-center">
-        <button class="btn" (click)="showProductInfo()" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button class="btn" (click)="showProductInfo(product)" data-bs-toggle="modal" data-bs-target="#exampleModal">
           <mat-icon>info</mat-icon>
         </button>
       </div>
     </div>
 
-    <app-info-produit [visible]="modalVisible" (hide)="hideModal($event)"></app-info-produit>
+    <app-info-produit [visible]="modalVisible" [Product]="Product" (hide)="hideModal($event)"></app-info-produit>
   </div>
 </div>

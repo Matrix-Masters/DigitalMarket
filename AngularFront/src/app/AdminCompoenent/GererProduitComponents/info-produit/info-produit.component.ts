@@ -8,6 +8,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class InfoProduitComponent {
   @Input() visible: boolean = false;
+  @Input() Product : any=null;
   @Output() hide = new EventEmitter<string>();
   constructor(){
     console.log(this.visible);

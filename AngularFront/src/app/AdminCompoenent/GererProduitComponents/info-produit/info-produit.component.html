@@ -16,6 +16,11 @@
                   <img src="./../../../../assets/bny_mellon_logo.jpg" alt="Product Image" class="img-fluid mb-3"
                     style="max-width: 100px;">
                   <p>Product Information</p>
+                  <div class="card-content text-center" *ngIf="Product!=null">
+                    <p>Price: {{ Product['prix'] }}</p>
+                    <p>Quantity: {{ Product['quantite'] }}</p>
+                    <p>Status: {{ Product['status']==1 ? 'accepted' : 'pending' }}</p>
+                  </div>
                   <button class="btn btn-primary me-2">Accept</button>
                   <button class="btn btn-dark">Refuse</button>
                 </div>
