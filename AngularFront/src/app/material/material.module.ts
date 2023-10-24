@@ -12,6 +12,10 @@ import {MatChipsModule} from '@angular/material/chips';
 import {DialogModule} from '@angular/cdk/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import {MatTooltipModule} from '@angular/material/tooltip';
 @NgModule({
   imports:[
     MatIconModule,
@@ -26,7 +30,11 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatChipsModule,
     DialogModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    MatMenuModule,
+    MatSidenavModule,
+    MatListModule,
+    MatTooltipModule
   ],
 
   exports:[
@@ -42,7 +50,11 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatChipsModule,
     DialogModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    MatMenuModule,
+    MatSidenavModule,
+    MatListModule,
+    MatTooltipModule
 ]
 
 })
