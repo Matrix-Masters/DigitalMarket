@@ -3,38 +3,70 @@
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
       data-bs-backdrop="false">
       <div class="modal-dialog modal-fullscreen">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title text-black">Product Details</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content" style="background-color: white;">
+          <div class="modal-header bg-dark">
+            <h1 class="modal-title text-white">Product Details</h1>
+            <button type="button" style="background-color: white;" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             <div class="row">
-              <div class="col-8 text-black">
+              <div class="col-8">
                 <!-- Product Information -->
                 <div class="text-center">
                   <img src="./../../../../assets/bny_mellon_logo.jpg" alt="Product Image" class="img-fluid mb-3"
-                    style="max-width: 100px;">
-                  <p>Product Information</p>
-                  <div class="card-content text-center" *ngIf="Product!=null">
-                    <p>Price: {{ Product['prix'] }}</p>
-                    <p>Quantity: {{ Product['quantite'] }}</p>
-                    <p>Status: {{ Product['status']==1 ? 'accepted' : 'pending' }}</p>
+                    style="max-width: 300px; display: block; margin-left: auto; margin-right: auto;">
+                  <p class="text-black text-center"
+                    style="font-size: 24px; font-weight: bold; text-transform: uppercase;">Product Information</p>
+                  <div class="card-content text-center" *ngIf="Product!=null" style="font-size: 18px;">
+                    <p class="text-black">Price: {{ Product['prix'] }}</p>
+                    <p class="text-black">Quantity: {{ Product['quantite'] }}</p>
+                    <p class="text-black">Status: {{ Product['status']==1 ? 'accepted' : 'pending' }}</p>
                   </div>
-                  <button class="btn btn-primary me-2">Accept</button>
-                  <button class="btn btn-dark">Refuse</button>
+                </div>
+                <div class="text-center mt-5">
+                  <button class="btn btn-dark btn-lg me-4">Accept</button>
+                  <button class="btn btn-dark btn-lg me-4">Refuse</button>
+                  <button class="btn btn-dark btn-lg">Pending</button>
                 </div>
               </div>
-              <div class="col-4">
-                <!-- Supplier Information Sidebar -->
-                <div class="p-3" style="box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); background-color: white;">
-                  <h5 class="text-black">Supplier Information</h5>
-                  <img src="./../../../../assets/bny_mellon_logo.jpg" alt="Supplier Image" class="img-fluid mb-3"
-                    style="max-width: 100px;">
-                  <p class="text-black">Supplier Information</p>
-                  <button class="btn btn-primary">View Profile</button>
-                  <hr style="border-top: 1px solid black;">
-                  <h5 class="text-black">Other Products by Supplier</h5>
+              <div class="col-4" style="background-color: black; color: white; border-radius: 10px;">
+                <div class="p-3">
+                  <h2 class="text-white">supplier info</h2>
+                  <div class="text-center">
+                    <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Supplier Image"
+                      class="img-fluid rounded-circle mb-3" style="max-width: 100px;">
+                    <p class="text-white" style="font-size: 24px; font-weight: bold; text-transform: uppercase;">Joe Doe
+                    </p>
+                    <div class="d-flex justify-content-center">
+                      <div style="margin-right: 20px;">
+                        <mat-icon style="color: white; font-size: 30px;">thumb_up</mat-icon>
+                        <p class="text-white" style="font-size: 16px;">123</p>
+                      </div>
+                      <div style="margin-right: 20px;">
+                        <mat-icon style="color: white; font-size: 30px;">save</mat-icon>
+                        <p class="text-white" style="font-size: 16px;">87</p>
+                      </div>
+                      <div>
+                        <mat-icon style="color: white; font-size: 30px;">shopping_cart</mat-icon>
+                        <p class="text-white" style="font-size: 16px;">42</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button class="btn btn-dark justify-content-center">View Profile</button>
+                <hr style="border-top: 1px solid white;">
+                <h5 style="font-size: 20px;">Other Products by Supplier</h5>
+                <div class="d-flex justify-content-around" style="flex-wrap: wrap;">
+                  <img src="https://via.placeholder.com/150" alt="Product 1"
+                    style="max-width: 150px; margin-bottom: 10px;">
+                  <img src="https://via.placeholder.com/150" alt="Product 2"
+                    style="max-width: 150px; margin-bottom: 10px;">
+                  <img src="https://via.placeholder.com/150" alt="Product 3"
+                    style="max-width: 150px; margin-bottom: 10px;">
+                  <img src="https://via.placeholder.com/150" alt="Product 4"
+                    style="max-width: 150px; margin-bottom: 10px;">
+                  <img src="https://via.placeholder.com/150" alt="Product 5"
+                    style="max-width: 150px; margin-bottom: 10px;">
                 </div>
               </div>
             </div>
@@ -42,7 +74,5 @@
         </div>
       </div>
     </div>
-
-
   </div>
 </div>
