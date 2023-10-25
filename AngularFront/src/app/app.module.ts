@@ -13,7 +13,9 @@ import { HomeComponent } from './home/home/home.component';
 import { BodyComponent } from './home/body/body.component';
 import { CardComponent } from './home/card/card.component';
 import { FooterComponent } from './home/footer/footer.component';
-
+import { DialogInfoComponent } from './AdminCompoenent/classer-product/dialog-info/dialog-info.component';
+import { SideBarCompComponent } from './Layout/side-bar-comp/side-bar-comp.component';
+import { NavbarCompComponent } from './Layout/navbar-comp/navbar-comp.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +25,9 @@ import { FooterComponent } from './home/footer/footer.component';
     BodyComponent,
     CardComponent,
     FooterComponent
+    DialogInfoComponent,
+    SideBarCompComponent,
+    NavbarCompComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +37,7 @@ import { FooterComponent } from './home/footer/footer.component';
     FormsModule,
     ReactiveFormsModule,
     DragDropModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

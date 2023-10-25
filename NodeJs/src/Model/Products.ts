@@ -6,10 +6,39 @@ let ProductSchema=new mongoose.Schema({
         type:String,
         required:true
     },
-    categoryId:{
+    Description:{
+        type:String,
+        required:true
+    },
+    ImageProduct:{
+        type:String,
+        required:false
+    },
+    status:{
         type:Number,
         required:false,
-        default:null
+        default:0
+    },
+    Quantite:{
+        type:Number,
+        required:true,
+    },
+    prix:{
+        type:Number,
+        required:true,
+    },
+    idUser:{
+        type:Number,
+        required:true,
+    },
+    categoryId:{
+      type: String,
+        required: false,
+        default: null,
+    },
+    idSpring:{
+        type:String,
+        required:true,
     }  
 })
 ProductSchema.plugin(mongoosePaginate)

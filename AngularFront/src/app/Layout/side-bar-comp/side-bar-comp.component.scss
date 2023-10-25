@@ -1,0 +1,52 @@
+.allSidebar {
+	height: 100%;
+	width: 100%;
+    background-color: #E9E9E9;
+	padding: 5px;
+	overflow: hidden;
+	
+	.sidebar {
+        margin: 5px;
+        border-radius: 10px;
+		max-width: 350px;
+		padding: 20px;
+		box-shadow: 0 20px 35px rgba(0,0,0,0.1);
+		background-color: #272343;
+		.logo{
+			text-align: center;
+			margin-bottom: 50px;
+			img{
+				width: 50px;
+			}
+		}	
+		ul li{
+            list-style-type: none;
+			padding: 15px 0;
+            a{
+                text-decoration: none;
+                display: flex;
+				align-items: center;
+				gap: 15px;
+                .icon{
+                    color: #fff;
+                    font-size: 25px;
+                }
+                .nav-item{
+                    color: #fff;
+					margin-top: 12px;
+                }
+            }
+			.close_sidebar{
+				position: absolute;
+				cursor: pointer;
+				bottom: 20px;
+				margin-left: 35px;
+			 }
+        }
+	}
+}
+
+.content{
+	padding-left: 12px;
+}
+

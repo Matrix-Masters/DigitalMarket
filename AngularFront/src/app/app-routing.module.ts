@@ -6,7 +6,7 @@ import { HomeComponent } from './home/home/home.component';
 const routes: Routes = [
   {path:'',component:ClasserProductComponent},
   {path:'home',component:HomeComponent}
-];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -15,7 +15,7 @@ public interface ProductRepo extends JpaRepository<Product,Long> {
 	   @Query(value = "SELECT p FROM Product p WHERE p.category.id = :id")
 	   List<Product> getProductsByCategoryId(long id);
 	   
-	   @Query(value = "SELECT p FROM Product p WHERE p.category.id = null")
+	   @Query(value = "SELECT p FROM Product p WHERE p.category.id = null and p.status=1")
 	   List<Product> ProductsWithoutCategory();
 	   
 	   @Query(value = "SELECT p FROM Product p WHERE p.id = :id")
@@ -29,4 +29,11 @@ public interface ProductRepo extends JpaRepository<Product,Long> {
 		
 		@Query(value="SELECT * FROM product WHERE status = 1 AND name LIKE :name ",nativeQuery=true)
 		Page<Product> getProductPaginateSearch(String name,Pageable pageable );
+		
+		@Query(value="select * from product where status=2 ",nativeQuery=true)
+		Page<Product> getRefusedProducts(Pageable pageable);
+		
+		@Query(value="select * from product where status=0",nativeQuery=true)
+		Page<Product> getPendingProducts(Pageable pageable);
+		
 }
