@@ -16,6 +16,7 @@ import { FooterComponent } from './home/footer/footer.component';
 import { DialogInfoComponent } from './AdminCompoenent/classer-product/dialog-info/dialog-info.component';
 import { SideBarCompComponent } from './Layout/side-bar-comp/side-bar-comp.component';
 import { NavbarCompComponent } from './Layout/navbar-comp/navbar-comp.component';
+import { DashboardComponent } from './AdminCompoenent/dashboard/dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +28,8 @@ import { NavbarCompComponent } from './Layout/navbar-comp/navbar-comp.component'
     FooterComponent,
     DialogInfoComponent,
     SideBarCompComponent,
-    NavbarCompComponent
+    NavbarCompComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

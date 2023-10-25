@@ -1,10 +1,10 @@
 <mat-drawer-container class="allSidebar" >
-	<mat-drawer #drawer class="sidebar" mode="side" opened="true">
+	<mat-drawer #drawer [class]="OpenedSideBar ? 'sidebar' : 'sidebar close'" mode="side" opened="true">
 			<div class="logo" >
 				<img src="../../../favicon.ico" alt="">
 			</div>
 			<ul> 
-				<li >
+				<li>
 					<a href="#" >
 							<mat-icon class="icon">grid_view</mat-icon>
 							<p  class="nav-item">
@@ -29,7 +29,7 @@
 				</li>
 			</ul>
 	</mat-drawer>
-	<div class="content" >
-		<ng-content></ng-content>
-	</div>
+	 <div [class]="OpenedSideBar ? 'content' : 'content close'">
+			<ng-content></ng-content>
+	  </div>
 </mat-drawer-container>
