@@ -8,6 +8,10 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list';
 import {MatChipsModule} from '@angular/material/chips';
 import {DialogModule} from '@angular/cdk/dialog';
 import {MatButtonModule} from '@angular/material/button';
@@ -27,6 +31,10 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatToolbarModule,
     ScrollingModule,
     MatSnackBarModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatDividerModule,
+    MatListModule
     MatChipsModule,
     DialogModule,
     MatButtonModule,
@@ -47,6 +55,10 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatToolbarModule,
     ScrollingModule,
     MatSnackBarModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatDividerModule,
+    MatListModule
     MatChipsModule,
     DialogModule,
     MatButtonModule,
