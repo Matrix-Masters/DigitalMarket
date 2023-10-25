@@ -50,7 +50,7 @@ class signup : AppCompatActivity() {
             super.onCreate(savedInstanceState)
             //Hide ActionBar
             supportActionBar?.hide()
-            val role = "Freelancer"//intent.getStringExtra("role")
+            val role =intent.getStringExtra("role")
             setContentView(R.layout.activity_signup)
             DescText=findViewById(R.id.descSignup)
             DescText.setText("Add your details to sign up "+role?.trimIndent())

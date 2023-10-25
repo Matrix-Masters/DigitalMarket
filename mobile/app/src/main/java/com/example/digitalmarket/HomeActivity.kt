@@ -27,7 +27,7 @@ class HomeActivity : AppCompatActivity() {
 
     private fun goSignup(role:String){
         var intent = Intent(this,signup::class.java)
-        intent.putExtra("role",role)
+        intent.putExtra("role",role.toString())
         startActivity(intent)
     }
 }
