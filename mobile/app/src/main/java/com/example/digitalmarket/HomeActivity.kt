@@ -7,12 +7,6 @@ import android.view.View
 import android.widget.Button
 
 class HomeActivity : AppCompatActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-import android.widget.Button
-
-class HomeActivity : AppCompatActivity() {
     lateinit var btnClient:Button
     lateinit var btnSupplier:Button
     override fun onCreate(savedInstanceState: Bundle?) {

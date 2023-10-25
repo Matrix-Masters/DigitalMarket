@@ -49,6 +49,8 @@ class LoginActivity : AppCompatActivity(){
     }else{
         errorText.text = ""
         errorText.visibility=View.INVISIBLE;
+        val intent = Intent(this,IntroScreen1::class.java)
+        startActivity(intent)
     }
     }
 
