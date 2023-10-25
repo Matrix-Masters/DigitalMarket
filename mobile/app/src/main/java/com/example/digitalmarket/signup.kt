@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
 import android.provider.MediaStore
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -34,6 +36,7 @@ class signup : AppCompatActivity() {
      lateinit var radioGroup:RadioGroup
      lateinit var radioButtonHomme:RadioButton
      lateinit var radioButtonFemme:RadioButton
+     lateinit var DescText:TextView;
      lateinit var signupbtn:Button
      lateinit var UploadFile:TextView
      private val PICK_IMAGE_REQUEST = 1
@@ -43,10 +46,14 @@ class signup : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
             super.onCreate(savedInstanceState)
+           //Hide ActionBar
             supportActionBar?.hide()
-            val role = intent.getStringExtra("role")
+            val role = "Freelancer"//intent.getStringExtra("role")
             setContentView(R.layout.activity_signup)
+            DescText=findViewById(R.id.descSignup)
+            DescText.setText("Add your details to sign up "+role?.trimIndent())
 
+            //Initialiser
             button2 = findViewById(R.id.button2)
             logdin=findViewById(R.id.logdin)
             imageView = findViewById(R.id.imageView)
@@ -72,9 +79,11 @@ class signup : AppCompatActivity() {
             radioButtonFemme=findViewById(R.id.radioButtonFemme)
 
             UploadFile=findViewById(R.id.RequirePhoto)
-
+            root=findViewById(R.id.root)
             signupbtn=findViewById(R.id.signupbtn)
 
+            //Appel  Function
+            setupTextWatchers();
          // Navigate to Login Page
           logdin.setOnClickListener {
                   val intent= Intent(this,HomeActivity::class.java)
@@ -83,18 +92,76 @@ class signup : AppCompatActivity() {
 
          // Submit Formulaire
           signupbtn.setOnClickListener {
-             var validTest=Validator("Name") && Validator("Last") && Validator("Email") && Validator("Mobile") && Validator("Password") && Validator("gendre")  ;
-             if(validTest){
-                    if(!upload){
-                        UploadFile.error = ""
-                        UploadFile.text = "Image upload is required"
-                    }else{
-                        Snackbar.make(
-                            root,"User Created",Snackbar.LENGTH_LONG
-                        ).setAction("close", View.OnClickListener {  }).show();
-                    }
-             }
+              if(TestAllValid()){
+                      if(!upload){
+                          UploadFile.error = ""
+                          UploadFile.text = "Image upload is required"
+                      }else{
+                          Snackbar.make(
+                              root,"User Created",Snackbar.LENGTH_LONG
+                          ).setAction("close", View.OnClickListener {  }).show();
+                      }
+              }else{
+                     Snackbar
+                      .make(root, "All Fields Are Required", Snackbar.LENGTH_LONG)
+                      .setBackgroundTint(getResources().getColor(R.color.red))
+                      .setAction("Try  Again", View.OnClickListener {  }).show()
+              }
+
           }
+    }
+
+    //Make Watcher For All Fields
+    private fun setupTextWatchers() {
+        addTextWatcher(Name, "Name")
+        addTextWatcher(LastName, "Last" )
+        addTextWatcher(Email, "Email" )
+        addTextWatcher(Mobile, "Mobile" )
+        addTextWatcher(Password, "Password" )
+    }
+
+
+    //Run Watcher
+    private fun addTextWatcher(
+        editText: EditText,
+        nameField: String,
+    ) {
+        editText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                Validator(nameField)
+            }
+            override fun afterTextChanged(s: Editable?) {
+                Validator(nameField)
+            }
+        })
+    }
+
+    //Test All Valid
+     fun TestAllValid(): Boolean {
+        var valid = true
+        if (NameLayout.error != null) {
+            valid = false
+        }
+        else if (LastNameLayout.error != null) {
+            valid = false
+        }
+        else if (EmailLayout.error != null) {
+            valid = false
+        }
+        else if (MobileLayout.error != null) {
+            valid = false
+        }
+        else if (PasswordLayout.error != null) {
+            valid = false
+        }
+        else if (RadioLayout.error != null) {
+            valid = false
+        }
+        else if (!upload) {
+            valid = false
+        }
+        return valid
     }
 
     //Control de saisir
@@ -103,8 +170,8 @@ class signup : AppCompatActivity() {
             if(Name.text.isEmpty()){
                 NameLayout.error="Name Required"
                 return false
-            }else if(Name.text.length>25){
-                NameLayout.error=" name must be at least 15 characters long"
+            }else if(Name.text.length>7){
+                NameLayout.error=" name must be at least 7 characters long"
                 return  false
             }
             NameLayout.error=null;
@@ -113,8 +180,8 @@ class signup : AppCompatActivity() {
             if(LastName.text.isEmpty()){
                 LastNameLayout.error="LastName est Obligatoire"
                 return false
-            }else if(LastName.text.length>15){
-                LastNameLayout.error=" LastName must be at least 15 characters long"
+            }else if(LastName.text.length>10){
+                LastNameLayout.error=" LastName must be at least 10 characters long"
                 return  false
             }
             LastNameLayout.error=null;
@@ -140,14 +207,19 @@ class signup : AppCompatActivity() {
             MobileLayout.error=null;
             return  true;
         }else if(NameField=="Password"){
+
             if(Password.text.isEmpty()){
                 PasswordLayout.error="Password Required"
                 return false
             }else if(Password.text.length>10){
                 PasswordLayout.error = "Password must be at least 10 characters long"
                 return  false
+            }else if(!Password.text.toString().matches((Regex("[!@#\$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]")))){
+                PasswordLayout.error = "validate Special Character"
+            }else if(!Password.text.toString().matches(Regex(".*[A-Z].*"))){
+                PasswordLayout.error = "validate Capitalized Letter"
             }
-            PasswordLayout.error=null;
+             PasswordLayout.error=null;
             return true
         }else if(NameField=="gendre"){
             if(!radioButtonFemme.isChecked && !radioButtonHomme.isChecked){
