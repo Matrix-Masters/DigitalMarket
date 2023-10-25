@@ -24,7 +24,7 @@ import { NavbarCompComponent } from './Layout/navbar-comp/navbar-comp.component'
     HomeComponent,
     BodyComponent,
     CardComponent,
-    FooterComponent
+    FooterComponent,
     DialogInfoComponent,
     SideBarCompComponent,
     NavbarCompComponent

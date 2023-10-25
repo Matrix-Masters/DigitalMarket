@@ -4,9 +4,9 @@ import { ClasserProductComponent } from './AdminCompoenent/classer-product/class
 import { HomeComponent } from './home/home/home.component';
 
 const routes: Routes = [
-  {path:'',component:ClasserProductComponent},
-  {path:'home',component:HomeComponent}
-
+  {path:'',component:HomeComponent},
+  {path:'calse',component:ClasserProductComponent}
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
