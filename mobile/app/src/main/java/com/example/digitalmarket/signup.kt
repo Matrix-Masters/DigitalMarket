@@ -41,7 +41,7 @@ class signup : AppCompatActivity() {
      lateinit var DescText:TextView;
      lateinit var signupbtn:Button
      lateinit var UploadFile:TextView
-     private val PICK_IMAGE_REQUEST = 1
+     private  val PICK_IMAGE_REQUEST = 1
      lateinit var root:LinearLayout;
      var upload = false
 
@@ -103,6 +103,10 @@ class signup : AppCompatActivity() {
                           Snackbar.make(
                               root,"User Created",Snackbar.LENGTH_LONG
                           ).setBackgroundTint(getResources().getColor(R.color.teal_200)).setAction("close", View.OnClickListener {  }).show();
+                          var message=Name.text.toString()+" Added With Success";
+                          val intent= Intent(this,LoginActivity::class.java)
+                          intent.putExtra("message",message);
+                          startActivity(intent);
                       }
               }else{
                      Snackbar
