@@ -9,17 +9,14 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatMenuModule} from '@angular/material/menu';
-import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
-import {MatChipsModule} from '@angular/material/chips';
 import {DialogModule} from '@angular/cdk/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
-import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import {MatListModule} from '@angular/material/list';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatChipsModule} from '@angular/material/chips';
 @NgModule({
   imports:[
     MatIconModule,
@@ -34,15 +31,15 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatMenuModule,
     MatButtonModule,
     MatDividerModule,
-    MatListModule
-    MatChipsModule,
+    MatListModule,
     DialogModule,
     MatButtonModule,
     MatDialogModule,
     MatMenuModule,
     MatSidenavModule,
     MatListModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatChipsModule
   ],
 
   exports:[
@@ -58,15 +55,15 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatMenuModule,
     MatButtonModule,
     MatDividerModule,
-    MatListModule
-    MatChipsModule,
+    MatListModule,
     DialogModule,
     MatButtonModule,
     MatDialogModule,
     MatMenuModule,
     MatSidenavModule,
     MatListModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatChipsModule
 ]
 
 })
