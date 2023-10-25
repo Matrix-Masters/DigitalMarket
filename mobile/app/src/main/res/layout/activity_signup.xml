@@ -1,16 +1,257 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/root"
     tools:context=".signup">
 
-    <Button
-        android:id="@+id/button"
+    <TextView
+        android:id="@+id/signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="signyo"
-        tools:layout_editor_absoluteX="204dp"
-        tools:layout_editor_absoluteY="211dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_gravity="center"
+        android:layout_marginTop="20px"
+        android:fontFamily="Oswald"
+        android:text="Sign Up"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/descSignup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="21px"
+        android:fontFamily="Oswald"
+        android:layout_marginBottom="40dp"
+        android:text="Add your details to sign up"
+        android:textColor="@color/gray"
+        android:textSize="14dp"
+        android:textStyle="normal" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxBackgroundMode="outline"
+        android:id="@+id/NameLayout">
+
+        <EditText
+            android:id="@+id/Name"
+            android:fontFamily="Oswald"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="45px"
+            android:layout_marginBottom="40dp"
+            android:inputType="text"
+            android:hint="Name" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxBackgroundMode="outline"
+        android:id="@+id/LastNameLayout">
+        <EditText
+            android:id="@+id/LastName"
+            android:fontFamily="Oswald"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_margin="45px"
+            android:layout_marginBottom="40dp"
+            android:inputType="text"
+            android:hint="LastName" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxBackgroundMode="outline"
+        android:id="@+id/EmailLayout">
+        <EditText
+            android:id="@+id/Email"
+            android:fontFamily="Oswald"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_margin="45px"
+            android:layout_marginBottom="40dp"
+            android:inputType="textEmailAddress"
+            android:hint="foulen@gmail.com" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxBackgroundMode="outline"
+        android:id="@+id/MobileLayout">
+        <EditText
+            android:fontFamily="Oswald"
+            android:id="@+id/mobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_margin="45px"
+            android:layout_marginBottom="40dp"
+            android:inputType="phone"
+            android:hint="Mobile No" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:endIconMode="password_toggle"
+        app:endIconTint="@color/black"
+        app:boxBackgroundMode="outline"
+        android:id="@+id/PasswordLayout">
+
+        <EditText
+            android:fontFamily="Oswald"
+            android:id="@+id/Password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="45px"
+            android:layout_marginBottom="40dp"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword"
+           />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+        <TextView
+            android:fontFamily="Oswald"
+            android:id="@+id/selectgender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Gender"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="12dp"
+            android:textSize="15dp"
+            android:textStyle="normal" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/RadioLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            >
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/radioButtonHomme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="Oswald"
+                    android:text="Male" />
+                <RadioButton
+                    android:id="@+id/radioButtonFemme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="Oswald"
+                    android:text="Female" />
+            </RadioGroup>
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/uploadcard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40px"
+        android:fontFamily="Oswald"
+        android:text="Upload Your Identity Cart Here "
+        android:textColor="@color/black"
+        android:layout_marginBottom="10dp"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45px"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/button2"
+            android:fontFamily="Oswald"
+            android:layout_marginLeft="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="pickImage"
+            app:icon="@drawable/baseline_attach_file_24"
+            app:iconGravity="textTop" />
+        <ImageView
+            android:layout_marginLeft="90dp"
+            android:id="@+id/imageView"
+            android:fontFamily="Oswald"
+            android:layout_marginTop="40px"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:src="@drawable/baseline_image_search_24"
+           />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/RequirePhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="Oswald"
+        android:textColor="@color/red"
+        android:layout_gravity="center"
+        android:textSize="12dp"
+        android:gravity="center"
+        android:textStyle="normal" />
+    <Button
+        android:id="@+id/signupbtn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="45px"
+        android:layout_marginRight="45px"
+        android:fontFamily="Oswald"
+        android:gravity="center"
+        android:text="Sign Up" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="Oswald"
+            android:textColor="@color/gray"
+            android:textSize="14dp"
+            android:textStyle="normal"
+            android:text="Already Have An Account ?" />
+        <Button
+            android:id="@+id/logdin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="Oswald"
+            android:text="Login"
+            android:background="@android:color/transparent"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+</LinearLayout>
