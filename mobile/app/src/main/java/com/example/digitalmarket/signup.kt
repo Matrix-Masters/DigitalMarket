@@ -19,6 +19,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 
 class signup : AppCompatActivity() {
+
+    //Declaration
      lateinit var button2: Button
      lateinit var logdin: Button
      lateinit var imageView: ImageView
@@ -46,7 +48,7 @@ class signup : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
             super.onCreate(savedInstanceState)
-           //Hide ActionBar
+            //Hide ActionBar
             supportActionBar?.hide()
             val role = "Freelancer"//intent.getStringExtra("role")
             setContentView(R.layout.activity_signup)
@@ -82,8 +84,9 @@ class signup : AppCompatActivity() {
             root=findViewById(R.id.root)
             signupbtn=findViewById(R.id.signupbtn)
 
-            //Appel  Function
+         //Appel  Function
             setupTextWatchers();
+
          // Navigate to Login Page
           logdin.setOnClickListener {
                   val intent= Intent(this,HomeActivity::class.java)
@@ -99,7 +102,7 @@ class signup : AppCompatActivity() {
                       }else{
                           Snackbar.make(
                               root,"User Created",Snackbar.LENGTH_LONG
-                          ).setAction("close", View.OnClickListener {  }).show();
+                          ).setBackgroundTint(getResources().getColor(R.color.teal_200)).setAction("close", View.OnClickListener {  }).show();
                       }
               }else{
                      Snackbar
@@ -214,10 +217,12 @@ class signup : AppCompatActivity() {
             }else if(Password.text.length>10){
                 PasswordLayout.error = "Password must be at least 10 characters long"
                 return  false
-            }else if(!Password.text.toString().matches((Regex("[!@#\$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]")))){
+            } else if (!Password.text.toString().matches(Regex(".*[!@#\$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>/?].*"))) {
                 PasswordLayout.error = "validate Special Character"
-            }else if(!Password.text.toString().matches(Regex(".*[A-Z].*"))){
+                return false
+            } else if (!Password.text.toString().matches(Regex(".*[A-Z].*"))) {
                 PasswordLayout.error = "validate Capitalized Letter"
+                return false
             }
              PasswordLayout.error=null;
             return true
@@ -231,11 +236,13 @@ class signup : AppCompatActivity() {
         }
         return false;
     }
+
     //refresh Upload File
     fun clearError() {
         UploadFile.error = null
         UploadFile.text="";
     }
+
     //Open PickImage
    fun pickImage(view: View) {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
