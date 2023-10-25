@@ -13,10 +13,10 @@
         android:theme="@style/Theme.DigitalMarket"
         tools:targetApi="31">
         <activity
-            android:name=".signup"
+            android:name=".HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".signup"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.DigitalMarket">
