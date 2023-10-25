@@ -5,7 +5,7 @@ import { HomeComponent } from './home/home/home.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
-  {path:'calse',component:ClasserProductComponent}
+  {path:'classer',component:ClasserProductComponent}
 ]
 
 @NgModule({
