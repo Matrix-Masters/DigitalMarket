@@ -20,6 +20,7 @@ class LoginActivity : AppCompatActivity(){
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login)
+        supportActionBar?.hide()
         Loginbutton=findViewById(R.id.loginButton)
         Email=findViewById(R.id.email)
         signupBtn=findViewById(R.id.signup)

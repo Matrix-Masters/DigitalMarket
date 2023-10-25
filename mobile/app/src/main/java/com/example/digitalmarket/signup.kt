@@ -102,7 +102,11 @@ class signup : AppCompatActivity() {
                       }else{
                           Snackbar.make(
                               root,"User Created",Snackbar.LENGTH_LONG
-                          ).setBackgroundTint(getResources().getColor(R.color.teal_200)).setAction("close", View.OnClickListener {  }).show();
+                          ).setBackgroundTint(getResources().getColor(R.color.teal_200))
+                              .setAction("close", View.OnClickListener {  })
+                              .show();
+
+                          //Send Message to Login
                           var message=Name.text.toString()+" Added With Success";
                           val intent= Intent(this,LoginActivity::class.java)
                           intent.putExtra("message",message);

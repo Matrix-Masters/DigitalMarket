@@ -23,5 +23,8 @@ public interface NodeSync {
 	    
 	    @RequestMapping(method = RequestMethod.PUT, value = "/node/RejectProduct/{id}")
 	    Product RejectProduct(@PathVariable("id") long id);
+	    
+	    @RequestMapping(method = RequestMethod.PUT, value = "/node/AccepterProduct/{id}")
+	    Product AccepterProduct(@PathVariable("id") long id);
 
 }

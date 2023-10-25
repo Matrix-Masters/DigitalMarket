@@ -10,8 +10,11 @@ import org.dsi.entity.Product;
 import org.dsi.repository.NodeSync;
 import org.dsi.repository.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import Payload.ProducInfo;
 import net.minidev.json.JSONObject;
@@ -64,7 +67,7 @@ public class ProductService {
 		  	}
 	  }
 	  
-	  public void RejectProduct(long id) throws Exception{
+	  public void RejectProduct(long id)throws Exception {
 		  Product prod=ProductRepo.ProductWithId(id);
 		  	if(prod==null) {
 		  	   throw new Exception("Product Not Found");
@@ -74,6 +77,17 @@ public class ProductService {
 				Product prod1=nodesync.RejectProduct(id);
 		  	}
 	  }
+
+		public void AcceptProduct(long id)throws Exception{
+				Product prod=ProductRepo.ProductWithId(id);
+			  	if(prod==null) {
+			  	   throw new Exception("Product Not Found");
+			  	}else {
+			  		prod.setStatus(1);
+					ProductRepo.save(prod);
+					Product prod1=nodesync.AccepterProduct(id);
+			  	}
+		}
 	  
 	  public void UpdateIdProduct(long id,Category cat) throws Exception{
 		  Product prod=ProductRepo.ProductWithId(id);

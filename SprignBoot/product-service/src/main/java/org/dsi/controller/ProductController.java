@@ -123,6 +123,7 @@ public class ProductController {
 			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
 		}
 	}
+
 	
 	@DeleteMapping("/DeleteAll")
 	public ResponseEntity<?> DeleteAllProducts(){
@@ -161,24 +162,39 @@ public class ProductController {
 		}catch(Exception e) {
 			
 			 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while deleting the product.");
-		}
-		
-		
+		}		
 	}
+	
 	@PutMapping("/AcceptProduct")
+	public ResponseEntity<?> AcceptProduct(@RequestParam("id") long id){
+		try {
+			ProductService.AcceptProduct(id);
+			return  ResponseEntity.ok("Product Upated");
+		}catch (Exception e) {
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
+		}
+	}
+	
+  /*
+    @PutMapping("/AcceptProduct")
 	public ResponseEntity<?> AcceptProduct(@RequestParam("id") long id){
 		Product prod=ProductRepo.ProductWithId(id);
 		prod.setStatus(1);
 		ProductRepo.save(prod);
 		return  ResponseEntity.ok().body("Product accepted");
 	}
-	@PutMapping("/RefuseProduct")
-	public ResponseEntity<?> RefuseProduct(@RequestParam("id") long id){
+	*/
+	
+	/*
+	 @PutMapping("/RefuseProduct")
+	 public ResponseEntity<?> RefuseProduct(@RequestParam("id") long id){
 		Product prod=ProductRepo.ProductWithId(id);
 		prod.setStatus(2);
 		ProductRepo.save(prod);
 		return  ResponseEntity.ok().body("Product refused");
 	}
+	*/
+	
 	@PutMapping("/PendingProduct")
 	public ResponseEntity<?> PendingProduct(@RequestParam("id") long id){
 		Product prod=ProductRepo.ProductWithId(id);
@@ -186,6 +202,7 @@ public class ProductController {
 		ProductRepo.save(prod);
 		return  ResponseEntity.ok().body("Product pending");
 	}
+	
 	@GetMapping("/RefusedProducts")
 	public ResponseEntity<?> getRefusedProducts(
 			@RequestParam(name = "page", defaultValue = "0") int page,
