@@ -6,8 +6,6 @@ import android.os.Bundle
 import android.widget.Button
 
 class HomeActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
     lateinit var btnClient:Button
     lateinit var btnSupplier:Button
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,12 +17,9 @@ class HomeActivity : AppCompatActivity() {
         btnClient.setOnClickListener {
             goSignup("client")
         }
-
         btnSupplier.setOnClickListener {
             goSignup("supplier")
         }
-
-
     }
 
     private fun goSignup(role:String){

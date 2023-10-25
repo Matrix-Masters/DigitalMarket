@@ -22,9 +22,9 @@ class LoginActivity : AppCompatActivity(){
         validForm();
         }
     }
-    public fun validForm(){
-    if(Password.text.length==0){
-        errorText.setText("fill out all the form fields!")
+     fun validForm(){
+    if(Password.text.isEmpty()){
+        errorText.text = "fill out all the form fields!"
         errorText.visibility=View.VISIBLE;
     }
     }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -179,7 +179,6 @@
         android:minHeight="70mm"
         android:background="@color/black"
         >
-
         <ImageView
             android:id="@+id/imageView"
             android:src="@drawable/facebook"
@@ -188,7 +187,6 @@
             android:layout_height="30mm"
             android:layout_marginLeft="25mm"
             />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -200,11 +198,13 @@
             android:layout_marginLeft="25mm"
             />
     </RelativeLayout>
+
     <Space
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:minWidth="100mm"
         android:minHeight="25mm" />
+
     <RelativeLayout
         android:layout_width="400mm"
         android:layout_height="70mm"
@@ -237,11 +237,13 @@
             android:layout_marginLeft="25mm"
             />
     </RelativeLayout>
+
     <Space
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:minWidth="100mm"
         android:minHeight="100mm" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -255,12 +257,11 @@
         tools:layout_editor_absoluteY="45dp"
         android:textColor="#7A7A7A"
         />
+
     <View
         android:layout_width="280mm"
         android:layout_height="1dp"
         android:layout_marginLeft="95dp"
         android:background="@color/black" />
 
-
-
-</androidx.appcompat.widget.LinearLayoutCompat>
+</LinearLayout>
