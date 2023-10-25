@@ -29,7 +29,6 @@
         android:layout_marginTop="21px"
         android:fontFamily="Oswald"
         android:layout_marginBottom="40dp"
-        android:text="Add your details to sign up"
         android:textColor="@color/gray"
         android:textSize="14dp"
         android:textStyle="normal" />
@@ -46,6 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="45px"
+
             android:layout_marginBottom="40dp"
             android:inputType="text"
             android:hint="Name" />
