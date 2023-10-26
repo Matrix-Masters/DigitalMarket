@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-accepted-products',
@@ -8,6 +8,7 @@ import { Component, Input } from '@angular/core';
 export class AcceptedProductsComponent {
   @Input() type = '';
   @Input() products=[];
+  @Output() Update = new EventEmitter<string>();
   modalVisible: boolean = false;
   Product:any;
 
@@ -19,5 +20,8 @@ export class AcceptedProductsComponent {
   }
   hideModal($event : any){
     this.modalVisible=false;
+  }
+  updateProducts($event:string){
+      this.Update.emit('update');
   }
 }

@@ -22,6 +22,7 @@
       </div>
     </div>
 
-    <app-info-produit [visible]="modalVisible" [Product]="Product" (hide)="hideModal($event)"></app-info-produit>
+    <app-info-produit [visible]="modalVisible" [Product]="Product" (hide)="hideModal($event)"
+      (updateProducts)="updateProducts($event)"></app-info-produit>
   </div>
 </div>
