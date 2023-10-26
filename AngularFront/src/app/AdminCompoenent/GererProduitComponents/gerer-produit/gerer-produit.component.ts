@@ -31,7 +31,7 @@ export class GererProduitComponent implements OnInit {
       console.log(this.PendingProducts);
     });
   }
-  updateProducts($event:string){
+  updateProducts(event:any){
       this.getAcceptedProduits();
       this.getPendingProducts();
       this.getRefusedProducts();

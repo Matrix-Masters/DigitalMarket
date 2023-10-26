@@ -46,10 +46,10 @@
                   <div class="row">
                     <div class="text-center mt-5 mb-5">
                       <button class="btn  btn-lg me-4 text-white" (click)="AcceptProduit(Product.id)"
-                        [disabled]="Product.status==1"
+                        [style.cursor]="Product.status==1 ? 'not-allowed' : 'pointer'" [disabled]="Product.status==1"
                         style="background-color: #77D593;border: #4E775A 7px;font-weight: bold;">Accept</button>
                       <button class="btn  btn-lg me-4 text-white" (click)="RefuseProduct(Product.id)"
-                        [disabled]="Product.status==2"
+                        [style.cursor]="Product.status==2 ? 'not-allowed' : 'pointer'" [disabled]="Product.status==2"
                         style="background-color: #F16674 ;border: #AE4F59 7px;font-weight: bold; ">Refuse</button>
                     </div>
                   </div>

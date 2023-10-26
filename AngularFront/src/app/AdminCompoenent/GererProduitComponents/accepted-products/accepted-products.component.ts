@@ -21,7 +21,9 @@ export class AcceptedProductsComponent {
   hideModal($event : any){
     this.modalVisible=false;
   }
-  updateProducts($event:string){
+  updateProducts(event:any){
       this.Update.emit('update');
+      console.log("send from accepted");
+
   }
 }
