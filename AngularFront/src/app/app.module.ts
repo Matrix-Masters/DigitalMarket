@@ -26,7 +26,7 @@ import { DashboardComponent } from './AdminCompoenent/dashboard/dashboard.compon
     ClasserProductComponent,
     GererProduitComponent,
     AcceptedProductsComponent,
-    InfoProduitComponent
+    InfoProduitComponent,
     NavbarComponent,
     HomeComponent,
     BodyComponent,

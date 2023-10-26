@@ -8,7 +8,7 @@ import { DashboardComponent } from './AdminCompoenent/dashboard/dashboard.compon
 const routes: Routes = [
    {path:'',component:HomeComponent},
    {path:'classer',component:ClasserProductComponent},
-   {path:"dash",component:DashboardComponent}
+   {path:"dash",component:DashboardComponent},
    {path:'gererProduit',component:GererProduitComponent}
 ]
 

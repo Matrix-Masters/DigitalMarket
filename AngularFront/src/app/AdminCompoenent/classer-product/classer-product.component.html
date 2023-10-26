@@ -27,10 +27,10 @@
                 </p>
               </div>
           </div>
-          <ng-template #ProductExiste  >
+          <ng-template #ProductExiste>
             <div class="mt-5">
               <div class="example-box " *ngFor="let item of Products" cdkDrag>
-                <img *cdkDragPreview src="../../../favicon.ico">
+                <img *cdkDragPreview width="150px" [src]="'http://localhost:8888/PRODUCT-SERVICE/products/images/'+item['imageProduct']">
                 <mat-card class="example-card">
                   <mat-card-header>
                     <mat-card-title class="titre_card"> {{item['name']}}</mat-card-title>
