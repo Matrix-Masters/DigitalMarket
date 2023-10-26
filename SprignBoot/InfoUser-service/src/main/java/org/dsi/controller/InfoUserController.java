@@ -49,12 +49,10 @@ public class InfoUserController {
 		try {
 			userInfoService.addInfoUser(user, file);
             return ResponseEntity.ok("User created successfully");
-            
         } catch (Exception e) {
         	
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Failed to create user: " + e.getMessage());
         }
-		
 	}
 	
 	

@@ -80,7 +80,6 @@ public class UserInfoService {
 	    		System.out.println("User with email " + user.getEmail() + " already exists.");
 	    		throw new Exception("User with email " + user.getEmail() + " already exists.");
 	    	}
-			
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
 		}	

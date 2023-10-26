@@ -27,7 +27,6 @@ export class ClasserProductComponent implements OnInit {
 
   drop(event: CdkDragDrop<any[]>,category?:any): void {
     if (event.previousContainer === event.container) {
-     // alert("dgd")
     } else {
         console.log(typeof(this.Products[event.previousIndex].id));
         this.AdminServiceService.UpdateIdProducts(this.Products[event.previousIndex].id,category).subscribe((res:any)=>{
@@ -74,6 +73,7 @@ export class ClasserProductComponent implements OnInit {
       data:product
     });
   }
+
 
   Categories:any;
   Products:any;
