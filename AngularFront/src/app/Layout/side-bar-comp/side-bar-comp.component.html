@@ -5,7 +5,7 @@
 			</div>
 			<ul> 
 				<li>
-					<a href="#" >
+					<a  [routerLink]="['/dash']" [ngClass]="{'active': current === '/dash'}">
 							<mat-icon class="icon">grid_view</mat-icon>
 							<p  class="nav-item">
 								Dashboard
@@ -13,7 +13,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="#" [routerLink]="['/classer']"  >
+					<a [routerLink]="['/classer']" [ngClass]="{'active': current === '/classer'}" >
 							<mat-icon class="icon">engineering</mat-icon>
 							<p  class="nav-item">
 								Classer Product
@@ -29,7 +29,7 @@
 				</li>
 			</ul>
 	</mat-drawer>
-	 <div [class]="OpenedSideBar ? 'content' : 'content close'">
-			<ng-content></ng-content>
+	 <div [class]="OpenedSideBar ? 'content' : 'content close'"  >
+			<ng-content ></ng-content>
 	  </div>
 </mat-drawer-container>

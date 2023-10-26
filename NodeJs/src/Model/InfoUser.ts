@@ -29,7 +29,6 @@ let UserSchema=new mongoose.Schema({
         role: [
             {
                 type:String,
-                ref: "roles",
             }
         ]
     },
