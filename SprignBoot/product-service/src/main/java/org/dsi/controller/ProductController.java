@@ -36,9 +36,7 @@ public class ProductController {
 	
 	@Autowired
 	ProductRepo ProductRepo;
-	
 
-	
 	@PostMapping("/AddProduct")
 	public ResponseEntity<?> AddProduct(@RequestParam("file") MultipartFile file,
 			@RequestParam("description") String desc,
