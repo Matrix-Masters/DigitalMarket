@@ -10,4 +10,5 @@ public class InfoUserApplication {
 		SpringApplication.run(InfoUserApplication.class, args);
 	}
 
+	
 }
