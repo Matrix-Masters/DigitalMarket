@@ -5,9 +5,9 @@
 	padding: 5px;
 	.sidebar {
 		transition: all 0.4s ease-in-out;
-		max-width: 350px;
         border-radius: 10px;
 		padding: 20px;
+		max-width: 250px;
 		margin: 5px;
 		box-shadow: 0 20px 35px rgba(0,0,0,0.1);
 		background-color: #272343;
@@ -35,6 +35,17 @@
 					margin-top: 12px;
                 }
             }
+			.active{
+				background-color: #fff;
+				padding: 10px;
+				border-radius: 12px;
+					.icon{
+						color: #272343;
+					}
+					.nav-item{
+						color: #272343;
+					}
+			}
 			.close_sidebar{
 				position: absolute;
 				cursor: pointer;
@@ -43,23 +54,31 @@
 			 }
         }
 		&.close{
+			transition: all 0.4s ease-in-out;
+			overflow: hidden;
 			a{
 				margin-left: -20px;
 				.nav-item{
 					display: none;
 				}
 			}
+			.close_sidebar{
+				
+				margin-left: -15px !important;
+			 }
 		}
 		
 	}
 }
 
-
  .content {
-	padding-left: 25px;
 	transition: margin-left 0.4s ease-in-out;
+	overflow-y: hidden;
+	position: fixed;
+	margin-left: 15px;
   }
   
   .content.close {
-	padding-left: -100px;
+	transition: margin-left 0.4s ease-in-out;
+	margin-left: -90px;
   }
