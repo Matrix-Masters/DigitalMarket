@@ -34,13 +34,13 @@ export class AdminServiceService {
   GetPendingProducts(){
     return this.http.get(`${port}/PRODUCT-SERVICE/products/PendingProduct`);
   }
-  AcceptProduit(id:number){
-    return this.http.put(`${port}/PRODUCT-SERVICE/products/AcceptProduit`,{id:id});
+  AcceptProduit(id: number) {
+    return this.http.put(`${port}/PRODUCT-SERVICE/products/AcceptProduct?id=${id}`, {});
   }
   RefuseProduct(id:number){
-    return this.http.put(`${port}/PRODUCT-SERVICE/products/RefuseProduct`,{id:id});
+    return this.http.put(`${port}/PRODUCT-SERVICE/products/RefuseProduct?id=${id}`, {});
   }
   PendingProducts(id:number){
-    return this.http.put(`${port}/PRODUCT-SERVICE/products/PendingProducts`,{id:id});
+    return this.http.put(`${port}/PRODUCT-SERVICE/products/PendingProducts?id=${id}`, {});
   }
 }
