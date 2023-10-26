@@ -6,8 +6,8 @@
         <div class="modal-content" style="background-color: white;">
           <div class="modal-header" style="background-color: #2E2C5E;">
             <h1 class="modal-title text-white">Product Details</h1>
-            <button type="button" style="background-color: white;" class="btn-close text-white" data-bs-dismiss="modal"
-              aria-label="Close"></button>
+            <button #closeBtn type="button" style="background-color: white;" class="btn-close text-white"
+              data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" *ngIf="Product!=null">
             <div class="row ">
@@ -36,7 +36,7 @@
                         background-color: #2E2C5E;">
                         <p class="text-center mt-5" style="font-size: 20px; font-weight: bold;">Status <span
                             class="text-warning" style="margin-left: 50%;">{{Product.status==0 ?
-                            "pending":"refused"}}</span>
+                            "pending" : "refused"}}</span>
                         </p>
                         <hr style="width: 450px;margin-left: 15%;height: 3px;
                         background-color: #2E2C5E;">
@@ -46,9 +46,11 @@
                   <div class="row">
                     <div class="text-center mt-5 mb-5">
                       <button class="btn  btn-lg me-4 text-white" (click)="AcceptProduit(Product.id)"
+                        [disabled]="Product.status==1"
                         style="background-color: #77D593;border: #4E775A 7px;font-weight: bold;">Accept</button>
                       <button class="btn  btn-lg me-4 text-white" (click)="RefuseProduct(Product.id)"
-                        style="background-color: #F16674 ;border: #AE4F59 7px;font-weight: bold;">Refuse</button>
+                        [disabled]="Product.status==2"
+                        style="background-color: #F16674 ;border: #AE4F59 7px;font-weight: bold; ">Refuse</button>
                     </div>
                   </div>
                 </div>
