@@ -11,8 +11,15 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { GererProduitComponent } from './AdminCompoenent/GererProduitComponents/gerer-produit/gerer-produit.component';
 import { AcceptedProductsComponent } from './AdminCompoenent/GererProduitComponents/accepted-products/accepted-products.component';
 import { InfoProduitComponent } from './AdminCompoenent/GererProduitComponents/info-produit/info-produit.component';
-
-
+import { NavbarComponent } from './home/navbar/navbar.component';
+import { HomeComponent } from './home/home/home.component';
+import { BodyComponent } from './home/body/body.component';
+import { CardComponent } from './home/card/card.component';
+import { FooterComponent } from './home/footer/footer.component';
+import { DialogInfoComponent } from './AdminCompoenent/classer-product/dialog-info/dialog-info.component';
+import { SideBarCompComponent } from './Layout/side-bar-comp/side-bar-comp.component';
+import { NavbarCompComponent } from './Layout/navbar-comp/navbar-comp.component';
+import { DashboardComponent } from './AdminCompoenent/dashboard/dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +27,15 @@ import { InfoProduitComponent } from './AdminCompoenent/GererProduitComponents/i
     GererProduitComponent,
     AcceptedProductsComponent,
     InfoProduitComponent
+    NavbarComponent,
+    HomeComponent,
+    BodyComponent,
+    CardComponent,
+    FooterComponent,
+    DialogInfoComponent,
+    SideBarCompComponent,
+    NavbarCompComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +45,7 @@ import { InfoProduitComponent } from './AdminCompoenent/GererProduitComponents/i
     FormsModule,
     ReactiveFormsModule,
     DragDropModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <!-- Image View -->
+
+
+    <ImageView
+        android:id="@+id/introImage"
+        android:layout_width="wrap_content"
+        android:layout_height="350dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/delivery" />
+
+    <TextView
+        android:id="@+id/introTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/introImage"
+        android:layout_marginTop="34dp"
+        android:gravity="center"
+        android:text="@string/title4"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        style="@style/oswaldFont"/>
+
+    <TextView
+        android:id="@+id/introDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/introTitle"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="10dp"
+        android:gravity="center"
+        android:text="@string/desc4"
+        android:textAlignment="center"
+        android:textColor="#7C7D7E"
+        android:textSize="16sp"
+        style="@style/oswaldFont"/>
+    <Button
+        android:id="@+id/introButton"
+        android:layout_width="371dp"
+        android:layout_height="76dp"
+        android:layout_below="@id/introDescription"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="80dp"
+        android:backgroundTint="#000000"
+        android:gravity="center"
+        android:text="@string/next"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        style="@style/oswaldFont"
+        />
+
+
+</RelativeLayout>

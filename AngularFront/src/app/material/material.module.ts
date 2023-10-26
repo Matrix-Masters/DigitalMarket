@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
+import {MatIconModule} from '@angular/material/icon';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -11,6 +11,15 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTabsModule} from '@angular/material/tabs';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatBadgeModule } from '@angular/material/badge';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list';
+import {DialogModule} from '@angular/cdk/dialog';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatChipsModule} from '@angular/material/chips';
 @NgModule({
   imports:[
     MatIconModule,
@@ -25,6 +34,18 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatTabsModule,
     MatDialogModule,
     MatBadgeModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatDividerModule,
+    MatListModule,
+    DialogModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatMenuModule,
+    MatSidenavModule,
+    MatListModule,
+    MatTooltipModule,
+    MatChipsModule
   ],
 
   exports:[
@@ -40,6 +61,18 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatTabsModule,
     MatDialogModule,
     MatBadgeModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatDividerModule,
+    MatListModule,
+    DialogModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatMenuModule,
+    MatSidenavModule,
+    MatListModule,
+    MatTooltipModule,
+    MatChipsModule
 ]
 
 })

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">DigitalMarket</string>
+    <string name="title1">Start Your Shopping Journey</string>
+    <string name="Description1">Explore and purchase a wide variety of products and fast delivery to your doorstep</string>
+    <string name="next">Next</string>
+    <string name="title2">Save for Later Delights</string>
+    <string name="desc2">Save your favorite products for later and create a curated collection of items you love, ensuring that you won\'t forget those special finds when it\'s time to shop or treat yourself</string>
+    <string name="desc4">Speedy and Dependable Delivery: Our shipping service is quick and trustworthy, ensuring your orders reach you without delay and in excellent condition.</string>
+    <string name="title4">Your Delivery, Our Priority</string>
+    <string name="title3">Be the First to Know</string>
+    <string name="desc3">Speedy and Dependable Delivery: Our shipping service is quick and trustworthy, ensuring your orders reach you without delay and in excellent condition.</string>
+    <string name="alreadyHave">Already Have An Account ?</string>
+</resources>
