@@ -53,8 +53,7 @@ class signup : AppCompatActivity() {
             val role =intent.getStringExtra("role")
             setContentView(R.layout.activity_signup)
             DescText=findViewById(R.id.descSignup)
-            DescText.setText("Add your details to sign up "+role?.trimIndent())
-
+            DescText.text = "Add your details to sign up " + (if (role == null) "User" else role)
             //Initialiser
             button2 = findViewById(R.id.button2)
             logdin=findViewById(R.id.logdin)
