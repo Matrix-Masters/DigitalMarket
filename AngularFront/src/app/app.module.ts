@@ -8,6 +8,9 @@ import { MaterialModule } from './material/material.module';
 import {FormsModule,ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { GererProduitComponent } from './AdminCompoenent/GererProduitComponents/gerer-produit/gerer-produit.component';
+import { AcceptedProductsComponent } from './AdminCompoenent/GererProduitComponents/accepted-products/accepted-products.component';
+import { InfoProduitComponent } from './AdminCompoenent/GererProduitComponents/info-produit/info-produit.component';
 import { NavbarComponent } from './home/navbar/navbar.component';
 import { HomeComponent } from './home/home/home.component';
 import { BodyComponent } from './home/body/body.component';
@@ -21,6 +24,9 @@ import { DashboardComponent } from './AdminCompoenent/dashboard/dashboard.compon
   declarations: [
     AppComponent,
     ClasserProductComponent,
+    GererProduitComponent,
+    AcceptedProductsComponent,
+    InfoProduitComponent
     NavbarComponent,
     HomeComponent,
     BodyComponent,

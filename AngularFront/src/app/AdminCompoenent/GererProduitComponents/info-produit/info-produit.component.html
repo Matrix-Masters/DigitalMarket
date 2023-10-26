@@ -1,0 +1,105 @@
+<div>
+  <div class="product">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+      data-bs-backdrop="false">
+      <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content" style="background-color: white;">
+          <div class="modal-header" style="background-color: #2E2C5E;">
+            <h1 class="modal-title text-white">Product Details</h1>
+            <button #closeBtn type="button" style="background-color: white;" class="btn-close text-white"
+              data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" *ngIf="Product!=null">
+            <div class="row ">
+              <div class="col-8">
+                <div class="container shadow-lg">
+                  <div class="row">
+                    <div class="col-4" style="height: 70vh;border-radius: 10px">
+                      <img src="../../../../assets/bny_mellon_logo.jpg" height="400px" width="400px" />
+                      <div class="desciption">
+                        <h3 class="text-black text-center" style="font-size: 20px; font-weight: bold;"> description : {{
+                          Product['description'] }}</h3>
+                      </div>
+                    </div>
+                    <div class="col-8">
+                      <h1 class="text-black text-center mt-4" style="font-size: 28px; font-weight: bold;">
+                        {{Product['name']}}
+                      </h1>
+                      <div class="container">
+                        <p class="text-center mt-5" style="font-size: 20px; font-weight: bold;">Quantity <span
+                            class="ml-5" style="margin-left: 50%;">{{Product.quantite}}</span></p>
+                        <hr style="width: 450px;margin-left: 15%;height: 3px;
+                        background-color: #2E2C5E;">
+                        <p class="text-center mt-5" style="font-size: 20px; font-weight: bold;">Price <span class="ml-5"
+                            style="margin-left: 50%;">{{Product.prix}} $</span></p>
+                        <hr style="width: 450px;margin-left: 15%;height: 3px;
+                        background-color: #2E2C5E;">
+                        <p class="text-center mt-5" style="font-size: 20px; font-weight: bold;">Status <span
+                            class="text-warning" style="margin-left: 50%;">{{Product.status==0 ?
+                            "pending" : "refused"}}</span>
+                        </p>
+                        <hr style="width: 450px;margin-left: 15%;height: 3px;
+                        background-color: #2E2C5E;">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="text-center mt-5 mb-5">
+                      <button class="btn  btn-lg me-4 text-white" (click)="AcceptProduit(Product.id)"
+                        [style.cursor]="Product.status==1 ? 'not-allowed' : 'pointer'" [disabled]="Product.status==1"
+                        style="background-color: #77D593;border: #4E775A 7px;font-weight: bold;">Accept</button>
+                      <button class="btn  btn-lg me-4 text-white" (click)="RefuseProduct(Product.id)"
+                        [style.cursor]="Product.status==2 ? 'not-allowed' : 'pointer'" [disabled]="Product.status==2"
+                        style="background-color: #F16674 ;border: #AE4F59 7px;font-weight: bold; ">Refuse</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4" style="background-color: #2E2C5E ;color: white; border-radius: 10px;">
+                <div class="p-3">
+                  <h2 class="text-white">supplier info</h2>
+                  <div class="text-center">
+                    <img src="../../../../assets/Screenshot 2023-10-24 202314.png" alt="Supplier Image"
+                      class="img-fluid rounded-circle mb-3" style="max-width: 100px;">
+                    <p class="text-white" style="font-size: 24px; font-weight: bold; text-transform: uppercase;">Hkimi
+                      Mohamed Amin
+                    </p>
+                    <div class="d-flex justify-content-center">
+                      <div style="margin-right: 20px;">
+                        <mat-icon style="color: white; font-size: 30px;">thumb_up</mat-icon>
+                        <p class="text-white" style="font-size: 16px;">123</p>
+                      </div>
+                      <div style="margin-right: 20px;">
+                        <mat-icon style="color: white; font-size: 30px;">save</mat-icon>
+                        <p class="text-white" style="font-size: 16px;">87</p>
+                      </div>
+                      <div>
+                        <mat-icon style="color: white; font-size: 30px;">shopping_cart</mat-icon>
+                        <p class="text-white" style="font-size: 16px;">42</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button class="btn btn-dark justify-content-center">View Profile</button>
+                <hr style="border-top: 1px solid white;">
+                <h5 style="font-size: 20px;">Other Products by Supplier</h5>
+                <div class="d-flex justify-content-around" style="flex-wrap: wrap;">
+                  <img src="./../../../../assets/bny_mellon_logo.jpg" height="150px" width="150px" alt="Product 1"
+                    style="max-width: 150px; margin-bottom: 10px;">
+                  <img src="./../../../../assets/bny_mellon_logo.jpg" height="150px" width="150px" alt="Product 2"
+                    style="max-width: 150px; margin-bottom: 10px;">
+                  <img src="./../../../../assets/bny_mellon_logo.jpg" height="150px" width="150px" alt="Product 3"
+                    style="max-width: 150px; margin-bottom: 10px;">
+                  <img src="./../../../../assets/bny_mellon_logo.jpg" height="150px" width="150px" alt="Product 4"
+                    style="max-width: 150px; margin-bottom: 10px;">
+                  <img src="./../../../../assets/bny_mellon_logo.jpg" height="150px" width="150px" alt="Product 5"
+                    style="max-width: 150px; margin-bottom: 10px;">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

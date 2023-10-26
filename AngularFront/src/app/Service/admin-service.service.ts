@@ -29,8 +29,28 @@ export class AdminServiceService {
     return this.http.put(`${port}/PRODUCT-SERVICE/products/LibererProduct?id=${id}`,{});
   }
 
+
+  GetAcceptedProducts(){
+    return this.http.get(`${port}/PRODUCT-SERVICE/products/AllProduct`);
+  }
+  GetRefusedProducts(){
+    return this.http.get(`${port}/PRODUCT-SERVICE/products/RefusedProducts`);
+  }
+  GetPendingProducts(){
+    return this.http.get(`${port}/PRODUCT-SERVICE/products/PendingProduct`);
+  }
+  AcceptProduit(id: number) {
+    return this.http.put(`${port}/PRODUCT-SERVICE/products/AcceptProduct?id=${id}`, {});
+  }
+  RefuseProduct(id:number){
+    return this.http.put(`${port}/PRODUCT-SERVICE/products/RefuseProduct?id=${id}`, {});
+  }
+  PendingProducts(id:number){
+    return this.http.put(`${port}/PRODUCT-SERVICE/products/PendingProducts?id=${id}`, {});
+  }
+  // deja existe
   RejectProduct(id:number){
     return this.http.put(`${port}/PRODUCT-SERVICE/products/RejectProduct?id=${id}`,{});
   }
-  
+ 
 }

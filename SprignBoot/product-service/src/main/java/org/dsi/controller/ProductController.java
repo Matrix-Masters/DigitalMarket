@@ -181,9 +181,6 @@ public class ProductController {
 		ProductRepo.save(prod);
 		return  ResponseEntity.ok().body("Product accepted");
 	}
-	*/
-	
-	/*
 	 @PutMapping("/RefuseProduct")
 	 public ResponseEntity<?> RefuseProduct(@RequestParam("id") long id){
 		Product prod=ProductRepo.ProductWithId(id);
@@ -194,7 +191,7 @@ public class ProductController {
 	*/
 	
 	@PutMapping("/PendingProduct")
-	public ResponseEntity<?> PendingProduct(@RequestParam("id") long id){
+	public ResponseEntity<?> PendingProduct(@RequestParam("id") Long id){
 		Product prod=ProductRepo.ProductWithId(id);
 		prod.setStatus(0);
 		ProductRepo.save(prod);
@@ -204,7 +201,7 @@ public class ProductController {
 	@GetMapping("/RefusedProducts")
 	public ResponseEntity<?> getRefusedProducts(
 			@RequestParam(name = "page", defaultValue = "0") int page,
-			@RequestParam(name = "per_page", defaultValue = "2") int size){
+			@RequestParam(name = "per_page", defaultValue = "10") int size){
 		if (page < 0 || size <= 0 ) {
 	        return ResponseEntity.badRequest().body("Invalid page or per_page values.");
 	 		}

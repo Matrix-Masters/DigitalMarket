@@ -1,0 +1,21 @@
+<div>
+  <div class="container ">
+
+    <h1 class="color-secondary"> Gerer Produit</h1>
+    <mat-tab-group>
+      <mat-tab label="accepted" color="green" matBadge="10" [matBadgeColor]="'warn'">
+        <app-accepted-products [type]="accepted" [products]="AcceptedProducts"
+          (Update)="updateProducts($event)"></app-accepted-products>
+      </mat-tab>
+      <mat-tab label="pending" color="orange">
+
+        <app-accepted-products [type]="pending" [products]="PendingProducts"
+          (Update)="updateProducts($event)"></app-accepted-products>
+      </mat-tab>
+      <mat-tab label="refused" color="red">
+        <app-accepted-products [type]="refused" [products]="RefusedProducts"
+          (Update)="updateProducts($event)"></app-accepted-products>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
