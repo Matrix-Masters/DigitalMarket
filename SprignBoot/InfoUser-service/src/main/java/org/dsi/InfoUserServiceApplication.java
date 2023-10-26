@@ -4,11 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class InfoUserApplication {
+public class InfoUserServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(InfoUserApplication.class, args);
+		SpringApplication.run(InfoUserServiceApplication.class, args);
 	}
 
-	
 }
