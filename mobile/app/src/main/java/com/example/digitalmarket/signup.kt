@@ -1,6 +1,7 @@
 package com.example.digitalmarket
 
 import android.app.Activity
+import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
@@ -92,6 +93,22 @@ class signup : AppCompatActivity() {
                   startActivity(intent);
           }
 
+
+        //Navigate to login with Message
+        fun LoginWithSuccess(){
+           /* Snackbar.make(
+                root,"User Created",Snackbar.LENGTH_LONG
+            ).setBackgroundTint(getResources().getColor(R.color.teal_200))
+                .setAction("close", View.OnClickListener {  })
+                .show();
+                */
+            //Send Message to Login
+            var message=Name.text.toString()+" Added With Success";
+            val intent= Intent(this,LoginActivity::class.java)
+            intent.putExtra("message",message);
+            startActivity(intent);
+        }
+
          // Submit Formulaire
           signupbtn.setOnClickListener {
               if(TestAllValid()){
@@ -99,17 +116,33 @@ class signup : AppCompatActivity() {
                           UploadFile.error = ""
                           UploadFile.text = "Image upload is required"
                       }else{
-                          Snackbar.make(
-                              root,"User Created",Snackbar.LENGTH_LONG
-                          ).setBackgroundTint(getResources().getColor(R.color.teal_200))
-                              .setAction("close", View.OnClickListener {  })
-                              .show();
+                          val gendre = if (radioButtonFemme.isChecked) {
+                              "Female"
+                          } else {
+                              "Male"
+                          }
+                          val ad: AlertDialog.Builder
+                          ad = AlertDialog.Builder(this)
+                          var message=" Name : ${Name.text}  \n" +
+                                  " LastName : ${LastName.text}  \n" +
+                                  " email : ${Email.text}  \n " +
+                                  "Mobile: ${Mobile.text} \n " +
+                                  "Gendre :${gendre} \n" ;
+                          ad.setMessage(message)
+                          ad.setTitle("Confirmation")
 
-                          //Send Message to Login
-                          var message=Name.text.toString()+" Added With Success";
-                          val intent= Intent(this,LoginActivity::class.java)
-                          intent.putExtra("message",message);
-                          startActivity(intent);
+                          //confirm
+                          ad.setPositiveButton(
+                              "Confirm"
+                          ) { dialogInterface, i ->  LoginWithSuccess() }
+
+                          //close
+                          ad.setNegativeButton("close",
+                              { dialogInterface, i -> Int })
+                          val a = ad.create()
+                          a.show()
+
+
                       }
               }else{
                      Snackbar
