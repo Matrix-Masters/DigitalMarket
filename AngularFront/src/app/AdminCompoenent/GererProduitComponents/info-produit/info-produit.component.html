@@ -15,7 +15,8 @@
                 <div class="container shadow-lg">
                   <div class="row">
                     <div class="col-4" style="height: 70vh;border-radius: 10px">
-                      <img src="../../../../assets/bny_mellon_logo.jpg" height="400px" width="400px" />
+                      <img [src]="'http://localhost:8888/PRODUCT-SERVICE/products/images/'+Product['imageProduct']"
+                        height="400px" width="400px" />
                       <div class="desciption">
                         <h3 class="text-black text-center" style="font-size: 20px; font-weight: bold;"> description : {{
                           Product['description'] }}</h3>

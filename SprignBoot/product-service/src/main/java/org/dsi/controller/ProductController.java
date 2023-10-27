@@ -167,7 +167,7 @@ public class ProductController {
 	public ResponseEntity<?> AcceptProduct(@RequestParam("id") long id){
 		try {
 			ProductService.AcceptProduct(id);
-			return  ResponseEntity.ok("Product Upated");
+			return  ResponseEntity.ok("Product Updated");
 		}catch (Exception e) {
 			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
 		}
@@ -201,7 +201,7 @@ public class ProductController {
 	@GetMapping("/RefusedProducts")
 	public ResponseEntity<?> getRefusedProducts(
 			@RequestParam(name = "page", defaultValue = "0") int page,
-			@RequestParam(name = "per_page", defaultValue = "10") int size){
+			@RequestParam(name = "per_page", defaultValue = "2") int size){
 		if (page < 0 || size <= 0 ) {
 	        return ResponseEntity.badRequest().body("Invalid page or per_page values.");
 	 		}

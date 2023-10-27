@@ -4,8 +4,8 @@
     <div class="card col d-flex justify-content-center" style="width: 200px !important;"
       *ngFor="let product of products; let i = index;">
       <div class="card-image">
-        <img src="../../../assets/bny_mellon_logo.jpg" style="height: 100px; width: 100px;" alt="product-image"
-          class="thumbnail-image" />
+        <img [src]="'http://localhost:8888/PRODUCT-SERVICE/products/images/'+product['imageProduct']"
+          style="height: 100px; width: 100px;" alt="product-image" class="thumbnail-image" />
       </div>
       <div class="card-header">
         <h2 class="text-center">{{ product['name'] }}</h2>

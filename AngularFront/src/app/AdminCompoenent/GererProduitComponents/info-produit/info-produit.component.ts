@@ -36,7 +36,7 @@ export class InfoProduitComponent {
     }
   }
   RefuseProduct(id:number){
-    this.AdminServiceService.RefuseProduct(id).subscribe((res: any)=>{
+    this.AdminServiceService.RejectProduct(id).subscribe((res: any)=>{
       this.updateProducts.emit('update products');
       console.log("send from info");
       this.closeBtn.nativeElement.click();
