@@ -1,6 +1,5 @@
 .allSidebar {
 	height: 100%;
-	width: 100%;
     background-color: #E9E9E9;
 	padding: 5px;
 	.sidebar {
@@ -15,7 +14,8 @@
 			text-align: center;
 			margin-bottom: 50px;
 			img{
-				width: 50px;
+				width: 80px;
+				border-radius: 15px;
 			}
 		}	
 		ul li{
@@ -55,7 +55,6 @@
         }
 		&.close{
 			transition: all 0.4s ease-in-out;
-			overflow: hidden;
 			a{
 				margin-left: -20px;
 				.nav-item{
@@ -63,7 +62,6 @@
 				}
 			}
 			.close_sidebar{
-				
 				margin-left: -15px !important;
 			 }
 		}
@@ -74,11 +72,12 @@
  .content {
 	transition: margin-left 0.4s ease-in-out;
 	overflow-y: hidden;
-	position: fixed;
 	margin-left: 15px;
   }
   
   .content.close {
+	position: relative;
+	z-index: 9999999;
 	transition: margin-left 0.4s ease-in-out;
 	margin-left: -90px;
   }
