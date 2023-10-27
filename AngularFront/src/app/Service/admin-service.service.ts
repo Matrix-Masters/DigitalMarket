@@ -24,20 +24,21 @@ export class AdminServiceService {
   UpdateIdProducts(id:number,cat:any){
     return this.http.put(`${port}/PRODUCT-SERVICE/products/UpdateIdProducts?id=${id}`,cat);
   }
- 
+
   LibererProduct(id:number){
     return this.http.put(`${port}/PRODUCT-SERVICE/products/LibererProduct?id=${id}`,{});
   }
 
+  GetAcceptedProducts(page: number, pageSize: number) {
+    return this.http.get(`${port}/PRODUCT-SERVICE/products/AllProduct?page=${page}&per_page=${pageSize}`);
+  }
 
-  GetAcceptedProducts(){
-    return this.http.get(`${port}/PRODUCT-SERVICE/products/AllProduct`);
+  GetRefusedProducts(page: number, pageSize: number) {
+    return this.http.get(`${port}/PRODUCT-SERVICE/products/RefusedProducts?page=${page}&per_page=${pageSize}`);
   }
-  GetRefusedProducts(){
-    return this.http.get(`${port}/PRODUCT-SERVICE/products/RefusedProducts`);
-  }
-  GetPendingProducts(){
-    return this.http.get(`${port}/PRODUCT-SERVICE/products/PendingProduct`);
+
+  GetPendingProducts(page: number, pageSize: number) {
+    return this.http.get(`${port}/PRODUCT-SERVICE/products/PendingProduct?page=${page}&per_page=${pageSize}`);
   }
   AcceptProduit(id: number) {
     return this.http.put(`${port}/PRODUCT-SERVICE/products/AcceptProduct?id=${id}`, {});
@@ -52,5 +53,5 @@ export class AdminServiceService {
   RejectProduct(id:number){
     return this.http.put(`${port}/PRODUCT-SERVICE/products/RejectProduct?id=${id}`,{});
   }
- 
+
 }

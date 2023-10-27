@@ -19,6 +19,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatChipsModule} from '@angular/material/chips';
+import { MatPaginatorModule } from '@angular/material/paginator';
 @NgModule({
   imports:[
     MatIconModule,
@@ -44,7 +45,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatSidenavModule,
     MatListModule,
     MatTooltipModule,
-    MatChipsModule
+    MatChipsModule,
+    MatPaginatorModule
   ],
 
   exports:[
@@ -71,7 +73,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatSidenavModule,
     MatListModule,
     MatTooltipModule,
-    MatChipsModule
+    MatChipsModule,
+    MatPaginatorModule
 ]
 
 })

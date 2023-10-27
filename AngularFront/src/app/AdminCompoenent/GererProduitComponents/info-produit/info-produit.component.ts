@@ -20,11 +20,24 @@ export class InfoProduitComponent {
   UpdateProducts() {
     this.updateProducts.emit('update products');
   }
+  closeModal() {
+    const modalElement = document.getElementById('exampleModal');
+    if (modalElement) {
+      modalElement.classList.remove('show');
+      modalElement.setAttribute('aria-hidden', 'true');
+      modalElement.style.display = 'none';
+      const modalBackdrop = document.getElementsByClassName('modal-backdrop')[0];
+      if (modalBackdrop) {
+        document.body.removeChild(modalBackdrop);
+      }
+    }
+  }
   AcceptProduit(id:number){
     this.AdminServiceService.AcceptProduit(id).subscribe((res: any)=>{
       this.updateProducts.emit('update products');
       console.log("send from info");
-      this.closeBtn.nativeElement.click();
+      //this.closeBtn.nativeElement.click();
+        this.closeModal();
       this._snackBar.open("product accepted", 'close', {
         duration: 3000
       })
@@ -37,7 +50,7 @@ export class InfoProduitComponent {
   }
   RefuseProduct(id:number){
     this.AdminServiceService.RejectProduct(id).subscribe((res: any)=>{
-      this.updateProducts.emit('update products');
+      //this.updateProducts.emit('update products');
       console.log("send from info");
       this.closeBtn.nativeElement.click();
       this._snackBar.open("product Refused", 'close', {
