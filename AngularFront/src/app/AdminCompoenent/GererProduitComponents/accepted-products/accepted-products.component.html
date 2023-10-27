@@ -1,5 +1,6 @@
 <div class="tab-show container ">
-  <h1 class="text-center"> {{ type }} Products </h1>
+  <h1 class="alert alert-danger" *ngIf="products.length==0">there's no {{ type }} products</h1>
+  <h1 class="text-center" *ngElse> {{ type }} Products </h1>
   <div class="row gap-3">
     <div class="card col d-flex justify-content-center" style="width: 200px !important;"
       *ngFor="let product of products; let i = index;">
