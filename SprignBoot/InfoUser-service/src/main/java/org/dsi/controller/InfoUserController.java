@@ -18,12 +18,10 @@ public class InfoUserController {
 	
 	@Autowired
 	UserInfoService userInfoService;
-	
-	
-	
+
 	@GetMapping(value="/getUserByMail")
 	public ResponseEntity<?> getUserByMail(@RequestParam("email") String email){
-		
+
 		try {
 			InfoUser user = userInfoService.getInfoUserByEmail(email);
 			  return ResponseEntity.ok(user);

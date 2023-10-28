@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import net.minidev.json.JSONObject;
 
-@FeignClient(name = "NODEJS-SERVICE")
+@FeignClient(name = "GESTIONCOMMANDE-SERVICE")
 public interface NodeSync {
-	@RequestMapping(method = RequestMethod.POST, value = "/node/AddUser")
+	@RequestMapping(method = RequestMethod.POST, value = "/Commande/AddUser")
     void addInfoUser(@RequestBody JSONObject data);
 
 }
