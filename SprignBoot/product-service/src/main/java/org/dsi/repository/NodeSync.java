@@ -15,6 +15,9 @@ public interface NodeSync {
 	    @RequestMapping(method = RequestMethod.POST, value = "/node/addProduct")
 	    String addProd(@RequestBody JSONObject title);
 	    
+	    @RequestMapping(method = RequestMethod.POST, value = "/node/AddCategory")
+	    String AddCategory(@RequestBody JSONObject cat);
+	    
 	    @RequestMapping(method = RequestMethod.PUT, value = "/node/LibererProduct/{id}")
 	    Product LibererProduct(@PathVariable("id") long id);
 	    

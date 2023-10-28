@@ -28,7 +28,6 @@ public class CategoryController {
 	public ResponseEntity<?> AddCategory(@RequestBody Category cat){
 		try {
 			ServiceCat.AddCategory(cat);
-			
 			return ResponseEntity.ok("Category Added");
 		}catch (Exception e) {
 			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);

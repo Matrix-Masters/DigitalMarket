@@ -40,17 +40,18 @@ public class ProductService {
 				prod.setImageProduct(fileName);
 				prod.setName(info.getName());
 				prod.setPrix(info.getPrix());
+				prod.setDescription(info.getDescription());
 				prod.setQuantite(info.getQuantite());
 				ProductRepo.save(prod);
-				JSONObject jsoUser=new JSONObject();
+				/*JSONObject jsoUser=new JSONObject();
 	  			jsoUser.appendField("title",info.getName());
 	  			jsoUser.appendField("Description",info.getDescription());
 	  			jsoUser.appendField("ImageProduct",fileName);
 	  			jsoUser.appendField("Quantite",info.getQuantite());
 	  			jsoUser.appendField("prix",info.getQuantite());
 	  			jsoUser.appendField("idUser",0);
-	  			jsoUser.appendField("idSpring",prod.getId());
-	  			String prod1=nodesync.addProd(jsoUser);
+	  			jsoUser.appendField("idSpring",prod.getId());*/
+	  			//String prod1=nodesync.addProd(jsoUser);
 			} catch (IllegalStateException | IOException e) {
 				e.printStackTrace();
 			}
@@ -63,7 +64,7 @@ public class ProductService {
 		  	}else {
 		  		prod.setCategory(null);
 				ProductRepo.save(prod);
-				Product prod1=nodesync.LibererProduct(id);
+				//Product prod1=nodesync.LibererProduct(id);
 		  	}
 	  }
 	  
@@ -74,7 +75,7 @@ public class ProductService {
 		  	}else {
 		  		prod.setStatus(2);
 				ProductRepo.save(prod);
-				Product prod1=nodesync.RejectProduct(id);
+				//Product prod1=nodesync.RejectProduct(id);
 		  	}
 	  }
 
@@ -85,7 +86,7 @@ public class ProductService {
 			  	}else {
 			  		prod.setStatus(1);
 					ProductRepo.save(prod);
-					Product prod1=nodesync.AccepterProduct(id);
+					//Product prod1=nodesync.AccepterProduct(id);
 			  	}
 		}
 	  
@@ -96,9 +97,9 @@ public class ProductService {
 		  	}else {
 		  		prod.setCategory(cat);
 				ProductRepo.save(prod);
-				JSONObject jsoUser=new JSONObject();
-	  			jsoUser.appendField("categoryId",cat.getId());
-				Product prod1=nodesync.UpdateIdProducts(id, jsoUser);
+				//JSONObject jsoUser=new JSONObject();
+	  			//jsoUser.appendField("categoryId",cat.getId());
+				//Product prod1=nodesync.UpdateIdProducts(id, jsoUser);
 		  	}
 	  }
 	  
