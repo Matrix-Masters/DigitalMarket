@@ -9,7 +9,8 @@ const routes: Routes = [
    {path:'',component:HomeComponent},
    {path:'classer',component:ClasserProductComponent},
    {path:"dash",component:DashboardComponent},
-   {path:'gererProduit',component:GererProduitComponent}
+   {path:'gererProduit',component:GererProduitComponent},
+   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) }
 ]
 
 
