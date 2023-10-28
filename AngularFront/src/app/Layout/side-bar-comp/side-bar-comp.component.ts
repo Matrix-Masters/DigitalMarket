@@ -13,7 +13,6 @@ export class SideBarCompComponent implements OnInit {
         console.log(this.current);
         
     }
-   
     ngOnInit(): void {
    
     }

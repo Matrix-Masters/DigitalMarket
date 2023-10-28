@@ -1,12 +1,14 @@
 .allSidebar {
 	height: 100%;
+	width: 100%;
     background-color: #E9E9E9;
 	padding: 5px;
+	scroll-behavior: smooth;
 	.sidebar {
-		transition: all 0.4s ease-in-out;
+		transition: all 4s ease-in-out;
         border-radius: 10px;
+		max-width: 350px;
 		padding: 20px;
-		max-width: 250px;
 		margin: 5px;
 		box-shadow: 0 20px 35px rgba(0,0,0,0.1);
 		background-color: #272343;
@@ -53,31 +55,26 @@
 				margin-left: 35px;
 			 }
         }
-		&.close{
-			transition: all 0.4s ease-in-out;
-			a{
-				margin-left: -20px;
-				.nav-item{
-					display: none;
-				}
-			}
-			.close_sidebar{
-				margin-left: -15px !important;
-			 }
-		}
+		
 		
 	}
 }
+.content {
+	transition: all 4s ease-in-out;	
+	height: 100%;
+}
 
- .content {
-	transition: margin-left 0.4s ease-in-out;
-	overflow-y: hidden;
-	margin-left: 15px;
-  }
-  
-  .content.close {
-	position: relative;
-	z-index: 9999999;
-	transition: margin-left 0.4s ease-in-out;
-	margin-left: -90px;
-  }
+.sidebar.close{
+		transition: all 4s ease-in-out;
+		a{
+			margin-left: -10px;
+			.nav-item{
+				display: none;
+			}
+		}
+		.close_sidebar{
+			margin-left: -13px !important;
+		 }
+	
+}
+

@@ -5,6 +5,10 @@
     padding-top: 15px;
     padding-left: 12px;
     padding-right: 12px;
+    position: fixed;
+    width: 82%;
+    z-index: 9999999999;
+    margin-left: 12px;
     display: flex;
     justify-content: space-between;
     .title{
