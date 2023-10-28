@@ -12,19 +12,32 @@ export const getAllUsers = async (req: Request, res: Response) => {
 };
 
 export const AddUser = async (req: Request, res: Response) => {
-  let prod = new InfoUser(req.body);
+  let user = new InfoUser(req.body);
   try {
-      await prod.save() ;
-      res.status(201).json(req.body);
+      const savedUser=await user.save() ;
+      notifyNotificationService(savedUser._id);
+      res.status(201).json(savedUser._id);
   } catch (err) {
     res.status(500).json({ error: err });
   }
 }
 
+function notifyNotificationService(userid:any) {
+  const axios = require('axios');
+  
+  axios.post('http://localhost:8888/FEEDBACK-SERVICE/FeedBack/AddNotif', { 
+     idEnvoi: `${userid}`,
+     idRecu:"2",
+     Message:"test",
+     etat:2
+   });
+}
+
+
 export const GetUserByEmail = async (req: Request, res: Response) => {
   try {
-    const prod = await InfoUser.findOne({email: req.params.email});
-    res.status(200).json(prod);
+    const user = await InfoUser.findOne({email: req.params.email});
+    res.status(200).json(user);
   } catch (err) {
     res.status(500).json({ error: err });
   }

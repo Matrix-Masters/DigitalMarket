@@ -9,14 +9,13 @@
   "author": "MatrixMastres",
   "license": "ISC",
   "dependencies": {
-   
+    "axios": "^1.6.0",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "eureka-js-client": "^4.5.0",
     "express": "^4.18.2",
     "mongoose": "^7.5.4",
     "mongoose-paginate": "^5.0.3"
-    
   },
   "devDependencies": {
     "@types/eureka-js-client": "^4.5.7",

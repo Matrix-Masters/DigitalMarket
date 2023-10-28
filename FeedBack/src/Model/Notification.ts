@@ -2,11 +2,11 @@ import mongoose from "mongoose";
 
 let NotifSchema=new mongoose.Schema({
     idEnvoi:{
-        type:Number,
+        type:String,
         required:true
     },
     idRecu:{
-        type:Number,
+        type:String,
         required:true
     },
     Message:{
