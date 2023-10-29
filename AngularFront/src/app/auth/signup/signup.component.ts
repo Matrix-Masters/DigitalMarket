@@ -33,11 +33,10 @@ export class SignupComponent {
  
  
 
-  NumTlfForm=new FormControl('',[Validators.required,Validators.minLength(8),Validators.maxLength(8)]);
+  NumTlfForm=new FormControl('',[Validators.required,Validators.minLength(8),Validators.maxLength(8),Validators.pattern("^[0-9]*$")]);
   FirstNameForm=new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(8)]);
   LastNameForm=new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(8)]);
   EmailForm=new FormControl('',[Validators.required,Validators.email]);
-  //Validators.pattern("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]+)$")
   passwordForm=new FormControl('',[Validators.required,Validators.minLength(8)]);
   SexForm=new FormControl('',[Validators.required]);
   RoleForFrom=new FormControl('',[Validators.required]);
@@ -81,12 +80,15 @@ export class SignupComponent {
 
         getNumTlfFormError(){
           if(this.NumTlfForm.touched){
+            console.log(this.NumTlfForm);
             if(this.NumTlfForm.hasError("required")){
                return 'You must enter a phone number';
             }else if(this.NumTlfForm.hasError("minlength")){
               return 'You must enter a valid phone number';  
             }else if(this.NumTlfForm.hasError("maxlength")){
               return 'You must enter a valid phone number';
+            }else if(this.NumTlfForm.hasError("pattern")){
+               return 'You must enter Just numbers';
             }
           }
           return '';

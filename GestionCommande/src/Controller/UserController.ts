@@ -12,8 +12,10 @@ export const getAllUsers = async (req: Request, res: Response) => {
 };
 
 export const AddUser = async (req: Request, res: Response) => {
+  req.body.cin=null;
   let user = new InfoUser(req.body);
   try {
+     
       const savedUser=await user.save() ;
       //notifyNotificationService(savedUser._id);
       res.status(201).json(savedUser._id);
