@@ -1,0 +1,39 @@
+.SignUp{
+    background-image: url("../../../assets/ImagesSignup/Digital\ Market.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+}
+
+.content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+/*
+color="#f7eb75" //yellow
+color="#bda179"//cardona
+color="#684a26"//scotech
+color="#f1eaf1"//s7aba
+*/
+
+form{
+    background-color: #f1eaf1b5;
+    // background-color: #ffffff46;
+}
+label{
+    color: #684a26;
+    font-weight: bold;
+}
+
+.titre{
+    font-size: 20px;
+    color:  #f47d5d;
+    font-weight: bold
+}
+
+small{
+    font-size: 15px;
+}
