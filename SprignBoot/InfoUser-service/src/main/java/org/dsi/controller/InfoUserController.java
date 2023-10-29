@@ -21,7 +21,6 @@ public class InfoUserController {
 
 	@GetMapping(value="/getUserByMail")
 	public ResponseEntity<?> getUserByMail(@RequestParam("email") String email){
-
 		try {
 			InfoUser user = userInfoService.getInfoUserByEmail(email);
 			  return ResponseEntity.ok(user);
@@ -43,12 +42,11 @@ public class InfoUserController {
 	}
 	
 	@PostMapping(value="/addUserInfo")
-	public ResponseEntity<?> addUserInfo(@RequestParam("file") MultipartFile file,@RequestBody UserInfo user){
+	public ResponseEntity<?> addUserInfo(@RequestParam("role") String role,@RequestBody UserInfo user){
 		try {
-			userInfoService.addInfoUser(user, file);
+			userInfoService.addInfoUser(user,role);
             return ResponseEntity.ok("User created successfully");
         } catch (Exception e) {
-        	
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Failed to create user: " + e.getMessage());
         }
 	}

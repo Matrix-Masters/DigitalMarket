@@ -26,6 +26,8 @@ public class UserInfoService {
 	@Autowired
 	NodeSync nodeSync;
 	
+	
+	
 	public InfoUser getInfoUserByEmail(String email) throws Exception {
 	    InfoUser user = userRepo.getUserByemail(email);
 	    if (user == null) {
@@ -43,41 +45,38 @@ public class UserInfoService {
 	    return user;
 	}
 	
-	public void addInfoUser(UserInfo user,MultipartFile file) throws Exception {
+	public void addInfoUser(UserInfo user,String role) throws Exception {
 		
-		String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+		/*String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
 	    String fileName =  timestamp+"_"+file.getOriginalFilename();
-	    String uploadDir = "UserImages/";
+	    String uploadDir = "UserImages/";*/
 	    InfoUser newuser = new   InfoUser();
 	    Map<String, Object> roleData = new HashMap<>();
-        roleData.put("role", Arrays.asList("admin"));
+        roleData.put("role", Arrays.asList(role));
 
 	    try {
 	    	if(userRepo.getUserByemail(user.getEmail())==null) {
-	    		FileUpload.saveFile(uploadDir, fileName, file);
+	    		//FileUpload.saveFile(uploadDir, fileName, file);
 				newuser.setFirstName(user.getFirstName());
 				newuser.setLastName(user.getLastName());
 				newuser.setCin(user.getCin());
 				newuser.setEmail(user.getEmail());
 				newuser.setPassword(user.getPassword());
 				newuser.setNumTlf(user.getNumTlf());
-				newuser.setPhoto(fileName);
+				newuser.setPhoto(null);
 				newuser.setSexe(user.getSexe());
 				newuser.setPhotoCin(user.getPhotoCin());
-				 JSONObject jsoUser=new JSONObject();
+				userRepo.save(newuser);
+				JSONObject jsoUser=new JSONObject();
 	  			jsoUser.appendField("Name",user.getFirstName());
 	  			jsoUser.appendField("LastName",user.getLastName());
-	  			jsoUser.appendField("email",user.getPhotoCin());
+	  			jsoUser.appendField("email",user.getEmail());
 	  			jsoUser.appendField("cin",user.getCin());
-	  			jsoUser.appendField("numTlf",user.getEmail());
-	  			jsoUser.appendField("password",user.getPassword());
-	  			jsoUser.appendField("sexe",user.getSexe());
 	  			jsoUser.appendField("status",0);
+	  			jsoUser.appendField("Photo",null);
 	  			jsoUser.appendField("roles",roleData);
-	  			jsoUser.appendField("CinPhoto",user.getPhotoCin());
 	  			nodeSync.addInfoUser(jsoUser);
 	    	}else {
-	    		System.out.println("User with email " + user.getEmail() + " already exists.");
 	    		throw new Exception("User with email " + user.getEmail() + " already exists.");
 	    	}
 		} catch (IllegalStateException | IOException e) {
