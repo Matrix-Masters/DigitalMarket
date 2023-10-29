@@ -45,9 +45,9 @@ public class InfoUserController {
 	public ResponseEntity<?> addUserInfo(@RequestParam("role") String role,@RequestBody UserInfo user){
 		try {
 			userInfoService.addInfoUser(user,role);
-            return ResponseEntity.ok("User created successfully");
+			return  ResponseEntity.ok().body("user add");
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Failed to create user: " + e.getMessage());
+        	return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
         }
 	}
 	

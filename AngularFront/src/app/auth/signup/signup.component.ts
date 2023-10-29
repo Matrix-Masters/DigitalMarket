@@ -33,11 +33,12 @@ export class SignupComponent {
  
  
 
-  NumTlfForm=new FormControl('',[Validators.required]);
-  FirstNameForm=new FormControl('',[Validators.required]);
-  LastNameForm=new FormControl('',[Validators.required]);
+  NumTlfForm=new FormControl('',[Validators.required,Validators.minLength(8),Validators.maxLength(8)]);
+  FirstNameForm=new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(8)]);
+  LastNameForm=new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(8)]);
   EmailForm=new FormControl('',[Validators.required,Validators.email]);
-  passwordForm=new FormControl('',[Validators.required]);
+  //Validators.pattern("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]+)$")
+  passwordForm=new FormControl('',[Validators.required,Validators.minLength(8)]);
   SexForm=new FormControl('',[Validators.required]);
   RoleForFrom=new FormControl('',[Validators.required]);
 
@@ -45,10 +46,14 @@ export class SignupComponent {
     if(this.FirstNameForm.touched){
       if(this.FirstNameForm.hasError("required")){
          return 'You must enter a first name';
-      }  
+      } else if(this.FirstNameForm.hasError("minlength")){
+        return 'You must enter a valid first name';
+      }else if(this.FirstNameForm.hasError("maxlength")){
+        return 'You must enter a valid first name';
       }
-      return '';
     }
+    return '';
+  }
 
   
 
@@ -56,10 +61,14 @@ export class SignupComponent {
       if(this.LastNameForm.touched){
         if(this.LastNameForm.hasError("required")){
            return 'You must enter a last name';
-        }  
+          }else if(this.LastNameForm.hasError("minlength")){
+            return 'You must enter a valid last name';
+        }else if(this.LastNameForm.hasError("maxlength")){
+          return 'You must enter a valid last name';
         }
-        return '';
       }
+      return '';
+    }
 
       geRoleForFromError(){
         if(this.LastNameForm.touched){
@@ -74,16 +83,24 @@ export class SignupComponent {
           if(this.NumTlfForm.touched){
             if(this.NumTlfForm.hasError("required")){
                return 'You must enter a phone number';
-            }  
+            }else if(this.NumTlfForm.hasError("minlength")){
+              return 'You must enter a valid phone number';  
+            }else if(this.NumTlfForm.hasError("maxlength")){
+              return 'You must enter a valid phone number';
             }
-            return '';
           }
+          return '';
+        }
+          
 
-      getpasswordFormError(){
+      getPasswordFormError(){
         if(this.passwordForm.touched){
           if(this.passwordForm.hasError("required")){
              return 'You must enter a password';
+          }else if(this.passwordForm.hasError("minlength")){
+            return 'You must enter a valid password';
           }
+          //  return 'Password must contain at least one uppercase letter , one lowercase letter and one number';
           }
           return '';
         }
@@ -185,7 +202,9 @@ export class SignupComponent {
         ).subscribe((res:any)=>{
             console.log(res);
         },(error)=>{
-           this.MatSnackBar.open(error.error.error,'',{
+          console.log(error);
+          
+           this.MatSnackBar.open(error.error,'',{
              duration:2000,
           })
         })
