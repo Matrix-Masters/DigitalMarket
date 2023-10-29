@@ -5,6 +5,8 @@ import { SignupComponent } from './signup/signup.component';
 import { MaterialModule } from '../material/material.module';
 import { CommonModule } from '@angular/common';
 import { FormsModule,ReactiveFormsModule } from "@angular/forms";
+
+
 const routes: Routes = [
   {path:'',redirectTo:"signup",pathMatch:'full'},
   {path:'signup',component:SignupComponent},

@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { FormGroup,FormBuilder, FormControl, Validators } from '@angular/forms';
+import {MatSnackBar } from '@angular/material/snack-bar';
 import { AuthServiceService } from 'src/app/Service/auth-service.service';
+import { PythonServiceService } from 'src/app/Service/python-service.service';
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -9,7 +12,11 @@ import { AuthServiceService } from 'src/app/Service/auth-service.service';
 
 export class SignupComponent {
   
-  constructor(private formBuilder:FormBuilder,private AuthServiceService:AuthServiceService){
+  constructor(private formBuilder:FormBuilder,
+      private AuthServiceService:AuthServiceService,
+      private PythonServiceService:PythonServiceService,
+      private MatSnackBar:MatSnackBar
+      ) {
  
     this.SignUpForm=this.formBuilder.group({
       FirstName:this.FirstNameForm,
@@ -18,7 +25,8 @@ export class SignupComponent {
       Password:this.passwordForm,
       NumTlf:this.NumTlfForm,
       Sex:this.SexForm,
-      RoleFor:this.RoleForFrom
+      RoleFor:this.RoleForFrom,
+  
     });
 
   }
@@ -41,6 +49,8 @@ export class SignupComponent {
       }
       return '';
     }
+
+  
 
     getLastNameFormError(){
       if(this.LastNameForm.touched){
@@ -100,17 +110,20 @@ export class SignupComponent {
           return '';
         }
 
+       
+
   imageError:String=""
   image:String="";
 
   SignUpForm:FormGroup;
-
+  imageCin:String="";
   SignupError="";
 
   role:any='';
 
   onFileChanged(event: any) {
     const file = event.target.files[0];
+    this.imageCin=file;
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
@@ -125,33 +138,61 @@ export class SignupComponent {
 
   SignUp(){
     if(this.SignUpForm.valid){
-      if(this.image.length>0){
-        this.imageError=""
-        this.AuthServiceService.AdddUser(
-            this.SignUpForm.value['RoleFor'],
-            {
-              "password": this.SignUpForm.value['Password'],
-              "photoCin": this.image,
-              "lastName": this.SignUpForm.value['LastName'],
-              "cin": "qsdq",
-              "email": this.SignUpForm.value['Email'],
-              "numTlf":this.SignUpForm.value['NumTlf'],
-              "sexe":this.SignUpForm.value['Sex'],
-              "firstName":this.SignUpForm.value['FirstName'],
-              "photo":null,
-            }
-          ).subscribe((res:any)=>{
-              console.log(res);
-          },(error)=>{
-             console.log(error);
+      if(this.SignUpForm.value['RoleFor']=="Supplier"){
+        if(this.image.length>0){
+          this.imageError="";
+          this.PythonServiceService.AddPhoto(this.imageCin).subscribe((res:any)=>{
+          this.AuthServiceService.AdddUser(
+              this.SignUpForm.value['RoleFor'],
+              {
+                "password": this.SignUpForm.value['Password'],
+                "photoCin": this.image,
+                "lastName": this.SignUpForm.value['LastName'],
+                "cin": res['Number'],
+                "email": this.SignUpForm.value['Email'],
+                "numTlf":this.SignUpForm.value['NumTlf'],
+                "sexe":this.SignUpForm.value['Sex'],
+                "firstName":this.SignUpForm.value['FirstName'],
+                "photo":null,
+              }
+            ).subscribe((res:any)=>{
+                console.log(res);
+            },(error)=>{
+              this.MatSnackBar.open(error.error.error,'',{
+                duration:2000,
+              })
+            })
+          },(err)=>{
+            this.MatSnackBar.open(err.error.error,'',{
+              duration:2000,
+            })
           })
+        }else{
+          this.imageError="You must upload an image";
+        }
       }else{
-        this.imageError="You must upload an image";
+        this.AuthServiceService.AdddUser(
+          this.SignUpForm.value['RoleFor'],
+          {
+            "password": this.SignUpForm.value['Password'],
+            "lastName": this.SignUpForm.value['LastName'],
+            "email": this.SignUpForm.value['Email'],
+            "numTlf":this.SignUpForm.value['NumTlf'],
+            "sexe":this.SignUpForm.value['Sex'],
+            "firstName":this.SignUpForm.value['FirstName'],
+            "photo":null,
+          }
+        ).subscribe((res:any)=>{
+            console.log(res);
+        },(error)=>{
+           this.MatSnackBar.open(error.error.error,'',{
+             duration:2000,
+          })
+        })
       }
     }else{
       this.SignUpForm.markAllAsTouched();
     }
   }
 
-    
 }
