@@ -15,13 +15,13 @@ export const AddUser = async (req: Request, res: Response) => {
   let user = new InfoUser(req.body);
   try {
       const savedUser=await user.save() ;
-      notifyNotificationService(savedUser._id);
+      //notifyNotificationService(savedUser._id);
       res.status(201).json(savedUser._id);
   } catch (err) {
     res.status(500).json({ error: err });
   }
 }
-
+/*
 function notifyNotificationService(userid:any) {
   const axios = require('axios');
   
@@ -32,7 +32,7 @@ function notifyNotificationService(userid:any) {
      etat:2
    });
 }
-
+*/
 
 export const GetUserByEmail = async (req: Request, res: Response) => {
   try {
