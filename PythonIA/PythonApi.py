@@ -22,7 +22,7 @@ if not os.path.exists(r'C:\Users\talel\Desktop\Matrix-Masters\DigitalMarket\Pyth
 def upload_image():
     if 'image' not in request.files:
         return jsonify({'error': 'No image provided'}), 400
-
+  
     file = request.files['image']
     filename = secure_filename(file.filename)
     if filename == '':
