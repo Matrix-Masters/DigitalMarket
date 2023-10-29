@@ -173,6 +173,7 @@ export class SignupComponent {
                 "photo":null,
               }
             ).subscribe((res:any)=>{
+                this.SignUpForm.reset();
                 console.log(res);
             },(error)=>{
               this.MatSnackBar.open(error.error.error,'',{
@@ -183,6 +184,7 @@ export class SignupComponent {
             this.MatSnackBar.open(err.error.error,'',{
               duration:2000,
             })
+            
           })
         }else{
           this.imageError="You must upload an image";
@@ -201,6 +203,7 @@ export class SignupComponent {
           }
         ).subscribe((res:any)=>{
             console.log(res);
+            this.SignUpForm.reset();
         },(error)=>{
           console.log(error);
           

@@ -59,7 +59,7 @@ public class UserInfoService {
 	    		//FileUpload.saveFile(uploadDir, fileName, file);
 				newuser.setFirstName(user.getFirstName());
 				newuser.setLastName(user.getLastName());
-				newuser.setCin(user.getCin());
+				newuser.setCin(user.getCin()!=null ? user.getCin() : null);
 				newuser.setEmail(user.getEmail());
 				newuser.setPassword(user.getPassword());
 				newuser.setNumTlf(user.getNumTlf());
@@ -71,7 +71,7 @@ public class UserInfoService {
 	  			jsoUser.appendField("Name",user.getFirstName());
 	  			jsoUser.appendField("LastName",user.getLastName());
 	  			jsoUser.appendField("email",user.getEmail());
-	  			jsoUser.appendField("cin",user.getCin());
+	  			jsoUser.appendField("cin",user.getCin()!=null ? user.getCin() : null);
 	  			jsoUser.appendField("status",0);
 	  			jsoUser.appendField("Photo",null);
 	  			jsoUser.appendField("roles",roleData);
