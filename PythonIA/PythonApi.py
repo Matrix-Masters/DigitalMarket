@@ -13,7 +13,7 @@ eureka_client.init(eureka_server="http://localhost:8761/eureka",
 
 app = Flask(__name__)
 
-CORS(app, origins='http://localhost:4200')
+#CORS(app, resources={r"/api/*": {"origins": "http://localhost:4200"}})
 
 if not os.path.exists(r'C:\Users\talel\Desktop\Matrix-Masters\DigitalMarket\PythonIA\uploads'):
     os.makedirs(r'C:\Users\talel\Desktop\Matrix-Masters\DigitalMarket\PythonIA\uploads')
@@ -28,7 +28,7 @@ def upload_image():
     if filename == '':
         return jsonify({'error': 'No selected file'}), 400
 
-    temp_image_path = os.path.join(r'C:\Users\talel\Desktop\NodeJs\Crud\PythonIA\uploads', filename)
+    temp_image_path = os.path.join(r'C:\Users\talel\Desktop\Matrix-Masters\DigitalMarket\PythonIA\uploads', filename)
     file.save(temp_image_path)
     
     name_pattern = r"الاسم\s*\s*(.*?)\s*[\n<]"
