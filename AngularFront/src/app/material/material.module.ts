@@ -20,6 +20,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatChipsModule} from '@angular/material/chips';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatRadioModule} from '@angular/material/radio';
 @NgModule({
   imports:[
     MatIconModule,
@@ -46,7 +47,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatListModule,
     MatTooltipModule,
     MatChipsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatRadioModule
   ],
 
   exports:[
@@ -74,7 +76,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatListModule,
     MatTooltipModule,
     MatChipsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatRadioModule
 ]
 
 })
