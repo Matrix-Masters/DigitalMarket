@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SignupComponent } from './signup.component';
+import { AuthServiceService } from 'src/app/Service/auth-service.service';
+AuthServiceService
 
 describe('SignupComponent', () => {
   let component: SignupComponent;

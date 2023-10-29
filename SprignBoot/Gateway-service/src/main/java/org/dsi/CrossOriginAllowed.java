@@ -11,25 +11,24 @@ import org.springframework.web.cors.reactive.CorsWebFilter;
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 
 @Configuration
-public class CrossOriginAllowed  {
+public class CrossOriginAllowed {
    
-	@Bean
-	public CorsWebFilter corsFilter() {
-		return new CorsWebFilter(corsConfigurationSource());
-	}
+    @Bean
+    public CorsWebFilter corsFilter() {
+        return new CorsWebFilter(corsConfigurationSource());
+    }
 
-	@Bean
-	public CorsConfigurationSource corsConfigurationSource() {
-	    CorsConfiguration configuration = new CorsConfiguration();
-	    configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200")); // Allow requests from  Angular 
-	    configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
-	    configuration.setAllowedHeaders(Arrays.asList("Content-Type", "Authorization"));
-	     configuration.setAllowCredentials(true); // For Cookie
-	    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-	    source.registerCorsConfiguration("/**", configuration);
-	    return source;
-	}
-
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
+        configuration.setAllowedHeaders(Arrays.asList("Content-Type", "Authorization"));
+        configuration.setAllowCredentials(true);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
 }
 
 

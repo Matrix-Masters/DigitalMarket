@@ -16,11 +16,11 @@ let UserSchema=new mongoose.Schema({
     },
     Photo:{
         type:String,
-        required:true,
+        default: null
     },
-    CinPhoto:{
+    cin:{
         type:String,
-        required:true,
+        default: null
     },
     status:{
         type:Number,
