@@ -1,11 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CategoryServiceService } from 'src/app/Service/category-service.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+  constructor(public categoriesService : CategoryServiceService){}
+  categories:any;
   images = [
     {
       imageSrc:
@@ -23,4 +26,8 @@ export class HomeComponent {
       imageAlt: 'person2',
     },
   ]
+
+  ngOnInit():void {
+
+  }
 }
