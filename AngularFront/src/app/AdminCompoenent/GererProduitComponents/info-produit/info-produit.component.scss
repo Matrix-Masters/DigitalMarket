@@ -1,4 +1,7 @@
-// .product .modal{
-//     height: 100%;
-//     width: 100%;
-// }
+.all {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
