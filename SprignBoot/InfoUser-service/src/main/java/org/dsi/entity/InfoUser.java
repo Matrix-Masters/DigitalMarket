@@ -51,6 +51,9 @@ public class InfoUser {
 	@ColumnDefault(value="null")
 	private Boolean welcome_field; 
 	
+	@ColumnDefault(value = "0")
+	private Integer status;
+	
 	@ColumnDefault(value="null")
 	private String password_token;
 	
