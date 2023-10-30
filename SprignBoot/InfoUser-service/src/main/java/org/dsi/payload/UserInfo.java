@@ -1,5 +1,7 @@
 package org.dsi.payload;
 
+import java.util.List;
+
 import javax.persistence.Column;
 
 import lombok.AllArgsConstructor;
@@ -27,5 +29,7 @@ public class UserInfo {
 	
 	@Column(length=999999999)
 	private String PhotoCin;
+	
+	private List<String> roles;
 
 }
