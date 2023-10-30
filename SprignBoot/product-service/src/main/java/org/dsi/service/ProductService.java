@@ -4,6 +4,7 @@ package org.dsi.service;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.dsi.entity.Category;
 import org.dsi.entity.Product;
@@ -103,5 +104,14 @@ public class ProductService {
 		  	}
 	  }
 	  
+	  public List<Product> getProductNewArrivals() throws Exception {
+		  
+		    List<Product> products = ProductRepo.getProductNewArrivals();
+		    
+		    if (products.isEmpty()) {
+		        throw new Exception("Products Not Found");
+		    }
+		    return products;
+		}
 	  
 }
