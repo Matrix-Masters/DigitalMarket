@@ -1,23 +1,23 @@
-<div class="header" >
-	<div class="title">
-		<p>Admin</p>
-	</div>
-	<div class="right-side">
-		<div>
-			<p class="title">Hello Talel</p>
-		</div>
-		<div class="action">
-			<button mat-button [matMenuTriggerFor]="menu" >
-				<img src="../../../favicon.ico" alt="">
-			</button>
-			<mat-menu #menu="matMenu">
-				   <button mat-menu-item>
-						<mat-icon>settings</mat-icon>Setting 
-				   </button>
-				   <button mat-menu-item>
-					<mat-icon>logout</mat-icon> Logout 
-				</button>
-			</mat-menu>
-		</div>
-	</div>
+<div class="header">
+  <div class="title">
+    <p>Admin</p>
+  </div>
+  <div class="right-side">
+    <div>
+      <p class="title">Hello Talel</p>
+    </div>
+    <div class="action">
+      <button mat-button [matMenuTriggerFor]="menu">
+        <!--<img src="../../../favicon.ico" alt="">-->
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>settings</mat-icon>Setting
+        </button>
+        <button mat-menu-item>
+          <mat-icon>logout</mat-icon> Logout
+        </button>
+      </mat-menu>
+    </div>
+  </div>
 </div>

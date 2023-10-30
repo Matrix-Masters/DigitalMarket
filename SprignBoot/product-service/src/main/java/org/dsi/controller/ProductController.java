@@ -27,6 +27,7 @@ import Payload.ProducInfo;
 import net.minidev.json.JSONObject;
 import java.lang.Long;
 import java.util.List;
+import java.util.Map;
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -116,7 +117,7 @@ public class ProductController {
 	public ResponseEntity<?> RejectProduct(@RequestParam("id") long id){
 		try {
 			ProductService.RejectProduct(id);
-			return  ResponseEntity.ok("Product Upated");
+			return ResponseEntity.ok(Map.of("message", "product rejected succesfully"));
 		}catch (Exception e) {
 			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
 		}
@@ -167,7 +168,7 @@ public class ProductController {
 	public ResponseEntity<?> AcceptProduct(@RequestParam("id") long id){
 		try {
 			ProductService.AcceptProduct(id);
-			return  ResponseEntity.ok("Product Updated");
+			 return ResponseEntity.ok(Map.of("message", "product accepted succesfully"));
 		}catch (Exception e) {
 			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
 		}

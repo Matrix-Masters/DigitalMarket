@@ -12,7 +12,6 @@ export class InfoProduitComponent {
   @Input() Product : any=null;
   @Output() hide = new EventEmitter<string>();
   @Output() updateProducts = new EventEmitter<string>();
-  @ViewChild('closeBtn') closeBtn!: ElementRef<HTMLButtonElement>;
   hideModal() {
     this.hide.emit('hide');
   }
@@ -35,14 +34,12 @@ export class InfoProduitComponent {
   AcceptProduit(id:number){
     this.AdminServiceService.AcceptProduit(id).subscribe((res: any)=>{
       this.updateProducts.emit('update products');
-      console.log("send from info");
-      //this.closeBtn.nativeElement.click();
         this.closeModal();
       this._snackBar.open("product accepted", 'close', {
         duration: 3000
       })
-
-    }),(error:any)=>{
+    }),
+    (error:any)=>{
       this._snackBar.open("there was a problem with your action", 'close', {
         duration: 3000
       })
@@ -50,9 +47,8 @@ export class InfoProduitComponent {
   }
   RefuseProduct(id:number){
     this.AdminServiceService.RejectProduct(id).subscribe((res: any)=>{
-      //this.updateProducts.emit('update products');
-      console.log("send from info");
-      this.closeBtn.nativeElement.click();
+      this.updateProducts.emit('update products');
+      this.closeModal();
       this._snackBar.open("product Refused", 'close', {
         duration: 3000
       })
