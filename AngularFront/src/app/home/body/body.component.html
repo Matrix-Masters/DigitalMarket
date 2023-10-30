@@ -1,4 +1,4 @@
-<div class="carousel-container" *ngIf="images && images.length>0">
+<div class="carousel-container d-sm-none d-none d-md-block" *ngIf="images && images.length>0">
   <img
   *ngFor="let image of images ; let i = index"
   [src]="image.imageSrc" [alt]="image.imageAlt"
@@ -25,12 +25,19 @@
     </div>
  </div>
 </div>
+<section>
+<div class="container new-arrivals" style="margin-top: 70px;">
 
-<div class="container new-arrivals " style="margin-top: 70px;">
-
-  <div class="d-flex">
-    <span class="title" style="padding-top: 20px;">New arrivals</span>
-    <span class="mini-title" style="padding-top: 20px;">see all</span>
+  <div class="d-flex justify-content-between align-items-center row">
+    <div class="text col-12 col-sm-6 col-xl-10 col-lg-9 p-2">
+      <span class="title">New arrivals</span>
+      <span class="mini-title" style="padding-top: 20px;">see all</span>
+    </div>
+    <div class="arrow d-flex px-3 col-12 col-sm-6 col-xl-2 col-lg-3 float-end mt-3 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-0 justify-content-center p-2">
+      <button mat-mini-fab color="accent" class="previous"><mat-icon>keyboard_arrow_left</mat-icon></button>
+      <span style="width: 10px;"></span>
+      <button mat-mini-fab color="accent" class="suivant"><mat-icon>keyboard_arrow_right</mat-icon></button>
+    </div>
   </div>
 
 </div>
@@ -38,26 +45,17 @@
  <!-- ---------------------------section 1 -------------------------->
 <div class="procucts d-flex" style="width: 100%;">
 
-  <button class="align-self-center  btn-prev-products d-none d-sm-block"><i class="bi bi-arrow-left" style=" font-size: 35px;"></i></button>
-
   <div class="products-paginate container " style="margin-top: 70px;">
     <div class="row2 row d-flex justify-content-between">
-      <div class="col2 col-lg-3 col-md-4 col-sm-6 col-12" style="margin-bottom: 40px;position: relative;" *ngFor="let _ of [1,2,3,4]">
+      <div class="col2 col-lg-3 col-md-4 col-sm-6 col-12" style="margin-bottom: 40px;position: relative;" *ngFor="let _ of [1,2,3,4,5,6,7,8]">
         <app-card ></app-card>
       </div>
     </div>
   </div>
 
-  <button class="align-self-center  btn-prev-products d-none d-sm-block"><i class="bi bi-arrow-right" style=" font-size: 35px;"></i></button>
 
 
 </div>
-
-<div class="arrows-sm d-flex justify-content-center d-block d-sm-none" style="padding-top: 30px;padding-bottom: 30px;">
-  <button class="align-self-center  btn-prev-products"><i class="bi bi-arrow-left" style=" font-size: 35px;"></i></button>
-  <button class="align-self-center  btn-prev-products"><i class="bi bi-arrow-right" style=" font-size: 35px;"></i></button>
-</div>
-
 
  <div class="container ads d-none d-sm-block">
   <p class="" style="font-size: 30px;margin-bottom: 30px;padding-top: 40px;font-weight:bold;padding-bottom: 20px;">50% off All Items</p>
@@ -70,35 +68,33 @@
 
 <!-- ---------------------------section 2 -------------------------->
 
-<div class="d-flex container" style="margin-top: 140px;">
-  <span class="title" style="padding-top: 20px;">Top Seller</span>
-  <span class="mini-title" style="padding-top: 20px;">see all</span>
-</div>
+<div class="container new-arrivals " style="margin-top: 70px;">
 
-<div class="top-seller procucts d-flex" style="width: 100%;">
-
-  <button class="align-self-center  btn-prev-products d-none d-sm-block"><i class="bi bi-arrow-left" style=" font-size: 35px;"></i></button>
-
-  <div class="products-paginate container " style="margin-top: 70px;">
-    <div class="row2 row d-flex justify-content-between">
-      <div class="col2 col-lg-3 col-md-4 col-sm-6 col-12" style="margin-bottom: 40px;position: relative;" *ngFor="let _ of [1,2,3,4]">
-        <app-card ></app-card>
-      </div>
+  <div class="d-flex justify-content-between align-items-center row">
+    <div class="text col-12 col-sm-6 col-xl-10 col-lg-9 p-2">
+      <span class="title" style="padding-top: 20px;">Top Seller</span>
+      <span class="mini-title" style="padding-top: 20px;">see all</span>
+    </div>
+    <div class="arrow d-flex px-3 col-12 col-sm-6 col-xl-2 col-lg-3 float-end mt-3 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-0 justify-content-center p-2">
+      <button mat-mini-fab color="warn" class="previous"><mat-icon>keyboard_arrow_left</mat-icon></button>
+      <span style="width: 10px;"></span>
+      <button mat-mini-fab color="warn" class="suivant"><mat-icon>keyboard_arrow_right</mat-icon></button>
     </div>
   </div>
 
-  <button class="align-self-center  btn-prev-products d-none d-sm-block"><i class="bi bi-arrow-right" style=" font-size: 35px;"></i></button>
 </div>
 
-<div class="arrows-sm d-flex justify-content-center d-block d-sm-none" style="padding-top: 30px;padding-bottom: 30px;">
-  <button class="align-self-center  btn-prev-products"><i class="bi bi-arrow-left" style=" font-size: 35px;"></i></button>
-  <button class="align-self-center  btn-prev-products"><i class="bi bi-arrow-right" style=" font-size: 35px;"></i></button>
+
+<div class="top-seller procucts d-flex" style="width: 100%;">
+  <div class="products-paginate container " style="margin-top: 70px;">
+    <div class="row2 row d-flex justify-content-between py-2">
+      <div class="col2 col-lg-3 col-md-4 col-sm-6 col-12 py-2" style="margin-bottom: 40px;position: relative;" *ngFor="let _ of [1,2,3,4,5,6,7,8]">
+        <app-card class="centered-card"></app-card>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="container ads d-none d-sm-block">
-  <p class="" style="font-size: 30px;margin-bottom: 30px;padding-top: 40px;font-weight:bold;padding-bottom: 20px;">50% off All Items</p>
-  <button class="" style="padding: 10px;background-color: #fff;">Shop now</button>
- </div>
  <!-- --------------------------- /section 2 -------------------------->
 
 
