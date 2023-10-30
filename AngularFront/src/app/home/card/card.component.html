@@ -1,6 +1,12 @@
-<mat-card style="height: 350px; width: 90%;">
-  <img src="../../../assets/product.jfif" height="180px">
-  <mat-card-header class="py-2">Product title</mat-card-header>
-  <mat-card-content class="py-1">brand <span style="margin-left: 20%;">category</span></mat-card-content>
-  <mat-card-content class="py-2" >Price - quantity <button mat-stroked-button class="float-end" style="border: 1px solid black;">30% off</button></mat-card-content>
+<mat-card style="height: 350px;text-align: center;margin-bottom: 20px;margin-top: 20px; max-width: min-content;" class="card">
+  <img src="../../../assets/product.jfif" height="150px">
+  <mat-card-header class="py-3 product-name comic">FUMIER FERTIVERT 20 Litres</mat-card-header>
+  <mat-card-content class="py-1 comic category">category</mat-card-content>
+  <mat-card-content class="py-1 comic price" style="color: rgb(17, 150, 17);">150,5 TND</mat-card-content>
+  <div class="d-flex justify-content-center">
+    <button mat-flat-button class="buy" style="margin-top: 5px;width: 60%;border-radius: 25px;">Buy</button>
+    <button mat-icon-button (click)="toggleFavorite()" class="">
+      <mat-icon [style.color]="isFavorite? 'red' : 'gray'" mat-fab>favorite</mat-icon>
+    </button>
+  </div>
 </mat-card>
