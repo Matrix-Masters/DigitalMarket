@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.dsi.entity.InfoUser;
@@ -45,14 +46,12 @@ public class UserInfoService {
 	    return user;
 	}
 	
-	public void addInfoUser(UserInfo user,String role) throws Exception {
+	public void addInfoUser(UserInfo user) throws Exception {
 		
-		/*String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-	    String fileName =  timestamp+"_"+file.getOriginalFilename();
-	    String uploadDir = "UserImages/";*/
+		
 	    InfoUser newuser = new   InfoUser();
 	    Map<String, Object> roleData = new HashMap<>();
-        roleData.put("role", Arrays.asList(role));
+        roleData.put("roles", user.getRoles());
 
 	    try {
 	    	if(userRepo.getUserByemail(user.getEmail())==null) {
@@ -68,6 +67,7 @@ public class UserInfoService {
 				newuser.setPhoto(null);
 				newuser.setSexe(user.getSexe());
 				newuser.setPhotoCin(user.getPhotoCin());
+				newuser.setRoles(user.getRoles());
 				userRepo.save(newuser);
 				JSONObject jsoUser=new JSONObject();
 	  			jsoUser.appendField("Name",user.getFirstName());
