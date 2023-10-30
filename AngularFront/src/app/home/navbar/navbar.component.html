@@ -21,7 +21,7 @@
           <mat-divider></mat-divider>
           <mat-list role="list">
             <mat-list-item ><span class="list-title" style="margin-right: 10px;">Categories</span><i class="bi bi-arrow-down" style="font-size: 20px;"></i> </mat-list-item>
-            <mat-list-item role="listitem"  *ngFor="let item of categories"> <button mat-button class="list-items">{{item}}</button></mat-list-item>
+            <mat-list-item role="listitem"  *ngFor="let item of categories"> <button mat-button class="list-items">{{item['nom']}}</button></mat-list-item>
           </mat-list>
         </mat-menu>
     </button>
@@ -59,6 +59,6 @@
 <div class="container nav2">
 
   <li class="categories d-none d-lg-block">All Categories <i class="bi bi-arrow-down-short" ></i></li>
-  <li *ngFor="let item of categories" class="categories d-none d-lg-block">{{item}}</li>
+  <li *ngFor="let item of categories" class="categories d-none d-lg-block">{{item['nom']}}</li>
 
 </div>
