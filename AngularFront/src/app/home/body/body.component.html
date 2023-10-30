@@ -47,8 +47,8 @@
 
   <div class="products-paginate container " style="margin-top: 70px;">
     <div class="row2 row d-flex justify-content-between">
-      <div class="col2 col-lg-3 col-md-4 col-sm-6 col-12" style="margin-bottom: 40px;position: relative;" *ngFor="let _ of [1,2,3,4,5,6,7,8]">
-        <app-card ></app-card>
+      <div class="col2 col-lg-3 col-md-4 col-sm-6 col-12" style="margin-bottom: 40px;position: relative;" *ngFor="let item of products">
+        <app-card [products]="products[item]"></app-card>
       </div>
     </div>
   </div>

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ProductServiceService } from 'src/app/Service/product-service.service';
 
 interface carouselImage{
   imageSrc: string;
@@ -10,12 +11,23 @@ interface carouselImage{
   styleUrls: ['./body.component.scss']
 })
 export class BodyComponent  implements OnInit {
+  products:any;
+  constructor(public productService : ProductServiceService){}
   @Input() images : carouselImage[] = [];
   @Input() indicators = true;
   @Input() controls = true;
   selectedIndex=0;
   ngOnInit(): void {
+    this.productService.getProductNewArrivals().subscribe(
+      res=>{
+        console.log(res);
+        this.products=res;
+      },
+      err=>{
+        console.log(err);
 
+      }
+    )
   }
 
   selectImage(index : number) : void{
