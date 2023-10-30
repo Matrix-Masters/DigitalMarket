@@ -251,6 +251,18 @@ public class ProductController {
 	    }
 		
 	}
+	
+	@GetMapping("/getProductsNewArrivals")
+	public ResponseEntity<?> getProductsNewArrivals(){
+		try {
+			List<Product> products = ProductService.getProductNewArrivals();
+			return ResponseEntity.ok(products);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.badRequest().body("No Products found");
+		}
+		
+	}
 
 	
 
