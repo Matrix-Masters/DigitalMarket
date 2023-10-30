@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { FormGroup,FormBuilder, FormControl, Validators } from '@angular/forms';
 import {MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
 import { AuthServiceService } from 'src/app/Service/auth-service.service';
 import { PythonServiceService } from 'src/app/Service/python-service.service';
 
@@ -10,13 +11,22 @@ import { PythonServiceService } from 'src/app/Service/python-service.service';
   styleUrls: ['./signup.component.scss']
 })
 
-export class SignupComponent {
+export class SignupComponent implements OnInit {
   
+
+  ngOnInit(): void {
+    this.ActivatedRoute.params.subscribe((res)=>{
+      if(res['role']!='null'){
+           this.role=res['role'];
+        }
+      })
+  }
   constructor(private formBuilder:FormBuilder,
       private AuthServiceService:AuthServiceService,
       private PythonServiceService:PythonServiceService,
-      private MatSnackBar:MatSnackBar
-      ) {
+      private MatSnackBar:MatSnackBar,
+      private ActivatedRoute:ActivatedRoute) 
+       {
  
     this.SignUpForm=this.formBuilder.group({
       FirstName:this.FirstNameForm,
@@ -25,8 +35,7 @@ export class SignupComponent {
       Password:this.passwordForm,
       NumTlf:this.NumTlfForm,
       Sex:this.SexForm,
-      RoleFor:this.RoleForFrom,
-  
+      //RoleFor:this.RoleForFrom,
     });
 
   }
@@ -39,7 +48,7 @@ export class SignupComponent {
   EmailForm=new FormControl('',[Validators.required,Validators.email]);
   passwordForm=new FormControl('',[Validators.required,Validators.minLength(8)]);
   SexForm=new FormControl('',[Validators.required]);
-  RoleForFrom=new FormControl('',[Validators.required]);
+ // RoleForFrom=new FormControl('',[Validators.required]);
 
   getFirstNameFormError(){
     if(this.FirstNameForm.touched){
@@ -157,7 +166,7 @@ export class SignupComponent {
 
   SignUp(){
     if(this.SignUpForm.valid){
-      if(this.SignUpForm.value['RoleFor']=="Supplier"){
+      if(this.role=="supplier"){
         if(this.image.length>0){
           this.imageError="";
           this.PythonServiceService.AddPhoto(this.imageCin).subscribe((res:any)=>{
@@ -172,7 +181,7 @@ export class SignupComponent {
                 "sexe":this.SignUpForm.value['Sex'],
                 "firstName":this.SignUpForm.value['FirstName'],
                 "photo":null,
-                "role":this.SignUpForm.value['RoleFor']
+                "role":this.role
               }
             ).subscribe((res:any)=>{
                 this.SignUpForm.reset();
@@ -201,7 +210,7 @@ export class SignupComponent {
             "sexe":this.SignUpForm.value['Sex'],
             "firstName":this.SignUpForm.value['FirstName'],
             "photo":null,
-            "role":this.SignUpForm.value['RoleFor']
+            "role":this.role
           }
         ).subscribe((res:any)=>{
             console.log(res);
