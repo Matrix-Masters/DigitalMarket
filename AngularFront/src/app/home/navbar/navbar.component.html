@@ -1,4 +1,16 @@
-<nav class="navbar navbar-expand-lg" style="height: 90px;background-color: #F0F0F0;">
+<div class="animation">
+  <div class="container-anim d-flex align-content-center">
+    <h1 class="" style="font-size: 20px;">free palestine</h1>
+    <div class="container-flag mt-2">
+      <div class="red"></div>
+      <div class="black"></div>
+      <div class="white"></div>
+      <div class="green"></div>
+    </div>
+  </div>
+  </div>
+
+<nav class="navbar navbar-expand-lg" style="height: 90px;background-color: #faf9f9;">
   <div class="container-fluid">
     <button class="navbar-toggler" mat-button [matMenuTriggerFor]="aboveMenu" >
          <i class="bi bi-list" style="font-size: 35px;"></i>
@@ -25,9 +37,19 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
         <ul>
-          <li class="bordered"><i class="bi bi-cart-fill"></i>Cart</li>
-          <li class="bordered"><i class="bi bi-person-circle"></i>User</li>
-          <li><i class="bi bi-shop"></i>Become vendor</li>
+          <button mat-button><li class="bordered"><i class="bi bi-cart-fill"></i>Cart</li></button>
+          <button mat-button><li class="bordered"><i class="bi bi-shop"></i>Become vendor</li></button>
+          <button mat-button [matMenuTriggerFor]="auth"><li><i class="bi bi-person-circle"></i>User</li></button>
+          <mat-menu #auth="matMenu">
+            <button mat-menu-item>
+              <mat-icon>account_circle</mat-icon>
+              <span>Log In</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon>account_box</mat-icon>
+              <span>Sign Up</span>
+            </button>
+          </mat-menu>
         </ul>
       </div>
     </div>
