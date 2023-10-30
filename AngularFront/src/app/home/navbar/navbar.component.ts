@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { CategoryServiceService } from 'src/app/Service/category-service.service';
 
 
 @Component({
@@ -6,9 +7,21 @@ import { Component } from '@angular/core';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
+  categories:any;
+  constructor(public categoriesService : CategoryServiceService){}
 
-  categories : any[] = ['SkinCare', 'Make up','Haire care','bath & body','Beauti supplements','Promos'];
+  ngOnInit():void {
+    this.categoriesService.getAllCategories().subscribe(
+      res=>{
+        console.log(res);
+        this.categories=res;
+      },
+      err=>{
+        console.log(err);
 
+      }
+    )
+  }
 
 }
