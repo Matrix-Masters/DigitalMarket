@@ -36,4 +36,7 @@ public interface ProductRepo extends JpaRepository<Product,Long> {
 		@Query(value="select * from product where status=0",nativeQuery=true)
 		Page<Product> getPendingProducts(Pageable pageable);
 		
+		 @Query(value = "SELECT * FROM product where status=1 ORDER BY created_at DESC LIMIT 8",nativeQuery=true)
+		   List<Product> getProductNewArrivals();
+		
 }
