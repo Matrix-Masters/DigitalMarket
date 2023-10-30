@@ -20,6 +20,7 @@ import { DialogInfoComponent } from './AdminCompoenent/classer-product/dialog-in
 import { SideBarCompComponent } from './Layout/side-bar-comp/side-bar-comp.component';
 import { NavbarCompComponent } from './Layout/navbar-comp/navbar-comp.component';
 import { DashboardComponent } from './AdminCompoenent/dashboard/dashboard.component';
+import { LocationCommandeComponent } from './ClientComponent/location-commande/location-commande.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +36,8 @@ import { DashboardComponent } from './AdminCompoenent/dashboard/dashboard.compon
     DialogInfoComponent,
     SideBarCompComponent,
     NavbarCompComponent,
-    DashboardComponent
+    DashboardComponent,
+    LocationCommandeComponent
   ],
   imports: [
     BrowserModule,
