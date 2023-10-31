@@ -1,5 +1,9 @@
 import { Component ,OnInit} from '@angular/core';
-import * as L from 'leaflet';
+import L  from 'leaflet';
+
+import 'leaflet';
+import 'leaflet-routing-machine';
+
 
 @Component({
   selector: 'app-location-commande',
@@ -8,44 +12,71 @@ import * as L from 'leaflet';
 })
 export class LocationCommandeComponent implements OnInit  {
 
-  // private map:any;
+  constructor() {
+  }
 
-  // constructor(){
-  //   this.map = L.Map;
-  // }
-
-  // private initMap(): void {
-  //   this.map = L.map('map', {
-  //     center: [ 39.8282, -98.5795 ],
-  //     zoom: 3
-  //   });
-
-  //   const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  //     maxZoom: 18,
-  //     minZoom: 3,
-  //     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-  //   });
-
-  //   tiles.addTo(this.map);
-  // }
-
-
-  ngOnInit(): void {
+  InitMap(){
     navigator.geolocation.getCurrentPosition((position) => {
-    var map = L.map('map',{
-      zoom: 13
-    }).setView([position.coords.latitude,position.coords.longitude], 13);
+      var map = L.map('map',{
+        zoom: 13
+      }).setView([position.coords.latitude,position.coords.longitude], 13);
 
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
+        L.marker([position.coords.latitude,position.coords.longitude],
+        { icon: L.icon({	iconUrl: '../../../assets/Develery.gif',  iconSize: [100, 100],}) }
+        )
+        .addTo(map)
 
+      var openstreetmap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      });
+      openstreetmap.addTo(map);
 
- L.marker([position.coords.latitude,position.coords.longitude], { icon: L.icon({	iconUrl: '../../../assets/404-status-code-removebg-preview.png',  iconSize: [38, 95],}) }).addTo(map)
-    .bindPopup('Your Position.')
-    .openPopup();
+      var googleSreet=L.tileLayer('http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}',{
+        maxZoom: 20,
+        subdomains:['mt0','mt1','mt2','mt3']
+      }).addTo(map);
+    
+
+     var baseMaps = {
+      "Google Street": googleSreet,
+      "OpenStreetMap": openstreetmap,
+     }
+  
+
+     L.control.layers(baseMaps).addTo(map);
+
+     L.Routing.control({
+      waypoints: [
+        L.latLng(position.coords.latitude,position.coords.longitude),
+        L.latLng((position.coords.latitude)+0.01,(position.coords.longitude)+0.01)
+      ],
+      lineOptions:{
+        extendToWaypoints: true,
+        styles:[
+          {
+            color:"blue",
+            weight:4,
+            opacity:0.7
+          }
+        ],
+           missingRouteTolerance: 100
+     },
+      routeWhileDragging: false,
+      showAlternatives:true,
+      fitSelectedRoutes:true,
+      addWaypoints:false,
+    }).addTo(map);
+      
   })
 
 }
-   
+  
+  ngOnInit(): void {
+    this.InitMap();
+  }
+
+  
 }
+
+
+

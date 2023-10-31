@@ -166,7 +166,7 @@ export class SignupComponent implements OnInit {
 
   SignUp(){
     if(this.SignUpForm.valid){
-      if(this.role=="supplier"){
+      if(this.role=="Supplier"){
         if(this.image.length>0){
           this.imageError="";
           this.PythonServiceService.AddPhoto(this.imageCin).subscribe((res:any)=>{
