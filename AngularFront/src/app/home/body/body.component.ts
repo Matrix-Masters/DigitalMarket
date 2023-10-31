@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ProductServiceService } from 'src/app/Service/product-service.service';
-
+import { PageEvent } from '@angular/material/paginator';
 interface carouselImage{
   imageSrc: string;
   imageAlt: string;
@@ -18,17 +18,10 @@ export class BodyComponent  implements OnInit {
   @Input() controls = true;
   selectedIndex=0;
   ngOnInit(): void {
-    this.productService.getProductNewArrivals().subscribe(
-      res=>{
-        console.log(res);
-        this.products=res;
-      },
-      err=>{
-        console.log(err);
-
-      }
-    )
+    this.getProductNewArrivals();
   }
+
+
 
   selectImage(index : number) : void{
     this.selectedIndex = index;
@@ -50,4 +43,15 @@ export class BodyComponent  implements OnInit {
     }
   }
 
+  getProductNewArrivals(){
+    this.productService.getProductNewArrivals().subscribe(
+      res=>{
+        this.products=res;
+      },
+      err=>{
+        console.log(err);
+
+      }
+    )
+  }
 }
