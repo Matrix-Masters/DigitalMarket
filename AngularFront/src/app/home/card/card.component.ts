@@ -9,6 +9,7 @@ export class CardComponent  implements OnInit{
 isFavorite:boolean = false;
 
 @Input() products:any
+@Input() new:boolean = true;
   toggleFavorite():void{
     this.isFavorite = !this.isFavorite;
   }
