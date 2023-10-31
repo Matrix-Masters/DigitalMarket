@@ -1,3 +1,4 @@
+
 .buy{
   color: white;
   background-color: rgb(17, 150, 17);
@@ -7,12 +8,14 @@
 }
 .card >img{
 filter: drop-shadow();
+border-radius:15px 0px 0px 0px;
 }
 
 .card{
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 0 20px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s;
   cursor: pointer;
+  border-radius: 0px 0px 15px 0px;
 }
 .card:hover{
   transform: translateY(-10px);
@@ -36,3 +39,21 @@ filter: drop-shadow();
   font-size: 14px;
   font-weight: bold;
 }
+.new{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 0px;
+}
+
+.new >p{
+  background-color: #f47d5d;
+  height: auto;
+  padding: 10px 30px 10px 30px;
+  border-radius: 15px;
+  color: #ffffff;
+  font-family: Comic Sans MS;
+  letter-spacing: 1px;
+}
+
