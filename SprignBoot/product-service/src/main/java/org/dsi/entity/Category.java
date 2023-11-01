@@ -27,7 +27,7 @@ import lombok.NoArgsConstructor;
 public class Category {
     @Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
- 	private long id;
+ 	private Long id;
     
     private String nom;
     private String image;
