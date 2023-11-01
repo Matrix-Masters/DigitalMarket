@@ -3,7 +3,9 @@ package com.example.digitalmarket
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.animation.AnimationUtils
 import android.widget.Button
+import androidx.core.app.ActivityOptionsCompat
 
 class IntroScreen3 : AppCompatActivity() {
     lateinit var navBtn: Button
@@ -15,7 +17,11 @@ class IntroScreen3 : AppCompatActivity() {
 
         navBtn.setOnClickListener(){
             val intent = Intent(this,IntroScreen4::class.java)
-            startActivity(intent)
+            val slideLeftAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_left)
+            navBtn.startAnimation(slideLeftAnimation)
+
+
+            startActivity(intent, ActivityOptionsCompat.makeCustomAnimation(this, R.anim.slide_in_right, R.anim.slide_out_left).toBundle())
         }
     }
 
