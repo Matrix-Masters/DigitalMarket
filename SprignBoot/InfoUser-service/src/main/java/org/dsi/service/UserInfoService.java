@@ -1,20 +1,14 @@
 package org.dsi.service;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
 import org.dsi.entity.InfoUser;
 import org.dsi.payload.UserInfo;
 import org.dsi.repo.NodeSync;
 import org.dsi.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import net.minidev.json.JSONObject;
 
@@ -48,14 +42,12 @@ public class UserInfoService {
 	
 	public void addInfoUser(UserInfo user) throws Exception {
 		
-		
 	    InfoUser newuser = new   InfoUser();
 	    Map<String, Object> roleData = new HashMap<>();
-        roleData.put("roles", user.getRoles());
+	    roleData.put("roles", user.getRole());
 
 	    try {
 	    	if(userRepo.getUserByemail(user.getEmail())==null) {
-	    		//FileUpload.saveFile(uploadDir, fileName, file);
 				newuser.setFirstName(user.getFirstName());
 				newuser.setLastName(user.getLastName());
 				if(user.getCin()!=null) {
@@ -67,7 +59,7 @@ public class UserInfoService {
 				newuser.setPhoto(null);
 				newuser.setSexe(user.getSexe());
 				newuser.setPhotoCin(user.getPhotoCin());
-				newuser.setRoles(user.getRoles());
+				newuser.setRole(user.getRole());
 				userRepo.save(newuser);
 				JSONObject jsoUser=new JSONObject();
 	  			jsoUser.appendField("Name",user.getFirstName());

@@ -1,8 +1,10 @@
 package org.dsi.entity;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -49,6 +51,9 @@ public class InfoUser {
 	@ColumnDefault(value="null")
 	private Boolean welcome_field; 
 	
+	@ColumnDefault(value = "0")
+	private Integer status;
+	
 	@ColumnDefault(value="null")
 	private String password_token;
 	
@@ -58,7 +63,8 @@ public class InfoUser {
 	@CreationTimestamp
 	private Timestamp created_at;
 	
-	private List<String> roles;
+	
+	private String role;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@ColumnDefault(value = "null")
