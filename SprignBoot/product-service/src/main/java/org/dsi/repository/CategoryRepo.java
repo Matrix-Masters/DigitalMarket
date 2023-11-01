@@ -15,7 +15,7 @@ public interface CategoryRepo extends JpaRepository<Category,Long> {
 	Category findByNom(String nom);
 
 	@Query(value="SELECT * FROM  category  WHERE id=:id",nativeQuery=true)
-	Category findCategoryById(long id);
+	Category findCategoryById(Long id);
 
 	@Query(value="SELECT * FROM category WHERE  nom LIKE :name ",nativeQuery=true)
 	Category getCategorySearchName(String name);

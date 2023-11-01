@@ -40,7 +40,7 @@ public class CategoryController {
 	}
 
 	@GetMapping("/GetCategoryById")
-	public ResponseEntity<?> GetCategoryById(@RequestParam("id") long id) {
+	public ResponseEntity<?> GetCategoryById(@RequestParam("id") Long id) {
 		try {
 			Optional<Category> category = cateRepo.findById(id);
 			if (category.isPresent()) {
