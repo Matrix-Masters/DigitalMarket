@@ -1,1 +1,35 @@
-<p>gerer-supplier works!</p>
+<app-side-bar-comp>
+  <app-navbar-comp></app-navbar-comp>
+  <div>
+    <mat-toolbar style="width: 100%;margin-left: 6%;margin-top: 5%;">
+      <mat-toolbar-row>
+        <mat-form-field class="example-filter-field">
+          <mat-label>Search</mat-label>
+          <input matInput placeholder="Ex. Supplier Name" [formControl]="searchControl">
+        </mat-form-field>
+
+        <mat-form-field class="example-filter-field">
+          <mat-label>Status</mat-label>
+          <mat-select [formControl]="statusControl">
+            <mat-option value="all">All</mat-option>
+            <mat-option value="accepted">Accepted</mat-option>
+            <mat-option value="refused">Refused</mat-option>
+            <mat-option value="pending">Pending</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="example-filter-field">
+          <mat-label>Before Date</mat-label>
+          <input matInput [matDatepicker]="picker" placeholder="Choose a date" [formControl]="dateControl">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-label>Suppliers with Products</mat-label>
+        <mat-pseudo-checkbox class="example-filter-field" [(ngModel)]="suppliersWithProducts"></mat-pseudo-checkbox>
+        <mat-label>Suppliers without Products</mat-label>
+        <mat-pseudo-checkbox class="example-filter-field" [(ngModel)]="suppliersWithoutProducts"></mat-pseudo-checkbox>
+
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+</app-side-bar-comp>

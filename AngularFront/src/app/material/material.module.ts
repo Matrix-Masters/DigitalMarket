@@ -21,6 +21,12 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatChipsModule} from '@angular/material/chips';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatRadioModule} from '@angular/material/radio';
+import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {  MatPseudoCheckboxModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   imports:[
     MatIconModule,
@@ -48,7 +54,13 @@ import {MatRadioModule} from '@angular/material/radio';
     MatTooltipModule,
     MatChipsModule,
     MatPaginatorModule,
-    MatRadioModule
+    MatRadioModule,
+    BrowserModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatPseudoCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
 
   exports:[
@@ -77,7 +89,13 @@ import {MatRadioModule} from '@angular/material/radio';
     MatTooltipModule,
     MatChipsModule,
     MatPaginatorModule,
-    MatRadioModule
+    MatRadioModule,
+    BrowserModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatPseudoCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule
 ]
 
 })
