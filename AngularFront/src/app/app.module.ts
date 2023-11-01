@@ -22,6 +22,7 @@ import { NavbarCompComponent } from './Layout/navbar-comp/navbar-comp.component'
 import { DashboardComponent } from './AdminCompoenent/dashboard/dashboard.component';
 import { LocationCommandeComponent } from './ClientComponent/location-commande/location-commande.component';
 import { AccueilClientComponent } from './AccueilClient/accueil-client/accueil-client.component';
+import { AccueilBodyComponent } from './AccueilClient/accueil-body/accueil-body.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { AccueilClientComponent } from './AccueilClient/accueil-client/accueil-c
     DashboardComponent,
     LocationCommandeComponent,
     AccueilClientComponent,
+    AccueilBodyComponent,
   ],
   imports: [
     BrowserModule,
