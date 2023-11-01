@@ -1,0 +1,25 @@
+*{
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.filtre-card{
+  height: auto;
+}
+
+.title{
+  color: black;
+  background-color: #F2F2F2;
+  height: 50px;
+  padding:15px;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button{
+  -webkit-appearance: none;
+}
+
+.uppercase{
+  text-transform: uppercase;
+}
