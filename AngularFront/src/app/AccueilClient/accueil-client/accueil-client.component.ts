@@ -8,9 +8,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./accueil-client.component.scss']
 })
 export class AccueilClientComponent implements OnInit {
-  categorieId:String | null=null;
-  constructor(private route : ActivatedRoute){}
-  ngOnInit(){
-     this.categorieId  = this.route.snapshot.paramMap.get('id');
+  ngOnInit() {
+
   }
+
 }

@@ -11,4 +11,8 @@ export class CategoryServiceService{
   getAllCategories() {
     return this.http.get(`${port}/PRODUCT-SERVICE/categories/getAll`);
   }
+
+  getCategorieById(id:any){
+    return this.http.get(`${port}/PRODUCT-SERVICE/categories/getCategorieById?id=`+id);
+  }
 }
