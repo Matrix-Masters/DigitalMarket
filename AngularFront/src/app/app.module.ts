@@ -21,6 +21,8 @@ import { SideBarCompComponent } from './Layout/side-bar-comp/side-bar-comp.compo
 import { NavbarCompComponent } from './Layout/navbar-comp/navbar-comp.component';
 import { DashboardComponent } from './AdminCompoenent/dashboard/dashboard.component';
 import { LocationCommandeComponent } from './ClientComponent/location-commande/location-commande.component';
+import { AccueilClientComponent } from './AccueilClient/accueil-client/accueil-client.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +39,8 @@ import { LocationCommandeComponent } from './ClientComponent/location-commande/l
     SideBarCompComponent,
     NavbarCompComponent,
     DashboardComponent,
-    LocationCommandeComponent
+    LocationCommandeComponent,
+    AccueilClientComponent,
   ],
   imports: [
     BrowserModule,

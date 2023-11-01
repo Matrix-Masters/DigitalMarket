@@ -5,6 +5,7 @@ import { GererProduitComponent } from './AdminCompoenent/GererProduitComponents/
 import { HomeComponent } from './home/home/home.component';
 import { DashboardComponent } from './AdminCompoenent/dashboard/dashboard.component';
 import { LocationCommandeComponent } from './ClientComponent/location-commande/location-commande.component';
+import { AccueilClientComponent } from './AccueilClient/accueil-client/accueil-client.component';
 
 const routes: Routes = [
    {path:'',component:HomeComponent},
@@ -12,7 +13,8 @@ const routes: Routes = [
    {path:"dash",component:DashboardComponent},
    {path:'gererProduit',component:GererProduitComponent},
    {path:'client',component:LocationCommandeComponent},
-   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) }
+   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+   {path:'categories/:id',component:AccueilClientComponent},
 ]
 
 
