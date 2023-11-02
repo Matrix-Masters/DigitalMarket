@@ -42,7 +42,10 @@
                 </button>
               </div>
               <div class="py-2 uppercase mt-3" style="font-size: 15px;font-weight: normal;">
-                <button class="btn btn-info" (click)="clearInputs()">clear</button>
+                <button mat-mini-fab (click)="clearInputs()"  style="box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);display: flex;">
+
+                  <mat-icon>clear</mat-icon>
+                </button>
               </div>
             </div>
           </li>
@@ -51,7 +54,7 @@
     </div>
 
     <!-- ------------------------------------Product list --------------------------------->
-    <div class="col col-xl-8  col-lg-8 col-md-12 col-sm-12 col-12" style="overflow-y: scroll;height: 9  0vh;">
+    <div class="col col-xl-8  col-lg-8 col-md-12 col-sm-12 col-12">
 
       <div class="mt-3 mb-5 d-flex">
         <h2 class="uppercase" style="color: rgb(36, 36, 36); font-weight: bold;font-family: Verdana, Geneva, Tahoma, sans-serif">{{category}}</h2>
