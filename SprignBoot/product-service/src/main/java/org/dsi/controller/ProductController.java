@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -266,7 +267,7 @@ public class ProductController {
 	
 	
 	@GetMapping("/ProductsByIdCategoriePaginate")
-	public ResponseEntity<?> ProductsByIdCategoriePaginate(@RequestParam("id") Long id,
+	public ResponseEntity<?> ProductsByIdCategoriePaginate(
 			@RequestParam(name = "page", defaultValue = "0") int page,
 			@RequestParam(name = "per_page", defaultValue = "2") int size,
 			@RequestParam(name = "search", defaultValue = "") String name){
@@ -278,9 +279,9 @@ public class ProductController {
 	        Page<Product> products;
 	        
 	        if(name.isEmpty()==true) {
-	        	products=ProductRepo.getProductByCategoryPaginate(id,PageRequest.of(page, size));
+	        	products=ProductRepo.getProductByCategoryPaginate(PageRequest.of(page, size));
 	        } else {
-	        	products=ProductRepo.getProductByCategoryPaginateSearch(id,name,PageRequest.of(page, size));
+	        	products=ProductRepo.getProductByCategoryPaginateSearch(name,PageRequest.of(page, size));
 	        }
 	        
 	        int total = products.getTotalPages();
@@ -298,6 +299,19 @@ public class ProductController {
 		        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while fetching paginated products.");
 		    }
 	}
+	
+	@GetMapping("/getMaxPrice")
+	public ResponseEntity<?> getMaxPrice(){
+		double max = ProductRepo.getMaxPrice();
+		if(max != 0 ) {
+			return ResponseEntity.ok(max);	
+		}else {
+			return ResponseEntity.badRequest().body("No Products available");
+		}
+		
+	}
+	
+	
 	
 
 }
