@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryServiceService } from 'src/app/Service/category-service.service';
 
 
@@ -9,12 +10,24 @@ import { CategoryServiceService } from 'src/app/Service/category-service.service
 })
 export class NavbarComponent implements OnInit {
   categories:any;
-  constructor(public categoriesService : CategoryServiceService){}
+  id:any
+  @Output() dataEvent = new EventEmitter<Number>();
 
+  passId() {
+    this.getIdFromUrl();
+    const data = 'Data from the child component';
+    this.dataEvent.emit(this.id);
+  }
+  constructor(public categoriesService : CategoryServiceService,private route: ActivatedRoute){}
+
+getIdFromUrl(){
+  this.route.params.subscribe((params:any)=>{
+    this.id= params['id'];
+  })
+}
   ngOnInit():void {
     this.categoriesService.getAllCategories().subscribe(
       res=>{
-        console.log(res);
         this.categories=res;
       },
       err=>{
@@ -22,6 +35,7 @@ export class NavbarComponent implements OnInit {
 
       }
     )
+
   }
 
 }
