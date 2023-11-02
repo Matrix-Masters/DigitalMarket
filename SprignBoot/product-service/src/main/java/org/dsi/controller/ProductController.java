@@ -270,7 +270,11 @@ public class ProductController {
 	public ResponseEntity<?> ProductsByIdCategoriePaginate(
 			@RequestParam(name = "page", defaultValue = "0") int page,
 			@RequestParam(name = "per_page", defaultValue = "2") int size,
-			@RequestParam(name = "search", defaultValue = "") String name){
+			@RequestParam(name = "search", defaultValue = "") String name,
+			@RequestParam(name = "prix", defaultValue = "0") double prix){
+		
+
+		
 		if (page < 0 || size <= 0 ) {
 	        return ResponseEntity.badRequest().body("Invalid page or per_page values.");
 	 		}
@@ -278,12 +282,23 @@ public class ProductController {
 		try {
 	        Page<Product> products;
 	        
-	        if(name.isEmpty()==true) {
-	        	products=ProductRepo.getProductByCategoryPaginate(PageRequest.of(page, size));
-	        } else {
+	        if(prix !=0 && name.isEmpty()==true) {
+	        	
+	        	products=ProductRepo.getProductByCategoryPaginatePrice(prix,PageRequest.of(page, size));
+	        	
+	        }else if(prix ==0 && name.isEmpty()==false) {
+	        	
 	        	products=ProductRepo.getProductByCategoryPaginateSearch(name,PageRequest.of(page, size));
+	        	
+	        }else if(prix !=0 && name.isEmpty()==false) {
+	        	
+	        	products=ProductRepo.getProductByCategoryPaginatePriceSearch(prix,name,PageRequest.of(page, size));
+	        	
+	        }else {
+	        	
+	        	products=ProductRepo.getProductByCategoryPaginate(PageRequest.of(page, size));	
 	        }
-	        
+	       	
 	        int total = products.getTotalPages();
 	        int[] count_page = new int[total];
 	        
