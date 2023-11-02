@@ -23,11 +23,11 @@ public interface UserRepo extends JpaRepository<InfoUser,Long> {
 
 	List<InfoUser> findByRole(String string);
 	
-    @Query(value="SELECT u FROM InfoUser u WHERE " +
-            "(:search is null OR u.FirstName LIKE %:search% OR u.LastName LIKE %:search% OR u.Email LIKE %:search%) " +
-            "AND (:status is null OR u.status = :status) " +
-            "AND (:date is null OR u.created_at <= :date)"+
-            "and (role=Supplier",nativeQuery=true)
+	@Query(value="SELECT * FROM info_user u WHERE " +
+	        "(:search is null OR u.first_name LIKE %:search% OR u.last_name LIKE %:search% OR u.email LIKE %:search%) " +
+	        "AND (:status is null OR (:status = 3 AND u.status = u.status) OR u.status = :status) " +
+	        "AND (:date is null OR u.created_at <= :date)"+
+	        "and (role='Supplier')", nativeQuery=true)
     List<InfoUser> findFilteredSuppliers(String search, int status,Timestamp date);
 
 }

@@ -1,12 +1,15 @@
 package org.dsi.controller;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
 import org.dsi.entity.InfoUser;
 import org.dsi.service.GererSupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,8 +51,12 @@ public class GererSupplierController {
 	    @GetMapping("/filter")
 	    public ResponseEntity<List<InfoUser>> filterUsers(@RequestParam(required = false) String search,
 	                                      @RequestParam(required = false) int status,
-	                                      @RequestParam(required = false) Date date_enter) {
-	    	Timestamp ts=new Timestamp(date_enter.getTime());  
+	                                      @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date date_enter) {
+	    	Timestamp ts=null;
+	        if (date_enter != null) {
+	            LocalDate localDate = date_enter.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+	            ts = Timestamp.valueOf(localDate.atStartOfDay());
+	        }
 	    	List<InfoUser> suppliers=Gerersupplierservice.getFilteredUsers(search, status, ts);
 	    	if(!suppliers.isEmpty()) {
 	    		 return new ResponseEntity<>(suppliers, HttpStatus.OK);
