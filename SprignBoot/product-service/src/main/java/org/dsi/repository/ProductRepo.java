@@ -39,9 +39,15 @@ public interface ProductRepo extends JpaRepository<Product,Long> {
 		 @Query(value = "SELECT * FROM product where status=1 ORDER BY created_at DESC LIMIT 8",nativeQuery=true)
 		   List<Product> getProductNewArrivals();
 		 
-		 @Query(value="SELECT * FROM product WHERE category_id=:id and status = 1 and name LIKE :name ",nativeQuery=true)
-			Page<Product> getProductByCategoryPaginateSearch(Long id,String name,Pageable pageable );
+		 @Query(value="SELECT * FROM product WHERE  status = 1 and name LIKE :name ",nativeQuery=true)
+			Page<Product> getProductByCategoryPaginateSearch(String name,Pageable pageable );
 		 
-		 @Query(value="SELECT * FROM product WHERE category_id=:id and status = 1",nativeQuery=true)
-			Page<Product> getProductByCategoryPaginate(Long id,Pageable pageable );
+		 @Query(value="SELECT * FROM product WHERE  status = 1",nativeQuery=true)
+			Page<Product> getProductByCategoryPaginate(Pageable pageable );
+		 
+		 @Query(value="SELECT MAX(prix) AS max_price FROM product where status = 1",nativeQuery=true)
+		 double getMaxPrice();
+		 
+		 
+		 
 }
