@@ -21,7 +21,6 @@ export class AccueilBodyComponent implements OnInit {
     this.route.params.subscribe((params:any)=>{
       this.categoryId= Number(params['id']);
     })
-    console.log(typeof(this.categoryId));
 
     this.getCategoryById();
   }
