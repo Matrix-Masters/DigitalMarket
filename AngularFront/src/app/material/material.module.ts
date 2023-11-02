@@ -27,6 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {  MatPseudoCheckboxModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 @NgModule({
   imports:[
     MatIconModule,
@@ -60,7 +61,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     BrowserAnimationsModule,
     MatPseudoCheckboxModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatCheckboxModule
   ],
 
   exports:[
@@ -95,7 +97,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     BrowserAnimationsModule,
     MatPseudoCheckboxModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatCheckboxModule
 ]
 
 })

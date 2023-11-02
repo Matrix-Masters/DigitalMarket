@@ -1,8 +1,9 @@
 <app-side-bar-comp>
   <app-navbar-comp></app-navbar-comp>
-  <div>
-    <mat-toolbar style="width: 100%;margin-left: 6%;margin-top: 5%;">
-      <mat-toolbar-row>
+  <div class="container">
+    <h1>gerer suppliers</h1>
+    <mat-toolbar style="width: 90%;margin-left: 6%;margin-top: 5%;" color="none">
+      <mat-toolbar-row style="height: 100%;border-radius: 20px;background-color: transparent;">
         <mat-form-field class="example-filter-field">
           <mat-label>Search</mat-label>
           <input matInput placeholder="Ex. Supplier Name" [formControl]="searchControl">
@@ -24,12 +25,54 @@
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
-        <mat-label>Suppliers with Products</mat-label>
-        <mat-pseudo-checkbox class="example-filter-field" [(ngModel)]="suppliersWithProducts"></mat-pseudo-checkbox>
-        <mat-label>Suppliers without Products</mat-label>
-        <mat-pseudo-checkbox class="example-filter-field" [(ngModel)]="suppliersWithoutProducts"></mat-pseudo-checkbox>
+        <div style="margin-left: 3%;">
 
+          <mat-checkbox class="example-filter-field" [(ngModel)]="suppliersWithProducts">Suppliers with
+            Products</mat-checkbox>
+
+          <mat-checkbox class="example-filter-field" [(ngModel)]="suppliersWithoutProducts">Suppliers without
+            Products</mat-checkbox>
+
+        </div>
       </mat-toolbar-row>
     </mat-toolbar>
+
+    <!-- Filter bar here -->
+
+    <table class="table mt-3">
+      <thead>
+        <tr>
+          <th scope="col">Photo</th>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Supplier</th>
+          <th scope="col">Date</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone Number</th>
+          <th scope="col">Sex</th>
+          <th scope="col">Status</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Populate the table rows dynamically based on your data -->
+        <tr>
+          <td>
+            <img [src]="gravatarUrl" alt="" height="40px" width="40px" style="border-radius: 25%;">
+          </td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>ABC Supplier</td>
+          <td>2023-10-26</td>
+          <td>johndoe@example.com</td>
+          <td>1234567890</td>
+          <td>Male</td>
+          <td>Pending</td>
+          <td>
+            <!-- Angular Material Icons (info, accept, refuse) here -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </app-side-bar-comp>

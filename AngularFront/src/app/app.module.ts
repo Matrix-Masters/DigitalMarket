@@ -53,3 +53,4 @@ import { GererSupplierComponent } from './AdminCompoenent/GererSuppliersComponen
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

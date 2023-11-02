@@ -53,5 +53,8 @@ export class AdminServiceService {
   RejectProduct(id:number){
     return this.http.put(`${port}/PRODUCT-SERVICE/products/RejectProduct?id=${id}`,{});
   }
+  getAllSuppliers(){
+    return this.http.get(`${port}/INFOUSER-SERVICE/GererSupplier/suppliers`);
+  }
 
 }
