@@ -268,6 +268,7 @@ public class ProductController {
 	
 	@GetMapping("/ProductsByIdCategoriePaginate")
 	public ResponseEntity<?> ProductsByIdCategoriePaginate(
+			@RequestParam(name="id") Long cat_id,
 			@RequestParam(name = "page", defaultValue = "0") int page,
 			@RequestParam(name = "per_page", defaultValue = "2") int size,
 			@RequestParam(name = "search", defaultValue = "") String name,
@@ -284,19 +285,19 @@ public class ProductController {
 	        
 	        if(prix !=0 && name.isEmpty()==true) {
 	        	
-	        	products=ProductRepo.getProductByCategoryPaginatePrice(prix,PageRequest.of(page, size));
+	        	products=ProductRepo.getProductByCategoryPaginatePrice(cat_id,prix,PageRequest.of(page, size));
 	        	
 	        }else if(prix ==0 && name.isEmpty()==false) {
 	        	
-	        	products=ProductRepo.getProductByCategoryPaginateSearch(name,PageRequest.of(page, size));
+	        	products=ProductRepo.getProductByCategoryPaginateSearch(cat_id,name,PageRequest.of(page, size));
 	        	
 	        }else if(prix !=0 && name.isEmpty()==false) {
 	        	
-	        	products=ProductRepo.getProductByCategoryPaginatePriceSearch(prix,name,PageRequest.of(page, size));
+	        	products=ProductRepo.getProductByCategoryPaginatePriceSearch(cat_id,prix,name,PageRequest.of(page, size));
 	        	
 	        }else {
 	        	
-	        	products=ProductRepo.getProductByCategoryPaginate(PageRequest.of(page, size));	
+	        	products=ProductRepo.getProductByCategoryPaginate(cat_id,PageRequest.of(page, size));	
 	        }
 	       	
 	        int total = products.getTotalPages();
