@@ -39,17 +39,17 @@ public interface ProductRepo extends JpaRepository<Product,Long> {
 		 @Query(value = "SELECT * FROM product where status=1 ORDER BY created_at DESC LIMIT 8",nativeQuery=true)
 		   List<Product> getProductNewArrivals();
 		 
-		 @Query(value="SELECT * FROM product WHERE  status = 1",nativeQuery=true)
-			Page<Product> getProductByCategoryPaginate(Pageable pageable);
+		 @Query(value="SELECT * FROM product WHERE  status = 1 and category_id=:cat_id",nativeQuery=true)
+			Page<Product> getProductByCategoryPaginate(Long cat_id,Pageable pageable);
 		 
-		 @Query(value="SELECT * FROM product WHERE  status = 1 and prix=:prix",nativeQuery=true)
-			Page<Product> getProductByCategoryPaginatePrice(double prix,Pageable pageable);
+		 @Query(value="SELECT * FROM product WHERE  status = 1 and category_id=:cat_id and prix=:prix",nativeQuery=true)
+			Page<Product> getProductByCategoryPaginatePrice(Long cat_id,double prix,Pageable pageable);
 		 
-		 @Query(value="SELECT * FROM product WHERE  status = 1 and name LIKE :name ",nativeQuery=true)
-			Page<Product> getProductByCategoryPaginateSearch(String name,Pageable pageable );
+		 @Query(value="SELECT * FROM product WHERE  status = 1 and category_id=:cat_id and name LIKE :name ",nativeQuery=true)
+			Page<Product> getProductByCategoryPaginateSearch(Long cat_id,String name,Pageable pageable );
 		 
-		 @Query(value="SELECT * FROM product WHERE  status = 1  and prix=:prix and name=:name",nativeQuery=true)
-			Page<Product> getProductByCategoryPaginatePriceSearch(double prix,String name,Pageable pageable );
+		 @Query(value="SELECT * FROM product WHERE  status = 1 and category_id=:cat_id  and prix=:prix and name=:name",nativeQuery=true)
+			Page<Product> getProductByCategoryPaginatePriceSearch(Long cat_id,double prix,String name,Pageable pageable );
 		 
 		 @Query(value="SELECT MAX(prix) AS max_price FROM product where status = 1",nativeQuery=true)
 		 double getMaxPrice();
