@@ -1,7 +1,11 @@
 import mongoose from "mongoose";
 import mongoosePaginate from "mongoose-paginate"
 let CommandeSchema=new mongoose.Schema({
-
+    NumCommande:{
+        type:Number,
+        required:true,
+        unique:true
+    },
     Name:{
         type:String,
         required:true
@@ -18,6 +22,10 @@ let CommandeSchema=new mongoose.Schema({
         type:String,
         required:true,
         unique:true
+    },
+    phone:{
+        type:String,
+        required:true
     },
     PrixTotal:{
         type:String,
