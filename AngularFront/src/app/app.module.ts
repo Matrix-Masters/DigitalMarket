@@ -21,6 +21,8 @@ import { SideBarCompComponent } from './Layout/side-bar-comp/side-bar-comp.compo
 import { NavbarCompComponent } from './Layout/navbar-comp/navbar-comp.component';
 import { DashboardComponent } from './AdminCompoenent/dashboard/dashboard.component';
 import { GererSupplierComponent } from './AdminCompoenent/GererSuppliersComponents/gerer-supplier/gerer-supplier.component';
+import { CommonModule } from '@angular/common';
+import { DatePipe } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,8 +50,11 @@ import { GererSupplierComponent } from './AdminCompoenent/GererSuppliersComponen
     ReactiveFormsModule,
     DragDropModule,
     HttpClientModule,
+    CommonModule
   ],
-  providers: [],
+  providers: [
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

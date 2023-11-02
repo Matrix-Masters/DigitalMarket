@@ -56,5 +56,8 @@ export class AdminServiceService {
   getAllSuppliers(){
     return this.http.get(`${port}/INFOUSER-SERVICE/GererSupplier/suppliers`);
   }
+  getSuppliersFilter(search:string,status:number,Date:any){
+    return this.http.get(`${port}/INFOUSER-SERVICE/GererSupplier/filter?search=${search}&status=${status}&date_enter=${Date}`)
+  }
 
 }

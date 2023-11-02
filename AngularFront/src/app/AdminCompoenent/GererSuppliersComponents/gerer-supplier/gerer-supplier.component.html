@@ -53,8 +53,8 @@
           <th scope="col">Actions</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
+      <tbody *ngIf="suppliers!=null">
+        <tr *ngFor="let supplier of suppliers; let i = index;">
           <td>
             <img [src]="gravatarUrl" alt="" height="40px" width="40px" style="border-radius: 25%;">
           </td>
