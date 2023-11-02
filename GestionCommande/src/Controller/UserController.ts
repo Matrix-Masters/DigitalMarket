@@ -15,26 +15,24 @@ export const AddUser = async (req: Request, res: Response) => {
   req.body.cin=null;
   let user = new InfoUser(req.body);
   try {
-     
-      const savedUser=await user.save() ;
-      //notifyNotificationService(savedUser._id);
+      const savedUser=await user.save();
       res.status(201).json(savedUser._id);
   } catch (err) {
     res.status(500).json({ error: err });
   }
 }
-/*
-function notifyNotificationService(userid:any) {
-  const axios = require('axios');
-  
-  axios.post('http://localhost:8888/FEEDBACK-SERVICE/FeedBack/AddNotif', { 
-     idEnvoi: `${userid}`,
-     idRecu:"2",
-     Message:"test",
-     etat:2
-   });
-}
-*/
+
+
+// function notifyNotificationService(userid:any) {
+//   const axios = require('axios');
+//   axios.post('http://localhost:8888/FEEDBACK-SERVICE/FeedBack/AddNotif', { 
+//      idEnvoi: `${userid}`,
+//      idRecu:"2",
+//      Message:"test",
+//      etat:0
+//    });
+// }
+
 
 export const GetUserByEmail = async (req: Request, res: Response) => {
   try {
