@@ -1,5 +1,7 @@
 package org.dsi.controller;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import org.dsi.entity.InfoUser;
@@ -43,5 +45,16 @@ public class GererSupplierController {
 	    	}
 	    	return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
 	    }
-	    
+	    @GetMapping("/filter")
+	    public ResponseEntity<List<InfoUser>> filterUsers(@RequestParam(required = false) String search,
+	                                      @RequestParam(required = false) int status,
+	                                      @RequestParam(required = false) Date date_enter) {
+	    	Timestamp ts=new Timestamp(date_enter.getTime());  
+	    	List<InfoUser> suppliers=Gerersupplierservice.getFilteredUsers(search, status, ts);
+	    	if(!suppliers.isEmpty()) {
+	    		 return new ResponseEntity<>(suppliers, HttpStatus.OK);
+	    	}
+	    	return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	       
+	    }
 }

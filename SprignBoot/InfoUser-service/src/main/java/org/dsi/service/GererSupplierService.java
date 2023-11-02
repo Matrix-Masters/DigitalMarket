@@ -1,5 +1,7 @@
 package org.dsi.service;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import org.dsi.entity.InfoUser;
@@ -70,6 +72,10 @@ public class GererSupplierService {
 	        helper.setText(htmlContent, true);
 
 	        emailSender.send(message);
+	    }
+	    public List<InfoUser> getFilteredUsers(String search, int status, Timestamp date) {
+	    	return Userrepo.findFilteredSuppliers(search,status,date);
+	        
 	    }
 
 	 
