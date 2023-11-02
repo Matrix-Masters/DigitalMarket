@@ -21,6 +21,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatChipsModule} from '@angular/material/chips';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatStepperModule} from '@angular/material/stepper';
 @NgModule({
   imports:[
     MatIconModule,
@@ -48,7 +49,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatTooltipModule,
     MatChipsModule,
     MatPaginatorModule,
-    MatRadioModule
+    MatRadioModule,
+    MatStepperModule
   ],
 
   exports:[
@@ -77,8 +79,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatTooltipModule,
     MatChipsModule,
     MatPaginatorModule,
-    MatRadioModule
+    MatRadioModule,
+    MatStepperModule
 ]
-
 })
 export class MaterialModule { }
