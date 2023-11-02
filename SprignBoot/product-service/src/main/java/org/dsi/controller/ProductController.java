@@ -263,7 +263,41 @@ public class ProductController {
 		}
 		
 	}
+	
+	
+	@GetMapping("/ProductsByIdCategoriePaginate")
+	public ResponseEntity<?> ProductsByIdCategoriePaginate(@RequestParam("id") Long id,
+			@RequestParam(name = "page", defaultValue = "0") int page,
+			@RequestParam(name = "per_page", defaultValue = "2") int size,
+			@RequestParam(name = "search", defaultValue = "") String name){
+		if (page < 0 || size <= 0 ) {
+	        return ResponseEntity.badRequest().body("Invalid page or per_page values.");
+	 		}
+		
+		try {
+	        Page<Product> products;
+	        
+	        if(name.isEmpty()==true) {
+	        	products=ProductRepo.getProductByCategoryPaginate(id,PageRequest.of(page, size));
+	        } else {
+	        	products=ProductRepo.getProductByCategoryPaginateSearch(id,name,PageRequest.of(page, size));
+	        }
+	        
+	        int total = products.getTotalPages();
+	        int[] count_page = new int[total];
+	        
+	        for (int i = 0; i < total; i++) {
+	            count_page[i] = i;
+	        }
 
+	        PaginateInfo data = new PaginateInfo(count_page, products, page);
+	        return ResponseEntity.ok(data);
+	        
+		}catch (Exception e) {
+		    	
+		        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while fetching paginated products.");
+		    }
+	}
 	
 
 }
