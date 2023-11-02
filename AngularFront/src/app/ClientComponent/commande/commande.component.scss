@@ -1,0 +1,42 @@
+.titre{
+    color: #f47d5d;
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.mat-stepper-horizontal {
+    margin-top: 8px;
+  }
+  
+  .mat-mdc-form-field {
+    margin-top: 16px;
+  }
+
+  .location{
+    position: absolute;
+  }
+
+  .confirmation-box {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+.confirmation-box h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+.confirmation-box .form-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+.confirmation-box .form-group label {
+    font-weight: bold;
+}
+canvas {
+  position: absolute;
+  height: 100px;
+  width: 100px;
+}
