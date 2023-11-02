@@ -1,12 +1,14 @@
 <div class="container mt-5">
   <div class="row">
-    <h3 style="color: rgb(97, 96, 96);">Accueil   >  catalogue  > </h3>
+    <h3 style="color: rgb(97, 96, 96);">Accueil   >  catalogue  > <span style="border-bottom: #919191 solid 2px;">{{category}}</span></h3>
   </div>
   <div class="row">
 
+
+  <!-- ------------------------------------filtre --------------------------------->
     <div class="col col-xl-4  col-lg-4 col-md-12 col-sm-12 col-12" >
 
-      <div class="filtre-card">
+      <div class="filtre-card mt-4">
         <mat-card style="border: solid 2px #F2F2F2;">
           <mat-card-header class="title"> <span style="margin-right: 70%;">Filter by</span><mat-icon>expand_more</mat-icon></mat-card-header>
 
@@ -15,8 +17,8 @@
               <div class="py-2 uppercase" style="font-size: 15px;font-weight: normal;"><span>Name Product </span></div>
 
               <div class="inputs d-flex mt-1">
-                <input type="text" style="margin-right: 50px;border-radius: 10px;height: 30px;border: #919191 2px solid;">
-                <button mat-mini-fab color="light" style="box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);">
+                <input  [(ngModel)]="search" type="text" style="margin-right: 50px;border-radius: 10px;height: 30px;border: #919191 2px solid;">
+                <button (click)="getProductsByCategoryId()" mat-mini-fab color="light" style="box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);">
                   <mat-icon>search</mat-icon>
                 </button>
               </div>
@@ -32,28 +34,47 @@
               <div class="inputs d-flex mt-1">
 
                 <div class="input-min d-flex" style="margin-right: 5px;">
-                  <label style="margin-right: 10px;margin-top: 8px;text-align: center;">MIN</label>
-                  <input type="number"  style="border-radius: 10px;height: 30px;border: #919191 2px solid;width: 50px;margin-top: 5px;">
+                  <input type="number" [(ngModel)]="prix" style="border-radius: 10px;height: 30px;border: #919191 2px solid;width: 50px;margin-top: 5px;">
                 </div>
 
-                <div class="input-max d-flex">
-                  <label style="margin-right: 10px;margin-top: 8px;text-align: center;">MAX</label>
-                  <input type="number"  style="border-radius: 10px;height: 30px;border: #919191 2px solid;width: 50px;margin-top: 5px;">
-                </div>
-
-                <button mat-mini-fab color="light" style="box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);">
+                <button mat-mini-fab color="light" (click)="getProductsByCategoryId()" style="box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);">
                   <mat-icon>filter_list</mat-icon>
                 </button>
               </div>
-
+              <div class="py-2 uppercase mt-3" style="font-size: 15px;font-weight: normal;">
+                <button class="btn btn-info" (click)="clearInputs()">clear</button>
+              </div>
             </div>
           </li>
         </mat-card>
       </div>
     </div>
 
-    <div class="col col-xl-8  col-lg-8 col-md-12 col-sm-12 col-12" >
+    <!-- ------------------------------------Product list --------------------------------->
+    <div class="col col-xl-8  col-lg-8 col-md-12 col-sm-12 col-12" style="overflow-y: scroll;height: 9  0vh;">
 
+      <div class="mt-3 mb-5 d-flex">
+        <h2 class="uppercase" style="color: rgb(36, 36, 36); font-weight: bold;font-family: Verdana, Geneva, Tahoma, sans-serif">{{category}}</h2>
+        <div class="float-end ms-auto p-2">
+          <button class="" mat-mini-fab color="accent" (click)="previousPage()" [disabled]="page === 0" style="box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);margin-right: 5px">
+            <mat-icon>keyboard_arrow_left</mat-icon>
+          </button>
+
+          <button color="accent" mat-mini-fab (click)="nextPage()" [disabled]="page==count_page-1 || products.length==0" style="box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);">
+            <mat-icon>keyboard_arrow_right</mat-icon>
+          </button>
+        </div>
+      </div>
+
+
+      <!-- -------------------------product card ---------------------------->
+      <div class="row">
+
+        <div class="col col-12 col-sm-6  d-flex justify-content-center" *ngFor="let item of products">
+          <app-card [products]="item" [new]="false"></app-card>
+        </div>
+
+      </div>
     </div>
   </div>
 
