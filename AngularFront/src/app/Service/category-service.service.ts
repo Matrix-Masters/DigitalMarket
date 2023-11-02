@@ -15,4 +15,6 @@ export class CategoryServiceService{
   getCategorieById(id:any){
     return this.http.get(`${port}/PRODUCT-SERVICE/categories/GetCategoryById?id=`+id);
   }
+
+
 }
