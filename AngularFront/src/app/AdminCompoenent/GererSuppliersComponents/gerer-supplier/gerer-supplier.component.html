@@ -70,10 +70,11 @@
           <td *ngIf="supplier.status==2" class="text-danger">Refused</td>
           <td>
 
-            <button mat-button appearance="legacy" class="shadow" (click)="AcceptSupplier(supplier.id)">
+            <button mat-button appearance="legacy" class="shadow" (click)="AcceptSupplier(supplier.id)"
+              *ngIf="supplier.status!=1">
               <mat-icon style="color: green;">check</mat-icon>
             </button>
-            <button mat-button appearance="legacy" style="margin-left: 5%;" class="shadow"
+            <button mat-button appearance="legacy" style="margin-left: 5%;" class="shadow" *ngIf="supplier.status!=2"
               (click)="RefuseSupplier(supplier.id)">
               <mat-icon color="warn">close</mat-icon>
             </button>
