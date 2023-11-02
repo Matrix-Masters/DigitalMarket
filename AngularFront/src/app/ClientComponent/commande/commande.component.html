@@ -1,0 +1,92 @@
+  
+  <app-navbar></app-navbar>
+
+  <div class="container mt-5 py-5" >
+    <p class="titre">ConfirmCommande</p>
+    <mat-stepper  [linear]="FormInfo.invalid" #stepper animationDuration="1500">
+        <mat-step [stepControl]="FormInfo">
+          <form [formGroup]="FormInfo" class="p-5 shadow-lg" (ngSubmit)="Step1()">
+            <ng-template matStepLabel>Info Commande</ng-template>
+            <div class="row">
+                <div class="col-lg-4">
+                    <mat-form-field>
+                        <mat-label>FirstName</mat-label>
+                        <input matInput [formControl]="NameForm" placeholder="First name"  >
+                        <mat-error *ngIf="NameForm.invalid">{{getFirstNameFormError()}}</mat-error>
+                      </mat-form-field>
+                </div>
+                <div class="col-lg-4">
+                    <mat-form-field>
+                        <mat-label>LastName</mat-label>
+                        <input matInput [formControl]="LastNameForm" placeholder="Last name" >
+                        <mat-error *ngIf="LastNameForm.invalid">{{getLastNameError()}}</mat-error>
+                      </mat-form-field>
+                </div>
+                <div class="col-lg-4">
+                    <mat-form-field>
+                        <mat-label>Cin</mat-label>
+                        <input matInput [formControl]="CinForm" placeholder="Cin" >
+                        <mat-error *ngIf="CinForm.invalid">{{getCinError()}}</mat-error>
+                      </mat-form-field>
+                </div>
+                <div class="col-lg-4">
+                    <mat-form-field>
+                        <mat-label>Phone</mat-label>
+                        <input matInput [formControl]="phoneForm" placeholder="+216">
+                        <mat-error *ngIf="phoneForm.invalid">{{getPhoneError()}}</mat-error>
+                      </mat-form-field>
+                </div>
+                <div class="col-lg-4">
+                    <mat-form-field>
+                        <mat-label>Email</mat-label>
+                        <input matInput [formControl]="emailForm" placeholder="foulen@gmail.com"  >
+                        <mat-error *ngIf="emailForm.invalid">{{getEmailError()}}</mat-error>
+                      </mat-form-field>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+              <button mat-raised-button class="btn btn-primary" matStepperNext (click)="Step1()">Next Step</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step  label="You Location" class="location"> 
+            <app-location-commande (CurrentLocation)="CurrentLocation($event.lat, $event.lng,$event.name)"></app-location-commande>
+            <div class="text-center mt-2">
+                <button mat-raised-button matStepperNext [disabled]="Location.lat==0 && Location.lng==0" color="primary" >Final Step</button>
+            </div>
+        </mat-step>
+        <mat-step  label="Confirm Data"  id="Content">
+                <div class="confirmation-box shadow-lg">
+                    <h2 class="text-center titre">Confirmed</h2>
+                    <div class="form-group">
+                        <label for="firstName">First Name:</label>
+                        <span id="firstName">{{NameForm.value}}</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name:</label>
+                        <span id="lastName">{{LastNameForm.value}}</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <span id="email">{{emailForm.value}}</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="cin">Cin:</label>
+                        <span id="cin">{{CinForm.value}}</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone:</label>
+                        <span id="phone">{{phoneForm.value}}</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Your Location:</label>
+                        <span id="location">{{Location.name}}</span>
+                    </div>
+                    <div class="text-center">
+                        <button mat-raised-button color="primary" (click)="ConfirmCommande()">Confirm</button>
+                    </div>
+                </div>
+        </mat-step>
+      </mat-stepper>
+  </div>
+  <app-footer></app-footer>

@@ -22,6 +22,7 @@ import { NavbarCompComponent } from './Layout/navbar-comp/navbar-comp.component'
 import { DashboardComponent } from './AdminCompoenent/dashboard/dashboard.component';
 import { LocationCommandeComponent } from './ClientComponent/location-commande/location-commande.component';
 import { NotFoundComponentComponent } from './notfound/not-found-component/not-found-component.component';
+import { CommandeComponent } from './ClientComponent/commande/commande.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +40,8 @@ import { NotFoundComponentComponent } from './notfound/not-found-component/not-f
     NavbarCompComponent,
     DashboardComponent,
     LocationCommandeComponent,
-    NotFoundComponentComponent
+    NotFoundComponentComponent,
+    CommandeComponent
   ],
   imports: [
     BrowserModule,
