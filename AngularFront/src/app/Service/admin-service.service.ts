@@ -59,5 +59,11 @@ export class AdminServiceService {
   getSuppliersFilter(search:string,status:number,Date:any){
     return this.http.get(`${port}/INFOUSER-SERVICE/GererSupplier/filter?search=${search}&status=${status}&date_enter=${Date}`)
   }
+  AcceptSupplier(id:number){
+    return this.http.put(`${port}/INFOUSER-SERVICE/GererSupplier/AcceptSupplier?id=${id}`,{})
+  }
+  RefuseSiupplier(id:number){
+    return this.http.put(`${port}/INFOUSER-SERVICE/GererSupplier/RefuseSupplier?id=${id}`,{})
+  }
 
 }

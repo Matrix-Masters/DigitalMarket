@@ -58,26 +58,29 @@
           <td>
             <img [src]="gravatarUrl" alt="" height="40px" width="40px" style="border-radius: 25%;">
           </td>
-          <td>John</td>
-          <td>Doe</td>
-          <td>2023-10-26</td>
-          <td>johndoe@example.com</td>
-          <td>1234567890</td>
-          <td>Male</td>
-          <td>Pending</td>
+          <td>{{supplier['firstName']}}</td>
+          <td>{{supplier['lastName']}}</td>
+          <td>{{ supplier.created_at | date: 'dd/mm/yyyy' }}</td>
+          <td>{{supplier['email']}}</td>
+          <td>{{supplier['numTlf']}}</td>
+          <td>{{supplier['sexe']}}</td>
+
+          <td *ngIf="supplier.status==0" class="text-warning">Pending</td>
+          <td *ngIf="supplier.status==1" class="text-success">accepted</td>
+          <td *ngIf="supplier.status==2" class="text-danger">Refused</td>
           <td>
-            <button mat-button appearance="legacy">
-              <mat-icon color="primary">info</mat-icon>
-            </button>
-            <button mat-button appearance="legacy">
+
+            <button mat-button appearance="legacy" class="shadow" (click)="AcceptSupplier(supplier.id)">
               <mat-icon style="color: green;">check</mat-icon>
             </button>
-            <button mat-button appearance="legacy">
+            <button mat-button appearance="legacy" style="margin-left: 5%;" class="shadow"
+              (click)="RefuseSupplier(supplier.id)">
               <mat-icon color="warn">close</mat-icon>
             </button>
           </td>
         </tr>
       </tbody>
+
     </table>
   </div>
 </app-side-bar-comp>

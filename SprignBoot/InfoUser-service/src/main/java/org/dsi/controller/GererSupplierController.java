@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.dsi.entity.InfoUser;
 import org.dsi.service.GererSupplierService;
@@ -33,18 +34,18 @@ public class GererSupplierController {
 	        return new ResponseEntity<>(suppliers, HttpStatus.OK);
 	    }
 	    @PutMapping("/AcceptSupplier")
-	    public  ResponseEntity<String> verifySupplier(@RequestParam("id") Long supplierId) {
+	    public  ResponseEntity<?> verifySupplier(@RequestParam("id") Long supplierId) {
 	    	InfoUser infoUser=Gerersupplierservice.verifySupplier(supplierId);
 	    	if(infoUser!=null) {
-	    		return new ResponseEntity<>("supplier accepted", HttpStatus.OK); 
+	    		return ResponseEntity.ok(Map.of("message", "Supplier Accepted Succesfully")); 
 	    	}
 	    	return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
 	    }
 	    @PutMapping("/RefuseSupplier")
-	    public  ResponseEntity<String> RefuseSupplier(@RequestParam("id") Long supplierId) {
+	    public  ResponseEntity<?> RefuseSupplier(@RequestParam("id") Long supplierId) {
 	    	InfoUser infoUser=Gerersupplierservice.RefuseSupplier(supplierId);
 	    	if(infoUser!=null) {
-	    		return new ResponseEntity<>("supplier Refused", HttpStatus.OK); 
+	    		return ResponseEntity.ok(Map.of("message", "Supplier Refused"));
 	    	}
 	    	return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
 	    }
@@ -61,7 +62,7 @@ public class GererSupplierController {
 	    	if(!suppliers.isEmpty()) {
 	    		 return new ResponseEntity<>(suppliers, HttpStatus.OK);
 	    	}
-	    	return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	    	return new ResponseEntity<>(suppliers, HttpStatus.NO_CONTENT);
 	       
 	    }
 }
