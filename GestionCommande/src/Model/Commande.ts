@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 import mongoosePaginate from "mongoose-paginate"
+
 let CommandeSchema=new mongoose.Schema({
+
     NumCommande:{
         type:Number,
         required:true,
@@ -45,6 +47,15 @@ let CommandeSchema=new mongoose.Schema({
         type:String,
         required:true
     },
+    Status:{
+        type:String,
+        required:true,
+        default:"Waiting"
+    },
+    Date:{
+        type:Date,
+        default:Date.now
+    }
 })
 
 CommandeSchema.plugin(mongoosePaginate)

@@ -83,6 +83,12 @@ InitMap(){
         zoom: 13
       }).setView([position.coords.latitude,position.coords.longitude], 13);
 
+      this.marker = L.marker([position.coords.latitude,position.coords.longitude], {
+        icon: L.icon({
+          iconUrl: '../../../assets/location.svg',
+          iconSize: [20, 30],
+        })
+      }).addTo(this.map);
       var openstreetmap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       });

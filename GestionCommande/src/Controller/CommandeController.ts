@@ -4,6 +4,10 @@ import LigneCommande from "../Model/LigneCommande";
 
 export const addCommande = async (req: Request, res: Response) => {
     try {
+        var prixTotal=0;
+        for (let i = 0; i < req.body.LigneCommandes.length; i++) {
+            prixTotal+=req.body.LigneCommandes[i].prix*req.body.LigneCommandes[i].Quantity;
+        }
         const commande = new Commande({
             NumCommande: req.body.NumCommande,
             Name: req.body.Name,
@@ -11,7 +15,7 @@ export const addCommande = async (req: Request, res: Response) => {
             phone: req.body.phone,
             LastName: req.body.LastName,
             email: req.body.email,
-            PrixTotal: req.body.PrixTotal,
+            PrixTotal: prixTotal,
             Client_id: req.body.Client_id,
             location: {
                 latitude: req.body.location.latitude,

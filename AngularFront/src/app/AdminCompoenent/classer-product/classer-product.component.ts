@@ -47,6 +47,7 @@ export class ClasserProductComponent implements OnInit {
     }
   }
 
+
   openDialogAlert(product: any): void {
     const dialogRef = this.alertdialog.open(DialogOverviewExampleDialog, {
       data: product,

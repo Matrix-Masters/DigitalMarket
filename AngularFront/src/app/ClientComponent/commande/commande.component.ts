@@ -23,12 +23,25 @@ export class CommandeComponent {
         LastName:this.LastNameForm,
         email:this.emailForm
     })
+    this.Product.Quantity=2;
+    this.Product.prix=100;
+    this.Product.Product_id="1";
+    this.Products.push(this.Product);
+    this.Product.Quantity=8;
+    this.Product.prix=120;
+    this.Product.Product_id="2";
+    this.Products.push(this.Product);
+    this.Product.Quantity=8;
+    this.Product.prix=120;
+    this.Product.Product_id="2";
+    this.Products.push(this.Product);
+    localStorage.setItem("Products",JSON.stringify(this.Products));
     // Init Form
-    // this.NameForm.setValue("Talel");
-    // this.LastNameForm.setValue("Mejri");
-    // this.CinForm.setValue("12345678");
-    // this.phoneForm.setValue("12345678");
-    // this.emailForm.setValue("talel@gmail.com")
+    this.NameForm.setValue("Talel");
+    this.LastNameForm.setValue("Mejri");
+    this.CinForm.setValue("12345678");
+    this.phoneForm.setValue("12345678");
+    this.emailForm.setValue("talel@gmail.com")
   } 
 
   NameForm=new FormControl('',[Validators.required,Validators.minLength(3)]);
@@ -166,7 +179,7 @@ getEmailError(){
    //**********Name *//
 
    
-    //Num commande Random King
+    // Num commande Random King
    var num_com=Math.floor(Math.random() * 99999);
    this.Products = this.Products = JSON.parse(localStorage.getItem("Products") ?? '[]');
    this.CommandeServiceService.AddCommande(
