@@ -1,1 +1,62 @@
-<p>category-list works!</p>
+<app-side-bar-comp>
+    <app-navbar-comp></app-navbar-comp>
+    <div class="container">
+    <div class="paper">
+      
+        <button class="delete-button">
+            -
+          </button>
+        <img src="../../../assets/DIGITAL MARKET logo.png" class="poster"> 
+        <div class="divider"></div>
+        <br>
+        <h1>Category Name</h1>
+        <hr>
+        <button class="btn" (click)="openPopup()">Modify</button>
+        <div class="space"></div>
+      </div>
+
+      <!-- update category popup page -->
+        
+      <div class="popup" [class.open]="isPopupOpen">
+        <div class="popup-content">
+          <form action method="post">
+
+            <h1 style="text-align: center;color: #272343;"><strong>Modify Category </strong></h1>
+            
+            <div class="form-group">
+              <label for="title">Name </label>
+              <input type="text" name="title" id="title" class="form-controll"/>
+            </div>
+            
+            
+            <div class="form-group file-area">
+                  <label for="images">Image <span>The maximum allowable size for your image is 4 MB</span></label>
+              <input type="file" name="images" id="images" required="required" multiple="multiple" (change)="onFileSelected($event)"/>
+              <div class="file-dummy">
+                <div class="success" *ngIf="!fileTooLarge">Great, your image are selected. Keep on.</div>
+                <div class="default" *ngIf="fileTooLarge">Please select some files</div>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <button type="submit">Save Changes</button>
+            </div>
+            
+          </form>
+        </div>
+        <button class="close" (click)="closePopup()">Close</button>
+      </div>
+      
+
+    </div>
+    <mat-paginator class="custom-paginator"
+    [length]="100"
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    aria-label="Select page">
+</mat-paginator>
+
+
+     
+  </app-side-bar-comp>
+  

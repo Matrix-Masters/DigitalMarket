@@ -1,0 +1,324 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:700|Playfair+Display');
+$san-serif:'Open Sans',
+sans-serif;
+$serif:'Playfair Display',
+serif;
+
+$color-shadow:transparentize(#303336, .9);
+.container {
+    display: grid;
+    grid-template-columns: repeat(4, 2fr); 
+    gap: 5px; 
+    margin-left: 10px;
+    margin-top: 20px;
+    
+  
+ 
+  
+  .paper {
+    min-width: 20vw;
+    max-width: 20%;
+    min-height: 20vh;
+    border-radius: 4px;
+    box-shadow: 0 15px 35px rgba(50, 50, 90, .1), 0 5px 15px rgba(0, 0, 0, .07);
+    transition: .6s ease;
+    background: white;
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+    
+    img {
+        max-width: 80% ;
+        max-height: 80% ;
+        border-radius: 4px 4px 0 0; 
+    }
+  
+    .divider {
+      width: 100%;
+      height: 1px; 
+      background: rgba(50, 50, 90, .1);
+      
+    }
+* {
+  user-select: none;
+  transition: .3s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-image: linear-gradient(-45deg, #EEF0F3 0%, #F6F5F3 100%);
+  font-size:62.5%;
+}
+
+
+
+.paper:hover {
+  box-shadow: 0 18px 35px rgba(50, 50, 90, .1), 0 8px 15px rgba(0, 0, 0, .07);
+  transform: translateY(-1px);
+}
+
+
+
+.poster {
+  border-radius: 4px 4px 0 0;
+  margin-bottom: 1vh;
+}
+
+h1 {
+  font-size: 2.6rem;
+  color: #303336;
+  letter-spacing: 1px;
+  margin: 2vh 4vw;
+  font-family: $serif;
+}
+
+h2 {
+  font-size: .4rem;
+  color: #A0A6AB;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: $san-serif;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+hr {
+  width: 20%;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+  border: 0;
+  border-bottom: 1px solid #E6E9EC;
+}
+
+p {
+  margin: 2vh 8vw;
+  text-align: center;
+  padding-bottom: 1vh;
+  color: #A0A6AB;
+  font-family: $serif;
+  font-weight: 400;
+  font-size: .9rem;
+  line-height: 1.25rem;
+}
+
+.btn,
+a.btn {
+  display: inline-block;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  line-height: 20px;
+  border-radius: 4px;
+  padding: 1vh 2vh;
+  letter-spacing: .02rem;
+background: #272343;
+  color:white;
+  font-family:$san-serif;
+  font-size:.8rem;
+  box-shadow:0 0px 0px $color-shadow,
+0 0px 0px rgba(0, 0, 0, 0);
+}
+
+.btn,
+a.btn:hover {
+  background: #272343;
+  box-shadow:0 7px 14px $color-shadow,
+0 3px 6px rgba(0, 0, 0, .08);
+  transform: translateY(-1px);
+}
+
+.btn,
+a.btn:active {
+  box-shadow:0 4px 6px $color-shadow,
+0 1px 3px rgba(0, 0, 0, .12);
+  transform: translateY(1px);
+}
+
+.space{
+  height:4vh;
+}
+.delete-button {
+    position: absolute;
+    top: 10px; // Adjust the top and right values for positioning.
+    right: 10px;
+    background: rgb(202, 1, 1); // Customize the button's background color.
+    border: none;
+    border-radius: 50%; // Make it a circle.
+    width: 20px; // Adjust the width and height as needed.
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    z-index: 1;
+  }
+  
+}
+  
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+  
+    font-size: 16px;
+    overflow: hidden;
+  
+  
+    &.open {
+      display: flex;
+    }
+  
+    &-content {
+      background: rgba(253, 253, 253, 0.7);
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      max-width: 600px;
+      width: 90%;
+      position: relative;
+    }
+  
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      font-size: 20px;
+      color: #333;
+    }
+    .form-group {
+      max-width: 500px;
+      margin: auto;
+      margin-bottom: 30px;
+    }
+    
+    .close {
+      color: #272343;
+      text-transform: uppercase;
+      font-size: 12px;
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      text-decoration: none;
+      display: inline-block;
+      background:#fff;
+      padding: 10px 18px;
+      transition: all 0.3s ease-in-out;
+      
+      
+      &:hover {
+        
+        background: #272343;
+        color: #fff;
+      }
+    }
+    .form-controll {
+      display: block;
+      padding: 8px 16px;
+      width: 100%;
+      font-size: 16px;
+      background-color: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #000000;;
+      font-weight: 400;
+      
+      &:focus {
+        outline: 2px solid rgba(255,255,255,0.5);
+        outline: -webkit-focus-ring-color auto 5px;
+      }
+    }
+    label {
+      font-weight: 500;
+      display: block;
+      margin: 4px 0;
+      text-transform: uppercase;
+      font-size: 13px;
+      overflow: hidden;
+    
+      span {
+        float: right;
+        text-transform: none;
+        font-weight: 200;
+        line-height: 1em;
+        font-style: italic;
+        opacity: 0.8;
+      }
+    }
+    button {
+      padding: 8px 30px;
+      background-color: #272343;
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 11px;
+      border: 0;
+       color: #ccc;
+      cursor: pointer;
+    }
+  
+    .file-area {
+      width: 100%;
+      position: relative;
+      
+      input[type=file] {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0;
+        cursor: pointer;
+      }
+      
+      .file-dummy {
+        width: 100%;
+        padding: 30px;
+        background: rgba(255,255,255,0.2);
+        border: 2px dashed rgba(255,255,255,0.2);
+        text-align: center;
+        transition: background 0.3s ease-in-out;
+        
+        .success {
+          display: none;
+        }
+      }
+      
+      &:hover .file-dummy {
+        background: rgba(255,255,255,0.1);
+      }
+      
+      input[type=file]:focus + .file-dummy {
+        outline: 2px solid rgba(255,255,255,0.5);
+        outline: -webkit-focus-ring-color auto 5px;
+      }
+      
+      input[type=file]:valid + .file-dummy {
+        border-color: rgba(0,255,0,0.4);
+        background-color: rgba(0,255,0,0.3);
+    
+        .success {
+          display: inline-block;
+        }
+        .default {
+          display: none;
+        }
+      }
+    }
+}
+}
+.custom-paginator {
+    background-color: transparent; /* or background-color: rgba(0,0,0,0); */
+    align-self: flex-end;
+  }
+
+
