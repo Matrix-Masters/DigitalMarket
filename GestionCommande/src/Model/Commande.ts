@@ -34,13 +34,17 @@ let CommandeSchema=new mongoose.Schema({
     },
     location: {
 		latitude: {
-             type: Number,
+             type: String,
              required: true 
         },
 		longitude: { 
-            type: Number,
+            type: String,
             required: true
          },
+         name:{
+            type: String,
+            required: true 
+         }
 	},
     Client_id:{
         type:String,

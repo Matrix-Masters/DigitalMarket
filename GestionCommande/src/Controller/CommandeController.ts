@@ -35,6 +35,7 @@ export const addCommande = async (req: Request, res: Response) => {
             location: {
                 latitude: req.body.location.latitude,
                 longitude: req.body.location.longitude,
+                name:req.body.location.name
             },
             LigneCommandes: ligneCommandes,
         });
@@ -63,7 +64,7 @@ export const GetCommandeDispo = async (req: Request, res: Response) => {
             {
                 $and: [
                     { NumCommande: { $regex: new RegExp(search.toString(), 'i') } },
-                    { Status: "Disponible" },
+                    { Status: "Available" },
                 ]
             },
             {
