@@ -10,6 +10,10 @@ class CommandeDispo extends StatefulWidget {
 class _CommandeDispoState extends State<CommandeDispo> {
   @override
   Widget build(BuildContext context) {
-    return Text("test");
+    return Scaffold(
+      body: Center(
+        child: Text("Commande Disponible"),
+      ),
+    );
   }
 }
