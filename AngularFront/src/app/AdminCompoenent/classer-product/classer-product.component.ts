@@ -23,7 +23,12 @@ import { DialogInfoComponent } from './dialog-info/dialog-info.component';
  
 })
 export class ClasserProductComponent implements OnInit {
-  constructor(public AdminServiceService: AdminServiceService,private _snackBar: MatSnackBar,private dialog:Dialog,private alertdialog:MatDialog) {}
+  
+  constructor(public AdminServiceService: AdminServiceService,private _snackBar: MatSnackBar,private dialog:Dialog,private alertdialog:MatDialog) {
+
+    
+  }
+ 
 
   drop(event: CdkDragDrop<any[]>,category?:any): void {
     if (event.previousContainer === event.container) {
@@ -122,6 +127,35 @@ export class ClasserProductComponent implements OnInit {
       });
     })
   }
+  isPopupOpen: boolean = false;
+  openPopup() {
+    this.isPopupOpen = true;
+    console.log("works")
+  }
+
+  
+  closePopup() {
+    this.isPopupOpen = false;
+    console.log("closed")
+  }
+
+  
+  fileTooLarge: boolean = false;
+
+  onFileSelected(event: any) {
+    const files = event.target.files as File[];
+    const maxSize = 4 * 1024 * 1024; 
+  
+    const fileTooLarge = files.some((file: File) => file.size > maxSize);
+  
+    if (fileTooLarge) {
+      console.log("file big")
+    } else {
+      console.log("file small")
+    }
+  }
+  
+  
 }
 
 @Component({
@@ -142,4 +176,6 @@ export class DialogOverviewExampleDialog {
   }
 
   
+ 
+ 
 }
