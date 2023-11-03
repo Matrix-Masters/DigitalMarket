@@ -23,6 +23,8 @@ import { DashboardComponent } from './AdminCompoenent/dashboard/dashboard.compon
 import { LocationCommandeComponent } from './ClientComponent/location-commande/location-commande.component';
 import { AccueilClientComponent } from './AccueilClient/accueil-client/accueil-client.component';
 import { AccueilBodyComponent } from './AccueilClient/accueil-body/accueil-body.component';
+import { AccueilCartComponent } from './AccueilClient/accueil-cart/accueil-cart.component';
+import { CardCartComponent } from './AccueilClient/card-cart/card-cart.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { AccueilBodyComponent } from './AccueilClient/accueil-body/accueil-body.
     LocationCommandeComponent,
     AccueilClientComponent,
     AccueilBodyComponent,
+    AccueilCartComponent,
+    CardCartComponent,
   ],
   imports: [
     BrowserModule,
