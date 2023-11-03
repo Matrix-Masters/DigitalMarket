@@ -2,9 +2,8 @@ import mongoose from "mongoose";
 import mongoosePaginate from "mongoose-paginate"
 
 let CommandeSchema=new mongoose.Schema({
-
     NumCommande:{
-        type:Number,
+        type:String,
         required:true,
         unique:true
     },
