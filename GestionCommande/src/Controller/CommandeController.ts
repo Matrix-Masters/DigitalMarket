@@ -3,6 +3,7 @@ import Commande from "../Model/Commande";
 import LigneCommande from "../Model/LigneCommande";
 
 export const addCommande = async (req: Request, res: Response) => {
+
     try {
         var prixTotal = 0;
         const ligneCommandes = [];
@@ -10,15 +11,16 @@ export const addCommande = async (req: Request, res: Response) => {
         for (let i = 0; i < req.body.LigneCommandes.length; i++) {
             prixTotal += req.body.LigneCommandes[i].prix * req.body.LigneCommandes[i].Quantity;
 
-     
             const ligneCommande = new LigneCommande({
                 Commande_id: null, 
                 Product_id: req.body.LigneCommandes[i].Product_id,
                 Quantity: req.body.LigneCommandes[i].Quantity,
                 prix: req.body.LigneCommandes[i].prix,
             });
+
             const savedLigneCommande = await ligneCommande.save();
             ligneCommandes.push(savedLigneCommande._id);
+
         }
 
         const commande = new Commande({
@@ -46,13 +48,17 @@ export const addCommande = async (req: Request, res: Response) => {
     } catch (e) {
         res.status(400).send(e);
     }
+
 }
 
 export const GetCommandeDispo = async (req: Request, res: Response) => {
+
     let page: number = parseInt(req.query.page?.toString() || '1');
     let size: number = parseInt(req.query.size?.toString() || '5');
     const search = req.query.search || '';
+    
     try {
+
         const Commandes = await Commande.paginate(
             {
                 $and: [
@@ -66,17 +72,20 @@ export const GetCommandeDispo = async (req: Request, res: Response) => {
                 populate: 'LigneCommandes'
             },
         );
+
         if (!Commandes) {
             res.status(404).json({ message: "No Found" });
         } else {
             res.status(200).json(Commandes);
         }
+
     } catch (err: any) {
         console.error(err);
         res.status(500).json({ message: err.message });
     }
 
 }
+
 /*
 try {
     //Make Relation 

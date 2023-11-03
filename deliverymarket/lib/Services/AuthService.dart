@@ -5,11 +5,12 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:deliverymarket/Models/User.dart';
 
 class AuthService{
+  
   bool isAuth=false;
   String token="";
 
    // String url="http://192.168.1.19:8000/Auth";  // device externe
-   String url="http://10.0.2.2:8000"; // emulator
+   String url="http://10.0.2.2:8888"; // emulator
 
    final Storage=FlutterSecureStorage();
 
