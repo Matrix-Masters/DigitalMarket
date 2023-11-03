@@ -1,0 +1,106 @@
+.card-cart{
+  background-color: #ffffff;
+  margin-top: 5vh;
+}
+
+.description{
+  font-family: Franklin Gothic Book;
+  font-size: 16px;
+  letter-spacing: 2px;
+  word-spacing: 2px;
+  color: #000000;
+  font-weight: 700;
+  text-decoration: none solid rgb(68, 68, 68);
+  font-style: italic;
+  font-variant: normal;
+  text-transform: Capitalize;
+  line-height: 25px;
+}
+.price{
+  font-family: Franklin Gothic Book;
+  font-size: 15px;
+  letter-spacing: 2px;
+  word-spacing: 2px;
+  color: #000000;
+  font-weight: 700;
+  text-decoration: none solid rgb(68, 68, 68);
+  font-style: italic;
+  font-variant: normal;
+  text-transform: Capitalize;
+}
+.status{
+  font-family: Franklin Gothic Book;
+  font-size: 14px;
+  letter-spacing: 2px;
+  word-spacing: 2px;
+  font-weight: 700;
+  font-style: italic;
+  font-variant: normal;
+  text-transform: Capitalize;
+}
+
+.status-false{
+  font-family: Franklin Gothic Book;
+  font-size: 14px;
+  letter-spacing: 2px;
+  word-spacing: 2px;
+  font-weight: 700;
+  font-style: italic;
+  font-variant: normal;
+  text-transform: Capitalize;
+  color: red;
+}
+
+.img-product{
+  width: 375px;
+  padding: 29px;
+  border-radius: 46px;
+}
+@media (max-width: 420px) {
+
+  .img-product{
+    width: 300px;
+    padding: 20px;
+    height: 250px;
+    border-radius: 30px;
+  }
+
+  .description{
+    font-family: Franklin Gothic Book;
+    font-size: 13px;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    color: #000000;
+    font-weight: 500;
+    text-decoration: none solid rgb(68, 68, 68);
+    font-style: italic;
+    font-variant: normal;
+    text-transform: Capitalize;
+    line-height: 20px;
+  }
+}
+
+@media (max-width: 340px) {
+
+  .img-product{
+    width: 250px;
+    padding: 20px;
+    height: 200px;
+    border-radius: 25px;
+  }
+
+  .description{
+    font-family: Franklin Gothic Book;
+    font-size: 13px;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    color: #000000;
+    font-weight: 700;
+    text-decoration: none solid rgb(68, 68, 68);
+    font-style: italic;
+    font-variant: normal;
+    text-transform: Capitalize;
+    line-height: 20px;
+  }
+}
+
