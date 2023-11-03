@@ -1,5 +1,6 @@
 import 'package:deliverymarket/Screens/Auth/Login.dart';
 import 'package:deliverymarket/Screens/CommandeDispo.dart';
+import 'package:deliverymarket/Screens/HomeCommande.dart';
 import 'package:deliverymarket/Screens/Loading.dart';
 import 'package:deliverymarket/Services/AuthService.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,7 @@ class _StartAppState extends State<StartApp> {
     main = const Loading();
     Future.delayed(const Duration(seconds: 5), () {
           setState((){
-              main=authService.isAuth ? LoginDelivery() :  CommandeDispo();
+              main=authService.isAuth ? const LoginDelivery() :   HomeCommande();
           });
     });
   }
