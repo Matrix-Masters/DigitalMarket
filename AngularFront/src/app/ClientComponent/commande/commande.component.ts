@@ -195,6 +195,7 @@ getEmailError(){
           "location":{
             "latitude":this.Location.lat,
             "longitude":this.Location.lng,
+            "name":this.Location.name
           }
         }
       )
