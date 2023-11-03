@@ -12,7 +12,7 @@ let LignCommandeSchema=new mongoose.Schema({
     },
     Commande_id:{
         type:String,
-        required:true
+        default:null
     },
     Product_id:{
         type:String,

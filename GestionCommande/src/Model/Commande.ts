@@ -55,7 +55,8 @@ let CommandeSchema=new mongoose.Schema({
     Date:{
         type:Date,
         default:Date.now
-    }
+    },
+    LigneCommandes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'LigneCommande' }]
 })
 
 CommandeSchema.plugin(mongoosePaginate)
