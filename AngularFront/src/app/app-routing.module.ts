@@ -4,13 +4,16 @@ import { ClasserProductComponent } from './AdminCompoenent/classer-product/class
 import { GererProduitComponent } from './AdminCompoenent/GererProduitComponents/gerer-produit/gerer-produit.component';
 import { HomeComponent } from './home/home/home.component';
 import { DashboardComponent } from './AdminCompoenent/dashboard/dashboard.component';
+import { CategoryListComponent } from './AdminCompoenent/GererCategory/category-list/category-list.component';
 
 const routes: Routes = [
    {path:'',component:HomeComponent},
    {path:'classer',component:ClasserProductComponent},
    {path:"dash",component:DashboardComponent},
    {path:'gererProduit',component:GererProduitComponent},
-   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) }
+   {path:'listCategory',component:CategoryListComponent},
+   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+   
 ]
 
 
