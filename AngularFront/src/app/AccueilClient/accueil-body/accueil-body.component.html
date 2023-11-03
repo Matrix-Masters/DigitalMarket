@@ -34,7 +34,13 @@
               <div class="inputs d-flex mt-1">
 
                 <div class="input-min d-flex" style="margin-right: 5px;">
-                  <input type="number" [(ngModel)]="prix" style="border-radius: 10px;height: 30px;border: #919191 2px solid;width: 50px;margin-top: 5px;">
+                  <label for="" class="uppercase mt-2 px-1">Min :</label>
+                  <input type="number" [(ngModel)]="min" style="border-radius: 10px;height: 30px;border: #919191 2px solid;width: 50px;margin-top: 5px;">
+                </div>
+
+                <div class="input-min d-flex" style="margin-right: 5px;">
+                  <label for="" class="uppercase mt-2 px-1">Max :</label>
+                  <input type="number" [(ngModel)]="max" style="border-radius: 10px;height: 30px;border: #919191 2px solid;width: 50px;margin-top: 5px;">
                 </div>
 
                 <button mat-mini-fab color="light" (click)="getProductsByCategoryId()" style="box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);">

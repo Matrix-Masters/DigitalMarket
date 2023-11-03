@@ -17,7 +17,9 @@ export class AccueilBodyComponent implements OnInit {
   page=0
   per_page=4
   search=""
-  prix=0
+  min=1
+  max=0
+  maxPrice=0
 
 
   getCategoryById(){
@@ -26,9 +28,17 @@ export class AccueilBodyComponent implements OnInit {
    })
   }
 
+  getMaxPrix(){
+    this.ProductService.getMAxPrice().subscribe((res:any)=>{
+      this.maxPrice=res
+      this.max=this.maxPrice;
+      console.log(this.max);
+
+    })
+  }
 
   getProductsByCategoryId(){
-    this.ProductService.getProductsByCategoryId(this.categoryId,this.page,this.per_page,this.search,this.prix).subscribe((res:any)=>{
+    this.ProductService.getProductsByCategoryId(this.categoryId,this.page,this.per_page,this.search,this.min,this.max).subscribe((res:any)=>{
       this.products=res.product.content;
       this.count_page = res.count_page.length
     })
@@ -37,8 +47,6 @@ export class AccueilBodyComponent implements OnInit {
   nextPage(){
     if(this.page<this.products.length-1){
       this.page++;
-      console.log(this.page);
-      console.log(this.products.length);
       this.getProductsByCategoryId()
     }
   }
@@ -52,7 +60,8 @@ export class AccueilBodyComponent implements OnInit {
 
 clearInputs(){
   this.search=""
-  this.prix=0
+  this.min=1
+  this.max=this.maxPrice
   this.getProductsByCategoryId()
 }
 
@@ -63,6 +72,7 @@ clearInputs(){
     })
     this.getCategoryById();
     this.getProductsByCategoryId();
+    this.getMaxPrix();
 
   }
 
