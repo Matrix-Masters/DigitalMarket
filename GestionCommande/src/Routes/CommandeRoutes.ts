@@ -1,5 +1,6 @@
-import { addCommande } from "../Controller/CommandeController"
+import { addCommande,GetCommandeDispo } from "../Controller/CommandeController"
 
 module.exports=(router:any)=>{
     router.post('/AddCommande',addCommande);
+    router.get('/GetCommandeDispo',GetCommandeDispo);
 }
