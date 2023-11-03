@@ -20,6 +20,8 @@ public interface UserRepo extends JpaRepository<InfoUser,Long> {
 	
 	@Query(value="select * from info_user where role=:role",nativeQuery=true)
 	InfoUser GetSuppliers(String role);
+	
+	
 
 	List<InfoUser> findByRole(String string);
 	

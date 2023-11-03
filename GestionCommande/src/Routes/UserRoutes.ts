@@ -1,5 +1,5 @@
 
-import { getAllUsers ,AddUser,GetUserByEmail, AcceptUser} from "../Controller/UserController"
+import { getAllUsers ,AddUser,GetUserByEmail, AcceptUser, RefuseSupplier} from "../Controller/UserController"
 
 module.exports=(router:any)=>{
     router.get("/getAllusers",getAllUsers),

@@ -33,13 +33,16 @@ public class GererSupplierController {
 	        }
 	        return new ResponseEntity<>(suppliers, HttpStatus.OK);
 	    }
+	    
 	    @PutMapping("/AcceptSupplier")
 	    public  ResponseEntity<?> verifySupplier(@RequestParam("id") Long supplierId) {
-	    	InfoUser infoUser=Gerersupplierservice.verifySupplier(supplierId);
-	    	if(infoUser!=null) {
+	    	try {
+	    		Gerersupplierservice.verifySupplier(supplierId);
 	    		return ResponseEntity.ok(Map.of("message", "Supplier Accepted Succesfully")); 
+	    	}catch (Exception e) {
+	    		return new ResponseEntity<>(HttpStatus.NOT_FOUND); 		
 	    	}
-	    	return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+	    	
 	    }
 	    @PutMapping("/RefuseSupplier")
 	    public  ResponseEntity<?> RefuseSupplier(@RequestParam("id") Long supplierId) {

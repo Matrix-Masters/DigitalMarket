@@ -58,6 +58,9 @@ public class GererSupplierService {
 	    public InfoUser RefuseSupplier(Long supplierId) {
 	        InfoUser infouser=Userrepo.findById(supplierId).orElse(null);
 	        if(infouser!=null) {
+	        	JSONObject jsonUser=new JSONObject();
+	            jsonUser.appendField("email",infouser.getEmail());
+	        	nodeSync.RefuseSupplier(jsonUser);
 	        	infouser.setStatus(2);
 	        	Userrepo.save(infouser);
 	            return infouser;
