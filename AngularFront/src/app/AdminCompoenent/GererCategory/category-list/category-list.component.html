@@ -1,19 +1,24 @@
 <app-side-bar-comp>
     <app-navbar-comp></app-navbar-comp>
-    <div class="container">
-    <div class="paper">
+    
+    <div class="container" >
+    <div class="paper" *ngFor="let item of this.categories">
       
-        <button class="delete-button">
+        <button class="delete-button" (click)="DeleteCategory($event,item.id)">
             -
           </button>
-        <img src="../../../assets/DIGITAL MARKET logo.png" class="poster"> 
+          <img [src]="item.image"  class="card-image"> 
         <div class="divider"></div>
         <br>
-        <h1>Category Name</h1>
+        <h1>{{item.nom}}</h1>
         <hr>
         <button class="btn" (click)="openPopup()">Modify</button>
         <div class="space"></div>
       </div>
+      
+
+      
+
 
       <!-- update category popup page -->
         
