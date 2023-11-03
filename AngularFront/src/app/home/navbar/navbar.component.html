@@ -15,7 +15,7 @@
     <button class="navbar-toggler" mat-button [matMenuTriggerFor]="aboveMenu" >
          <i class="bi bi-list" style="font-size: 35px;"></i>
         <mat-menu #aboveMenu="matMenu" yPosition="above">
-          <button mat-menu-item> <i class="bi bi-cart-fill menu-boredered"></i>Cart</button>
+          <button mat-menu-item routerLink="/cart"> <i class="bi bi-cart-fill menu-boredered"></i>Cart</button>
           <button mat-menu-item><i class="bi bi-person-circle menu-boredered"></i>User</button>
           <button mat-menu-item><i class="bi bi-shop menu-boredered"></i>Become vendor</button>
           <mat-divider></mat-divider>
@@ -37,7 +37,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
         <ul>
-          <button mat-button><li class="bordered"><i class="bi bi-cart-fill"></i>Cart</li></button>
+          <button mat-button routerLink="/cart"><li class="bordered"><i class="bi bi-cart-fill"></i>Cart</li></button>
           <button mat-button><li class="bordered"><i class="bi bi-shop"></i>Become vendor</li></button>
           <button mat-button [matMenuTriggerFor]="auth"><li><i class="bi bi-person-circle"></i>User</li></button>
           <mat-menu #auth="matMenu">
