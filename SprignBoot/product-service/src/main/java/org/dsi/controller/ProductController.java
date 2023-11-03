@@ -272,9 +272,12 @@ public class ProductController {
 			@RequestParam(name = "page", defaultValue = "0") int page,
 			@RequestParam(name = "per_page", defaultValue = "2") int size,
 			@RequestParam(name = "search", defaultValue = "") String name,
-			@RequestParam(name = "prix", defaultValue = "0") double prix){
+			@RequestParam(name = "min", defaultValue = "0") double min,
+			@RequestParam(name = "max", defaultValue = "0") double max){
 		
-
+		if(max==0) {
+			max=ProductRepo.getMaxPrice();
+		}
 		
 		if (page < 0 || size <= 0 ) {
 	        return ResponseEntity.badRequest().body("Invalid page or per_page values.");
@@ -283,17 +286,17 @@ public class ProductController {
 		try {
 	        Page<Product> products;
 	        
-	        if(prix !=0 && name.isEmpty()==true) {
+	        if(min !=0 && name.isEmpty()==true) {
 	        	
-	        	products=ProductRepo.getProductByCategoryPaginatePrice(cat_id,prix,PageRequest.of(page, size));
+	        	products=ProductRepo.getProductByCategoryPaginatePrice(cat_id,min,max,PageRequest.of(page, size));
 	        	
-	        }else if(prix ==0 && name.isEmpty()==false) {
+	        }else if(min ==0 && name.isEmpty()==false) {
 	        	
 	        	products=ProductRepo.getProductByCategoryPaginateSearch(cat_id,name,PageRequest.of(page, size));
 	        	
-	        }else if(prix !=0 && name.isEmpty()==false) {
+	        }else if(min !=0 && name.isEmpty()==false) {
 	        	
-	        	products=ProductRepo.getProductByCategoryPaginatePriceSearch(cat_id,prix,name,PageRequest.of(page, size));
+	        	products=ProductRepo.getProductByCategoryPaginatePriceSearch(cat_id,min,max,name,PageRequest.of(page, size));
 	        	
 	        }else {
 	        	
