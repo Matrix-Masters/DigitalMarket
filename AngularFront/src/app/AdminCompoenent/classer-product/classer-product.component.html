@@ -15,27 +15,27 @@
         
         <div class="popup" [class.open]="isPopupOpen">
           <div class="popup-content">
-            <form action method="post">
+            <form (ngSubmit)="AddCategory()">
   
               <h1 style="text-align: center;color: #272343;"><strong>Add Category Page</strong></h1>
               
               <div class="form-group">
                 <label for="title">Name </label>
-                <input type="text" name="title" id="title" class="form-controll"/>
+                <input type="text" [(ngModel)]="Categname" name="name" id="title" class="form-controll"/>
               </div>
               
               
               <div class="form-group file-area">
                     <label for="images">Image <span>The maximum allowable size for your image is 4 MB</span></label>
-                <input type="file" name="images" id="images" required="required" multiple="multiple" (change)="onFileSelected($event)"/>
+                <input type="file"  name="image" id="images" required="required" multiple="multiple"  (change)="onInputChanged($event)"/>
                 <div class="file-dummy">
-                  <div class="success" *ngIf="!fileTooLarge">Great, your image are selected. Keep on.</div>
+                  <div class="success" *ngIf="!fileTooLarge">Your image uploaded successfully</div>
                   <div class="default" *ngIf="fileTooLarge">Please select some files</div>
                 </div>
               </div>
               
               <div class="form-group">
-                <button type="submit">Upload image</button>
+                <button type="submit">Add Category</button>
               </div>
               
             </form>

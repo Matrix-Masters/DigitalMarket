@@ -127,6 +127,8 @@ export class ClasserProductComponent implements OnInit {
       });
     })
   }
+
+  //--------------category code----------------//
   isPopupOpen: boolean = false;
   openPopup() {
     this.isPopupOpen = true;
@@ -154,9 +156,42 @@ export class ClasserProductComponent implements OnInit {
       console.log("file small")
     }
   }
+  Categname!:String
+  image!:String
+  onInputChanged(event: any) {
+    const fileInput = event.target;
+    if (fileInput.files && fileInput.files[0]) {
+      const file: File = fileInput.files[0];
+      const fileReader: FileReader = new FileReader();
   
+      fileReader.onload = (e) => {
+        this.image = fileReader.result as string; // Convert the result to a string
+      };
+  
+      fileReader.readAsDataURL(file); // Read the file as a data URL (base64)
+    }
+    console.log(this.image);
+  }
+  AddCategory() {
+    var CategData = {
+      nom: this.Categname,
+      image: this.image
+    }
+    console.log(CategData);
+    this.AdminServiceService.AddCategory(CategData).subscribe({
+      next: (res: any) => {
+        console.log(res, 'response');
+      },
+      error: (err: any) => {
+        console.log(err, 'errors');
+      }
+    });
+  }
   
 }
+  //--------------end of category code----------------//
+  
+
 
 @Component({
   selector: 'AlertDialog',
