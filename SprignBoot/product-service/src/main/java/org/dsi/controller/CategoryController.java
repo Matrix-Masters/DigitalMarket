@@ -22,18 +22,23 @@ public class CategoryController {
 	
 	@Autowired
 	CategoryRepo cateRepo;
-	
+
 
 	@PostMapping("/AddCat")
-	public ResponseEntity<?> AddCategory(@RequestBody Category cat){
+	public ResponseEntity<?> AddCategory(@RequestBody Category cat) {
+		if (cat.getNom() == null || cat.getNom().isEmpty()) {
+			return new ResponseEntity<>("Category name cannot be empty", HttpStatus.BAD_REQUEST);
+		}
+
 		try {
 			ServiceCat.AddCategory(cat);
 			return ResponseEntity.ok("Category Added");
-		}catch (Exception e) {
-			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
+		} catch (Exception e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
 		}
 	}
-	
+
+
 	@GetMapping("/getCatg")
 	public List<Category> getCat() {
 		return cateRepo.findAll();
