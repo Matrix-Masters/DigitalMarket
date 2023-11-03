@@ -20,6 +20,7 @@ deleteProduct(product:any){
   this.productServiceStorage.deleteProduct(product)
   this.location.replaceState('/cart');
   location.reload();
+  this.productServiceStorage.clearProductList();
 }
 
 ngOnInit(): void {
