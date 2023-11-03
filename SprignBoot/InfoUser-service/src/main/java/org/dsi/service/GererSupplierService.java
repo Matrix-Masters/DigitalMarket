@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.dsi.entity.InfoUser;
+import org.dsi.repo.NodeSync;
 import org.dsi.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,16 +17,20 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.FileTemplateResolver;
 
+import net.minidev.json.JSONObject;
+
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 @Service
 public class GererSupplierService {
-	 @Autowired
+	 	@Autowired
 	    private JavaMailSender emailSender;
 		private TemplateEngine templateEngine;
 	    @Autowired
 	    private UserRepo Userrepo;
+	    @Autowired
+		NodeSync nodeSync;
 	    @Autowired
 	    public GererSupplierService(JavaMailSender emailSender, TemplateEngine templateEngine) {
 	        this.emailSender = emailSender;
@@ -36,16 +41,19 @@ public class GererSupplierService {
 	        return Userrepo.findByRole("Supplier");
 	    }
 	    
-	    public InfoUser verifySupplier(Long supplierId) {
-	        InfoUser infouser=Userrepo.findById(supplierId).orElse(null);
-	        try {
-	        	infouser.setStatus(1);
-	        	Userrepo.save(infouser);
+	    public void verifySupplier(Long supplierId)throws Exception {
+	        	InfoUser infouser=Userrepo.getUserById(supplierId);
+	        	if(infouser==null) {
+	        		throw new Exception("User not found");
+	        	}else {
 	            sendVerificationEmail(infouser);
-	            return infouser;
-	        } catch (MessagingException e) {
-	          return null;
+	            JSONObject jsonUser=new JSONObject();
+	            jsonUser.appendField("email",infouser.getEmail());
+	            nodeSync.AcceptUser(jsonUser);
+	            infouser.setStatus(1);
+	        	Userrepo.save(infouser);
 	        }
+	        
 	    }
 	    public InfoUser RefuseSupplier(Long supplierId) {
 	        InfoUser infouser=Userrepo.findById(supplierId).orElse(null);
@@ -73,6 +81,7 @@ public class GererSupplierService {
 
 	        emailSender.send(message);
 	    }
+	    
 	    public List<InfoUser> getFilteredUsers(String search, int status, Timestamp date) {
 	    	return Userrepo.findFilteredSuppliers(search,status,date);
 	        
