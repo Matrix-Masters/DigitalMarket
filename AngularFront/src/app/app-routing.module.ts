@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home/home.component';
 import { DashboardComponent } from './AdminCompoenent/dashboard/dashboard.component';
 import { LocationCommandeComponent } from './ClientComponent/location-commande/location-commande.component';
 import { AccueilClientComponent } from './AccueilClient/accueil-client/accueil-client.component';
+import { AccueilCartComponent } from './AccueilClient/accueil-cart/accueil-cart.component';
 
 const routes: Routes = [
    {path:'',component:HomeComponent},
@@ -15,6 +16,7 @@ const routes: Routes = [
    {path:'client',component:LocationCommandeComponent},
    { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
    {path:'categories/:id',component:AccueilClientComponent},
+   {path:'cart',component:AccueilCartComponent},
 ]
 
 
