@@ -38,7 +38,7 @@ export const addCommande = async (req: Request, res: Response) => {
         });
 
         const commandeSaved = await commande.save();
-        // test worked :) add commande for chaque commande null
+        // test worked :) add commande for every null commande
         for (let i = 0; i < ligneCommandes.length; i++) {
             await LigneCommande.findByIdAndUpdate(ligneCommandes[i], { Commande_id: commandeSaved._id });
         }

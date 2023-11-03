@@ -82,13 +82,22 @@ InitMap(){
       this.map = L.map('map',{
         zoom: 13
       }).setView([position.coords.latitude,position.coords.longitude], 13);
-
       this.marker = L.marker([position.coords.latitude,position.coords.longitude], {
         icon: L.icon({
           iconUrl: '../../../assets/location.svg',
           iconSize: [20, 30],
         })
       }).addTo(this.map);
+      
+      this.LocationClientService.getLocate(position.coords.latitude, position.coords.longitude).subscribe((res:any) => {
+        this.CurrentLocation.emit({ lat: position.coords.latitude, lng: position.coords.longitude , name:res.results[0].formatted});
+         var popup = L.popup();
+          popup
+            .setContent(
+                "Address : "+res.results[0].formatted)
+            .openOn(this.map);
+          });
+
       var openstreetmap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       });
