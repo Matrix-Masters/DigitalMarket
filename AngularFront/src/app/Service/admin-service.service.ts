@@ -53,5 +53,21 @@ export class AdminServiceService {
   RejectProduct(id:number){
     return this.http.put(`${port}/PRODUCT-SERVICE/products/RejectProduct?id=${id}`,{});
   }
+  //-----category requests------//
+
+  AddCategory(CategData : object){
+    return this.http.post(`${port}/PRODUCT-SERVICE/categories/AddCat`,CategData);
+
+  }
+  destroyCategory(CategoryId : Number)
+{
+  return this.http.delete(`${port}/PRODUCT-SERVICE/categories/DeleteCategoryById/${CategoryId}`)
+}
 
 }
+export interface CategoryResponse {
+  "nom": String
+  "image": String
+  "id":Number
+}
+
