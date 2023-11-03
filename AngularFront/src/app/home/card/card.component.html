@@ -4,12 +4,12 @@
   <mat-card-content class="py-1 comic category">{{products['category']['nom']}}</mat-card-content>
   <mat-card-content class="py-1 comic price" style="color: rgb(17, 150, 17);">{{products['prix']}} TND</mat-card-content>
   <div class="d-flex justify-content-center">
-    <button mat-flat-button class="buy" style="margin-top: 5px;width: 60%;border-radius: 25px;">Buy</button>
+    <button mat-flat-button class="buy" style="margin-top: 5px;width: 60%;border-radius: 25px;" (click)="addProduct(products)">Buy</button>
     <button mat-icon-button (click)="toggleFavorite()" class="">
       <mat-icon [style.color]="isFavorite? 'red' : 'gray'" mat-fab>favorite</mat-icon>
     </button>
   </div>
   <div class="new" *ngIf="new">
-    <p>new product</p>
+    <p (click)="clear()">new product</p>
   </div>
 </mat-card>

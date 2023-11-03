@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ProductServiceService } from 'src/app/Service/product-service.service';
-import { PageEvent } from '@angular/material/paginator';
+
 interface carouselImage{
   imageSrc: string;
   imageAlt: string;
