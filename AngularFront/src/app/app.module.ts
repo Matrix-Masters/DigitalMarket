@@ -20,7 +20,11 @@ import { DialogInfoComponent } from './AdminCompoenent/classer-product/dialog-in
 import { SideBarCompComponent } from './Layout/side-bar-comp/side-bar-comp.component';
 import { NavbarCompComponent } from './Layout/navbar-comp/navbar-comp.component';
 import { DashboardComponent } from './AdminCompoenent/dashboard/dashboard.component';
+import { GererSupplierComponent } from './AdminCompoenent/GererSuppliersComponents/gerer-supplier/gerer-supplier.component';
+import { CommonModule } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { LocationCommandeComponent } from './ClientComponent/location-commande/location-commande.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +41,7 @@ import { LocationCommandeComponent } from './ClientComponent/location-commande/l
     SideBarCompComponent,
     NavbarCompComponent,
     DashboardComponent,
+    GererSupplierComponent
     LocationCommandeComponent
   ],
   imports: [
@@ -48,8 +53,12 @@ import { LocationCommandeComponent } from './ClientComponent/location-commande/l
     ReactiveFormsModule,
     DragDropModule,
     HttpClientModule,
+    CommonModule
   ],
-  providers: [],
+  providers: [
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
