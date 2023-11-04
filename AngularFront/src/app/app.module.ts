@@ -24,12 +24,8 @@ import { GererSupplierComponent } from './AdminCompoenent/GererSuppliersComponen
 import { CommonModule } from '@angular/common';
 import { DatePipe } from '@angular/common';
 import { LocationCommandeComponent } from './ClientComponent/location-commande/location-commande.component';
-<<<<<<< HEAD
 import { NotFoundComponentComponent } from './notfound/not-found-component/not-found-component.component';
 import { CommandeComponent } from './ClientComponent/commande/commande.component';
-=======
-
->>>>>>> 26393bb2f8100c7a6947cec8fa75e30a2d43255a
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,14 +42,11 @@ import { CommandeComponent } from './ClientComponent/commande/commande.component
     SideBarCompComponent,
     NavbarCompComponent,
     DashboardComponent,
-<<<<<<< HEAD
     LocationCommandeComponent,
     NotFoundComponentComponent,
-    CommandeComponent
-=======
-    GererSupplierComponent
+    CommandeComponent,
+    GererSupplierComponent,
     LocationCommandeComponent
->>>>>>> 26393bb2f8100c7a6947cec8fa75e30a2d43255a
   ],
   imports: [
     BrowserModule,

@@ -24,11 +24,8 @@
     "aos": "^2.3.4",
     "bootstrap": "^5.3.2",
     "bootstrap-icons": "^1.11.1",
-<<<<<<< HEAD
     "canvas-confetti": "^1.9.0",
-=======
     "md5": "^2.3.0",
->>>>>>> 26393bb2f8100c7a6947cec8fa75e30a2d43255a
     "leaflet": "^1.9.4",
     "leaflet-control-geocoder": "^2.4.0",
     "leaflet-routing-machine": "^3.2.12",
