@@ -20,7 +20,7 @@ $color-shadow:transparentize(#303336, .9);
   .paper {
     min-width: 20vw;
     max-width: 20%;
-    min-height: 20vh;
+    height: 20vw; 
     border-radius: 4px;
     box-shadow: 0 15px 35px rgba(50, 50, 90, .1), 0 5px 15px rgba(0, 0, 0, .07);
     transition: .6s ease;
@@ -32,12 +32,12 @@ $color-shadow:transparentize(#303336, .9);
     img.poster {
       max-width: 100%;
       max-height: 100%;
-      object-fit: cover; /* This will make the image cover the container while maintaining aspect ratio */
+      object-fit: cover; 
   }
   .card-image {
-    width: 100%; /* The image width will be equal to the card width */
-    height: 60%; /* Adjust the height as needed, e.g., 60% of the card height */
-    object-fit: cover; /* Maintain aspect ratio and cover the container */
+    width: 100%;
+    height: 50%;
+    object-fit: cover; 
 }
 
     .divider {
@@ -70,10 +70,10 @@ body {
 
 
 h1 {
-  font-size: 30px;
+  font-size: 24px;
   color: #303336;
-  letter-spacing: 1px;
-  margin: 30px 40px;
+  letter-spacing: 0.5px;
+  
   font-family: $serif;
 }
 
@@ -112,36 +112,24 @@ a.btn {
   text-transform: uppercase;
   cursor: pointer;
   text-decoration: none;
-  line-height: 20px;
-  border-radius: 4px;
-  padding: 1vh 2vh;
+  border-radius: 4px; 
   letter-spacing: .02rem;
 background: #272343;
   color:white;
+  width: 150px;
   font-family:$san-serif;
   font-size:.8rem;
   box-shadow:0 0px 0px $color-shadow,
 0 0px 0px rgba(0, 0, 0, 0);
+transition: background-color 0.3s;
 }
-
-.btn,
+.btn:hover,
 a.btn:hover {
-  background: #272343;
-  box-shadow:0 7px 14px $color-shadow,
-0 3px 6px rgba(0, 0, 0, .08);
-  transform: translateY(-1px);
+  background: #3f3560; /* Change the background color on hover */
 }
 
-.btn,
-a.btn:active {
-  box-shadow:0 4px 6px $color-shadow,
-0 1px 3px rgba(0, 0, 0, .12);
-  transform: translateY(1px);
-}
 
-.space{
-  height:4vh;
-}
+
 .delete-button {
     position: absolute;
     top: 10px; 
