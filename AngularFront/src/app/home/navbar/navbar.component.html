@@ -5,7 +5,7 @@
         <mat-menu #aboveMenu="matMenu" yPosition="above">
           <button mat-menu-item> <i class="bi bi-cart-fill menu-boredered"></i>Cart</button>
           <button mat-menu-item><i class="bi bi-person-circle menu-boredered"></i>User</button>
-          <button mat-menu-item><i class="bi bi-shop menu-boredered"></i>Become vendor</button>
+          <button mat-menu-item routerLink="/auth/signup/Supplier"><i class="bi bi-shop menu-boredered" ></i>Become vendor</button>
           <mat-divider></mat-divider>
           <mat-list role="list">
             <mat-list-item ><span class="list-title" style="margin-right: 10px;">Categories</span><i class="bi bi-arrow-down" style="font-size: 20px;"></i> </mat-list-item>
@@ -27,7 +27,7 @@
         <ul>
           <li class="bordered"><i class="bi bi-cart-fill"></i>Cart</li>
           <li class="bordered"><i class="bi bi-person-circle"></i>User</li>
-          <li><i class="bi bi-shop"></i>Become vendor</li>
+          <li routerLink="/auth/signup/Supplier"><i class="bi bi-shop"></i>Become vendor</li>
         </ul>
       </div>
     </div>
