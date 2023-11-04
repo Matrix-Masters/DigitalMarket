@@ -59,15 +59,18 @@ export class AdminServiceService {
     return this.http.post(`${port}/PRODUCT-SERVICE/categories/AddCat`,CategData);
 
   }
-  destroyCategory(CategoryId : Number)
-{
-  return this.http.delete(`${port}/PRODUCT-SERVICE/categories/DeleteCategoryById/${CategoryId}`)
+  destroyCategory(id: any) {
+    return this.http.delete(`${port}/PRODUCT-SERVICE/categories/DeleteCategoryById?id=${id}`);
+  }
+  
+updateCategory(CategoryId: any, Category:CategoryResponse) {
+  const url = `${port}/PRODUCT-SERVICE/categories/updateCategorie?id=${CategoryId}`;
+  return this.http.post(url, Category);
 }
-
 }
 export interface CategoryResponse {
-  "nom": String
-  "image": String
-  "id":Number
+  nom: any
+  image: any
+  id:any
 }
 

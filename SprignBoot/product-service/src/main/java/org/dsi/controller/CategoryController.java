@@ -32,7 +32,8 @@ public class CategoryController {
 
 		try {
 			ServiceCat.AddCategory(cat);
-			return ResponseEntity.ok("Category Added");
+
+			return new ResponseEntity<String>("Category Added",HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
 		}
@@ -88,7 +89,7 @@ public class CategoryController {
 	}
 
 
-	@PostMapping("/updateCategorie")
+		@PostMapping("/updateCategorie")
 	public ResponseEntity<?> updateCategorie(@RequestParam("id") Long id, @RequestBody Category newCategory) {
 
 		try {
@@ -102,6 +103,7 @@ public class CategoryController {
 			} else {
 
 				updatedCategory.setNom(newCategory.getNom());
+				updatedCategory.setImage(newCategory.getImage());
 				cateRepo.save(updatedCategory);
 				return ResponseEntity.ok("Category  updated successfuly ");
 

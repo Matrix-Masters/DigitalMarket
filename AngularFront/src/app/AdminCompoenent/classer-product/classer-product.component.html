@@ -27,7 +27,7 @@
               
               <div class="form-group file-area">
                     <label for="images">Image <span>The maximum allowable size for your image is 4 MB</span></label>
-                <input type="file"  name="image" id="images" required="required" multiple="multiple"  (change)="onInputChanged($event)"/>
+                <input type="file"  name="image" id="images" required="required" multiple="multiple"  (change)="onFileChanged($event)"/>
                 <div class="file-dummy">
                   <div class="success" *ngIf="!fileTooLarge">Your image uploaded successfully</div>
                   <div class="default" *ngIf="fileTooLarge">Please select some files</div>

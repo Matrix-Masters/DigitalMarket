@@ -146,7 +146,7 @@ export class ClasserProductComponent implements OnInit {
 
   onFileSelected(event: any) {
     const files = event.target.files as File[];
-    const maxSize = 4 * 1024 * 1024; 
+    const maxSize = 1 * 1024 * 1024; 
   
     const fileTooLarge = files.some((file: File) => file.size > maxSize);
   
@@ -158,19 +158,16 @@ export class ClasserProductComponent implements OnInit {
   }
   Categname!:String
   image!:String
-  onInputChanged(event: any) {
-    const fileInput = event.target;
-    if (fileInput.files && fileInput.files[0]) {
-      const file: File = fileInput.files[0];
-      const fileReader: FileReader = new FileReader();
-  
-      fileReader.onload = (e) => {
-        this.image = fileReader.result as string; // Convert the result to a string
-      };
-  
-      fileReader.readAsDataURL(file); // Read the file as a data URL (base64)
-    }
-    console.log(this.image);
+
+  onFileChanged(event: any) {
+    const file = event.target.files[0];
+    
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.image = reader.result as string;
+    };
+    
   }
   AddCategory() {
     var CategData = {
@@ -181,9 +178,11 @@ export class ClasserProductComponent implements OnInit {
     this.AdminServiceService.AddCategory(CategData).subscribe({
       next: (res: any) => {
         console.log(res, 'response');
+        
       },
       error: (err: any) => {
         console.log(err, 'errors');
+        alert('Category added successfully');
       }
     });
   }

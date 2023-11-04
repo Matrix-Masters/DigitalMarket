@@ -26,7 +26,7 @@ public class Category {
     @Column(nullable = false)
     private String nom;
 
-    @Column(nullable = false, length = 429496729)
+    @Column(length = 999999999)
     private String image;
     
     @OneToMany(mappedBy = "category", cascade = CascadeType.REMOVE,  fetch = FetchType.EAGER)

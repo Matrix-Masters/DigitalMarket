@@ -4,53 +4,48 @@
     <div class="container" >
     <div class="paper" *ngFor="let item of this.categories">
       
-        <button class="delete-button" (click)="DeleteCategory($event,item.id)">
-            -
-          </button>
+      <button class="delete-button" (click)="DeleteCategory(item.id)">
+        -
+      </button>
+      
           <img [src]="item.image"  class="card-image"> 
         <div class="divider"></div>
         <br>
         <h1>{{item.nom}}</h1>
         <hr>
-        <button class="btn" (click)="openPopup()">Modify</button>
+        <button class="btn" (click)="openPopup(item.id)">Modify</button>
         <div class="space"></div>
       </div>
       
-
-      
-
 
       <!-- update category popup page -->
         
       <div class="popup" [class.open]="isPopupOpen">
         <div class="popup-content">
-          <form action method="post">
-
-            <h1 style="text-align: center;color: #272343;"><strong>Modify Category </strong></h1>
-            
-            <div class="form-group">
-              <label for="title">Name </label>
-              <input type="text" name="title" id="title" class="form-controll"/>
+          <form (ngSubmit)="updateCategory()" #categoryForm="ngForm">
+            <h1 style="text-align: center; color: #272343;"><strong>Modify Category</strong></h1>
+      
+            <div class="form-group" *ngIf="selectedCategory">
+              <label for="title">Name</label>
+              <input type="text" name="title" id="title" class="form-controll" [(ngModel)]="selectedCategory.nom" required>
             </div>
-            
-            
-            <div class="form-group file-area">
-                  <label for="images">Image <span>The maximum allowable size for your image is 4 MB</span></label>
-              <input type="file" name="images" id="images" required="required" multiple="multiple" (change)="onFileSelected($event)"/>
+      
+            <div class="form-group file-area" *ngIf="selectedCategory">
+              <label for="images">Image <span>The maximum allowable size for your image is 4 MB</span></label>
+              <input type="file" name="image" id="images" multiple="multiple" required (change)="onFileChanged($event)">
               <div class="file-dummy">
-                <div class="success" *ngIf="!fileTooLarge">Great, your image are selected. Keep on.</div>
-                <div class="default" *ngIf="fileTooLarge">Please select some files</div>
+                <div class="success">Great, your image is selected. Keep on.</div>
+                <div class="default">Please select some files</div>
               </div>
             </div>
-            
             <div class="form-group">
               <button type="submit">Save Changes</button>
             </div>
-            
           </form>
         </div>
         <button class="close" (click)="closePopup()">Close</button>
       </div>
+      
       
 
     </div>
