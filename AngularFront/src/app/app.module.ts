@@ -23,6 +23,8 @@ import { DashboardComponent } from './AdminCompoenent/dashboard/dashboard.compon
 import { GererSupplierComponent } from './AdminCompoenent/GererSuppliersComponents/gerer-supplier/gerer-supplier.component';
 import { CommonModule } from '@angular/common';
 import { DatePipe } from '@angular/common';
+import { LocationCommandeComponent } from './ClientComponent/location-commande/location-commande.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +42,7 @@ import { DatePipe } from '@angular/common';
     NavbarCompComponent,
     DashboardComponent,
     GererSupplierComponent
+    LocationCommandeComponent
   ],
   imports: [
     BrowserModule,

@@ -162,7 +162,6 @@ export class SignupComponent {
           this.imageError="";
           this.PythonServiceService.AddPhoto(this.imageCin).subscribe((res:any)=>{
           this.AuthServiceService.AdddUser(
-              this.SignUpForm.value['RoleFor'],
               {
                 "password": this.SignUpForm.value['Password'],
                 "photoCin": this.image,
@@ -173,6 +172,7 @@ export class SignupComponent {
                 "sexe":this.SignUpForm.value['Sex'],
                 "firstName":this.SignUpForm.value['FirstName'],
                 "photo":null,
+                "role":this.SignUpForm.value['RoleFor']
               }
             ).subscribe((res:any)=>{
                 this.SignUpForm.reset();
@@ -193,7 +193,6 @@ export class SignupComponent {
         }
       }else{
         this.AuthServiceService.AdddUser(
-          this.SignUpForm.value['RoleFor'],
           {
             "password": this.SignUpForm.value['Password'],
             "lastName": this.SignUpForm.value['LastName'],
@@ -202,6 +201,7 @@ export class SignupComponent {
             "sexe":this.SignUpForm.value['Sex'],
             "firstName":this.SignUpForm.value['FirstName'],
             "photo":null,
+            "role":this.SignUpForm.value['RoleFor']
           }
         ).subscribe((res:any)=>{
             console.log(res);

@@ -7,7 +7,7 @@
                         <mat-form-field appearance="outline">
                             <mat-label>Enter FirstName</mat-label>
                             <input matInput [formControl]="FirstNameForm">
-                            <mat-icon matSuffix style="color:#bda179" >
+                            <mat-icon matSuffix  [style.color]="FirstNameForm.invalid ? '#bda179' : 'green'" >
                                 {{FirstNameForm.invalid ? 'sentiment_very_dissatisfied' : 'sentiment_very_satisfied'}}
                             </mat-icon>
                             <mat-error *ngIf="FirstNameForm.invalid">{{getFirstNameFormError()}}</mat-error>
@@ -17,7 +17,7 @@
                         <mat-form-field appearance="outline">
                             <mat-label>Enter LastName</mat-label>
                             <input matInput [formControl]="LastNameForm">
-                            <mat-icon matSuffix style="color:#bda179">
+                            <mat-icon matSuffix  [style.color]="LastNameForm.invalid ? '#bda179' : 'green'">
                                 {{LastNameForm.invalid ? 'sentiment_very_dissatisfied' : 'sentiment_very_satisfied'}}
                             </mat-icon>
                             <mat-hint></mat-hint>
@@ -30,7 +30,7 @@
                         <mat-form-field appearance="outline">
                             <mat-label>Enter Email</mat-label>
                             <input matInput [formControl]="EmailForm">
-                            <mat-icon matSuffix style="color:#bda179">
+                            <mat-icon matSuffix  [style.color]="EmailForm.invalid ? '#bda179' : 'green'">
                                 {{EmailForm.invalid ? 'sentiment_very_dissatisfied' : 'sentiment_very_satisfied'}}
                             </mat-icon>
                             <mat-hint></mat-hint>
@@ -41,7 +41,7 @@
                         <mat-form-field appearance="outline">
                             <mat-label>Enter Password</mat-label>
                             <input matInput [type]="visibility ? 'text' :'password'"  [formControl]="passwordForm">
-                            <mat-icon matSuffix style="color:#bda179" (click)="visibility=!visibility">
+                            <mat-icon matSuffix  [style.color]="'#bda179'" (click)="visibility=!visibility">
                                 {{visibility ? 'visibility_off' : 'visibility'}}
                             </mat-icon>
                             <mat-hint></mat-hint>
@@ -63,7 +63,7 @@
                         <mat-form-field appearance="outline">
                             <mat-label>Enter Phone</mat-label>
                             <input matInput [formControl]="NumTlfForm">
-                            <mat-icon matSuffix style="color:#bda179">
+                            <mat-icon matSuffix [style.color]="NumTlfForm.invalid ? '#bda179' : 'green'">
                               {{NumTlfForm.invalid ? 'sentiment_very_dissatisfied' : 'sentiment_very_satisfied'}}
                             </mat-icon>
                             <mat-error *ngIf="NumTlfForm.invalid">{{getNumTlfFormError()}}</mat-error>
