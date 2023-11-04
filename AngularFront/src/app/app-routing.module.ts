@@ -4,6 +4,7 @@ import { ClasserProductComponent } from './AdminCompoenent/classer-product/class
 import { GererProduitComponent } from './AdminCompoenent/GererProduitComponents/gerer-produit/gerer-produit.component';
 import { HomeComponent } from './home/home/home.component';
 import { DashboardComponent } from './AdminCompoenent/dashboard/dashboard.component';
+import { GererSupplierComponent } from './AdminCompoenent/GererSuppliersComponents/gerer-supplier/gerer-supplier.component';
 import { LocationCommandeComponent } from './ClientComponent/location-commande/location-commande.component';
 import { NotFoundComponentComponent } from './notfound/not-found-component/not-found-component.component';
 import { CommandeComponent } from './ClientComponent/commande/commande.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
    {path:'classer',component:ClasserProductComponent},
    {path:"dash",component:DashboardComponent},
    {path:'gererProduit',component:GererProduitComponent},
+   {path:'gererSupplier',component:GererSupplierComponent},
    {path:'client',component:LocationCommandeComponent},
    {path:'Commande',component:CommandeComponent},
    { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },

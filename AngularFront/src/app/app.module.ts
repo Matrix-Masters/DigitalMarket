@@ -20,9 +20,16 @@ import { DialogInfoComponent } from './AdminCompoenent/classer-product/dialog-in
 import { SideBarCompComponent } from './Layout/side-bar-comp/side-bar-comp.component';
 import { NavbarCompComponent } from './Layout/navbar-comp/navbar-comp.component';
 import { DashboardComponent } from './AdminCompoenent/dashboard/dashboard.component';
+import { GererSupplierComponent } from './AdminCompoenent/GererSuppliersComponents/gerer-supplier/gerer-supplier.component';
+import { CommonModule } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { LocationCommandeComponent } from './ClientComponent/location-commande/location-commande.component';
+<<<<<<< HEAD
 import { NotFoundComponentComponent } from './notfound/not-found-component/not-found-component.component';
 import { CommandeComponent } from './ClientComponent/commande/commande.component';
+=======
+
+>>>>>>> 26393bb2f8100c7a6947cec8fa75e30a2d43255a
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,9 +46,14 @@ import { CommandeComponent } from './ClientComponent/commande/commande.component
     SideBarCompComponent,
     NavbarCompComponent,
     DashboardComponent,
+<<<<<<< HEAD
     LocationCommandeComponent,
     NotFoundComponentComponent,
     CommandeComponent
+=======
+    GererSupplierComponent
+    LocationCommandeComponent
+>>>>>>> 26393bb2f8100c7a6947cec8fa75e30a2d43255a
   ],
   imports: [
     BrowserModule,
@@ -52,8 +64,12 @@ import { CommandeComponent } from './ClientComponent/commande/commande.component
     ReactiveFormsModule,
     DragDropModule,
     HttpClientModule,
+    CommonModule
   ],
-  providers: [],
+  providers: [
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

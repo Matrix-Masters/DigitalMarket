@@ -169,7 +169,6 @@ public class ProductController {
 				return ResponseEntity.ok("Product deleted successfully");
 			}
 		}catch(Exception e) {
-			
 			 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while deleting the product.");
 		}		
 	}
