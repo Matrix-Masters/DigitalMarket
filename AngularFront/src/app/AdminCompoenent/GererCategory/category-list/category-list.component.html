@@ -1,8 +1,13 @@
 <app-side-bar-comp>
     <app-navbar-comp></app-navbar-comp>
+    <div class="search">
+      <input placeholder="Search..." type="text" [(ngModel)]="CatName" (input)="searchCategories()">
+      <button type="submit" (click)="searchCategories() ">Go</button>
+    </div>
     
+
     <div class="container" >
-    <div class="paper" *ngFor="let item of this.categories">
+    <div class="paper" *ngFor="let item of filteredCategories.slice(pageIndex * pageSize, (pageIndex + 1) * pageSize)">
       
       <button class="delete-button" (click)="DeleteCategory(item.id)">
         -
@@ -50,11 +55,14 @@
 
     </div>
     <mat-paginator class="custom-paginator"
-    [length]="100"
-    [pageSize]="10"
-    [pageSizeOptions]="[5, 10, 25, 100]"
-    aria-label="Select page">
+  [length]="filteredCategories.length" 
+  [pageIndex]="pageIndex"
+  [pageSize]="pageSize"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+  (page)="onPageChange($event)" 
+  aria-label="Select page">
 </mat-paginator>
+
 
 
      

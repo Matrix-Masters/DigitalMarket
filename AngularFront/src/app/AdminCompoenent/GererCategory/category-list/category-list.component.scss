@@ -298,12 +298,48 @@ a.btn:hover {
 }
 }
 .custom-paginator {
-    background-color: transparent; /* or background-color: rgba(0,0,0,0); */
-    align-self: flex-end;
+  position: fixed;
+  bottom: 0;
+  right: 20px;
+  width: 100%;
+  background-color: transparent;
+}
+
+
+  .search {
+    display: inline-block;
+    position: relative;
+    margin: 10px 10px 40px 30px;
   }
-
-
-
+  
+  .search input[type="text"] {
+    width: 200px;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .search button[type="submit"] {
+    background-color: #272343;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 0;
+    right: 0;
+    transition: .9s ease;
+  }
+  
+  .search button[type="submit"]:hover {
+    transform: scale(1.1);
+    color: rgb(255, 255, 255);
+    background-color: #514887;
+  }
+  
    
    
    

@@ -67,6 +67,7 @@ updateCategory(CategoryId: any, Category:CategoryResponse) {
   const url = `${port}/PRODUCT-SERVICE/categories/updateCategorie?id=${CategoryId}`;
   return this.http.post(url, Category);
 }
+
 }
 export interface CategoryResponse {
   nom: any

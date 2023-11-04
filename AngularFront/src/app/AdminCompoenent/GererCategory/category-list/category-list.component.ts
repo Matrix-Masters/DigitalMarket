@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Category } from 'src/app/Model/Category';
 import { AdminServiceService , CategoryResponse} from 'src/app/Service/admin-service.service';
+import { MatPaginator } from '@angular/material/paginator';
+
 @Component({
   selector: 'app-category-list',
   templateUrl: './category-list.component.html',
@@ -53,18 +55,25 @@ export class CategoryListComponent {
   
     categories!:CategoryResponse[];
   constructor(private AdminServiceService :AdminServiceService){}
-
+  
+  pageIndex = 0;
+  pageSize = 10;
+  onPageChange(event: any) {
+    this.pageIndex = event.pageIndex;
+    this.pageSize = event.pageSize;
+  }
+  
   ngOnInit()
   {
     this.getCategoryList()
   }
-  getCategoryList()
-  {
-    this.AdminServiceService.getCategory().subscribe((res:any)=>{
-      console.log(res);
+  getCategoryList() {
+    this.AdminServiceService.getCategory().subscribe((res: any) => {
       this.categories = res;
+      this.filteredCategories = res;
     });
   }
+
 
   
   DeleteCategory(CategoryId: number) {
@@ -107,6 +116,17 @@ export class CategoryListComponent {
     }
   }
   
-  
+  CatName: string = '';
+  filteredCategories: CategoryResponse[] = [];
+  searchCategories() {
+    if (this.CatName) {
+      this.filteredCategories = this.categories.filter(
+        (category) =>
+          category.nom.toLowerCase().includes(this.CatName.toLowerCase())
+      );
+    } else {
+      this.filteredCategories = this.categories;
+    }
+  }
   
 }
