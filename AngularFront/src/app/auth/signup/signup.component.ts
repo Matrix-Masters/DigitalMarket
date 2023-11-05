@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { FormGroup,FormBuilder, FormControl, Validators } from '@angular/forms';
 import {MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
 import { AuthServiceService } from 'src/app/Service/auth-service.service';
 import { PythonServiceService } from 'src/app/Service/python-service.service';
 
@@ -10,13 +11,22 @@ import { PythonServiceService } from 'src/app/Service/python-service.service';
   styleUrls: ['./signup.component.scss']
 })
 
-export class SignupComponent {
+export class SignupComponent implements OnInit {
   
+
+  ngOnInit(): void {
+    this.ActivatedRoute.params.subscribe((res)=>{
+      if(res['role']!='null'){
+           this.role=res['role'];
+        }
+      })
+  }
   constructor(private formBuilder:FormBuilder,
       private AuthServiceService:AuthServiceService,
       private PythonServiceService:PythonServiceService,
-      private MatSnackBar:MatSnackBar
-      ) {
+      private MatSnackBar:MatSnackBar,
+      private ActivatedRoute:ActivatedRoute) 
+       {
  
     this.SignUpForm=this.formBuilder.group({
       FirstName:this.FirstNameForm,
@@ -25,22 +35,20 @@ export class SignupComponent {
       Password:this.passwordForm,
       NumTlf:this.NumTlfForm,
       Sex:this.SexForm,
-      RoleFor:this.RoleForFrom,
-  
+      //RoleFor:this.RoleForFrom,
     });
 
   }
  
  
 
-  NumTlfForm=new FormControl('',[Validators.required,Validators.minLength(8),Validators.maxLength(8)]);
+  NumTlfForm=new FormControl('',[Validators.required,Validators.minLength(8),Validators.maxLength(8),Validators.pattern("^[0-9]*$")]);
   FirstNameForm=new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(8)]);
   LastNameForm=new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(8)]);
   EmailForm=new FormControl('',[Validators.required,Validators.email]);
-  //Validators.pattern("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]+)$")
   passwordForm=new FormControl('',[Validators.required,Validators.minLength(8)]);
   SexForm=new FormControl('',[Validators.required]);
-  RoleForFrom=new FormControl('',[Validators.required]);
+ // RoleForFrom=new FormControl('',[Validators.required]);
 
   getFirstNameFormError(){
     if(this.FirstNameForm.touched){
@@ -81,12 +89,15 @@ export class SignupComponent {
 
         getNumTlfFormError(){
           if(this.NumTlfForm.touched){
+            console.log(this.NumTlfForm);
             if(this.NumTlfForm.hasError("required")){
                return 'You must enter a phone number';
             }else if(this.NumTlfForm.hasError("minlength")){
               return 'You must enter a valid phone number';  
             }else if(this.NumTlfForm.hasError("maxlength")){
               return 'You must enter a valid phone number';
+            }else if(this.NumTlfForm.hasError("pattern")){
+               return 'You must enter Just numbers';
             }
           }
           return '';
@@ -155,12 +166,11 @@ export class SignupComponent {
 
   SignUp(){
     if(this.SignUpForm.valid){
-      if(this.SignUpForm.value['RoleFor']=="Supplier"){
+      if(this.role=="Supplier"){
         if(this.image.length>0){
           this.imageError="";
           this.PythonServiceService.AddPhoto(this.imageCin).subscribe((res:any)=>{
           this.AuthServiceService.AdddUser(
-              this.SignUpForm.value['RoleFor'],
               {
                 "password": this.SignUpForm.value['Password'],
                 "photoCin": this.image,
@@ -171,6 +181,7 @@ export class SignupComponent {
                 "sexe":this.SignUpForm.value['Sex'],
                 "firstName":this.SignUpForm.value['FirstName'],
                 "photo":null,
+                "role":this.role
               }
             ).subscribe((res:any)=>{
                 this.SignUpForm.reset();
@@ -191,7 +202,6 @@ export class SignupComponent {
         }
       }else{
         this.AuthServiceService.AdddUser(
-          this.SignUpForm.value['RoleFor'],
           {
             "password": this.SignUpForm.value['Password'],
             "lastName": this.SignUpForm.value['LastName'],
@@ -200,6 +210,7 @@ export class SignupComponent {
             "sexe":this.SignUpForm.value['Sex'],
             "firstName":this.SignUpForm.value['FirstName'],
             "photo":null,
+            "role":this.role
           }
         ).subscribe((res:any)=>{
             console.log(res);

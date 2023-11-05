@@ -9,8 +9,8 @@ export class AuthServiceService {
   constructor(private http:HttpClient){
   }
   
-  AdddUser(role:any,user:any){
-      return this.http.post(`${port}/INFOUSER-SERVICE/addUserInfo?role=${role}`,user);
+  AdddUser(user:any){
+      return this.http.post(`${port}/INFOUSER-SERVICE/addUserInfo`,user);
   }
 
 }

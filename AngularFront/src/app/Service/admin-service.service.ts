@@ -49,11 +49,23 @@ export class AdminServiceService {
   PendingProducts(id:number){
     return this.http.put(`${port}/PRODUCT-SERVICE/products/PendingProducts?id=${id}`, {});
   }
-  // deja existe
+
   RejectProduct(id:number){
     return this.http.put(`${port}/PRODUCT-SERVICE/products/RejectProduct?id=${id}`,{});
   }
-  //-----category requests------//
+
+  getAllSuppliers(){
+    return this.http.get(`${port}/INFOUSER-SERVICE/GererSupplier/suppliers`);
+  }
+  getSuppliersFilter(search:string,status:number,Date:any){
+    return this.http.get(`${port}/INFOUSER-SERVICE/GererSupplier/filter?search=${search}&status=${status}&date_enter=${Date}`)
+  }
+  AcceptSupplier(id:number){
+    return this.http.put(`${port}/INFOUSER-SERVICE/GererSupplier/AcceptSupplier?id=${id}`,{})
+  }
+  RefuseSiupplier(id:number){
+    return this.http.put(`${port}/INFOUSER-SERVICE/GererSupplier/RefuseSupplier?id=${id}`,{})
+  }
 
   AddCategory(CategData : object){
     return this.http.post(`${port}/PRODUCT-SERVICE/categories/AddCat`,CategData);

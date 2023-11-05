@@ -1,7 +1,10 @@
 package org.dsi.entity;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,8 +17,6 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
-import com.sun.istack.Nullable;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -40,7 +41,6 @@ public class InfoUser {
 	
 	private String Photo;
 	
-	@Nullable
 	private String Cin;
 	
 	private String Sexe;
@@ -51,6 +51,9 @@ public class InfoUser {
 	@ColumnDefault(value="null")
 	private Boolean welcome_field; 
 	
+	@ColumnDefault(value = "0")
+	private Integer status;
+	
 	@ColumnDefault(value="null")
 	private String password_token;
 	
@@ -59,6 +62,9 @@ public class InfoUser {
 	
 	@CreationTimestamp
 	private Timestamp created_at;
+	
+	
+	private String role;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@ColumnDefault(value = "null")

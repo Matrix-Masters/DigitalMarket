@@ -1,9 +1,9 @@
-<div>
+<div class="all" style="z-index: 999999999999999;">
   <div class="product">
     <div class="modal fade" id="exampleModal" #exampleModal tabindex="-1" aria-labelledby="exampleModalLabel"
       aria-hidden="true" data-bs-backdrop="false">
-      <div class="modal-dialog modal-fullscreen">
-        <div class="modal-content" style="background-color: white;">
+      <div class="modal-dialog modal-fullscreen" style="width: fit-content;overflow-y: hidden;">
+        <div class="modal-content" style="background-color: white;width: 99%;">
           <div class="modal-header" style="background-color: #2E2C5E;">
             <h1 class="modal-title text-white">Product Details</h1>
             <button #closeBtn type="button" style="background-color: white;" class="btn-close text-white"
@@ -14,9 +14,9 @@
               <div class="col-8">
                 <div class="container shadow-lg">
                   <div class="row">
-                    <div class="col-4" style="height: 70vh;border-radius: 10px">
+                    <div class="col-4" style="height: 60vh;border-radius: 10px">
                       <img [src]="'http://localhost:8888/PRODUCT-SERVICE/products/images/'+Product['imageProduct']"
-                        height="400px" width="400px" />
+                        height="300px" width="300px" />
                       <div class="desciption">
                         <h3 class="text-black text-center" style="font-size: 20px; font-weight: bold;"> description : {{
                           Product['description'] }}</h3>
@@ -29,17 +29,22 @@
                       <div class="container">
                         <p class="text-center mt-5" style="font-size: 20px; font-weight: bold;">Quantity <span
                             class="ml-5" style="margin-left: 50%;">{{Product.quantite}}</span></p>
-                        <hr style="width: 450px;margin-left: 15%;height: 3px;
+                        <hr style="width: 450px;margin-left: 10%;height: 3px;
                         background-color: #2E2C5E;">
                         <p class="text-center mt-5" style="font-size: 20px; font-weight: bold;">Price <span class="ml-5"
                             style="margin-left: 50%;">{{Product.prix}} $</span></p>
-                        <hr style="width: 450px;margin-left: 15%;height: 3px;
+                        <hr style="width: 450px;margin-left: 10%;height: 3px;
                         background-color: #2E2C5E;">
                         <p class="text-center mt-5" style="font-size: 20px; font-weight: bold;">Status <span
-                            class="text-warning" style="margin-left: 50%;">{{Product.status==0 ?
-                            "pending" : "refused"}}</span>
+                            style="margin-left: 40%;">
+                            <span *ngIf="Product.status === 0; else accepted" style="color: orange;">pending</span>
+                            <ng-template #accepted>
+                              <span *ngIf="Product.status === 1" style="color: green;">accepted</span>
+                              <span *ngIf="Product.status !== 1" style="color: red;">Refused</span>
+                            </ng-template>
+                          </span>
                         </p>
-                        <hr style="width: 450px;margin-left: 15%;height: 3px;
+                        <hr style="width: 450px;margin-left: 10%;height: 3px;
                         background-color: #2E2C5E;">
                       </div>
                     </div>

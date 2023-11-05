@@ -5,6 +5,11 @@ import { GererProduitComponent } from './AdminCompoenent/GererProduitComponents/
 import { HomeComponent } from './home/home/home.component';
 import { DashboardComponent } from './AdminCompoenent/dashboard/dashboard.component';
 import { CategoryListComponent } from './AdminCompoenent/GererCategory/category-list/category-list.component';
+import { GererSupplierComponent } from './AdminCompoenent/GererSuppliersComponents/gerer-supplier/gerer-supplier.component';
+import { LocationCommandeComponent } from './ClientComponent/location-commande/location-commande.component';
+import { NotFoundComponentComponent } from './notfound/not-found-component/not-found-component.component';
+import { CommandeComponent } from './ClientComponent/commande/commande.component';
+
 
 const routes: Routes = [
    {path:'',component:HomeComponent},
@@ -13,7 +18,10 @@ const routes: Routes = [
    {path:'gererProduit',component:GererProduitComponent},
    {path:'listCategory',component:CategoryListComponent},
    { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
-   
+   {path:'gererSupplier',component:GererSupplierComponent},
+   {path:'client',component:LocationCommandeComponent},
+   {path:'Commande',component:CommandeComponent},
+   {path:"**",component:NotFoundComponentComponent}
 ]
 
 

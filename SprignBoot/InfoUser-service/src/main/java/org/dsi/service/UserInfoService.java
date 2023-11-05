@@ -1,19 +1,14 @@
 package org.dsi.service;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.dsi.entity.InfoUser;
 import org.dsi.payload.UserInfo;
 import org.dsi.repo.NodeSync;
 import org.dsi.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import net.minidev.json.JSONObject;
 
@@ -45,33 +40,34 @@ public class UserInfoService {
 	    return user;
 	}
 	
-	public void addInfoUser(UserInfo user,String role) throws Exception {
+	public void addInfoUser(UserInfo user) throws Exception {
 		
-		/*String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-	    String fileName =  timestamp+"_"+file.getOriginalFilename();
-	    String uploadDir = "UserImages/";*/
 	    InfoUser newuser = new   InfoUser();
 	    Map<String, Object> roleData = new HashMap<>();
-        roleData.put("role", Arrays.asList(role));
+	    roleData.put("roles", user.getRole());
 
 	    try {
 	    	if(userRepo.getUserByemail(user.getEmail())==null) {
-	    		//FileUpload.saveFile(uploadDir, fileName, file);
 				newuser.setFirstName(user.getFirstName());
 				newuser.setLastName(user.getLastName());
-				newuser.setCin(user.getCin()!=null ? user.getCin() : null);
+				if(user.getCin()!=null) {
+					newuser.setCin(user.getCin());
+				}
 				newuser.setEmail(user.getEmail());
 				newuser.setPassword(user.getPassword());
 				newuser.setNumTlf(user.getNumTlf());
 				newuser.setPhoto(null);
 				newuser.setSexe(user.getSexe());
 				newuser.setPhotoCin(user.getPhotoCin());
+				newuser.setRole(user.getRole());
 				userRepo.save(newuser);
 				JSONObject jsoUser=new JSONObject();
 	  			jsoUser.appendField("Name",user.getFirstName());
 	  			jsoUser.appendField("LastName",user.getLastName());
 	  			jsoUser.appendField("email",user.getEmail());
-	  			jsoUser.appendField("cin",user.getCin()!=null ? user.getCin() : null);
+	  			if(user.getCin()!=null) {
+	  				jsoUser.appendField("cin",user.getCin());
+				}
 	  			jsoUser.appendField("status",0);
 	  			jsoUser.appendField("Photo",null);
 	  			jsoUser.appendField("roles",roleData);

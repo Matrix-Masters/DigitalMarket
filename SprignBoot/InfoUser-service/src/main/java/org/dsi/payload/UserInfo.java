@@ -27,5 +27,7 @@ public class UserInfo {
 	
 	@Column(length=999999999)
 	private String PhotoCin;
+	
+	private String role;
 
 }

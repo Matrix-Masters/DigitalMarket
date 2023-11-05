@@ -9,6 +9,6 @@ import { Component } from '@angular/core';
 export class NavbarComponent {
 
   categories : any[] = ['SkinCare', 'Make up','Haire care','bath & body','Beauti supplements','Promos'];
-
+  
 
 }

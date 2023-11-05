@@ -1,0 +1,9 @@
+::ng-deep .mat-checkbox-checked .mat-checkbox-background {
+  background-color: blue; /* Change this to the desired color */
+}
+
+/* Adjust the color of the checkbox when it's not checked */
+::ng-deep .mat-checkbox-background {
+  background-color: initial; /* Change this to the desired default color */
+}
+

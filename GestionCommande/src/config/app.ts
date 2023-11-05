@@ -8,6 +8,4 @@ const app=express();
 app.use(cors());
 app.use(BodyParser.json());
 
-
-
 export default app;

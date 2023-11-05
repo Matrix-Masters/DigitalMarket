@@ -27,6 +27,7 @@ import Payload.ProducInfo;
 import net.minidev.json.JSONObject;
 import java.lang.Long;
 import java.util.List;
+import java.util.Map;
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -46,6 +47,16 @@ public class ProductController {
 		  			ProductService.AddProductService(product,file);
 		  			return new ResponseEntity<ProducInfo>(product,HttpStatus.OK);
 	 }
+	
+	@GetMapping("/GetDetailsProd")
+	public ResponseEntity<?> GetProduct(@RequestParam("id") Long id){
+		Product prod=ProductRepo.ProductWithId(id);
+		JSONObject product=new JSONObject();
+		product.appendField("name", prod.getName());
+		product.appendField("image",prod.getImageProduct());
+		product.appendField("id",id);
+		return ResponseEntity.ok(product);
+	}
 	
 	@GetMapping("/AllProduct")
 	public ResponseEntity<?> getAllProductPaginate(
@@ -116,7 +127,7 @@ public class ProductController {
 	public ResponseEntity<?> RejectProduct(@RequestParam("id") long id){
 		try {
 			ProductService.RejectProduct(id);
-			return  ResponseEntity.ok("Product Upated");
+			return ResponseEntity.ok(Map.of("message", "product rejected succesfully"));
 		}catch (Exception e) {
 			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
 		}
@@ -158,7 +169,6 @@ public class ProductController {
 				return ResponseEntity.ok("Product deleted successfully");
 			}
 		}catch(Exception e) {
-			
 			 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while deleting the product.");
 		}		
 	}
@@ -167,7 +177,7 @@ public class ProductController {
 	public ResponseEntity<?> AcceptProduct(@RequestParam("id") long id){
 		try {
 			ProductService.AcceptProduct(id);
-			return  ResponseEntity.ok("Product Updated");
+			 return ResponseEntity.ok(Map.of("message", "product accepted succesfully"));
 		}catch (Exception e) {
 			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
 		}
