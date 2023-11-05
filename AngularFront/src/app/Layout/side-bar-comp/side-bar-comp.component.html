@@ -29,6 +29,14 @@
 					</a>
 				</li>
 				<li>
+					<a [routerLink]="['/listCategory']" [ngClass]="{'active': current === '/listCategory'}" >
+							<mat-icon class="icon">engineering</mat-icon>
+							<p  class="nav-item">
+								Gerer Category
+							</p>
+					</a>
+				</li>
+				<li>
 					<a class="close_sidebar" (click)="OpenedSideBar=!OpenedSideBar">
 							<mat-icon class="icon">
 								{{OpenedSideBar ? 'arrow_left' : 'arrow_right'}}

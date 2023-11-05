@@ -20,12 +20,15 @@ import { DialogInfoComponent } from './AdminCompoenent/classer-product/dialog-in
 import { SideBarCompComponent } from './Layout/side-bar-comp/side-bar-comp.component';
 import { NavbarCompComponent } from './Layout/navbar-comp/navbar-comp.component';
 import { DashboardComponent } from './AdminCompoenent/dashboard/dashboard.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { CategoryListComponent } from './AdminCompoenent/GererCategory/category-list/category-list.component'
 import { GererSupplierComponent } from './AdminCompoenent/GererSuppliersComponents/gerer-supplier/gerer-supplier.component';
 import { CommonModule } from '@angular/common';
 import { DatePipe } from '@angular/common';
 import { LocationCommandeComponent } from './ClientComponent/location-commande/location-commande.component';
 import { NotFoundComponentComponent } from './notfound/not-found-component/not-found-component.component';
 import { CommandeComponent } from './ClientComponent/commande/commande.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +45,7 @@ import { CommandeComponent } from './ClientComponent/commande/commande.component
     SideBarCompComponent,
     NavbarCompComponent,
     DashboardComponent,
+    CategoryListComponent
     LocationCommandeComponent,
     NotFoundComponentComponent,
     CommandeComponent,
@@ -57,6 +61,7 @@ import { CommandeComponent } from './ClientComponent/commande/commande.component
     ReactiveFormsModule,
     DragDropModule,
     HttpClientModule,
+    MatDialogModule,
     CommonModule
   ],
   providers: [

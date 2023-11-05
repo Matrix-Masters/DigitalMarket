@@ -5,6 +5,43 @@
     <div class="product" >
       <div class="example-container  mt-3 mx-2" >
         <h2 class="text-center">Products</h2>
+
+        <div class="add-button">
+          <button mat-fab color="primary" (click)="openPopup()">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+        <!-- add category popup page -->
+        
+        <div class="popup" [class.open]="isPopupOpen">
+          <div class="popup-content">
+            <form (ngSubmit)="AddCategory()">
+  
+              <h1 style="text-align: center;color: #272343;"><strong>Add Category Page</strong></h1>
+              
+              <div class="form-group">
+                <label for="title">Name </label>
+                <input type="text" [(ngModel)]="Categname" name="name" id="title" class="form-controll"/>
+              </div>
+              
+              
+              <div class="form-group file-area">
+                    <label for="images">Image <span>The maximum allowable size for your image is 4 MB</span></label>
+                <input type="file"  name="image" id="images" required="required" multiple="multiple"  (change)="onFileChanged($event)"/>
+                <div class="file-dummy">
+                  <div class="success" *ngIf="!fileTooLarge">Your image uploaded successfully</div>
+                  <div class="default" *ngIf="fileTooLarge">Please select some files</div>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <button type="submit">Add Category</button>
+              </div>
+              
+            </form>
+          </div>
+          <button class="close" (click)="closePopup()">Close</button>
+        </div>
         <div
           cdkDropList
           [cdkDropListData]="Products"
@@ -17,6 +54,7 @@
               <mat-icon matSuffix>search</mat-icon>
             </mat-form-field>
           </div>
+          
           <div  *ngIf="Products=='';else ProductExiste">
               <div class="NotFoundProduct">
                 <p>
@@ -30,7 +68,7 @@
           <ng-template #ProductExiste>
             <div class="mt-5">
               <div class="example-box " *ngFor="let item of Products" cdkDrag>
-                <img *cdkDragPreview width="150px" [src]="'http://localhost:8888/PRODUCT-SERVICE/products/images/'+item['imageProduct']">
+              <img *cdkDragPreview width="150px" [src]="'http://localhost:8888/PRODUCT-SERVICE/products/images/'+item['imageProduct']">
                 <mat-card class="example-card">
                   <mat-card-header>
                     <mat-card-title class="titre_card"> {{item['name']}}</mat-card-title>

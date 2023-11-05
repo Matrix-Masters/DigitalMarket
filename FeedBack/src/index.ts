@@ -3,7 +3,7 @@ import ConnectMongo from "./config/DbConnect"
 import router from "./Router";
 const eurekaHelper = require('./Setup_Euruka');
 const PORT = process.env.PORT || 3001;
-const uri:string='mongodb://localhost:27017/GestionFeedBack'
+const uri:string='mongodb://127.0.0.1:27017/GestionFeedBack'
 const connect=new ConnectMongo(uri);
 
  connect.ConnectToBd().then(()=>{

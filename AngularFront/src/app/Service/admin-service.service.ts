@@ -49,10 +49,11 @@ export class AdminServiceService {
   PendingProducts(id:number){
     return this.http.put(`${port}/PRODUCT-SERVICE/products/PendingProducts?id=${id}`, {});
   }
-  // deja existe
+
   RejectProduct(id:number){
     return this.http.put(`${port}/PRODUCT-SERVICE/products/RejectProduct?id=${id}`,{});
   }
+
   getAllSuppliers(){
     return this.http.get(`${port}/INFOUSER-SERVICE/GererSupplier/suppliers`);
   }
@@ -66,4 +67,23 @@ export class AdminServiceService {
     return this.http.put(`${port}/INFOUSER-SERVICE/GererSupplier/RefuseSupplier?id=${id}`,{})
   }
 
+  AddCategory(CategData : object){
+    return this.http.post(`${port}/PRODUCT-SERVICE/categories/AddCat`,CategData);
+
+  }
+  destroyCategory(id: any) {
+    return this.http.delete(`${port}/PRODUCT-SERVICE/categories/DeleteCategoryById?id=${id}`);
+  }
+  
+updateCategory(CategoryId: any, Category:CategoryResponse) {
+  const url = `${port}/PRODUCT-SERVICE/categories/updateCategorie?id=${CategoryId}`;
+  return this.http.post(url, Category);
 }
+
+}
+export interface CategoryResponse {
+  nom: any
+  image: any
+  id:any
+}
+

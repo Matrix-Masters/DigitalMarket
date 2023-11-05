@@ -35,8 +35,10 @@
     </div>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
         <ul>
+          <li class="bordered"><i class="bi bi-cart-fill"></i>Cart</li>
+          <li class="bordered"><i class="bi bi-person-circle"></i>User</li>
+          <li routerLink="/auth/signup/Supplier"><i class="bi bi-shop"></i>Become vendor</li>
           <button mat-button><li class="bordered"><i class="bi bi-cart-fill"></i>Cart</li></button>
           <button mat-button routerLink="/auth/signup/Supplier"><li class="bordered"><i class="bi bi-shop"></i>Become vendor</li></button>
           <button mat-button [matMenuTriggerFor]="auth"><li><i class="bi bi-person-circle"></i>User</li></button>

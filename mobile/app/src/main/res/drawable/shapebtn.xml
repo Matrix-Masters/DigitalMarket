@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Bottom part with gradient background -->
-    <item android:top="10dp">
+    <item >
         <shape android:shape="rectangle">
             <gradient
                 android:startColor="@color/gradient1"

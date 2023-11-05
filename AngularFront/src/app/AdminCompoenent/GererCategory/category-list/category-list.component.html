@@ -1,0 +1,70 @@
+<app-side-bar-comp>
+    <app-navbar-comp></app-navbar-comp>
+    <div class="search">
+      <input placeholder="Search..." type="text" [(ngModel)]="CatName" (input)="searchCategories()">
+      <button type="submit" (click)="searchCategories() ">Go</button>
+    </div>
+    
+
+    <div class="container" >
+    <div class="paper" *ngFor="let item of filteredCategories.slice(pageIndex * pageSize, (pageIndex + 1) * pageSize)">
+      
+      <button class="delete-button" (click)="DeleteCategory(item.id)">
+        -
+      </button>
+      
+          <img [src]="item.image"  class="card-image"> 
+        <div class="divider"></div>
+        <br>
+        <h1>{{item.nom}}</h1>
+        <hr>
+        <button class="btn" (click)="openPopup(item.id)">Modify</button>
+        
+      </div>
+      
+
+      <!-- update category popup page -->
+        
+      <div class="popup" [class.open]="isPopupOpen">
+        <div class="popup-content">
+          <form (ngSubmit)="updateCategory()" #categoryForm="ngForm">
+            <h1 style="text-align: center; color: #272343;"><strong>Modify Category</strong></h1>
+      
+            <div class="form-group" *ngIf="selectedCategory">
+              <label for="title">Name</label>
+              <input type="text" name="title" id="title" class="form-controll" [(ngModel)]="selectedCategory.nom" required>
+            </div>
+      
+            <div class="form-group file-area" *ngIf="selectedCategory">
+              <label for="images">Image <span>The maximum allowable size for your image is 4 MB</span></label>
+              <input type="file" name="image" id="images" multiple="multiple" required (change)="onFileChanged($event)">
+              <div class="file-dummy">
+                <div class="success">Great, your image is selected. Keep on.</div>
+                <div class="default">Please select some files</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <button type="submit">Save Changes</button>
+            </div>
+          </form>
+        </div>
+        <button class="close" (click)="closePopup()">Close</button>
+      </div>
+      
+      
+
+    </div>
+    <mat-paginator class="custom-paginator"
+  [length]="filteredCategories.length" 
+  [pageIndex]="pageIndex"
+  [pageSize]="pageSize"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+  (page)="onPageChange($event)" 
+  aria-label="Select page">
+</mat-paginator>
+
+
+
+     
+  </app-side-bar-comp>
+  

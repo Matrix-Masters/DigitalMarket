@@ -13,6 +13,10 @@
     <color name="gradient1">#000000</color>
     <color name="gradient2">#151515</color>
     <color name="gradient3">#3E3C3C</color>
+    <color name="red">#FFFF0000</color>
+    <color name="gradientBtn1">#9F8B6D</color>
+    <color name="gradientBtn2">#9F8B6D</color>
+    <color name="gradientBtn3">#504637</color>
     <color name="white">#FFF1eaf1</color>
     <color name="yellow">#FFf7eb75</color>
     <color name="brown">#FFbda179</color>

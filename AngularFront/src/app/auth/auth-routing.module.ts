@@ -10,6 +10,7 @@ import { FormsModule,ReactiveFormsModule } from "@angular/forms";
 const routes: Routes = [
   {path:'',redirectTo:"signup/:role",pathMatch:'full'},
   {path:'signup/:role',component:SignupComponent},
+  {path: '', component: AuthComponent }
 ];
 
 @NgModule({

@@ -23,6 +23,21 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity" />
+        <activity android:name=".signup" />
+        <activity
+            android:name=".IntroScreen1"
+            android:exported="true">
+
+        </activity>
+        <activity
+            android:name=".IntroScreen2"
+            />
+        <activity
+            android:name=".IntroScreen3"
+            />
+        <activity
+            android:name=".IntroScreen4"
+            />
         <activity android:name=".HomeActivity" />
         <activity android:name=".IntroScreen1" />
         <activity android:name=".IntroScreen2" />
