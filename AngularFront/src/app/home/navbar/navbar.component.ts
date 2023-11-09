@@ -10,6 +10,7 @@ import { CategoryServiceService } from 'src/app/Service/category-service.service
 })
 export class NavbarComponent implements OnInit {
   categories:any;
+  //categories : any[] = ['SkinCare', 'Make up','Haire care','bath & body','Beauti supplements','Promos'];
   id:any
   @Output() dataEvent = new EventEmitter<Number>();
 
@@ -19,27 +20,26 @@ export class NavbarComponent implements OnInit {
     const data = 'Data from the child component';
     this.dataEvent.emit(this.id);
   }
+
   constructor(public categoriesService : CategoryServiceService,private route: ActivatedRoute){}
 
-getIdFromUrl(){
-  this.route.params.subscribe((params:any)=>{
-    this.id= params['id'];
-  })
-}
+  getIdFromUrl(){
+    this.route.params.subscribe((params:any)=>{
+        this.id= params['id'];
+     })
+  }
+
   ngOnInit():void {
     this.categoriesService.getAllCategories().subscribe(
-      res=>{
+      (res:any)=>{
         this.categories=res;
       },
       err=>{
         console.log(err);
-
       }
     )
-
   }
 
-  categories : any[] = ['SkinCare', 'Make up','Haire care','bath & body','Beauti supplements','Promos'];
   
 
 

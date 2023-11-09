@@ -52,19 +52,12 @@ import { CommandeComponent } from './ClientComponent/commande/commande.component
     SideBarCompComponent,
     NavbarCompComponent,
     DashboardComponent,
-<<<<<<< HEAD
     CategoryListComponent,
-=======
-
-
     AccueilClientComponent,
     AccueilBodyComponent,
     AccueilCartComponent,
     CardCartComponent,
-
-    CategoryListComponent
->>>>>>> a227965e7cbc8cd300957e713d65760da892a47e
-    LocationCommandeComponent,
+    CategoryListComponent,
     NotFoundComponentComponent,
     CommandeComponent,
     GererSupplierComponent,

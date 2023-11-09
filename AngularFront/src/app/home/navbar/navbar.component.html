@@ -9,28 +9,24 @@
     </div>
   </div>
   </div>
-
-<nav class="navbar navbar-expand-lg" style="height: 90px;background-color: #faf9f9;">
-  <div class="container-fluid">
-    <button class="navbar-toggler" mat-button [matMenuTriggerFor]="aboveMenu" >
-         <i class="bi bi-list" style="font-size: 35px"></i>
-        <mat-menu #aboveMenu="matMenu" yPosition="above">
-          <button mat-menu-item routerLink="/cart"> <i class="bi bi-cart-fill menu-boredered"></i>Cart</button>
-          <button mat-menu-item><i class="bi bi-person-circle menu-boredered"></i>User</button>
-          <button   mat-menu-item  routerLink="/auth/signup/Supplier" ><i  class="bi bi-shop menu-boredered"></i>Become vendor</button>
-          <mat-divider></mat-divider>
-          <mat-list role="list">
-            <mat-list-item ><span class="list-title" style="margin-right: 10px;">Categories</span><i class="bi bi-arrow-down" style="font-size: 20px;"></i> </mat-list-item>
-            <mat-list-item role="listitem" routerLink="/categories/{{item['id']}}"  *ngFor="let item of categories"> <button mat-button class="list-items">{{item['nom']}}</button></mat-list-item>
-          </mat-list>
-        </mat-menu>
-
-    </button>
-    <a class="navbar-brand" routerLink="/">DIGITAL MARKET</a>
-
-      </button>
   
+<nav class="navbar navbar-expand-lg" style="height: 90px;background-color: #F0F0F0;">
+  <div class="container-fluid">
 
+    <button class="navbar-toggler" mat-button [matMenuTriggerFor]="aboveMenu" >
+      <i class="bi bi-list" style="font-size: 35px"></i>
+     <mat-menu #aboveMenu="matMenu" yPosition="above">
+       <button mat-menu-item routerLink="/cart"> <i class="bi bi-cart-fill menu-boredered"></i>Cart</button>
+       <button mat-menu-item><i class="bi bi-person-circle menu-boredered"></i>User</button>
+       <button   mat-menu-item  routerLink="/auth/signup/Supplier" ><i  class="bi bi-shop menu-boredered"></i>Become vendor</button>
+       <mat-divider></mat-divider>
+       <mat-list role="list">
+         <mat-list-item ><span class="list-title" style="margin-right: 10px;">Categories</span><i class="bi bi-arrow-down" style="font-size: 20px;"></i> </mat-list-item>
+         <mat-list-item role="listitem" routerLink="/categories/{{item['id']}}"  *ngFor="let item of categories"> <button mat-button class="list-items">{{item['nom']}}</button></mat-list-item>
+       </mat-list>
+     </mat-menu>
+ </button>
+ <a class="navbar-brand" routerLink="/">DIGITAL MARKET</a>
 
     <div class="input-group">
       <input class="form-control me-2" type="search" placeholder="Search Products" aria-label="Search" style="height: 50px;">
@@ -38,39 +34,27 @@
         <i class="bi bi-search"></i>
       </button>
     </div>
-
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul>
-
-          <button mat-button routerLink="/cart"><li class="bordered"><i class="bi bi-cart-fill"></i>Cart</li></button>
-          <button mat-button><li class="bordered"><i class="bi bi-shop"></i>Become vendor</li></button>
-
-          <li class="bordered"><i class="bi bi-cart-fill"></i>Cart</li>
-          <li class="bordered"><i class="bi bi-person-circle"></i>User</li>
-          <li routerLink="/auth/signup/Supplier"><i class="bi bi-shop"></i>Become vendor</li>
-          <button mat-button><li class="bordered"><i class="bi bi-cart-fill"></i>Cart</li></button>
-          <button mat-button routerLink="/auth/signup/Supplier"><li class="bordered"><i class="bi bi-shop"></i>Become vendor</li></button>
-
-          <button mat-button [matMenuTriggerFor]="auth"><li><i class="bi bi-person-circle"></i>User</li></button>
-          <mat-menu #auth="matMenu">
-            <button mat-menu-item>
-              <mat-icon>account_circle</mat-icon>
-              <span>Log In</span>
-            </button>
-            <button mat-menu-item routerLink="/auth/signup/Client">
-              <mat-icon>account_box</mat-icon>
-              <span >Sign Up</span>
-            </button>
-          </mat-menu>
-        </ul>
-      </div>
+      <ul>
+        <li class="bordered"><i class="bi bi-cart-fill"></i>Cart</li>
+        <li class="bordered" routerLink="/auth/signup/Supplier"><i class="bi bi-shop"></i>Become vendor</li>
+        <li  [matMenuTriggerFor]="auth"><i class="bi bi-person-circle" ></i>User</li>
+        <mat-menu #auth="matMenu">
+          <button mat-menu-item>
+            <mat-icon>account_circle</mat-icon>
+            <span>Log In</span>
+          </button>
+          <button mat-menu-item routerLink="/auth/signup/Client">
+            <mat-icon>account_box</mat-icon>
+            <span >Sign Up</span>
+          </button>
+        </mat-menu>
+      </ul>
     </div>
-
+    </div>
 </nav>
 
 <div class="container nav2">
-
   <li class="categories d-none d-lg-block">All Categories <i class="bi bi-arrow-down-short" ></i></li>
   <li *ngFor="let item of categories" routerLink="/categories/{{item['id']}}" class="categories d-none d-lg-block">{{item['nom']}}</li>
-
 </div>
