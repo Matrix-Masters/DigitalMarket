@@ -6,7 +6,6 @@ import { MaterialModule } from '../material/material.module';
 import { CommonModule } from '@angular/common';
 import { FormsModule,ReactiveFormsModule } from "@angular/forms";
 
-
 const routes: Routes = [
   {path:'',redirectTo:"signup/:role",pathMatch:'full'},
   {path:'signup/:role',component:SignupComponent},
@@ -16,10 +15,10 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forChild(routes),
-    MaterialModule,
-    CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule,
+    CommonModule
   ],
   exports: [RouterModule],
   declarations: [
