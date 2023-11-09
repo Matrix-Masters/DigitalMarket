@@ -1,0 +1,57 @@
+<div class="card-cart container">
+
+  <ng-container #elseBlock *ngIf="products">
+    <ng-container *ngFor="let product of products">
+      <div class="row">
+        <div class="col col-xl-4">
+          <img src="../../../assets/ecommerce.jpg" class="img-product">
+        </div>
+        <div class="col col-xl-8 d-flex flex-column py-3">
+
+          <div class="description py-2">
+            <p style="font-size:15px ;font-weight: 700;">{{product.name}}</p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima harum similique animi assumenda voluptate, itaque totam ab beatae nesciunt minus!
+          </div>
+
+          <div class="price py-1">
+            {{product.prix}} TDN
+          </div>
+
+          <div class="status py-1" style="color: #007652;" *ngIf="product.status==1">
+           In stock
+          </div>
+          <div class="status-false" *ngIf="product.status!=1">
+            Out of stock
+          </div>
+
+          <div class="actions d-flex py-2" style="margin-top: 40px;">
+            <div class="form-floating px-2" style="margin-right: 20px;padding-right: 10px;">
+              <select  style="width: auto;padding: 10px;border: none;border-radius: 10px;background-color: #F0F2F2;box-shadow: 1px 4px 15px -1px #41404079;" [(ngModel)]="product.quantity">
+                <option [ngValue]="product.quantity" selected="{{product.quantity}}">Qte : {{product.quantity}}</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+              </select>
+            </div>
+
+            <div class="update py-2" style="padding-left: 15px;">
+              <span (click)="updateQte(product)"  style="color: #007195;border-left: #007195 solid 1px;padding-left: 15px;padding-right: 15px;cursor: pointer;" >Update</span>
+            </div>
+
+            <div class="delete px-2 py-2" >
+              <span (click)="deleteProduct(product)" style="color: #007195;border-left: #007195 solid 1px;padding-left: 15px;cursor: pointer;">Delete</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+    </ng-container>
+  </ng-container>
+  <div class="no-product d-flex justify-content-center pt-5" *ngIf="!products">
+    <h3 style="font-size: 20px;">No items have been saved for later</h3>
+  </div>
+
+</div>

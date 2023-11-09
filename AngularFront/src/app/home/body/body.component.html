@@ -33,11 +33,6 @@
       <span class="title">New arrivals</span>
       <span class="mini-title" style="padding-top: 20px;">see all</span>
     </div>
-    <div class="arrow d-flex px-3 col-12 col-sm-6 col-xl-2 col-lg-3 float-end mt-3 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-0 justify-content-center p-2">
-      <button mat-mini-fab color="accent" class="previous"><mat-icon>keyboard_arrow_left</mat-icon></button>
-      <span style="width: 10px;"></span>
-      <button mat-mini-fab color="accent" class="suivant"><mat-icon>keyboard_arrow_right</mat-icon></button>
-    </div>
   </div>
 
 </div>
@@ -46,9 +41,9 @@
 <div class="procucts d-flex" style="width: 100%;">
 
   <div class="products-paginate container " style="margin-top: 70px;">
-    <div class="row2 row d-flex justify-content-between">
-      <div class="col2 col-lg-3 col-md-4 col-sm-6 col-12" style="margin-bottom: 40px;position: relative;" *ngFor="let _ of [1,2,3,4,5,6,7,8]">
-        <app-card ></app-card>
+    <div class="row2 row flex-wrap">
+      <div class="col2 col-lg-3 col-md-4 col-sm-6 col-12 d-flex justify-content-center" style="margin-bottom: 40px;position: relative;" *ngFor="let item of products">
+        <app-card [products]="item" [new]="true"></app-card>
       </div>
     </div>
   </div>
@@ -75,11 +70,6 @@
       <span class="title" style="padding-top: 20px;">Top Seller</span>
       <span class="mini-title" style="padding-top: 20px;">see all</span>
     </div>
-    <div class="arrow d-flex px-3 col-12 col-sm-6 col-xl-2 col-lg-3 float-end mt-3 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-0 justify-content-center p-2">
-      <button mat-mini-fab color="warn" class="previous"><mat-icon>keyboard_arrow_left</mat-icon></button>
-      <span style="width: 10px;"></span>
-      <button mat-mini-fab color="warn" class="suivant"><mat-icon>keyboard_arrow_right</mat-icon></button>
-    </div>
   </div>
 
 </div>
@@ -87,9 +77,9 @@
 
 <div class="top-seller procucts d-flex" style="width: 100%;">
   <div class="products-paginate container " style="margin-top: 70px;">
-    <div class="row2 row d-flex justify-content-between py-2">
-      <div class="col2 col-lg-3 col-md-4 col-sm-6 col-12 py-2" style="margin-bottom: 40px;position: relative;" *ngFor="let _ of [1,2,3,4,5,6,7,8]">
-        <app-card class="centered-card"></app-card>
+    <div class="row2 row py-2">
+      <div class="col2 col-lg-3 col-md-4 col-sm-6 col-12 py-2 d-flex justify-content-center" style="margin-bottom: 40px;position: relative;" *ngFor="let item of products">
+        <app-card class="centered-card" [products]="item" [new]="false"></app-card>
       </div>
     </div>
   </div>

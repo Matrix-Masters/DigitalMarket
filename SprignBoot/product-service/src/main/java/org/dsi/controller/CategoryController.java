@@ -46,11 +46,11 @@ public class CategoryController {
 	}
 
 	@GetMapping("/GetCategoryById")
-	public ResponseEntity<?> GetCategoryById(@RequestParam("id") long id) {
+	public ResponseEntity<?> GetCategoryById(@RequestParam("id") Long id) {
 		try {
-			Optional<Category> category = cateRepo.findById(id);
-			if (category.isPresent()) {
-				return new ResponseEntity<>(category, HttpStatus.OK);
+			Category category = cateRepo.getCategoryById(id);
+			if (category !=null) {
+				return ResponseEntity.ok(category);
 			} else {
 				return ResponseEntity.ok("Category not found");
 			}
@@ -121,7 +121,7 @@ public class CategoryController {
 
 
 	@DeleteMapping("/DeleteCategoryById")
-	public ResponseEntity<?> DeleteProductById(@RequestParam("id") long id){
+	public ResponseEntity<?> DeleteProductById(@RequestParam("id") Long id){
 		Category category = cateRepo.findCategoryById(id);
 		try {
 			if(category == null) {
@@ -136,5 +136,5 @@ public class CategoryController {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while deleting the category.");
 		}
 	}
-
+	
 }
