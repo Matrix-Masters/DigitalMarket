@@ -1,53 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:id="@+id/root"
-    tools:context=".HomeActivity"
-  >
+    android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="402dp"
-        android:src="@drawable/logo" />
+        android:id="@+id/imageView1"
+        android:layout_width="202dp"
+        android:layout_height="205dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="-38dp"
+        android:src="@drawable/sqd" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:background="@color/white"
-        >
+    <TextView
+        android:id="@+id/title2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageView1"
+        android:layout_marginTop="59dp"
+        android:paddingLeft="30dp"
+        android:text="@string/titlle2"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:textSize="25dp"
+        style="@style/oswaldFont"
+        android:letterSpacing="0.1"/>
 
-        <Button
-            android:id="@+id/btnClient"
-            android:layout_width="327dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/shapebtn"
-            android:text="Client"
-            android:padding="30dp"
-            android:textAlignment="center"
-            android:textSize="20dp"
-            android:textColor="@color/white"
-            android:layout_marginBottom="40dp"/>
+    <ImageView
+        android:layout_width="202dp"
+        android:layout_height="205dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="-38dp"
+        android:src="@drawable/sqd" />
 
-        <Button
-            android:id="@+id/btnSupplier"
-            android:layout_width="327dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/shapebtn"
-            android:text="Supplier"
-            android:padding="30dp"
-            android:textSize="20dp"
-            android:textAlignment="center"
-            android:textColor="@color/white" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/title1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageView1"
+        android:layout_marginTop="8dp"
+        android:text="@string/TITLE1"
+        android:paddingLeft="30dp"
+        android:textSize="40dp"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        style="@style/oswaldFont"
+        android:letterSpacing="0.1"/>
 
+    <TextView
+        android:id="@+id/clientTxt"
+        style="@style/oswaldFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title2"
+        android:layout_marginTop="11dp"
+        android:paddingLeft="25dp"
+        android:text="@string/CLIENT" />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/btnClient"
+        android:layout_width="366dp"
+        android:layout_height="60dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/shapebtn"
+        android:text="@string/client"
+        android:textSize="16dp"
+        style="@style/oswaldFont"/>
 
+    <TextView
+        android:id="@+id/fournisseurTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnClient"
+        android:layout_marginTop="27dp"
+        android:text="@string/fournisseurDesc"
+        android:paddingLeft="25dp"
+        android:textSize="14dp"
+        android:textColor="#A3A3A3"
+        style="@style/oswaldFont"/>
+
+    <Button
+        android:id="@+id/btnSupplier"
+        android:layout_width="366dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/fournisseurTxt"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/shapebtn"
+        android:text="@string/supplier"
+        android:textSize="16dp"
+        style="@style/oswaldFont"/>
+</RelativeLayout>

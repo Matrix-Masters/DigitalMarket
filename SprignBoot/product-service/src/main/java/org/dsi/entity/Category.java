@@ -5,13 +5,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -27,9 +21,17 @@ import lombok.NoArgsConstructor;
 public class Category {
     @Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+
  	private Long id;
     
+
+
+
+    @Column(nullable = false)
+
     private String nom;
+
+    @Column(length = 999999999)
     private String image;
     
     @OneToMany(mappedBy = "category", cascade = CascadeType.REMOVE,  fetch = FetchType.EAGER)

@@ -49,6 +49,16 @@ public class ProductController {
 		  			return new ResponseEntity<ProducInfo>(product,HttpStatus.OK);
 	 }
 	
+	@GetMapping("/GetDetailsProd")
+	public ResponseEntity<?> GetProduct(@RequestParam("id") Long id){
+		Product prod=ProductRepo.ProductWithId(id);
+		JSONObject product=new JSONObject();
+		product.appendField("name", prod.getName());
+		product.appendField("image",prod.getImageProduct());
+		product.appendField("id",id);
+		return ResponseEntity.ok(product);
+	}
+	
 	@GetMapping("/AllProduct")
 	public ResponseEntity<?> getAllProductPaginate(
     		@RequestParam(name="search",defaultValue="") String name,
@@ -160,7 +170,6 @@ public class ProductController {
 				return ResponseEntity.ok("Product deleted successfully");
 			}
 		}catch(Exception e) {
-			
 			 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while deleting the product.");
 		}		
 	}

@@ -10,4 +10,11 @@
     <string name="title3">Be the First to Know</string>
     <string name="desc3">Speedy and Dependable Delivery: Our shipping service is quick and trustworthy, ensuring your orders reach you without delay and in excellent condition.</string>
     <string name="alreadyHave">Already Have An Account ?</string>
+    <string name="TITLE1">Your Marketplace</string>
+    <string name="ClientDesc">Start shopping for what you love. Discover now!</string>
+    <string name="fournisseurDesc">Expand your reach, start selling today</string>
+    <string name="client">Client</string>
+    <string name="supplier">SUPPLIER</string>
+    <string name="CLIENT">Start shopping for what you love. Discover now!</string>
+    <string name="titlle2">Your Decision!</string>
 </resources>

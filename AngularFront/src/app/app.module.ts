@@ -20,11 +20,21 @@ import { DialogInfoComponent } from './AdminCompoenent/classer-product/dialog-in
 import { SideBarCompComponent } from './Layout/side-bar-comp/side-bar-comp.component';
 import { NavbarCompComponent } from './Layout/navbar-comp/navbar-comp.component';
 import { DashboardComponent } from './AdminCompoenent/dashboard/dashboard.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { CategoryListComponent } from './AdminCompoenent/GererCategory/category-list/category-list.component'
+import { GererSupplierComponent } from './AdminCompoenent/GererSuppliersComponents/gerer-supplier/gerer-supplier.component';
+import { CommonModule } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { LocationCommandeComponent } from './ClientComponent/location-commande/location-commande.component';
+
 import { AccueilClientComponent } from './AccueilClient/accueil-client/accueil-client.component';
 import { AccueilBodyComponent } from './AccueilClient/accueil-body/accueil-body.component';
 import { AccueilCartComponent } from './AccueilClient/accueil-cart/accueil-cart.component';
 import { CardCartComponent } from './AccueilClient/card-cart/card-cart.component';
+
+import { NotFoundComponentComponent } from './notfound/not-found-component/not-found-component.component';
+import { CommandeComponent } from './ClientComponent/commande/commande.component';
+
 
 @NgModule({
   declarations: [
@@ -42,11 +52,20 @@ import { CardCartComponent } from './AccueilClient/card-cart/card-cart.component
     SideBarCompComponent,
     NavbarCompComponent,
     DashboardComponent,
-    LocationCommandeComponent,
+
+
     AccueilClientComponent,
     AccueilBodyComponent,
     AccueilCartComponent,
     CardCartComponent,
+
+    CategoryListComponent
+    LocationCommandeComponent,
+    NotFoundComponentComponent,
+    CommandeComponent,
+    GererSupplierComponent,
+    LocationCommandeComponent
+
   ],
   imports: [
     BrowserModule,
@@ -57,8 +76,13 @@ import { CardCartComponent } from './AccueilClient/card-cart/card-cart.component
     ReactiveFormsModule,
     DragDropModule,
     HttpClientModule,
+    MatDialogModule,
+    CommonModule
   ],
-  providers: [],
+  providers: [
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

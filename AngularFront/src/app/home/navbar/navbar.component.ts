@@ -13,6 +13,7 @@ export class NavbarComponent implements OnInit {
   id:any
   @Output() dataEvent = new EventEmitter<Number>();
 
+
   passId() {
     this.getIdFromUrl();
     const data = 'Data from the child component';
@@ -37,5 +38,9 @@ getIdFromUrl(){
     )
 
   }
+
+  categories : any[] = ['SkinCare', 'Make up','Haire care','bath & body','Beauti supplements','Promos'];
+  
+
 
 }

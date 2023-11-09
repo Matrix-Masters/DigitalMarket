@@ -1,13 +1,12 @@
 package com.example.digitalmarket
 
-
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.app.AlertDialog
-import android.content.DialogInterface
 import androidx.activity.OnBackPressedCallback
+import com.example.digitalmarket.signup.SignUpStepOne
 
 class HomeActivity : AppCompatActivity() {
     lateinit var btnClient:Button
@@ -63,7 +62,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun goSignup(role:String){
-        var intent = Intent(this,signup::class.java)
+        var intent = Intent(this,SignUpStepOne::class.java)
         intent.putExtra("role",role.toString())
         startActivity(intent)
 

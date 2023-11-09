@@ -23,7 +23,12 @@ import { DialogInfoComponent } from './dialog-info/dialog-info.component';
  
 })
 export class ClasserProductComponent implements OnInit {
-  constructor(public AdminServiceService: AdminServiceService,private _snackBar: MatSnackBar,private dialog:Dialog,private alertdialog:MatDialog) {}
+  
+  constructor(public AdminServiceService: AdminServiceService,private _snackBar: MatSnackBar,private dialog:Dialog,private alertdialog:MatDialog) {
+
+    
+  }
+ 
 
   drop(event: CdkDragDrop<any[]>,category?:any): void {
     if (event.previousContainer === event.container) {
@@ -46,6 +51,7 @@ export class ClasserProductComponent implements OnInit {
         })
     }
   }
+
 
   openDialogAlert(product: any): void {
     const dialogRef = this.alertdialog.open(DialogOverviewExampleDialog, {
@@ -122,7 +128,70 @@ export class ClasserProductComponent implements OnInit {
       });
     })
   }
+
+  //--------------category code----------------//
+  isPopupOpen: boolean = false;
+  openPopup() {
+    this.isPopupOpen = true;
+    console.log("works")
+  }
+
+  
+  closePopup() {
+    this.isPopupOpen = false;
+    console.log("closed")
+  }
+
+  
+  fileTooLarge: boolean = false;
+
+  onFileSelected(event: any) {
+    const files = event.target.files as File[];
+    const maxSize = 1 * 1024 * 1024; 
+  
+    const fileTooLarge = files.some((file: File) => file.size > maxSize);
+  
+    if (fileTooLarge) {
+      console.log("file big")
+    } else {
+      console.log("file small")
+    }
+  }
+  Categname!:String
+  image!:String
+
+  onFileChanged(event: any) {
+    const file = event.target.files[0];
+    
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.image = reader.result as string;
+    };
+    
+  }
+  AddCategory() {
+    var CategData = {
+      nom: this.Categname,
+      image: this.image
+    }
+    console.log(CategData);
+    this.AdminServiceService.AddCategory(CategData).subscribe({
+      next: (res: any) => {
+        console.log(res, 'response');
+        
+      },
+      error: (err: any) => {
+        console.log(err, 'errors');
+        alert('Category added successfully');
+      }
+    });
+  }
+  
 }
+  //--------------end of category code----------------//
+  
+
 
 @Component({
   selector: 'AlertDialog',
@@ -142,4 +211,6 @@ export class DialogOverviewExampleDialog {
   }
 
   
+ 
+ 
 }
