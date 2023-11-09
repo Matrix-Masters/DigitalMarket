@@ -23,6 +23,9 @@ public interface CategoryRepo extends JpaRepository<Category,Long> {
 	@Query(value="SELECT * FROM category ",nativeQuery=true)
 	List<Category> getAllCategory();
 	
+	@Query(value="SELECT * FROM category where id=:id ",nativeQuery=true)
+	Category getCategoryById(Long id);
+	
 
 
 }

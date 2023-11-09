@@ -64,8 +64,20 @@ li > i {
   list-style: none;
   margin-top: 20px;
   text-transform: uppercase;
-  height: auto;
+
 }
+
+// .nav2::-webkit-scrollbar{
+//   height: 1px;
+//   width: 20px;
+// }
+// .nav2::-webkit-scrollbar-track{
+//   background-color: #f6f6f6;
+// }
+// .nav2::-webkit-scrollbar-thumb{
+//   background-color: #f47d5d;
+// }
+
 .nav2 > li {
   font-size: 15px;
   cursor: pointer;

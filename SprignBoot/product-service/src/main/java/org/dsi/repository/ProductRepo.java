@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.dsi.entity.Product;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -36,4 +37,25 @@ public interface ProductRepo extends JpaRepository<Product,Long> {
 		@Query(value="select * from product where status=0",nativeQuery=true)
 		Page<Product> getPendingProducts(Pageable pageable);
 		
+		 @Query(value = "SELECT * FROM product where status=1 ORDER BY created_at DESC LIMIT 8",nativeQuery=true)
+		   List<Product> getProductNewArrivals();
+		 
+		 @Query(value="SELECT * FROM product WHERE  status = 1 and category_id=:cat_id",nativeQuery=true)
+			Page<Product> getProductByCategoryPaginate(Long cat_id,Pageable pageable);
+		 
+		 @Query(value="SELECT * FROM product WHERE  status = 1 and category_id=:cat_id and prix>= :min and prix<= :max",nativeQuery=true)
+			Page<Product> getProductByCategoryPaginatePrice(Long cat_id, double min, double max,Pageable pageable);
+		 
+		 @Query(value="SELECT * FROM product WHERE  status = 1 and category_id=:cat_id and name LIKE :name ",nativeQuery=true)
+			Page<Product> getProductByCategoryPaginateSearch(Long cat_id,String name,Pageable pageable );
+		 
+		 @Query(value="SELECT * FROM product WHERE  status = 1 and category_id=:cat_id  and prix> :min and prix< :max and name=:name",nativeQuery=true)
+			Page<Product> getProductByCategoryPaginatePriceSearch(Long cat_id,double min,double max,String name,Pageable pageable );
+		 
+		 @Query(value="SELECT MAX(prix) AS max_price FROM product where status = 1",nativeQuery=true)
+		 double getMaxPrice();
+
+		
+		 
+		 
 }

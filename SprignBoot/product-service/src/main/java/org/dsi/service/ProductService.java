@@ -4,12 +4,14 @@ package org.dsi.service;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.dsi.entity.Category;
 import org.dsi.entity.Product;
 import org.dsi.repository.NodeSync;
 import org.dsi.repository.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -103,5 +105,14 @@ public class ProductService {
 		  	}
 	  }
 	  
+	  public List<Product> getProductNewArrivals() throws Exception {
+		  
+		    List<Product> products = ProductRepo.getProductNewArrivals();
+		    
+		    if (products.isEmpty()) {
+		        throw new Exception("Products Not Found");
+		    }
+		    return products;
+		}
 	  
 }

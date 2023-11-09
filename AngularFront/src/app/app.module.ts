@@ -26,8 +26,15 @@ import { GererSupplierComponent } from './AdminCompoenent/GererSuppliersComponen
 import { CommonModule } from '@angular/common';
 import { DatePipe } from '@angular/common';
 import { LocationCommandeComponent } from './ClientComponent/location-commande/location-commande.component';
+
+import { AccueilClientComponent } from './AccueilClient/accueil-client/accueil-client.component';
+import { AccueilBodyComponent } from './AccueilClient/accueil-body/accueil-body.component';
+import { AccueilCartComponent } from './AccueilClient/accueil-cart/accueil-cart.component';
+import { CardCartComponent } from './AccueilClient/card-cart/card-cart.component';
+
 import { NotFoundComponentComponent } from './notfound/not-found-component/not-found-component.component';
 import { CommandeComponent } from './ClientComponent/commande/commande.component';
+
 
 @NgModule({
   declarations: [
@@ -45,12 +52,24 @@ import { CommandeComponent } from './ClientComponent/commande/commande.component
     SideBarCompComponent,
     NavbarCompComponent,
     DashboardComponent,
+<<<<<<< HEAD
     CategoryListComponent,
+=======
+
+
+    AccueilClientComponent,
+    AccueilBodyComponent,
+    AccueilCartComponent,
+    CardCartComponent,
+
+    CategoryListComponent
+>>>>>>> a227965e7cbc8cd300957e713d65760da892a47e
     LocationCommandeComponent,
     NotFoundComponentComponent,
     CommandeComponent,
     GererSupplierComponent,
     LocationCommandeComponent
+
   ],
   imports: [
     BrowserModule,
