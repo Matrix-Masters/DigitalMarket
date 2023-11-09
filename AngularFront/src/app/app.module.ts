@@ -45,7 +45,7 @@ import { CommandeComponent } from './ClientComponent/commande/commande.component
     SideBarCompComponent,
     NavbarCompComponent,
     DashboardComponent,
-    CategoryListComponent
+    CategoryListComponent,
     LocationCommandeComponent,
     NotFoundComponentComponent,
     CommandeComponent,
