@@ -16,12 +16,8 @@ export const AddUser = async (req: Request, res: Response) => {
   req.body.cin=null;
   let user = new InfoUser(req.body);
   try {
-<<<<<<< HEAD
       const savedUser=await user.save();
-=======
-      const savedUser=await user.save() ;
       //notifyNotificationService(savedUser._id);
->>>>>>> 26393bb2f8100c7a6947cec8fa75e30a2d43255a
       res.status(201).json(savedUser._id);
   } catch (err) {
     res.status(500).json({ error: err });

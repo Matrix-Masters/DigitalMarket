@@ -13,7 +13,7 @@ eureka_client.init(eureka_server="http://localhost:8761/eureka",
 
 app = Flask(__name__)
 
-#CORS(app, resources={r"/api/*": {"origins": "http://localhost:4200"}})
+CORS(app, origins='http://localhost:4200')
 
 if not os.path.exists(r'C:\Users\talel\Desktop\Matrix-Masters\DigitalMarket\PythonIA\uploads'):
     os.makedirs(r'C:\Users\talel\Desktop\Matrix-Masters\DigitalMarket\PythonIA\uploads')
@@ -22,7 +22,7 @@ if not os.path.exists(r'C:\Users\talel\Desktop\Matrix-Masters\DigitalMarket\Pyth
 def upload_image():
     if 'image' not in request.files:
         return jsonify({'error': 'No image provided'}), 400
-  
+
     file = request.files['image']
     filename = secure_filename(file.filename)
     if filename == '':
@@ -30,11 +30,11 @@ def upload_image():
 
     temp_image_path = os.path.join(r'C:\Users\talel\Desktop\Matrix-Masters\DigitalMarket\PythonIA\uploads', filename)
     file.save(temp_image_path)
-    
+
     name_pattern = r"الاسم\s*\s*(.*?)\s*[\n<]"
     surname_pattern = r"اللقب\s*\s*(.*?)\s*[\n<]"
     id_number_pattern = r"الرقم\s*\s*(.*?)\s*[\n<]"
-    
+
     img = Image.open(r'C:\Users\talel\Desktop\Matrix-Masters\DigitalMarket\PythonIA\uploads' + '\\' + filename)
     text = image_to_string(img, lang="ara")
     name_match = re.search(name_pattern, text)
@@ -50,7 +50,7 @@ def upload_image():
         result['name']=name
     else:
         return jsonify({"error":"Wrong From Cart"}),400
-  
+
     return jsonify(result)
 
 
