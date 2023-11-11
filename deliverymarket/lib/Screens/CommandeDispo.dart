@@ -61,6 +61,7 @@ Future<void> ServiceTaken(String num)async{
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(content: Text(res))
   );
+  Navigator.pop(context);
 }
 
  Future<void> TakeCommande(String Numcommande)async {
