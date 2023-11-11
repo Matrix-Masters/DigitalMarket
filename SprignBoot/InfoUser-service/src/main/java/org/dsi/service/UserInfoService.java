@@ -44,7 +44,7 @@ public class UserInfoService {
 		
 	    InfoUser newuser = new   InfoUser();
 	    Map<String, Object> roleData = new HashMap<>();
-	    roleData.put("roles", user.getRole());
+	    roleData.put("role", user.getRole());
 
 	    try {
 	    	if(userRepo.getUserByemail(user.getEmail())==null) {

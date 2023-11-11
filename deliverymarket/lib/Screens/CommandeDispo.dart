@@ -16,7 +16,7 @@ class _CommandeDispoState extends State<CommandeDispo> {
   late CommandeService commandeService=CommandeService();
   List<Commande> Commandes=[];
 
-  Future<void> fetchProducts(int id)async {
+  Future<void> fetchProducts(int id,BuildContext context)async {
     await commandeService.GetInfoProduct(id);
     setState(() {
       this.products=commandeService.products;
@@ -38,14 +38,32 @@ class _CommandeDispoState extends State<CommandeDispo> {
     });
  }
 
-Future<void> ShowInfo(Commande commande) async {
+ Future<void> TakeCommande(String Numcommande)async {
+     String ?res=await showDialog(context: context, builder:(context){
+       return AlertDialog(
+            title: Text("Commande Num ${Numcommande}"),
+            content: Text("Do You Wanna Take This Commande"),
+            actions: [
+               Row(
+                children: [
+                   ElevatedButton(onPressed: (){}, child: Text("Yes"),style: ElevatedButton.styleFrom(backgroundColor: Colors.green),),
+                   SizedBox(width: 20,),
+                   ElevatedButton(onPressed: (){Navigator.pop(context);}, child: Text("No"),style: ElevatedButton.styleFrom(backgroundColor: Colors.red),)
+                ],
+               )
+            ],
+       );
+     });
+ }
 
+Future<void> ShowInfo(BuildContext context,Commande commande) async {
+  final capturedContext = context;
    for (final ligneCommande in commande.LigneCommandes) {
-    await fetchProducts(int.parse(ligneCommande['Product_id']));
+     fetchProducts(int.parse(ligneCommande['Product_id']),capturedContext);
   }
   
   String? res = await showDialog(
-    context: context,
+    context: capturedContext,
     builder: (context) {
       return SimpleDialog(
         title: Text(
@@ -151,8 +169,8 @@ Future<void> ShowInfo(Commande commande) async {
                         trailing:Row(
                            mainAxisSize: MainAxisSize.min,
                             children: [
-                               IconButton(onPressed:(){ShowInfo(commande);}, icon:const Icon(Icons.info,color:Colors.blue,)),
-                               IconButton(onPressed: (){}, icon:const Icon(Icons.task,color: Colors.green,))
+                               IconButton(onPressed:(){ShowInfo(context,commande);}, icon:const Icon(Icons.info,color:Colors.blue,)),
+                               IconButton(onPressed: (){TakeCommande(commande.NumCommande);}, icon:const Icon(Icons.task,color: Colors.green,))
                             ],
                         ),
                       ),
