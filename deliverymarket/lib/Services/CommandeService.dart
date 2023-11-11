@@ -5,8 +5,18 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:deliverymarket/Models/User.dart';
+import "package:location/location.dart";
+
 
 class CommandeService{
+
+
+
+  CommandeService(){
+    
+  }
+
+
 
   List<Commande> Commandes=[];
 
@@ -50,6 +60,35 @@ Future<Product> GetInfoProduct(int id) async {
   } catch (e) {
      return Product(Name: "", image: "", id: -1);
   }
+}
+
+Future<String> TakenCommande(String num,String latitude,String longitude)async{
+
+  final request={
+    "email":"bizo@gmail.com",
+    "num":num,
+    "Location":{
+        "latitude":latitude,
+        "longitude":longitude,
+    },
+  };
+   try{
+      final response=await http.post(
+        Uri.parse("$url/GESTIONCOMMANDE-SERVICE/Commande/AddLivraison"),
+        body:jsonEncode(request),
+        headers: {
+          "Content-Type":"application/json"
+        }
+      );
+      print(response.body);
+      if(response.statusCode==201){
+        return "Added With Sucess";
+      }else{
+        return "Failed Taken";
+      }
+   }catch(e){
+      return "Error";
+   }
 }
 
 
