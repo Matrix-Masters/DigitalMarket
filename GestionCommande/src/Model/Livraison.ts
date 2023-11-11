@@ -1,13 +1,24 @@
 import mongoose from "mongoose";
 
 let LivraisonSchema=new mongoose.Schema({
-    idUser:{
+    EmailLivreur:{
         type:String,
         required:true
     },
-    idCommand:{
+    NumCommande:{
         type:String,
-        required:true
+        required:true,
+        unique:true
+    },
+    Location:{
+       latitude: {
+            type: String,
+            required: true 
+       },
+       longitude: { 
+           type: String,
+           required: true
+        }, 
     },
     date:{
         type:Date,
