@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import Commande from "../Model/Commande";
 import LigneCommande from "../Model/LigneCommande";
+import Livraison from "../Model/Livraison";
 
 export const addCommande = async (req: Request, res: Response) => {
 
@@ -87,6 +88,24 @@ export const GetCommandeDispo = async (req: Request, res: Response) => {
 
 }
 
+
+export const AddLivraison=async (req:Request,res:Response)=>{
+     try{
+        const livraison = new Livraison({
+            EmailLivreur:req.body.email,
+            NumCommande:req.body.num,
+            Location: {
+                latitude: req.body.Location.latitude,
+                longitude: req.body.Location.longitude,
+            },
+        });
+        await Commande.findOneAndUpdate({NumCommande:req.body.num},{$set:{Status:"Taken"}});
+        const livr=  await livraison.save();
+        res.status(201).json(livr);
+     }catch(e:any){
+        res.status(500).json({message:e.message})
+     }
+}
 /*
 try {
     //Make Relation 
