@@ -2,7 +2,7 @@ import 'package:deliverymarket/Models/Commande.dart';
 import 'package:deliverymarket/Models/Product.dart';
 import 'package:deliverymarket/Services/CommandeService.dart';
 import 'package:flutter/material.dart';
-
+import 'package:location/location.dart';
 class CommandeDispo extends StatefulWidget {
   const CommandeDispo({super.key});
 
@@ -16,6 +16,22 @@ class _CommandeDispoState extends State<CommandeDispo> {
   late CommandeService commandeService=CommandeService();
   List<Commande> Commandes=[];
 
+
+Location _location=Location();
+late LocationData _locationData = LocationData.fromMap({
+  'latitude': 0.0,
+  'longitude': 0.0,
+});
+
+
+Future<void> _getPosition() async{
+  try{
+    _locationData=await _location.getLocation();
+  }catch(e){  
+    print('$e');
+  }
+}
+
   Future<void> fetchProducts(int id,BuildContext context)async {
     await commandeService.GetInfoProduct(id);
     setState(() {
@@ -26,6 +42,7 @@ class _CommandeDispoState extends State<CommandeDispo> {
   @override
   void initState() { 
     super.initState();
+    _getPosition();
     this.products=commandeService.products;
     this.fetchCommandes();
   }
@@ -38,6 +55,14 @@ class _CommandeDispoState extends State<CommandeDispo> {
     });
  }
 
+Future<void> ServiceTaken(String num)async{
+  String ? res=await commandeService.TakenCommande(num,(_locationData.latitude).toString(),(_locationData.longitude).toString());
+  await fetchCommandes();
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(content: Text(res))
+  );
+}
+
  Future<void> TakeCommande(String Numcommande)async {
      String ?res=await showDialog(context: context, builder:(context){
        return AlertDialog(
@@ -46,7 +71,7 @@ class _CommandeDispoState extends State<CommandeDispo> {
             actions: [
                Row(
                 children: [
-                   ElevatedButton(onPressed: (){}, child: Text("Yes"),style: ElevatedButton.styleFrom(backgroundColor: Colors.green),),
+                   ElevatedButton(onPressed: (){ServiceTaken(Numcommande);}, child: Text("Yes"),style: ElevatedButton.styleFrom(backgroundColor: Colors.green),),
                    SizedBox(width: 20,),
                    ElevatedButton(onPressed: (){Navigator.pop(context);}, child: Text("No"),style: ElevatedButton.styleFrom(backgroundColor: Colors.red),)
                 ],
