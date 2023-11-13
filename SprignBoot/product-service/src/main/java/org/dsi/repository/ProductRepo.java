@@ -49,7 +49,7 @@ public interface ProductRepo extends JpaRepository<Product,Long> {
 		 @Query(value="SELECT * FROM product WHERE  status = 1 and category_id=:cat_id and name LIKE :name ",nativeQuery=true)
 			Page<Product> getProductByCategoryPaginateSearch(Long cat_id,String name,Pageable pageable );
 		 
-		 @Query(value="SELECT * FROM product WHERE  status = 1 and category_id=:cat_id  and prix> :min and prix< :max and name=:name",nativeQuery=true)
+		 @Query(value="SELECT * FROM product WHERE  status = 1 and category_id=:cat_id  and prix>= :min and prix <= :max and name LIKE :name",nativeQuery=true)
 			Page<Product> getProductByCategoryPaginatePriceSearch(Long cat_id,double min,double max,String name,Pageable pageable );
 		 
 		 @Query(value="SELECT MAX(prix) AS max_price FROM product where status = 1",nativeQuery=true)
