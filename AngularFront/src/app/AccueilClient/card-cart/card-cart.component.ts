@@ -12,19 +12,29 @@ export class CardCartComponent implements OnInit{
 
 @Input() products:any
 length:any
+total:number=0
 updateQte(product: any) {
   this.productServiceStorage.updateQte(product);
+  location.reload();
 }
+refresh(){
+  location.reload();
+}
+
 
 deleteProduct(product:any){
   this.productServiceStorage.deleteProduct(product)
   this.location.replaceState('/cart');
   location.reload();
-  this.productServiceStorage.clearProductList();
 }
 
 ngOnInit(): void {
   this.length=this.products.length;
+  console.log(this.products);
+  for (let index = 0; index < this.products.length; index++) {
+    this.total = Number(this.products[index].prix) * Number(this.products[index].quantity)
+  }
+
 }
 
 

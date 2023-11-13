@@ -23,7 +23,7 @@
             Out of stock
           </div>
 
-          <div class="actions d-flex py-2" style="margin-top: 40px;">
+          <div class="actions d-flex py-2 justify-content-between" style="margin-top: 40px;">
             <div class="form-floating px-2" style="margin-right: 20px;padding-right: 10px;">
               <select  style="width: auto;padding: 10px;border: none;border-radius: 10px;background-color: #F0F2F2;box-shadow: 1px 4px 15px -1px #41404079;" [(ngModel)]="product.quantity">
                 <option [ngValue]="product.quantity" selected="{{product.quantity}}">Qte : {{product.quantity}}</option>
@@ -36,14 +36,19 @@
               </select>
             </div>
 
-            <div class="update py-2" style="padding-left: 15px;">
-              <span (click)="updateQte(product)"  style="color: #007195;border-left: #007195 solid 1px;padding-left: 15px;padding-right: 15px;cursor: pointer;" >Update</span>
+            <div class="actions d-flex justify-content-between">
+              <div class="update py-2" style="padding-left: 15px;">
+                <span (click)="updateQte(product)"  style="color: #007195;border-left: #007195 solid 1px;padding-left: 15px;padding-right: 15px;cursor: pointer;" >Update</span>
+              </div>
+
+              <div class="delete px-2 py-2" >
+                <span (click)="deleteProduct(product)" style="color: #007195;border-left: #007195 solid 1px;padding-left: 15px;cursor: pointer;">Delete</span>
+              </div>
             </div>
 
-            <div class="delete px-2 py-2" >
-              <span (click)="deleteProduct(product)" style="color: #007195;border-left: #007195 solid 1px;padding-left: 15px;cursor: pointer;">Delete</span>
+            <div class="total-product px-2 py-1">
+              <h3>Total product price:  {{product.prix * product.quantity}} TND</h3>
             </div>
-
           </div>
         </div>
       </div>
