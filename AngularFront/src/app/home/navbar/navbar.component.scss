@@ -67,16 +67,6 @@ li > i {
 
 }
 
-// .nav2::-webkit-scrollbar{
-//   height: 1px;
-//   width: 20px;
-// }
-// .nav2::-webkit-scrollbar-track{
-//   background-color: #f6f6f6;
-// }
-// .nav2::-webkit-scrollbar-thumb{
-//   background-color: #f47d5d;
-// }
 
 .nav2 > li {
   font-size: 15px;
@@ -88,6 +78,7 @@ li > i {
   margin-right: 20px;
   position: relative;
   padding-bottom: 5px;
+  cursor: pointer;
 }
 .categories::before{
   content: '';
