@@ -22,7 +22,7 @@
        <mat-divider></mat-divider>
        <mat-list role="list">
          <mat-list-item ><span class="list-title" style="margin-right: 10px;">Categories</span><i class="bi bi-arrow-down" style="font-size: 20px;"></i> </mat-list-item>
-         <mat-list-item role="listitem" routerLink="/categories/{{item['id']}}"  *ngFor="let item of categories"> <button mat-button class="list-items">{{item['nom']}}</button></mat-list-item>
+         <mat-list-item role="listitem" routerLink="/categories/{{item['id']}}"  *ngFor="let item of categories" (click)="refreshPage(item['id'])"> <button mat-button class="list-items">{{item['nom']}}</button></mat-list-item>
        </mat-list>
      </mat-menu>
  </button>
@@ -36,7 +36,7 @@
     </div>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul>
-        <li class="bordered"><i class="bi bi-cart-fill"></i>Cart</li>
+        <li class="bordered" routerLink="/cart"><i class="bi bi-cart-fill"></i>Cart</li>
         <li class="bordered" routerLink="/auth/signup/Supplier"><i class="bi bi-shop"></i>Become vendor</li>
         <li  [matMenuTriggerFor]="auth"><i class="bi bi-person-circle" ></i>User</li>
         <mat-menu #auth="matMenu">
