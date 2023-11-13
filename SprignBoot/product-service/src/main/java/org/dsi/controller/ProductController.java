@@ -183,24 +183,7 @@ public class ProductController {
 			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
 		}
 	}
-	
-  /*
-    @PutMapping("/AcceptProduct")
-	public ResponseEntity<?> AcceptProduct(@RequestParam("id") long id){
-		Product prod=ProductRepo.ProductWithId(id);
-		prod.setStatus(1);
-		ProductRepo.save(prod);
-		return  ResponseEntity.ok().body("Product accepted");
-	}
-	 @PutMapping("/RefuseProduct")
-	 public ResponseEntity<?> RefuseProduct(@RequestParam("id") long id){
-		Product prod=ProductRepo.ProductWithId(id);
-		prod.setStatus(2);
-		ProductRepo.save(prod);
-		return  ResponseEntity.ok().body("Product refused");
-	}
-	*/
-	
+
 	@PutMapping("/PendingProduct")
 	public ResponseEntity<?> PendingProduct(@RequestParam("id") Long id){
 		Product prod=ProductRepo.ProductWithId(id);

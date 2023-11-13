@@ -10,18 +10,17 @@ export const addCommande = async (req: Request, res: Response) => {
         const ligneCommandes = [];
 
         for (let i = 0; i < req.body.LigneCommandes.length; i++) {
-            prixTotal += req.body.LigneCommandes[i].prix * req.body.LigneCommandes[i].Quantity;
+            prixTotal += req.body.LigneCommandes[i].prix * req.body.LigneCommandes[i].quantity;
 
             const ligneCommande = new LigneCommande({
                 Commande_id: null, 
-                Product_id: req.body.LigneCommandes[i].Product_id,
-                Quantity: req.body.LigneCommandes[i].Quantity,
+                Product_id: req.body.LigneCommandes[i].id,
+                Quantity: req.body.LigneCommandes[i].quantity,
                 prix: req.body.LigneCommandes[i].prix,
             });
 
             const savedLigneCommande = await ligneCommande.save();
             ligneCommandes.push(savedLigneCommande._id);
-
         }
 
         const commande = new Commande({
@@ -44,7 +43,7 @@ export const addCommande = async (req: Request, res: Response) => {
         const commandeSaved = await commande.save();
         // test worked :) add commande for every null commande
         for (let i = 0; i < ligneCommandes.length; i++) {
-            await LigneCommande.findByIdAndUpdate(ligneCommandes[i], { Commande_id: commandeSaved._id });
+            await LigneCommande.findByIdAndUpdate(ligneCommandes[i], {Commande_id:commandeSaved._id});
         }
         res.status(201).json(commandeSaved);
     } catch (e) {
