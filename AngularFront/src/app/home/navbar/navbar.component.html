@@ -9,7 +9,7 @@
     </div>
   </div>
   </div>
-  
+
 <nav class="navbar navbar-expand-lg" style="height: 90px;background-color: #F0F0F0;">
   <div class="container-fluid">
 
@@ -36,7 +36,7 @@
     </div>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul>
-        <li class="bordered"><i class="bi bi-cart-fill"></i>Cart</li>
+        <li class="bordered" routerLink="/cart"><i class="bi bi-cart-fill"></i>Cart</li>
         <li class="bordered" routerLink="/auth/signup/Supplier"><i class="bi bi-shop"></i>Become vendor</li>
         <li  [matMenuTriggerFor]="auth"><i class="bi bi-person-circle" ></i>User</li>
         <mat-menu #auth="matMenu">
@@ -56,5 +56,5 @@
 
 <div class="container nav2">
   <li class="categories d-none d-lg-block">All Categories <i class="bi bi-arrow-down-short" ></i></li>
-  <li *ngFor="let item of categories" routerLink="/categories/{{item['id']}}" class="categories d-none d-lg-block">{{item['nom']}}</li>
+  <li *ngFor="let item of categories" routerLink="/categories/{{item['id']}}" class="categories d-none d-lg-block" >{{item['nom']}}</li>
 </div>
