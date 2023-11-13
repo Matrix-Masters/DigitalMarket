@@ -21,7 +21,6 @@ refresh(){
   location.reload();
 }
 
-
 deleteProduct(product:any){
   this.productServiceStorage.deleteProduct(product)
   this.location.replaceState('/cart');
@@ -34,7 +33,6 @@ ngOnInit(): void {
   for (let index = 0; index < this.products.length; index++) {
     this.total = Number(this.products[index].prix) * Number(this.products[index].quantity)
   }
-
 }
 
 

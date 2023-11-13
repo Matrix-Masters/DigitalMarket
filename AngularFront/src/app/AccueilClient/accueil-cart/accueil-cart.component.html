@@ -10,6 +10,9 @@
     </div>
     <div class="total float-end mt-3">
       <h1>Total price ({{nbrArticle}}): {{total}} TND</h1>
+      <div class="mx-5">
+        <button [disabled]="nbrArticle>0 ? false : true" routerLink="/Commande"  mat-raised-button color="primary">Confirm Command</button>
+      </div>
     </div>
   </div>
 <app-footer></app-footer>

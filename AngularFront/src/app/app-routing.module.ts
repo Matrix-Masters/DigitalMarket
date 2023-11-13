@@ -22,7 +22,7 @@ const routes: Routes = [
    {path:'listCategory',component:CategoryListComponent},
    {path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
    {path:'gererSupplier',component:GererSupplierComponent},
-   {path:'client',component:LocationCommandeComponent},
+   {path:'Commandes_Taken',component:LocationCommandeComponent},
    {path:'categories/:id',component:AccueilClientComponent},
    {path:'cart',component:AccueilCartComponent},
    {path:'Commande',component:CommandeComponent},
