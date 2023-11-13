@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryServiceService } from 'src/app/Service/category-service.service';
 import { ProductServiceService } from 'src/app/Service/product-service.service';
 
@@ -9,8 +9,9 @@ import { ProductServiceService } from 'src/app/Service/product-service.service';
   styleUrls: ['./accueil-body.component.scss']
 })
 export class AccueilBodyComponent implements OnInit {
+  categories:any;
   categoryId:any;
-  constructor(private CategoryService : CategoryServiceService,private route : ActivatedRoute,private ProductService:ProductServiceService){}
+  constructor(private router: Router,private CategoryService : CategoryServiceService,private route : ActivatedRoute,private ProductService:ProductServiceService){}
   category:any
   products:any
   count_page:any
@@ -21,6 +22,19 @@ export class AccueilBodyComponent implements OnInit {
   max=0
   maxPrice=0
 
+  refreshPage(id:any): void {
+    const currentUrl = this.router.url;
+    this.categoryId=id;
+      console.log(this.categoryId);
+    setTimeout(() => {
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['/categories/'+id]).then(() => {
+          this.getProductsByCategoryId();
+        });
+      });
+    }, 100);
+
+  }
 
   getCategoryById(){
    this.CategoryService.getCategorieById(this.categoryId).subscribe((res:any)=>{
@@ -32,8 +46,6 @@ export class AccueilBodyComponent implements OnInit {
     this.ProductService.getMAxPrice().subscribe((res:any)=>{
       this.maxPrice=res
       this.max=this.maxPrice;
-      console.log(this.max);
-
     })
   }
 
@@ -73,7 +85,14 @@ clearInputs(){
     this.getCategoryById();
     this.getProductsByCategoryId();
     this.getMaxPrix();
-
+    this.CategoryService.getAllCategories().subscribe(
+      (res:any)=>{
+        this.categories=res;
+      },
+      err=>{
+        console.log(err);
+      }
+    )
   }
 
 
