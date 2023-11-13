@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import confetti from 'canvas-confetti';
 import { CommandeServiceService } from 'src/app/Service/commande-service.service';
+import { ProductsServiceLocalStorageService } from 'src/app/Service/products-service-local-storage.service';
 
 
 @Component({
@@ -11,10 +12,8 @@ import { CommandeServiceService } from 'src/app/Service/commande-service.service
   styleUrls: ['./commande.component.scss']
 })
 export class CommandeComponent {
- 
 
-
-  constructor(private MatSnackBar:MatSnackBar,private _formBuilder: FormBuilder,private CommandeServiceService:CommandeServiceService) {
+  constructor(private localStorageProduct:ProductsServiceLocalStorageService, private MatSnackBar:MatSnackBar,private _formBuilder: FormBuilder,private CommandeServiceService:CommandeServiceService) {
     
     this.FormInfo = this._formBuilder.group({
         Name:this.NameForm,
@@ -23,20 +22,8 @@ export class CommandeComponent {
         LastName:this.LastNameForm,
         email:this.emailForm
     })
-    this.Product.Quantity=2;
-    this.Product.prix=100;
-    this.Product.Product_id="1";
-    this.Products.push(this.Product);
-    this.Product.Quantity=8;
-    this.Product.prix=120;
-    this.Product.Product_id="2";
-    this.Products.push(this.Product);
-    this.Product.Quantity=8;
-    this.Product.prix=120;
-    this.Product.Product_id="2";
-    this.Products.push(this.Product);
-    localStorage.setItem("Products",JSON.stringify(this.Products));
-    // Init Form
+   
+   // Init Form
     this.NameForm.setValue("Talel");
     this.LastNameForm.setValue("Mejri");
     this.CinForm.setValue("12345678");
@@ -116,7 +103,6 @@ getEmailError(){
  FormInfo:FormGroup;
  isLinear = false;
 
-
   Location:any={
     lat:0,
     lng:0,
@@ -154,38 +140,22 @@ getEmailError(){
     });
     confetti();
   }
+
   Product:any={
     Quantity:"",
     prix:0.0,
     Product_id:""
   }
 
-  Products:any=[];
-  ConfirmCommande(){
-   //* add product yal gas
-  //  this.Product.Quantity=2;
-  //  this.Product.prix=100;
-  //  this.Product.Product_id="1";
-  //  this.Products.push(this.Product);
-  //  this.Product.Quantity=8;
-  //  this.Product.prix=120;
-  //  this.Product.Product_id="2";
-  //  this.Products.push(this.Product);
-  //  this.Product.Quantity=8;
-  //  this.Product.prix=120;
-  //  this.Product.Product_id="2";
-  //  this.Products.push(this.Product);
-  //  localStorage.setItem("Products",JSON.stringify(this.Products));
-   //**********Name *//
 
-   
-    // Num commande Random King
+  ConfirmCommande(){
    var num_com=Math.floor(Math.random() * 99999);
-   this.Products = this.Products = JSON.parse(localStorage.getItem("Products") ?? '[]');
+   var products=this.localStorageProduct.GetProduct();
+
    this.CommandeServiceService.AddCommande(
-        {
+      {
           "NumCommande":num_com,
-          "LigneCommandes":this.Products,
+          "LigneCommandes":products,
           "Name":this.FormInfo.value['Name'], 
           "Cin":this.FormInfo.value['Cin'],
           "phone":this.FormInfo.value['phone'],
@@ -198,17 +168,17 @@ getEmailError(){
             "name":this.Location.name
           }
         }
-      )
+   )
         .subscribe((res:any)=>{
-        },(err:any)=>{
           this.StartConfetti();
           this.FormInfo.reset();
-          this.Products=[];
-          localStorage.setItem("Products",JSON.stringify(this.Products));
+          this.localStorageProduct.clearProductList();
           this.Location.lat=0;
           this.Location.lng=0;
           this.Location.name="";
           this.MatSnackBar.open("Commande Confirmer","Ok",{ duration: 2000,});
+        },(err:any)=>{
+          console.log(err);
         })
   }
 }

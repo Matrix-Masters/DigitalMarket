@@ -37,7 +37,6 @@ export class ProductsServiceLocalStorageService {
         productList.splice(index, 1);
         localStorage.setItem(this.STORAGE_KEY, JSON.stringify(productList));
       }
-
     }
   }
 
@@ -66,6 +65,11 @@ export class ProductsServiceLocalStorageService {
 
   private saveProductList(): void {
     localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.productList));
+  }
+
+  GetProduct(){
+    const products = localStorage.getItem(this.STORAGE_KEY);
+    return products !== null ? JSON.parse(products) : [];
   }
 
 }
