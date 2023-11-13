@@ -31,10 +31,12 @@
       </mat-toolbar-row>
     </mat-toolbar>
 
+    <h1 class="alert alert-danger mt-5 text-center" style="width: 80%;margin-left: 10%;" *ngIf="suppliers==null">there's
+      no
+      Suppliers</h1>
 
 
-
-    <table class="table mt-3">
+    <table class="table mt-3" *ngIf="suppliers!=null">
       <thead>
         <tr>
           <th scope="col">Photo</th>
@@ -66,12 +68,15 @@
           <td>
 
             <button mat-button appearance="legacy" class="shadow" (click)="AcceptSupplier(supplier.id)"
-              *ngIf="supplier.status!=1">
-              <mat-icon style="color: green;">check</mat-icon>
+              *ngIf="supplier.status != 1">
+              <mat-icon style="color: green" *ngIf="!loading">check</mat-icon>
+              <mat-spinner *ngIf="loading" diameter="20" color="accent"></mat-spinner>
             </button>
-            <button mat-button appearance="legacy" style="margin-left: 5%;" class="shadow" *ngIf="supplier.status!=2"
+
+            <button mat-button appearance="legacy" style="margin-left: 5%;" class="shadow" *ngIf="supplier.status != 2"
               (click)="RefuseSupplier(supplier.id)">
-              <mat-icon color="warn">close</mat-icon>
+              <mat-icon color="warn" *ngIf="!loading">close</mat-icon>
+              <mat-spinner *ngIf="loading" diameter="20" color="accent"></mat-spinner>
             </button>
           </td>
         </tr>
