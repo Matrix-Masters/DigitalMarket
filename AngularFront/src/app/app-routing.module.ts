@@ -11,6 +11,7 @@ import { AccueilClientComponent } from './AccueilClient/accueil-client/accueil-c
 import { AccueilCartComponent } from './AccueilClient/accueil-cart/accueil-cart.component';
 import { NotFoundComponentComponent } from './notfound/not-found-component/not-found-component.component';
 import { CommandeComponent } from './ClientComponent/commande/commande.component';
+import { LIstEmpolyersComponent } from './superAdminComponents/Employers/list-empolyers/list-empolyers.component';
 
 
 
@@ -26,7 +27,9 @@ const routes: Routes = [
    {path:'categories/:id',component:AccueilClientComponent},
    {path:'cart',component:AccueilCartComponent},
    {path:'Commande',component:CommandeComponent},
+   {path:"gererEmployers",component:LIstEmpolyersComponent},
    {path:"**",component:NotFoundComponentComponent}
+
 ]
 
 

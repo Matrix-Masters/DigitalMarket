@@ -34,6 +34,7 @@ import { CardCartComponent } from './AccueilClient/card-cart/card-cart.component
 
 import { NotFoundComponentComponent } from './notfound/not-found-component/not-found-component.component';
 import { CommandeComponent } from './ClientComponent/commande/commande.component';
+import { LIstEmpolyersComponent } from './superAdminComponents/Employers/list-empolyers/list-empolyers.component';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { CommandeComponent } from './ClientComponent/commande/commande.component
     NotFoundComponentComponent,
     CommandeComponent,
     GererSupplierComponent,
-    LocationCommandeComponent
+    LocationCommandeComponent,
+    LIstEmpolyersComponent
 
   ],
   imports: [
