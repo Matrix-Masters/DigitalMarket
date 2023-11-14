@@ -1,0 +1,53 @@
+<button mat-raised-button color="primary"
+  [routerLink]="['/gererEmployers']"><mat-icon>arrow_back</mat-icon>back</button>
+<div class="container mt-5">
+  <div class="shadow-lg row mt-5" style="margin-top: 8%!important;">
+    <div class="col">
+      <img src="../../../../../../assets/Add User-rafiki.png" alt="" height="500px" width="600px">
+    </div>
+    <form class="mt-5 col" style="width: 100%;">
+
+      <h2 class="text-center mb-4">Add Employer</h2>
+
+      <div class="form-group">
+        <mat-form-field style="width: 100%;">
+          <input matInput placeholder="First Name" [(ngModel)]="firstName" name="firstName">
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field style="width: 100%;">
+          <input matInput placeholder="Last Name" [(ngModel)]="lastName" name="lastName">
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field style="width: 100%;">
+          <mat-label>Gender</mat-label>
+          <mat-select [(ngModel)]="gender" name="gender">
+            <mat-option value="male">Male</mat-option>
+            <mat-option value="female">Female</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field style="width: 100%;">
+          <mat-label>Role</mat-label>
+          <mat-select [(ngModel)]="role" name="role">
+            <mat-option value="Admin technique">Technique</mat-option>
+            <mat-option value="Admin organisateur">Organisateur</mat-option>
+            <mat-option value="Admin commande">Commande</mat-option>
+            <mat-option value="livreur">Livreur</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group text-center">
+        <button mat-raised-button color="primary" (click)="submitForm()"><mat-icon>autorenew</mat-icon>generate
+          account</button>
+      </div>
+
+    </form>
+  </div>
+</div>
