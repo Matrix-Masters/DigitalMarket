@@ -1,11 +1,13 @@
 <div>
   <mat-toolbar color="white">
     <span>Gerer Emplyers</span>
-    <span class="spacer"></span>
-    <mat-form-field>
-      <input matInput placeholder="Search" aria-label="Search">
+    <span class="flex-spacer"></span>
+    <mat-form-field style="width: 70%;">
+      <input matInput placeholder="Search Employer" aria-label="Search">
     </mat-form-field>
-    <button mat-raised-button color="primary"><mat-icon>add</mat-icon>Add Employer</button>
+    <span style=" flex: 0.2;"></span>
+    <button mat-raised-button color="primary" [routerLink]="['/addEmploye']"><mat-icon>add</mat-icon>Add
+      Employer</button>
   </mat-toolbar>
   <div class="container">
     <div class="row">
