@@ -35,6 +35,8 @@ import { CardCartComponent } from './AccueilClient/card-cart/card-cart.component
 import { NotFoundComponentComponent } from './notfound/not-found-component/not-found-component.component';
 import { CommandeComponent } from './ClientComponent/commande/commande.component';
 import { LIstEmpolyersComponent } from './superAdminComponents/Employers/list-empolyers/list-empolyers.component';
+import { AddEmployerComponent } from './superAdminComponents/Employers/add-employer/add-employer.component';
+import { GenerateAccountDialogComponent } from './superAdminComponents/Employers/generate-account-dialog/generate-account-dialog.component';
 
 
 @NgModule({
@@ -63,7 +65,9 @@ import { LIstEmpolyersComponent } from './superAdminComponents/Employers/list-em
     CommandeComponent,
     GererSupplierComponent,
     LocationCommandeComponent,
-    LIstEmpolyersComponent
+    LIstEmpolyersComponent,
+    AddEmployerComponent,
+    GenerateAccountDialogComponent
 
   ],
   imports: [

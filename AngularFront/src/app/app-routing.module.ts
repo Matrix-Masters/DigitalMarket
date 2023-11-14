@@ -12,6 +12,7 @@ import { AccueilCartComponent } from './AccueilClient/accueil-cart/accueil-cart.
 import { NotFoundComponentComponent } from './notfound/not-found-component/not-found-component.component';
 import { CommandeComponent } from './ClientComponent/commande/commande.component';
 import { LIstEmpolyersComponent } from './superAdminComponents/Employers/list-empolyers/list-empolyers.component';
+import { AddEmployerComponent } from './superAdminComponents/Employers/add-employer/add-employer.component';
 
 
 
@@ -28,6 +29,7 @@ const routes: Routes = [
    {path:'cart',component:AccueilCartComponent},
    {path:'Commande',component:CommandeComponent},
    {path:"gererEmployers",component:LIstEmpolyersComponent},
+   {path:"addEmploye",component:AddEmployerComponent},
    {path:"**",component:NotFoundComponentComponent}
 
 ]
