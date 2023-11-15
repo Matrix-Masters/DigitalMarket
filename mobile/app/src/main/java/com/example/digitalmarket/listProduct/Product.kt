@@ -1,4 +1,6 @@
 package com.example.digitalmarket.listProduct
 
-class Product {
+import android.widget.ImageView
+
+data class Product (val name:String,val price:Double,val img_id:Int,var isSelected:Boolean=false) {
 }
