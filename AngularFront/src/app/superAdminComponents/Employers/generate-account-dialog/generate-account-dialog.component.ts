@@ -21,19 +21,8 @@ export class GenerateAccountDialogComponent {
   }
 
   generateAccountInfo() {
-    this.generatedEmail = `${this.data.firstName.toLowerCase()}.${this.data.lastName.toLowerCase()}@digitalMarket.com`;
-    this.generatedPassword = this.generateRandomPassword();
-  }
-
-  generateRandomPassword(): string {
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789/*-+!@#$%^&()_';
-    const passwordLength = 8;
-    let password = '';
-    for (let i = 0; i < passwordLength; i++) {
-      const randomIndex = Math.floor(Math.random() * characters.length);
-      password += characters[randomIndex];
-    }
-    return password;
+    this.generatedEmail = this.data.generatedEmail;
+    this.generatedPassword = this.data.generatedPassword;
   }
   downloadTxt() {
     const content = `Email: ${this.generatedEmail}\nPassword: ${this.generatedPassword}`;

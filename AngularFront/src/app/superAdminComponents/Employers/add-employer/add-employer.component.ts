@@ -12,18 +12,36 @@ export class AddEmployerComponent {
   lastName: string = '';
   gender: string = '';
   role: string = '';
-
+  generatedEmail:string='';
+  generatedPassword:string='';
   constructor(private dialog: MatDialog) {}
 
   submitForm() {
     this.openGenerateAccountDialog();
   }
+  generateAccountInfo() {
+    this.generatedEmail = `${this.firstName.toLowerCase()}.${this.lastName.toLowerCase()}@digitalMarket.com`;
+    this.generatedPassword = this.generateRandomPassword();
+  }
 
+  generateRandomPassword(): string {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789/*-+!@#$%^&()_';
+    const passwordLength = 8;
+    let password = '';
+    for (let i = 0; i < passwordLength; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      password += characters[randomIndex];
+    }
+    return password;
+  }
   openGenerateAccountDialog() {
+    this.generateAccountInfo();
     const dialogRef = this.dialog.open(GenerateAccountDialogComponent, {
       data: {
         firstName: this.firstName,
-        lastName: this.lastName
+        lastName: this.lastName,
+        generatedEmail:this.generatedEmail,
+        generatedPassword:this.generatedPassword,
       },
       disableClose: true,
     });
