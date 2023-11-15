@@ -37,6 +37,7 @@ class ListProductAdapter(private val products: ArrayList<Product>) : RecyclerVie
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item = products[position]
+        holder.img.setImageResource(item.img_id)
         holder.name.text = item.name
         holder.price.text = item.price.toString()
 
