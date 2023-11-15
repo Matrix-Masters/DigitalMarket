@@ -21,7 +21,7 @@
             android:id="@+id/prod_img"
             android:layout_width="100dp"
             android:layout_height="120dp"
-            android:src="@drawable/product1"
+            android:src="@drawable/appstore"
             />
         <GridLayout
             android:layout_width="match_parent"
