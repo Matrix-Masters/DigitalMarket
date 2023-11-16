@@ -11,7 +11,7 @@
   </mat-toolbar>
   <div class="container">
     <div class="row">
-      <div class="col-md-4 mt-5">
+      <div class="col-md-4 mt-5" *ngFor="let emplo of Employees; let i = index;">
         <div class="card profile-card-3  shadow-lg">
           <div class="background-block">
             <img
@@ -22,7 +22,7 @@
             <img src="../../../../assets/Screenshot 2023-10-24 202314.png" alt="profile-image" class="profile" />
           </div>
           <div class="card-content">
-            <h2>Youssef Souisi<small>Admin Organisateur</small></h2>
+            <h2>{{emplo['firstName'] + " " +emplo['lastName'] }}<small>{{emplo['role']}}</small></h2>
             <div class="icon-block">
               <a href="#"><i><mat-icon>phone</mat-icon></i></a>
               <a href="#"><i><mat-icon>email</mat-icon></i></a>

@@ -74,7 +74,7 @@ export class AdminServiceService {
   destroyCategory(id: any) {
     return this.http.delete(`${port}/PRODUCT-SERVICE/categories/DeleteCategoryById?id=${id}`);
   }
-  
+
 updateCategory(CategoryId: any, Category:CategoryResponse) {
   const url = `${port}/PRODUCT-SERVICE/categories/updateCategorie?id=${CategoryId}`;
   return this.http.post(url, Category);
