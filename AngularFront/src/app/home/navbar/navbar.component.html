@@ -15,9 +15,10 @@
 
     <button class="navbar-toggler" mat-button [matMenuTriggerFor]="aboveMenu" >
       <i class="bi bi-list" style="font-size: 35px"></i>
+      
      <mat-menu #aboveMenu="matMenu" yPosition="above">
-       <button mat-menu-item routerLink="/cart"> <i class="bi bi-cart-fill menu-boredered"></i>Cart</button>
-       <button mat-menu-item><i class="bi bi-person-circle menu-boredered"></i>User</button>
+       <button mat-menu-item routerLink="/cart"> <i class="bi bi-cart-fill menu-boredered"></i>Cart </button>
+       <button mat-menu-item *ngIf="!AuthServiceService.isAuth"><i class="bi bi-person-circle menu-boredered"></i>User</button>
        <button   mat-menu-item  routerLink="/auth/signup/Supplier" ><i  class="bi bi-shop menu-boredered"></i>Become vendor</button>
        <mat-divider></mat-divider>
        <mat-list role="list">
@@ -38,7 +39,25 @@
       <ul>
         <li class="bordered" routerLink="/cart"><i class="bi bi-cart-fill"></i>Cart</li>
         <li class="bordered" routerLink="/auth/signup/Supplier"><i class="bi bi-shop"></i>Become vendor</li>
-        <li  [matMenuTriggerFor]="auth"><i class="bi bi-person-circle" ></i>User</li>
+        <li  [matMenuTriggerFor]="auth" *ngIf="!AuthServiceService.isAuth"><i class="bi bi-person-circle" ></i>User</li>
+        <li [matMenuTriggerFor]="user" class="bordered" *ngIf="AuthServiceService.isAuth"  class="d-block link-dark text-decoration-none">
+             <img src="../../../assets/ImagesSignup/Digital Market.png" alt="mdo" width="32" height="32" class="rounded-circle">
+             talel
+        </li>
+        <mat-menu #user="matMenu">
+          <button mat-menu-item >
+            <mat-icon>credit_card_gear</mat-icon>
+            <span>List Command</span>
+          </button>
+          <button mat-menu-item routerLink="/CommandeLocation">
+            <mat-icon>pin_drop</mat-icon>
+            <span>Location Command</span>
+          </button>
+          <button mat-menu-item >
+            <mat-icon>favorite</mat-icon>
+            <span >WishList</span>
+          </button>
+        </mat-menu>
         <mat-menu #auth="matMenu">
           <button mat-menu-item>
             <mat-icon>account_circle</mat-icon>
