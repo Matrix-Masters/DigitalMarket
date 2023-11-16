@@ -1,9 +1,9 @@
 <button mat-raised-button color="primary"
   [routerLink]="['/gererEmployers']"><mat-icon>arrow_back</mat-icon>back</button>
 <div class="container mt-5">
-  <div class="shadow-lg row mt-5" style="margin-top: 8%!important;">
+  <div class="shadow-lg row mt-5" style="margin-top: 6%!important;">
     <div class="col">
-      <img src="../../../../../../assets/Add User-rafiki.png" alt="" height="500px" width="600px">
+      <img src="../../../../../../assets/Add User-rafiki.png" alt="" height="550px" width="600px">
     </div>
     <form class="mt-5 col" style="width: 100%;">
 
@@ -20,6 +20,11 @@
           <input matInput placeholder="Last Name" [(ngModel)]="lastName" name="lastName">
         </mat-form-field>
       </div>
+      <div class="form-group">
+        <mat-form-field style="width: 100%;">
+          <input matInput placeholder="Phone Number" [(ngModel)]="PhoneNumber" name="lastName">
+        </mat-form-field>
+      </div>
 
       <div class="form-group">
         <mat-form-field style="width: 100%;">
@@ -30,6 +35,7 @@
           </mat-select>
         </mat-form-field>
       </div>
+
 
       <div class="form-group">
         <mat-form-field style="width: 100%;">
