@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import androidx.core.app.ActivityOptionsCompat
+import com.example.digitalmarket.Client.DashboardClient
 
 class IntroScreen4 : AppCompatActivity() {
     lateinit var navBtn: Button
@@ -16,7 +17,7 @@ class IntroScreen4 : AppCompatActivity() {
         navBtn = findViewById(R.id.introButton)
 
         navBtn.setOnClickListener(){
-            val intent = Intent(this,IntroScreen2::class.java)
+            val intent = Intent(this,DashboardClient::class.java)
             val slideLeftAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_left)
             navBtn.startAnimation(slideLeftAnimation)
 

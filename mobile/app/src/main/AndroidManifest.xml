@@ -15,6 +15,18 @@
         android:theme="@style/Theme.DigitalMarket"
         tools:targetApi="31">
         <activity
+            android:name=".Client.Settings"
+            android:exported="false" />
+        <activity
+            android:name=".Client.Panier"
+            android:exported="false" />
+        <activity
+            android:name=".Client.DashboardClient"
+            android:exported="false" />
+        <activity
+            android:name=".dashboardClient"
+            android:exported="false" />
+        <activity
             android:name=".signup.signupstep_three"
             android:exported="false" />
         <activity
