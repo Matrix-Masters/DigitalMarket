@@ -12,4 +12,8 @@ export class CommandeServiceService {
     return this.http.post(`${port}/GESTIONCOMMANDE-SERVICE/Commande/AddCommande`,data);
   }
 
+  getCommandeByUser(userId:any){
+    return this.http.get(`${port}/GESTIONCOMMANDE-SERVICE/Commande/GetCommandeByIdUser/${userId}`)
+  }
+
 }

@@ -52,6 +52,8 @@ export const addCommande = async (req: Request, res: Response) => {
 
 }
 
+
+
 export const GetCommandeDispo = async (req: Request, res: Response) => {
 
     let page: number = parseInt(req.query.page?.toString() || '1');
@@ -85,6 +87,20 @@ export const GetCommandeDispo = async (req: Request, res: Response) => {
         res.status(500).json({ message: err.message });
     }
 
+}
+
+export const GetCommandeByIdUser=async (req:Request,res:Response)=>{
+    try{
+        const listCommandes=await Commande.find({
+            $and: [
+                {  Client_id:req.params.Client_id, },
+                {   Status:"Taken", },
+            ]
+        }).exec();
+        res.status(200).json(listCommandes);
+    }catch(e:any){
+        res.status(500).json({message:e.message})
+    }
 }
 
 
