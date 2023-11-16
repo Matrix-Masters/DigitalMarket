@@ -31,5 +31,7 @@ public interface UserRepo extends JpaRepository<InfoUser,Long> {
 	        "AND (:date is null OR u.created_at <= :date)"+
 	        "and (role='Supplier')", nativeQuery=true)
     List<InfoUser> findFilteredSuppliers(String search, int status,Timestamp date);
-
+	
+	@Query(value="SELECT * from info_user where role='Admin technique' OR role='Admin organisateur' OR role='Admin commande' OR role='livreur'",nativeQuery=true)
+	List<InfoUser> GetAllEmployees();
 }
