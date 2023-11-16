@@ -1,0 +1,42 @@
+<app-navbar></app-navbar>
+<div class="container mt-5 py-5">
+  <div class="header">
+    <h2 class="header-text">Command With Location</h2>
+    <h3 class="header-text-2" >Location Maps</h3>
+  </div>
+  <div class="row">
+     <div class="col-lg-3 scroll" >
+        <p class="text-center header-text-2" >List Command</p>
+        <mat-card *ngFor="let item of Listcommandes" class="mb-3">
+          <mat-card-header>
+            <mat-card-title>Num Command : {{item.NumCommande}}</mat-card-title>
+            <mat-card-subtitle>NprProduct : {{item.LigneCommandes.length}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <div>
+               Prix Total :{{item.PrixTotal}} TND
+            </div>
+          </mat-card-content>
+          <mat-card-actions class="text-center">
+            <button mat-button (click)="choseCommande(item.NumCommande)">Show</button>
+          </mat-card-actions>
+        </mat-card>
+     </div>
+     <div class="col-lg-9">
+      <div class="map-container" *ngIf="SelectCommande!=null;else show">
+        <div class="map-frame">
+          <div id="map"></div>
+        </div>
+    </div>
+   <ng-template #show >
+       <div class="noCommande shadow-lg ">
+          <p>
+             No Command Selected Yet
+           </p>
+       </div>
+   </ng-template>
+   
+   </div>
+  </div>
+</div>
+<app-footer></app-footer>
