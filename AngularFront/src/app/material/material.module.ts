@@ -21,6 +21,11 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatChipsModule} from '@angular/material/chips';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatStepperModule} from '@angular/material/stepper';
+import {  MatPseudoCheckboxModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 @NgModule({
   imports:[
     MatIconModule,
@@ -48,7 +53,12 @@ import {MatRadioModule} from '@angular/material/radio';
     MatTooltipModule,
     MatChipsModule,
     MatPaginatorModule,
-    MatRadioModule
+    MatRadioModule,
+    MatStepperModule,
+    MatPseudoCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCheckboxModule,
   ],
 
   exports:[
@@ -77,8 +87,12 @@ import {MatRadioModule} from '@angular/material/radio';
     MatTooltipModule,
     MatChipsModule,
     MatPaginatorModule,
-    MatRadioModule
+    MatRadioModule,
+    MatStepperModule,
+    MatPseudoCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCheckboxModule,
 ]
-
 })
 export class MaterialModule { }

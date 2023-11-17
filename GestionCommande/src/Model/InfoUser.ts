@@ -20,7 +20,7 @@ let UserSchema=new mongoose.Schema({
     },
     cin:{
         type:String,
-        default: null
+        default:null
     },
     status:{
         type:Number,

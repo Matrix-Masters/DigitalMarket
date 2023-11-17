@@ -1,0 +1,19 @@
+<app-navbar></app-navbar>
+  <div class="cart container">
+    <div class="header">
+      <h2 class="header-text">Your cart</h2>
+      <h3 class="header-text-2" (click)="clearAll()">Delete all products in your cart</h3>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="cards-holder" >
+      <app-card-cart [products]="products"></app-card-cart>
+    </div>
+    <div class="total float-end mt-3">
+      <h1>Total price ({{nbrArticle}}): {{total}} TND</h1>
+      <div class="mx-5">
+        <button [disabled]="nbrArticle>0 ? false : true" routerLink="/Commande"  mat-raised-button color="primary">Confirm Command</button>
+      </div>
+    </div>
+  </div>
+<app-footer></app-footer>
+

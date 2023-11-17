@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Welcome to Our Team</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://img.freepik.com/free-photo/finance-elements-frame_23-2148080960.jpg?w=1060&t=st=1698878901~exp=1698879501~hmac=0ab700e9fb2d48ca74999d21321b5605bdabf5a4deecc5adae00794086c15440');
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            background-color: #8B5A2B;
+            color: #f5f5f5;
+            padding: 30px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        .content {
+            padding: 20px;
+            text-align: left;
+        }
+
+        .content p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .signature {
+            text-align: right;
+            padding: 20px;
+            background-color: #8B5A2B;
+            color: #f5f5f5;
+            border-top: 1px solid #ddd;
+        }
+
+        .signature p {
+            margin: 5px 0;
+        }
+
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Welcome to Our Team</h1>
+        </div>
+        <div class="content">
+            <h3>Dear <span th:text="${recipientName}"></span>,</h3>
+            <p>We are thrilled to have you as part of our team. Your contributions will be valuable, and we look forward to working with you.</p>
+            <img src="https://img.freepik.com/free-vector/creative-welcome-team-banner-corporate-hiring_1017-43282.jpg?w=1060&t=st=1698876171~exp=1698876771~hmac=95b5e56ec0ca9620d6e431e0c2acedf66b91901f63d16068dbce6c5cd5b91a4c" alt="Welcome Image" class="img-fluid">
+            <p>Feel free to reach out to us if you have any questions or need assistance. We are here to support you.</p>
+        </div>
+        <div class="signature">
+            <p>Best regards,</p>
+            <p>Digital Market The Team</p>
+        </div>
+    </div>
+</body>
+
+</html>

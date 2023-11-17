@@ -1,5 +1,7 @@
 package org.dsi.controller;
 
+import java.util.List;
+
 import org.dsi.entity.InfoUser;
 import org.dsi.payload.UserInfo;
 import org.dsi.service.UserInfoService;
@@ -11,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartFile;;
 
 @RestController
 public class InfoUserController {
@@ -42,9 +44,9 @@ public class InfoUserController {
 	}
 	
 	@PostMapping(value="/addUserInfo")
-	public ResponseEntity<?> addUserInfo(@RequestParam("role") String role,@RequestBody UserInfo user){
+	public ResponseEntity<?> addUserInfo(@RequestBody UserInfo user){
 		try {
-			userInfoService.addInfoUser(user,role);
+			userInfoService.addInfoUser(user);
 			return  ResponseEntity.ok().body("user add");
         } catch (Exception e) {
         	return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);

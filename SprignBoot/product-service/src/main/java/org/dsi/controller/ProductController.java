@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,6 +28,7 @@ import Payload.ProducInfo;
 import net.minidev.json.JSONObject;
 import java.lang.Long;
 import java.util.List;
+import java.util.Map;
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -46,6 +48,16 @@ public class ProductController {
 		  			ProductService.AddProductService(product,file);
 		  			return new ResponseEntity<ProducInfo>(product,HttpStatus.OK);
 	 }
+	
+	@GetMapping("/GetDetailsProd")
+	public ResponseEntity<?> GetProduct(@RequestParam("id") Long id){
+		Product prod=ProductRepo.ProductWithId(id);
+		JSONObject product=new JSONObject();
+		product.appendField("name", prod.getName());
+		product.appendField("image",prod.getImageProduct());
+		product.appendField("id",id);
+		return ResponseEntity.ok(product);
+	}
 	
 	@GetMapping("/AllProduct")
 	public ResponseEntity<?> getAllProductPaginate(
@@ -116,7 +128,7 @@ public class ProductController {
 	public ResponseEntity<?> RejectProduct(@RequestParam("id") long id){
 		try {
 			ProductService.RejectProduct(id);
-			return  ResponseEntity.ok("Product Upated");
+			return ResponseEntity.ok(Map.of("message", "product rejected succesfully"));
 		}catch (Exception e) {
 			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
 		}
@@ -158,7 +170,6 @@ public class ProductController {
 				return ResponseEntity.ok("Product deleted successfully");
 			}
 		}catch(Exception e) {
-			
 			 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while deleting the product.");
 		}		
 	}
@@ -167,29 +178,12 @@ public class ProductController {
 	public ResponseEntity<?> AcceptProduct(@RequestParam("id") long id){
 		try {
 			ProductService.AcceptProduct(id);
-			return  ResponseEntity.ok("Product Updated");
+			 return ResponseEntity.ok(Map.of("message", "product accepted succesfully"));
 		}catch (Exception e) {
 			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
 		}
 	}
-	
-  /*
-    @PutMapping("/AcceptProduct")
-	public ResponseEntity<?> AcceptProduct(@RequestParam("id") long id){
-		Product prod=ProductRepo.ProductWithId(id);
-		prod.setStatus(1);
-		ProductRepo.save(prod);
-		return  ResponseEntity.ok().body("Product accepted");
-	}
-	 @PutMapping("/RefuseProduct")
-	 public ResponseEntity<?> RefuseProduct(@RequestParam("id") long id){
-		Product prod=ProductRepo.ProductWithId(id);
-		prod.setStatus(2);
-		ProductRepo.save(prod);
-		return  ResponseEntity.ok().body("Product refused");
-	}
-	*/
-	
+
 	@PutMapping("/PendingProduct")
 	public ResponseEntity<?> PendingProduct(@RequestParam("id") Long id){
 		Product prod=ProductRepo.ProductWithId(id);
@@ -250,7 +244,85 @@ public class ProductController {
 	    }
 		
 	}
+	
+	@GetMapping("/getProductsNewArrivals")
+	public ResponseEntity<?> getProductsNewArrivals(){
+		try {
+			List<Product> products = ProductService.getProductNewArrivals();
+			return ResponseEntity.ok(products);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.badRequest().body("No Products found");
+		}
+		
+	}
+	
+	
+	@GetMapping("/ProductsByIdCategoriePaginate")
+	public ResponseEntity<?> ProductsByIdCategoriePaginate(
+			@RequestParam(name="id") Long cat_id,
+			@RequestParam(name = "page", defaultValue = "0") int page,
+			@RequestParam(name = "per_page", defaultValue = "2") int size,
+			@RequestParam(name = "search", defaultValue = "") String name,
+			@RequestParam(name = "min", defaultValue = "0") double min,
+			@RequestParam(name = "max", defaultValue = "0") double max){
+		
+		if(max==0) {
+			max=ProductRepo.getMaxPrice();
+		}
+		
+		if (page < 0 || size <= 0 ) {
+	        return ResponseEntity.badRequest().body("Invalid page or per_page values.");
+	 		}
+		
+		try {
+	        Page<Product> products;
+	        
+	        if(min !=0 && name.isEmpty()==true) {
+	        	
+	        	products=ProductRepo.getProductByCategoryPaginatePrice(cat_id,min,max,PageRequest.of(page, size));
+	        	
+	        }else if(min ==0 && name.isEmpty()==false) {
+	        	
+	        	products=ProductRepo.getProductByCategoryPaginateSearch(cat_id,name,PageRequest.of(page, size));
+	        	
+	        }else if(min !=0 && name.isEmpty()==false) {
+	        	
+	        	products=ProductRepo.getProductByCategoryPaginatePriceSearch(cat_id,min,max,name,PageRequest.of(page, size));
+	        	
+	        }else {
+	        	
+	        	products=ProductRepo.getProductByCategoryPaginate(cat_id,PageRequest.of(page, size));	
+	        }
+	       	
+	        int total = products.getTotalPages();
+	        int[] count_page = new int[total];
+	        
+	        for (int i = 0; i < total; i++) {
+	            count_page[i] = i;
+	        }
 
+	        PaginateInfo data = new PaginateInfo(count_page, products, page);
+	        return ResponseEntity.ok(data);
+	        
+		}catch (Exception e) {
+		    	
+		        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while fetching paginated products.");
+		    }
+	}
+	
+	@GetMapping("/getMaxPrice")
+	public ResponseEntity<?> getMaxPrice(){
+		double max = ProductRepo.getMaxPrice();
+		if(max != 0 ) {
+			return ResponseEntity.ok(max);	
+		}else {
+			return ResponseEntity.badRequest().body("No Products available");
+		}
+		
+	}
+	
+	
 	
 
 }

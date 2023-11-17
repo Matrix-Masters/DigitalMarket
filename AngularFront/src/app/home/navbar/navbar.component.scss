@@ -1,4 +1,7 @@
-
+*{
+  overflow: hidden;
+  box-sizing: border-box;
+}
 
 .search__input {
   font-family: inherit;
@@ -44,6 +47,7 @@ li > i {
   font-size:30px;
   font-weight: bold;
   margin-right: 10%;
+  text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.5), 5px 31px 8px rgba(0,0,0,0.21);
 }
 .menu-boredered{
 
@@ -60,8 +64,10 @@ li > i {
   list-style: none;
   margin-top: 20px;
   text-transform: uppercase;
-  height: auto;
+
 }
+
+
 .nav2 > li {
   font-size: 15px;
   cursor: pointer;
@@ -72,6 +78,7 @@ li > i {
   margin-right: 20px;
   position: relative;
   padding-bottom: 5px;
+  cursor: pointer;
 }
 .categories::before{
   content: '';
@@ -156,6 +163,66 @@ cursor: pointer;
   }
 }
 
+
+.mini-nav{
+ height: auto;
+  background-color: #F0F0F0;
+
+}
+
+.animation{
+  animation: RightToLeft 10s linear infinite ;
+}
+
+.container-anim{
+  float: right;
+}
+
+
+@keyframes RightToLeft {
+  from{
+    transform: translateX(0%);
+  }
+  to{
+    transform: translateX(-100%);
+  }
+}
+
+.container-flag{
+  height: 15px;
+  width: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-left: 20px;
+}
+.black{
+  height: 5px;
+  width: 30px;
+  background-color: #000;
+}
+
+.white{
+  height: 5px;
+  width: 30px;
+  background-color: #ffffff;
+}
+
+.green{
+  height: 5px;
+  width: 30px;
+  background-color: green;
+}
+.red{
+  height: 0px;
+  width: 0px;
+  border-bottom: 7.5px solid transparent;
+  border-left: 7.5px solid red;
+  border-top: 7.5px solid transparent;
+  position: absolute;
+
+}
 
 
 

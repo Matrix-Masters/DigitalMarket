@@ -7,6 +7,7 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.digitalmarket.signup.SignUpStepOne
 import com.google.android.material.snackbar.Snackbar
 
 class LoginActivity : AppCompatActivity(){
@@ -38,7 +39,7 @@ class LoginActivity : AppCompatActivity(){
             validForm();
         }
         signupBtn.setOnClickListener {
-            val intent= Intent(this,signup::class.java)
+            val intent= Intent(this,SignUpStepOne::class.java)
             startActivity(intent);
         }
     }

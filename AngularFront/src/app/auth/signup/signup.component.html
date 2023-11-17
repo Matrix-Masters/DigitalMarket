@@ -7,7 +7,7 @@
                         <mat-form-field appearance="outline">
                             <mat-label>Enter FirstName</mat-label>
                             <input matInput [formControl]="FirstNameForm">
-                            <mat-icon matSuffix style="color:#bda179" >
+                            <mat-icon matSuffix  [style.color]="FirstNameForm.invalid ? '#bda179' : 'green'" >
                                 {{FirstNameForm.invalid ? 'sentiment_very_dissatisfied' : 'sentiment_very_satisfied'}}
                             </mat-icon>
                             <mat-error *ngIf="FirstNameForm.invalid">{{getFirstNameFormError()}}</mat-error>
@@ -17,7 +17,7 @@
                         <mat-form-field appearance="outline">
                             <mat-label>Enter LastName</mat-label>
                             <input matInput [formControl]="LastNameForm">
-                            <mat-icon matSuffix style="color:#bda179">
+                            <mat-icon matSuffix  [style.color]="LastNameForm.invalid ? '#bda179' : 'green'">
                                 {{LastNameForm.invalid ? 'sentiment_very_dissatisfied' : 'sentiment_very_satisfied'}}
                             </mat-icon>
                             <mat-hint></mat-hint>
@@ -30,7 +30,7 @@
                         <mat-form-field appearance="outline">
                             <mat-label>Enter Email</mat-label>
                             <input matInput [formControl]="EmailForm">
-                            <mat-icon matSuffix style="color:#bda179">
+                            <mat-icon matSuffix  [style.color]="EmailForm.invalid ? '#bda179' : 'green'">
                                 {{EmailForm.invalid ? 'sentiment_very_dissatisfied' : 'sentiment_very_satisfied'}}
                             </mat-icon>
                             <mat-hint></mat-hint>
@@ -41,7 +41,7 @@
                         <mat-form-field appearance="outline">
                             <mat-label>Enter Password</mat-label>
                             <input matInput [type]="visibility ? 'text' :'password'"  [formControl]="passwordForm">
-                            <mat-icon matSuffix style="color:#bda179" (click)="visibility=!visibility">
+                            <mat-icon matSuffix  [style.color]="'#bda179'" (click)="visibility=!visibility">
                                 {{visibility ? 'visibility_off' : 'visibility'}}
                             </mat-icon>
                             <mat-hint></mat-hint>
@@ -51,7 +51,7 @@
                 </div>
                 <div class="row mb-2 text-center">
                     <div class="col-lg-6">
-                        <label id="example-radio-group-label">Your Gender</label>
+                        <label >Your Gender</label>
                         <br>
                         <mat-radio-group aria-label="Select an option"  [formControl]="SexForm">
                             <mat-radio-button value="male"  color="primary">Male</mat-radio-button>
@@ -63,7 +63,7 @@
                         <mat-form-field appearance="outline">
                             <mat-label>Enter Phone</mat-label>
                             <input matInput [formControl]="NumTlfForm">
-                            <mat-icon matSuffix style="color:#bda179">
+                            <mat-icon matSuffix [style.color]="NumTlfForm.invalid ? '#bda179' : 'green'">
                               {{NumTlfForm.invalid ? 'sentiment_very_dissatisfied' : 'sentiment_very_satisfied'}}
                             </mat-icon>
                             <mat-error *ngIf="NumTlfForm.invalid">{{getNumTlfFormError()}}</mat-error>
@@ -71,16 +71,6 @@
                     </div>
                 </div>
                 <div class="row mb-2 text-center">
-                    <div class="col-lg-12">
-                        <mat-form-field class="w-100"  appearance="outline">
-                            <mat-label>Select Role </mat-label>
-                            <mat-select  [(value)]="role" [formControl]="RoleForFrom" >  
-                              <mat-option value="Client">Client</mat-option>
-                              <mat-option value="Supplier">Supplier</mat-option>
-                            </mat-select>
-                            <mat-error *ngIf="RoleForFrom.invalid">{{geRoleForFromError()}}</mat-error>
-                        </mat-form-field>
-                     </div>
                     <div class="col-lg-12" *ngIf="role === 'Supplier'">
                         <label >Your Cin Photo</label>
                         <div class="mb-2">
