@@ -53,4 +53,13 @@ public class GererEmployersService {
    	}
 	   	return null;
    }
+   public InfoUser RefuseEmployer(Long id) {
+	   InfoUser emp=Userrepo.findById(id).get();
+	   if(emp!=null) {
+		   emp.setStatus(2);
+		   Userrepo.save(emp);
+		   return emp;
+	   }
+	   return null;
+   }
 }

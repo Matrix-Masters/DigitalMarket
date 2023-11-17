@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { GenerateAccountDialogComponent } from '../generate-account-dialog/generate-account-dialog.component';
 import { SuperAdminServiceService } from 'src/app/Service/super-admin-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-employer',
@@ -16,7 +17,7 @@ export class AddEmployerComponent {
   generatedEmail:string='';
   generatedPassword:string='';
   PhoneNumber: string = '';
-  constructor(private dialog: MatDialog,private superAdminService:SuperAdminServiceService) {}
+  constructor(private dialog: MatDialog,private superAdminService:SuperAdminServiceService,private router: Router) {}
 
   submitForm() {
     this.openGenerateAccountDialog();
@@ -32,8 +33,14 @@ export class AddEmployerComponent {
   this.superAdminService.AddEmployer(Employer).subscribe((data)=>{
     console.log(data);
   });
-
-  }
+  this.firstName='';
+  this.lastName='';
+  this.generatedEmail='';
+  this.generatedPassword='';
+  this.PhoneNumber='';
+  this.role='';
+  this.gender='';
+}
   generateAccountInfo() {
     let randomNumbers = '';
     for (let i = 0; i < 3; i++) {
@@ -41,7 +48,6 @@ export class AddEmployerComponent {
     }
     this.generatedEmail = `${this.firstName.toLowerCase()}.${this.lastName.toLowerCase()}${randomNumbers}@digitalMarket.com`;
     this.generatedPassword = this.generateRandomPassword();
-
   }
 
   generateRandomPassword(): string {
