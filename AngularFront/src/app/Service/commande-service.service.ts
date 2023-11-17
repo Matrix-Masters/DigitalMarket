@@ -16,4 +16,8 @@ export class CommandeServiceService {
     return this.http.get(`${port}/GESTIONCOMMANDE-SERVICE/Commande/GetCommandeByIdUser/${userId}`)
   }
 
+  GetLivraisonByNumCommande(NumCommande:any){
+    return this.http.get(`${port}/GESTIONCOMMANDE-SERVICE/Commande/GetLivraisonByNumCommande/${NumCommande}`)
+  }
+
 }

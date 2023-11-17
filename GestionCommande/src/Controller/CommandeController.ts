@@ -104,6 +104,20 @@ export const GetCommandeByIdUser=async (req:Request,res:Response)=>{
 }
 
 
+export const GetLivraisonByNumCommande = async (req:Request,res:Response)=>{
+    try{
+        const livr=await Livraison.findOne({NumCommande:req.params.num}).exec();
+        if (!livr) {
+            res.status(404).json({ message: "No Found" });
+        } else {
+            res.status(200).json(livr);
+        }
+    }catch(e:any){
+        res.status(500).json({message:e.message})
+    }
+}
+
+
 export const AddLivraison=async (req:Request,res:Response)=>{
      try{
         const livraison = new Livraison({
