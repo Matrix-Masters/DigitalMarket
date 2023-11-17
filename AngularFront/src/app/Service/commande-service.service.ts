@@ -20,4 +20,8 @@ export class CommandeServiceService {
     return this.http.get(`${port}/GESTIONCOMMANDE-SERVICE/Commande/GetLivraisonByNumCommande/${NumCommande}`)
   }
 
+  ChangerLocationLivreur(Location:any,num:any){
+    return this.http.put(`${port}/GESTIONCOMMANDE-SERVICE/Commande/ChangerLocationLivreur/${num}`,Location);
+  }
+
 }

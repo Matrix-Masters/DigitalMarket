@@ -7,6 +7,9 @@
   <div class="row">
      <div class="col-lg-3 scroll" >
         <p class="text-center header-text-2" >List Command</p>
+        <div *ngIf="Listcommandes==''" class="text-center mt-5 shadow-lg p-2 rounded" >
+            No Commandes
+        </div>
         <mat-card *ngFor="let item of Listcommandes" class="mb-3">
           <mat-card-header>
             <mat-card-title>Num Command : {{item.NumCommande}}</mat-card-title>
