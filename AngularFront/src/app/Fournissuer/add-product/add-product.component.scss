@@ -7,6 +7,14 @@ body{
   font-weight: 600;
 }
 
-@media screen {
+@media screen and (max-width: 519px) {
+  .inputs{
+    width: 80%;
+  }
+}
 
+@media screen and (max-width: 471px) {
+  .inputs{
+    width: 80%;
+  }
 }
