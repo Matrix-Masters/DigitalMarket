@@ -1,0 +1,65 @@
+<app-fournisseur-side-bar-comp>
+  <app-fournisseur-navbar-comp></app-fournisseur-navbar-comp>
+    <div class="dashboard container mt-4" style="margin-left: 30px;flex-direction: column;">
+      <div class="row">
+        <p style="font-size: 20px;color: #1C4E80;font-weight: 500;"> <i class="bi bi-plus-lg" style="font-weight: bold;"></i> Add Product</p>
+      </div>
+      <form>
+        <div class="row mb-2  mt-5">
+          <div class="col-lg-6">
+              <mat-form-field appearance="outline" class="inputs">
+                  <mat-label>Product Name</mat-label>
+                  <input matInput>
+                  <mat-icon matSuffix>
+
+                  </mat-icon>
+                  <mat-error ></mat-error>
+              </mat-form-field>
+          </div>
+          <div class="col-lg-6 mb-2">
+            <mat-form-field appearance="outline" class="inputs">
+              <mat-label>Product Price</mat-label>
+              <input matInput>
+              <mat-icon matSuffix>
+              </mat-icon>
+              <mat-error ></mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-lg-6">
+              <mat-form-field appearance="outline" class="inputs">
+                <mat-label>Product Description</mat-label>
+                <textarea matInput placeholder=""></textarea>
+                <mat-icon matSuffix>
+
+                </mat-icon>
+                <mat-hint></mat-hint>
+                <mat-error ></mat-error>
+            </mat-form-field>
+            </div>
+            <div class="col-lg-6">
+              <mat-form-field appearance="outline" class="inputs">
+                <mat-label>Product Quantity</mat-label>
+                <input matInput>
+                <mat-icon matSuffix>
+                </mat-icon>
+                <mat-error ></mat-error>
+              </mat-form-field>
+            </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-lg-6">
+            <input class="form-control"  type="file">
+          </div>
+          <div class="col-lg-6">
+            <button mat-raised-button   color="warn">
+                <mat-icon>app_registration</mat-icon>
+                    Add
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+</app-fournisseur-side-bar-comp>
