@@ -117,6 +117,16 @@ export const GetLivraisonByNumCommande = async (req:Request,res:Response)=>{
     }
 }
 
+export const ChangerLocationLivreur=async(req:Request,res:Response)=>{
+    try{
+        await Livraison.findOneAndUpdate({NumCommande:req.params.num},{$set:{Location:req.body.Location}});
+        await Commande.findOneAndUpdate({NumCommande:req.params.num},{$set:{Status:"Shipped"}});
+        res.status(200).json({message:"updated"});
+    }catch(e:any){
+        res.status(500).json({message:e.message})
+    }
+}
+
 
 export const AddLivraison=async (req:Request,res:Response)=>{
      try{
