@@ -11,6 +11,9 @@ import { AccueilClientComponent } from './AccueilClient/accueil-client/accueil-c
 import { AccueilCartComponent } from './AccueilClient/accueil-cart/accueil-cart.component';
 import { NotFoundComponentComponent } from './notfound/not-found-component/not-found-component.component';
 import { CommandeComponent } from './ClientComponent/commande/commande.component';
+import { FournisseurInterfaceComponent } from './Fournissuer/fournisseur-interface/fournisseur-interface.component';
+import { FournisseurDashboardComponent } from './Fournissuer/fournisseur-dashboard/fournisseur-dashboard.component';
+import { AddProductComponent } from './Fournissuer/add-product/add-product.component';
 
 
 
@@ -26,7 +29,11 @@ const routes: Routes = [
    {path:'categories/:id',component:AccueilClientComponent},
    {path:'cart',component:AccueilCartComponent},
    {path:'Commande',component:CommandeComponent},
+   {path:"fournisseur",component:FournisseurInterfaceComponent},
+   {path:"fournisseurDash",component:FournisseurDashboardComponent},
+   {path:"addProductFournisseur",component:AddProductComponent},
    {path:"**",component:NotFoundComponentComponent}
+
 ]
 
 
