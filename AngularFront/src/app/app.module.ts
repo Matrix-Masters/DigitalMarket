@@ -37,6 +37,7 @@ import { CommandeComponent } from './ClientComponent/commande/commande.component
 import { LIstEmpolyersComponent } from './superAdminComponents/Employers/list-empolyers/list-empolyers.component';
 import { AddEmployerComponent } from './superAdminComponents/Employers/add-employer/add-employer.component';
 import { GenerateAccountDialogComponent } from './superAdminComponents/Employers/generate-account-dialog/generate-account-dialog.component';
+import { ConfirmDialogComponentComponent } from './superAdminComponents/Employers/confirm-dialog-component/confirm-dialog-component.component';
 
 
 @NgModule({
@@ -67,7 +68,8 @@ import { GenerateAccountDialogComponent } from './superAdminComponents/Employers
     LocationCommandeComponent,
     LIstEmpolyersComponent,
     AddEmployerComponent,
-    GenerateAccountDialogComponent
+    GenerateAccountDialogComponent,
+    ConfirmDialogComponentComponent
 
   ],
   imports: [

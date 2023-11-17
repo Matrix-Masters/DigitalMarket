@@ -25,8 +25,8 @@
             <h2>{{emplo['firstName'] + " " +emplo['lastName'] }}<small>{{emplo['role']}}</small></h2>
             <div class="icon-block">
               <a href="#"><i><mat-icon>phone</mat-icon></i></a>
-              <a href="#"><i><mat-icon>email</mat-icon></i></a>
-              <a href="#"><i><mat-icon>delete</mat-icon></i></a>
+              <a [href]="'mailto:' + emplo['email']"><i><mat-icon>email</mat-icon></i></a>
+              <a (click)="openConfirmDialog( emplo['id'])"><i><mat-icon>delete</mat-icon></i></a>
             </div>
           </div>
         </div>

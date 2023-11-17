@@ -14,4 +14,7 @@ export class SuperAdminServiceService {
   AddEmployer(Employer:any){
     return this.http.post(`${port}/INFOUSER-SERVICE/GererEmployer/AddEmployer`,Employer);
   }
+  deleteEmployer(employerId:number){
+    return this.http.put(`${port}/INFOUSER-SERVICE/GererEmployer/RefuseEmployer?id=${employerId}`,{});
+  }
 }

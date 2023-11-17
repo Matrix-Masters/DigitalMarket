@@ -33,7 +33,7 @@ export class AddEmployerComponent {
     return field ? field.hasError(errorType) && (field.dirty || field.touched) : false;
   }
   submitForm() {
-    // Check if the form is valid before proceeding
+
     if (this.employerForm.valid) {
       this.openGenerateAccountDialog();
 
