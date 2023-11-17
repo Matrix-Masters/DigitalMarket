@@ -5,9 +5,7 @@ import { GererProduitComponent } from './AdminCompoenent/GererProduitComponents/
 import { HomeComponent } from './home/home/home.component';
 import { DashboardComponent } from './AdminCompoenent/dashboard/dashboard.component';
 import { CategoryListComponent } from './AdminCompoenent/GererCategory/category-list/category-list.component';
-<<<<<<< HEAD
 import { GererCommandeComponent } from './AdminCompoenent/gerer-commande/gerer-commande.component';
-=======
 import { GererSupplierComponent } from './AdminCompoenent/GererSuppliersComponents/gerer-supplier/gerer-supplier.component';
 import { LocationCommandeComponent } from './ClientComponent/location-commande/location-commande.component';
 import { AccueilClientComponent } from './AccueilClient/accueil-client/accueil-client.component';
@@ -15,20 +13,14 @@ import { AccueilCartComponent } from './AccueilClient/accueil-cart/accueil-cart.
 import { NotFoundComponentComponent } from './notfound/not-found-component/not-found-component.component';
 import { CommandeComponent } from './ClientComponent/commande/commande.component';
 
-
->>>>>>> 6a3e747a32de52959258377e70f7ec26e657f6f9
-
 const routes: Routes = [
    {path:'',component:HomeComponent},
    {path:'classer',component:ClasserProductComponent},
    {path:"dash",component:DashboardComponent},
    {path:'gererProduit',component:GererProduitComponent},
    {path:'listCategory',component:CategoryListComponent},
-<<<<<<< HEAD
    {path:'Commandes',component:GererCommandeComponent},
    { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
-   
-=======
    {path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
    {path:'gererSupplier',component:GererSupplierComponent},
    {path:'Commandes_Taken',component:LocationCommandeComponent},
@@ -36,7 +28,6 @@ const routes: Routes = [
    {path:'cart',component:AccueilCartComponent},
    {path:'Commande',component:CommandeComponent},
    {path:"**",component:NotFoundComponentComponent}
->>>>>>> 6a3e747a32de52959258377e70f7ec26e657f6f9
 ]
 
 

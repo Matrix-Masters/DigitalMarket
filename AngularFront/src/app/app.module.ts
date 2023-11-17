@@ -21,26 +21,18 @@ import { SideBarCompComponent } from './Layout/side-bar-comp/side-bar-comp.compo
 import { NavbarCompComponent } from './Layout/navbar-comp/navbar-comp.component';
 import { DashboardComponent } from './AdminCompoenent/dashboard/dashboard.component';
 import { MatDialogModule } from '@angular/material/dialog';
-<<<<<<< HEAD
 import { CategoryListComponent } from './AdminCompoenent/GererCategory/category-list/category-list.component';
 import { GererCommandeComponent } from './AdminCompoenent/gerer-commande/gerer-commande.component'
-=======
-import { CategoryListComponent } from './AdminCompoenent/GererCategory/category-list/category-list.component'
 import { GererSupplierComponent } from './AdminCompoenent/GererSuppliersComponents/gerer-supplier/gerer-supplier.component';
 import { CommonModule } from '@angular/common';
 import { DatePipe } from '@angular/common';
 import { LocationCommandeComponent } from './ClientComponent/location-commande/location-commande.component';
-
 import { AccueilClientComponent } from './AccueilClient/accueil-client/accueil-client.component';
 import { AccueilBodyComponent } from './AccueilClient/accueil-body/accueil-body.component';
 import { AccueilCartComponent } from './AccueilClient/accueil-cart/accueil-cart.component';
 import { CardCartComponent } from './AccueilClient/card-cart/card-cart.component';
-
 import { NotFoundComponentComponent } from './notfound/not-found-component/not-found-component.component';
 import { CommandeComponent } from './ClientComponent/commande/commande.component';
-
-
->>>>>>> 6a3e747a32de52959258377e70f7ec26e657f6f9
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,9 +50,7 @@ import { CommandeComponent } from './ClientComponent/commande/commande.component
     NavbarCompComponent,
     DashboardComponent,
     CategoryListComponent,
-<<<<<<< HEAD
-    GererCommandeComponent
-=======
+    GererCommandeComponent,
     AccueilClientComponent,
     AccueilBodyComponent,
     AccueilCartComponent,
@@ -70,8 +60,6 @@ import { CommandeComponent } from './ClientComponent/commande/commande.component
     CommandeComponent,
     GererSupplierComponent,
     LocationCommandeComponent
-
->>>>>>> 6a3e747a32de52959258377e70f7ec26e657f6f9
   ],
   imports: [
     BrowserModule,
