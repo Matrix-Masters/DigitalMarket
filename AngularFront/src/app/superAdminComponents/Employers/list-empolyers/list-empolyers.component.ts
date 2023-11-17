@@ -2,6 +2,8 @@ import { Component,OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { SuperAdminServiceService } from 'src/app/Service/super-admin-service.service';
 import { ConfirmDialogComponentComponent } from '../confirm-dialog-component/confirm-dialog-component.component';
+import { FormControl } from '@angular/forms';
+import { debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-list-empolyers',
@@ -12,8 +14,21 @@ export class LIstEmpolyersComponent implements OnInit{
   constructor(private superAdminServiceService: SuperAdminServiceService, private dialog: MatDialog) {}
 
   Employees: any;
+  searchControl = new FormControl('');
   ngOnInit(): void {
     this.getAllEmployees();
+    this.searchControl.valueChanges.pipe(debounceTime(300)).subscribe((search) => {
+      if (search && search.length > 0) {
+        this.searchEmployeesByName(search);
+      } else {
+        this.getAllEmployees();
+      }
+    });
+  }
+  searchEmployeesByName(search: string) {
+    this.superAdminServiceService.searchEmployeesByName(search).subscribe((res:any) => {
+      this.Employees = res;
+    });
   }
   getAllEmployees(){
     this.superAdminServiceService.getAllEmployees().subscribe((res:any)=>{

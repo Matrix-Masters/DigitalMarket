@@ -22,13 +22,22 @@ public class gererEmployerController {
 	@Autowired
 	GererEmployersService gererEmployersService;
 	@GetMapping("/getAllEmployers")
-	public ResponseEntity<List<InfoUser>> getAllEmployers(){
-		List<InfoUser> Employees = gererEmployersService.GetAllEmployers();
-		 if (Employees.isEmpty()) {
+	public ResponseEntity<List<InfoUser>> getAllEmployers(@RequestParam(required = false) String search) {
+	    if (search != null && !search.isEmpty()) {
+	        List<InfoUser> filteredEmployees = gererEmployersService.searchEmployeesByName(search);
+	        if (filteredEmployees.isEmpty()) {
 	            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	        }
-	        return new ResponseEntity<>(Employees, HttpStatus.OK);
+	        return new ResponseEntity<>(filteredEmployees, HttpStatus.OK);
+	    } else {
+	        List<InfoUser> employees = gererEmployersService.GetAllEmployers();
+	        if (employees.isEmpty()) {
+	            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	        }
+	        return new ResponseEntity<>(employees, HttpStatus.OK);
+	    }
 	}
+
 	@PostMapping("/AddEmployer")
 	public ResponseEntity<InfoUser> AddEmployer(@RequestBody UserInfo Employer) {
 	InfoUser newEmployer=gererEmployersService.AddEmploye(Employer);

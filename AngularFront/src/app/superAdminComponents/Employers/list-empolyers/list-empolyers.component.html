@@ -3,7 +3,7 @@
     <span>Gerer Emplyers</span>
     <span class="flex-spacer"></span>
     <mat-form-field style="width: 70%;">
-      <input matInput placeholder="Search Employer" aria-label="Search">
+      <input matInput placeholder="Search Employer" aria-label="Search" [formControl]="searchControl">
     </mat-form-field>
     <span style=" flex: 0.2;"></span>
     <button mat-raised-button color="primary" [routerLink]="['/addEmploye']"><mat-icon>add</mat-icon>Add

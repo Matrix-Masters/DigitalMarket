@@ -27,6 +27,9 @@ public class GererEmployersService {
 		   return employers;
 	   }
    }
+   public List<InfoUser> searchEmployeesByName(String search) {
+       return Userrepo.searchEmployeesByName(search);
+   }
    public InfoUser AddEmploye(UserInfo employer) {
 	   InfoUser newEmployer = new InfoUser();
 	   if(Userrepo.getUserByemail(employer.getEmail())==null) {
