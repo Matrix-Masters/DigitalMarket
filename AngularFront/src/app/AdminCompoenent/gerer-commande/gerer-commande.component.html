@@ -1,0 +1,54 @@
+<app-side-bar-comp>
+    <app-navbar-comp></app-navbar-comp>
+    <table>
+        <thead>
+        <tr>
+            <th>Num Commande</th>
+            <th>Total Price</th>
+            <th>Products Quantity</th>
+            
+            <th></th> 
+    
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>James</td>
+            <td>Matman</td>
+            <td>(713) 123-8965</td>
+            <td>
+                <ul class="wrapper">
+                    <li class="icon Accept">
+                        <span class="tooltip">Accept</span>
+                        <span><i class="fas fa-check"></i></span>
+                    </li> 
+                    <li class="icon Refuse">
+                        <span class="tooltip">Refuse</span>
+                        <span><i class="fas fa-xmark"></i></span>
+                    </li>
+                    <li class="icon info" (click)="openPopup()">
+                        <span class="tooltip">Info</span>
+                        <span><i class="fas fa-info"></i></span>
+                    </li>
+                    
+                </ul>
+            </td>
+        </tr>
+        
+        </tbody>
+    </table>
+ 
+    <div class="popup" [class.open]="isPopupOpen">
+        <div class="popup-content">
+            
+         <p>aaaaaaaa</p>
+         <p>aaaaaaaa</p>
+         <p>aaaaaaaa</p>
+         <p>aaaaaaaa</p>
+
+         
+        </div>  
+        <button class="close" (click)="closePopup()"><i class="fas fa-x"></i></button> 
+      </div>
+    
+    </app-side-bar-comp>

@@ -1,0 +1,242 @@
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
+body {
+    background: #f5f5f5;
+    font-size: 30px
+  }
+  
+  table {
+    border: 1px #a39485 solid;
+    font-size: 0.9em;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+    width: 97%;
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 20px;
+    margin-left: 20px;
+    
+  
+    th {
+      text-align: left;
+    }
+  
+    thead {
+      font-weight: bold;
+      color: #fff;
+      background: #3e3662;
+    }
+  
+    td, th {
+      padding: 1em 0.5em;
+      vertical-align: middle;
+    }
+  
+    td {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      background: #fff;
+    }
+  }
+  
+  
+  
+  @media all and (max-width: 768px) {
+    table, thead, tbody, th, td, tr {
+      display: block;
+    }
+  
+    th {
+      text-align: right;
+    }
+  
+    table {
+      position: relative;
+      padding-bottom: 0;
+      border: none;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+  
+    thead {
+      float: left;
+      white-space: nowrap;
+    }
+  
+    tbody {
+      overflow-x: auto;
+      overflow-y: hidden;
+      position: relative;
+      white-space: nowrap;
+      
+    }
+  
+    tr {
+      display: inline-block;
+      vertical-align: top;
+    }
+  
+    th {
+      border-bottom: 1px solid #a39485;
+    }
+  
+    td {
+      border-bottom: 1px solid #000000;
+      ;
+    }
+  }
+  
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    
+    
+}
+
+.wrapper .icon {
+    position: relative;
+    background: #fff;
+    border-radius: 50%;
+    margin: 5px; /* Adjust margin as needed */
+    width: 40px;
+    height: 40px;  
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+   
+   
+}
+  
+  .wrapper .tooltip {
+    position: absolute;
+    top: 0;
+    font-size: 14px;
+    background: #fff;
+    color: #fff;
+    padding: 5px 8px;
+    border-radius: 5px;
+    box-shadow: 0 20px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    border-width: 2px;
+    
+  }
+  
+  .wrapper .tooltip::before {
+    position: absolute;
+    content: "";
+    height: 8px;
+    width: 8px;
+    background: #fff;
+    bottom: -3px;
+    left: 50%;
+    transform: translate(-50%) rotate(45deg);
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  .wrapper .icon:hover .tooltip {
+    top: -45px;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  
+  .wrapper .icon:hover span,
+  .wrapper .icon:hover .tooltip {
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+  }
+  
+  .wrapper .Accept:hover,
+  .wrapper .Accept:hover .tooltip,
+  .wrapper .Accept:hover .tooltip::before {
+    background: rgb(44, 145, 14);
+    color: #ffffff;
+  }
+  
+  .wrapper .info:hover,
+  .wrapper .info:hover .tooltip,
+  .wrapper .info:hover .tooltip::before {
+    background: #1DA1F2;
+    color: #fff;
+  }
+  
+  .wrapper .Refuse:hover,
+  .wrapper .Refuse:hover .tooltip,
+  .wrapper .Refuse:hover .tooltip::before {
+    background: #E4405F;
+    color: #fff;
+  }
+  
+  /* ===================== popup ===================== */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+  
+    font-size: 16px;
+    overflow: hidden;
+  
+  
+    &.open {
+      display: flex;
+    }
+  
+    &-content {
+      background: rgba(253, 253, 253, 0.7);
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      max-width: 600px;
+      width: 90%;
+      position: relative;
+    }
+  
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      font-size: 20px;
+      color: #333;
+      
+    }
+    .form-group {
+      max-width: 500px;
+      margin: auto;
+      margin-bottom: 30px;
+    }
+    
+    .close {
+      color: #272343;
+      text-transform: uppercase;
+      font-size: 12px;
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      text-decoration: none;
+      display: inline-block;
+      background:#fff;
+      padding: 10px 18px;
+      transition: all 0.3s ease-in-out;
+      border-radius: 30%;
+      
+      &:hover {
+        
+        background: #272343;
+        color: #fff;
+      }
+    }
+}

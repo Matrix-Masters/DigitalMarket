@@ -21,7 +21,8 @@ import { SideBarCompComponent } from './Layout/side-bar-comp/side-bar-comp.compo
 import { NavbarCompComponent } from './Layout/navbar-comp/navbar-comp.component';
 import { DashboardComponent } from './AdminCompoenent/dashboard/dashboard.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { CategoryListComponent } from './AdminCompoenent/GererCategory/category-list/category-list.component'
+import { CategoryListComponent } from './AdminCompoenent/GererCategory/category-list/category-list.component';
+import { GererCommandeComponent } from './AdminCompoenent/gerer-commande/gerer-commande.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +39,8 @@ import { CategoryListComponent } from './AdminCompoenent/GererCategory/category-
     SideBarCompComponent,
     NavbarCompComponent,
     DashboardComponent,
-    CategoryListComponent
+    CategoryListComponent,
+    GererCommandeComponent
   ],
   imports: [
     BrowserModule,
