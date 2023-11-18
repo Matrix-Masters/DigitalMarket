@@ -33,6 +33,7 @@ import { AccueilCartComponent } from './AccueilClient/accueil-cart/accueil-cart.
 import { CardCartComponent } from './AccueilClient/card-cart/card-cart.component';
 import { NotFoundComponentComponent } from './notfound/not-found-component/not-found-component.component';
 import { CommandeComponent } from './ClientComponent/commande/commande.component';
+import { FavoriteListClientComponent } from './AccueilClient/favorite-list-client/favorite-list-client.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +60,8 @@ import { CommandeComponent } from './ClientComponent/commande/commande.component
     NotFoundComponentComponent,
     CommandeComponent,
     GererSupplierComponent,
-    LocationCommandeComponent
+    LocationCommandeComponent,
+    FavoriteListClientComponent
   ],
   imports: [
     BrowserModule,
