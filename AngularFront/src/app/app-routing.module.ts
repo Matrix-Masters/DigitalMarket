@@ -12,6 +12,7 @@ import { AccueilClientComponent } from './AccueilClient/accueil-client/accueil-c
 import { AccueilCartComponent } from './AccueilClient/accueil-cart/accueil-cart.component';
 import { NotFoundComponentComponent } from './notfound/not-found-component/not-found-component.component';
 import { CommandeComponent } from './ClientComponent/commande/commande.component';
+import { FavoriteListClientComponent } from './AccueilClient/favorite-list-client/favorite-list-client.component';
 
 const routes: Routes = [
    {path:'',component:HomeComponent},
@@ -21,13 +22,14 @@ const routes: Routes = [
    {path:'listCategory',component:CategoryListComponent},
    {path:'Commandes',component:GererCommandeComponent},
    { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
-   {path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
    {path:'gererSupplier',component:GererSupplierComponent},
    {path:'Commandes_Taken',component:LocationCommandeComponent},
    {path:'categories/:id',component:AccueilClientComponent},
    {path:'cart',component:AccueilCartComponent},
    {path:'Commande',component:CommandeComponent},
-   {path:"**",component:NotFoundComponentComponent}
+   {path:'FavoriteList',component:FavoriteListClientComponent},
+   {path:"**",component:NotFoundComponentComponent},
+
 ]
 
 
