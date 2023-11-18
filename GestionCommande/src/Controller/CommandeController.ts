@@ -41,7 +41,6 @@ export const addCommande = async (req: Request, res: Response) => {
         });
 
         const commandeSaved = await commande.save();
-        // test worked :) add commande for every null commande
         for (let i = 0; i < ligneCommandes.length; i++) {
             await LigneCommande.findByIdAndUpdate(ligneCommandes[i], {Commande_id:commandeSaved._id});
         }
@@ -51,7 +50,7 @@ export const addCommande = async (req: Request, res: Response) => {
     }
 
 }
-
+//livreur
 export const GetCommandeDispo = async (req: Request, res: Response) => {
 
     let page: number = parseInt(req.query.page?.toString() || '1');
@@ -116,3 +115,49 @@ try {
     res.status(400).send(e);
 }
 */
+
+export const AcceptCommand=async (req:Request,res:Response)=>{
+    try{
+      
+       await Commande.findOneAndUpdate({NumCommande:req.params.num},{$set:{Status:"Available"}});
+       
+       res.status(201).json("Accepted");
+    }catch(e:any){
+       res.status(500).json({message:e.message})
+    }
+}
+//admin
+export const GetCommandsWaiting = async (req: Request, res: Response) => {
+
+    let page: number = parseInt(req.query.page?.toString() || '1');
+    let size: number = parseInt(req.query.size?.toString() || '2');
+    const search = req.query.search || '';
+    
+    try {
+
+        const Commandes = await Commande.paginate(
+            {
+                $and: [
+                    { NumCommande: { $regex: new RegExp(search.toString(), 'i') } },
+                    { Status: "Waiting" },
+                ]
+            },
+            {
+                page: page,
+                limit: size,
+                populate: 'LigneCommandes'
+            },
+        );
+
+        if (!Commandes) {
+            res.status(404).json({ message: "No Found" });
+        } else {
+            res.status(200).json(Commandes);
+        }
+
+    } catch (err: any) {
+        console.error(err);
+        res.status(500).json({ message: err.message });
+    }
+
+}
