@@ -4,25 +4,25 @@
       <div class="row">
         <p style="font-size: 20px;color: #1C4E80;font-weight: 500;"> <i class="bi bi-plus-lg" style="font-weight: bold;"></i> Add Product</p>
       </div>
-      <form>
+      <form [formGroup]="AddProductForm" (ngSubmit)="AddProduct()" ENCTYPE="multipart/form-data">
         <div class="row mb-2  mt-5">
           <div class="col-lg-6">
               <mat-form-field appearance="outline" class="inputs">
                   <mat-label>Product Name</mat-label>
-                  <input matInput>
+                  <input matInput [formControl]="NameForm">
                   <mat-icon matSuffix>
 
                   </mat-icon>
-                  <mat-error ></mat-error>
+                  <mat-error *ngIf="NameForm.invalid">{{getNameFormError()}}</mat-error>
               </mat-form-field>
           </div>
           <div class="col-lg-6 mb-2">
             <mat-form-field appearance="outline" class="inputs">
               <mat-label>Product Price</mat-label>
-              <input matInput>
+              <input matInput [formControl]="PrixForm">
               <mat-icon matSuffix>
               </mat-icon>
-              <mat-error ></mat-error>
+              <mat-error *ngIf="PrixForm.invalid">{{getPrixFormError()}}</mat-error>
             </mat-form-field>
           </div>
         </div>
@@ -30,32 +30,33 @@
             <div class="col-lg-6">
               <mat-form-field appearance="outline" class="inputs">
                 <mat-label>Product Description</mat-label>
-                <textarea matInput placeholder=""></textarea>
+                <textarea matInput placeholder="" [formControl]="DescriptionForm"></textarea>
                 <mat-icon matSuffix>
 
                 </mat-icon>
                 <mat-hint></mat-hint>
-                <mat-error ></mat-error>
+                <mat-error *ngIf="DescriptionForm.invalid">{{getDescriptionFormError()}}</mat-error>
             </mat-form-field>
             </div>
             <div class="col-lg-6">
               <mat-form-field appearance="outline" class="inputs">
                 <mat-label>Product Quantity</mat-label>
-                <input matInput>
+                <input matInput [formControl]="QuantiteForm">
                 <mat-icon matSuffix>
                 </mat-icon>
-                <mat-error ></mat-error>
+                <mat-error *ngIf="QuantiteForm.invalid">{{getQuantiteFormError()}}</mat-error>
               </mat-form-field>
             </div>
         </div>
         <div class="row mb-2">
           <div class="col-lg-6">
-            <div class="input-group">
-              <input type="file" class="form-control inputs" id="inputGroupFile04">
+            <div class="input-group d-flex" style="flex-direction: column;">
+              <input class="form-control inputs"  type="file"  (change)="onFileChanged($event)" style="width: auto;">
+              <mat-error *ngIf="imageError!=''" class="mt-2 img-err">{{this.imageError}}</mat-error>
             </div>
           </div>
           <div class="col-lg-6 mt-1">
-            <button mat-raised-button   color="warn">
+            <button mat-raised-button   color="warn" type="submit">
                 <mat-icon>app_registration</mat-icon>
                     Add
             </button>
