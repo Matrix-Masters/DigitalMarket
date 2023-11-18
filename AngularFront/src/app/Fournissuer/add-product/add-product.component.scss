@@ -14,10 +14,16 @@ body{
   .inputs{
     width: 80%;
   }
+  .img-err{
+    font-size: 80%;
+  }
 }
 
 @media screen and (max-width: 471px) {
   .inputs{
     width: 80%;
+  }
+  .img-err{
+    font-size: 80%;
   }
 }
