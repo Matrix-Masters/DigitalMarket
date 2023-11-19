@@ -23,7 +23,11 @@ refresh(){
 }
 
 deleteProduct(product:any){
-  this.productServiceStorage.deleteProduct(product)
+  if(this.productServiceStorage.GetProduct()?.length>1){
+    this.productServiceStorage.deleteProduct(product)
+  }else{
+    this.productServiceStorage.clearProductList();
+  }
   this.location.replaceState('/cart');
   location.reload();
 }
@@ -37,9 +41,8 @@ moinsQte(product:any){
 }
 
 ngOnInit(): void {
-  this.length=this.products.length;
-  console.log(this.products);
-  for (let index = 0; index < this.products.length; index++) {
+  this.length=this.products?.length;
+  for (let index = 0; index < this.products?.length; index++) {
     this.total = Number(this.products[index].prix) * Number(this.products[index].quantity)
   }
 }
