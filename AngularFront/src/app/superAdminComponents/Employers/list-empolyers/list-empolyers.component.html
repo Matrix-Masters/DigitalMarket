@@ -1,0 +1,37 @@
+<div>
+  <mat-toolbar color="white">
+    <span>Gerer Emplyers</span>
+    <span class="flex-spacer"></span>
+    <mat-form-field style="width: 70%;">
+      <input matInput placeholder="Search Employer" aria-label="Search" [formControl]="searchControl">
+    </mat-form-field>
+    <span style=" flex: 0.2;"></span>
+    <button mat-raised-button color="primary" [routerLink]="['/addEmploye']"><mat-icon>add</mat-icon>Add
+      Employer</button>
+  </mat-toolbar>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 mt-5" *ngFor="let emplo of Employees; let i = index;">
+        <div class="card profile-card-3  shadow-lg">
+          <div class="background-block">
+            <img
+              src="../../../../assets/young-hispanic-call-center-agent-man-working-warehouse-smiling-with-hand-ear-listening-hearing-rumor-gossip-deafness-concept.jpg"
+              height="200px" width="100%" alt="profile-sample1" class="background" />
+          </div>
+          <div class="profile-thumb-block">
+            <img src="../../../../assets/Screenshot 2023-10-24 202314.png" alt="profile-image" class="profile" />
+          </div>
+          <div class="card-content">
+            <h2>{{emplo['firstName'] + " " +emplo['lastName'] }}<small>{{emplo['role']}}</small></h2>
+            <div class="icon-block">
+              <a [href]="'tel:' + emplo['numTlf']"><i><mat-icon>phone</mat-icon></i></a>
+              <a [href]="'mailto:' + emplo['email']"><i><mat-icon>email</mat-icon></i></a>
+              <a (click)="openConfirmDialog( emplo['id'])"><i><mat-icon>delete</mat-icon></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
