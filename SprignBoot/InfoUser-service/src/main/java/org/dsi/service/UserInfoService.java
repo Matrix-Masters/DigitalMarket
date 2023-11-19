@@ -79,4 +79,26 @@ public class UserInfoService {
 			e.printStackTrace();
 		}	
 	}
+	
+	
+	public void updateUser(UserInfo user,Long id) throws Exception {
+		
+		InfoUser user1 = userRepo.getUserById(id);
+		
+		if(user1==null) {
+			
+			throw new Exception("User not found");
+			
+		}else {
+			
+			user1.setFirstName(user.getFirstName());
+			user1.setLastName(user.getLastName());
+			user1.setNumTlf(user.getNumTlf());
+			user1.setCin(user.getCin());
+			user1.setSexe(user.getSexe());
+			userRepo.save(user1);
+			
+		}
+		
+	}
 }
