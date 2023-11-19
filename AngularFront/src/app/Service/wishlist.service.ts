@@ -17,7 +17,11 @@ export class WishlistService {
     return this.http.get(`${port}/FEEDBACK-SERVICE/FeedBack/showList?id=`+id);
   }
 
-  
+  RemoveProductFromWhishlist(data : any)
+  {
+    return this.http.delete(`${port}/FEEDBACK-SERVICE/FeedBack/removeProd`,data);
+  }
+
   
 
 }
