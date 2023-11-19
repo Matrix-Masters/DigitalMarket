@@ -33,6 +33,12 @@ import { AccueilCartComponent } from './AccueilClient/accueil-cart/accueil-cart.
 import { CardCartComponent } from './AccueilClient/card-cart/card-cart.component';
 import { NotFoundComponentComponent } from './notfound/not-found-component/not-found-component.component';
 import { CommandeComponent } from './ClientComponent/commande/commande.component';
+<<<<<<< HEAD
+=======
+import { CommandeClientComponent } from './ClientComponent/commande-client/commande-client.component';
+
+
+>>>>>>> talel
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +65,13 @@ import { CommandeComponent } from './ClientComponent/commande/commande.component
     NotFoundComponentComponent,
     CommandeComponent,
     GererSupplierComponent,
+<<<<<<< HEAD
     LocationCommandeComponent
+=======
+    LocationCommandeComponent,
+    CommandeClientComponent
+
+>>>>>>> talel
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthServiceService } from 'src/app/Service/auth-service.service';
 import { CategoryServiceService } from 'src/app/Service/category-service.service';
 
 
@@ -13,7 +14,9 @@ export class NavbarComponent implements OnInit {
   id:any
 
 
-  constructor(public categoriesService : CategoryServiceService,private route: ActivatedRoute , private router: Router){}
+
+
+  constructor(public AuthServiceService:AuthServiceService, public categoriesService : CategoryServiceService,private route: ActivatedRoute , private router: Router){}
 
 
 

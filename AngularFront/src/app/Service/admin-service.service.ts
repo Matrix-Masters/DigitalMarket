@@ -67,10 +67,10 @@ export class AdminServiceService {
     return this.http.put(`${port}/INFOUSER-SERVICE/GererSupplier/RefuseSupplier?id=${id}`,{})
   }
 
-  AddCategory(CategData : object){
+  AddCategory(CategData : any){
     return this.http.post(`${port}/PRODUCT-SERVICE/categories/AddCat`,CategData);
-
   }
+  
   destroyCategory(id: any) {
     return this.http.delete(`${port}/PRODUCT-SERVICE/categories/DeleteCategoryById?id=${id}`);
   }
