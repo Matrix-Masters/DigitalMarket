@@ -185,3 +185,17 @@ export const GetCommandsWaiting = async (req: Request, res: Response) => {
     }
 
 }
+export const deleteCommande = async (req: Request, res: Response) => {
+    try {
+      const id = req.params.id;
+      const deletedCommande = await Commande.findByIdAndDelete(id);
+  
+      if (deletedCommande) {
+        res.status(200).send(deletedCommande);
+      } else {
+        res.status(404).send({ error: 'Commande not found' });
+      }
+    } catch (err: any) {
+      res.status(500).send({ error: err.message });
+    }
+  };
