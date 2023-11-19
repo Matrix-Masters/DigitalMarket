@@ -1,52 +1,151 @@
 <app-side-bar-comp>
     <app-navbar-comp></app-navbar-comp>
+    <div class="search_btns">
+      <div class="search">
+        <input placeholder="Search By Num" type="text" [(ngModel)]="pageSearch" (keyup)="getCommande()">
+        <button type="submit" (click)="getCommande()" >Go</button>
+      </div>
+      <div class="mt-5 mx-2">
+        <button [class]="'mx-2 btn btn' + (commandeType === 'Waiting' ? '-warning' : '-secondary')" style="color: #fff;" (click)="choseCommande('Waiting')">Waiting</button>
+        <button [class]="'mx-2 btn btn' + (commandeType === 'Available' ? '-primary' : '-secondary')" (click)="choseCommande('Available')">Accepted</button>
+        <button [class]="'mx-2 btn btn' + (commandeType === 'Refused' ? '-danger' : '-secondary')" (click)="choseCommande('Refused')">Refused</button>
+      </div>
+    </div>
+   
     <table>
         <thead>
         <tr>
-            <th>Num Commande</th>
-            <th>Total Price</th>
-            <th>Products Quantity</th>
-            
-            <th></th> 
-    
+            <th  class="text-center">Num Commande</th>
+            <th class="text-center">Total Price</th>
+            <th class="text-center">Products Quantity</th>
+            <th class="text-center">Operation</th> 
         </tr>
         </thead>
+        <tbody *ngIf="commandes.length === 0; else showCommande">
+          <tr>
+              <td class="text-center" colspan="4">Not Found</td>
+          </tr>
+      </tbody>
+      <ng-template #showCommande>
+      
         <tbody>
-        <tr>
-            <td>James</td>
-            <td>Matman</td>
-            <td>(713) 123-8965</td>
+        <tr  *ngFor="let commande of commandes">
+            <td  class="text-center">{{commande.NumCommande}}</td>
+            <td class="text-center">{{commande.PrixTotal}} TND</td>
+            <td class="text-center">{{commande.LigneCommandes.length}}</td>
             <td>
                 <ul class="wrapper">
-                    <li class="icon Accept">
+                    <li class="icon Accept" *ngIf="commandeType=='Waiting'" (click)="AccepteCommade(commande.NumCommande)">
                         <span class="tooltip">Accept</span>
                         <span><i class="fas fa-check"></i></span>
                     </li> 
-                    <li class="icon Refuse">
+                    <li class="icon Refuse" *ngIf="commandeType=='Waiting'" (click)="RefusedCommand(commande.NumCommande)" >
                         <span class="tooltip">Refuse</span>
                         <span><i class="fas fa-xmark"></i></span>
                     </li>
-                    <li class="icon info" (click)="openPopup()">
+                    <li class="icon info" (click)="showCommandeInfo(commande)">
                         <span class="tooltip">Info</span>
                         <span><i class="fas fa-info"></i></span>
                     </li>
+                    <li class="icon Refuse" *ngIf=" commandeType=='Refused' " (click)="showCommandeInfo(commande)">
+                      <span class="tooltip">Delete</span>
+                      <span><i class="fas fa-trash"></i></span>
+                  </li>
                     
                 </ul>
             </td>
         </tr>
-        
         </tbody>
+      </ng-template>
     </table>
- 
-    <div class="popup" [class.open]="isPopupOpen">
+   <div class="bottom_pagination">
+    <nav aria-label="...">
+        <ul class="pagination">
+          <li class="page-item ">
+            <span class="page-link" [class.disabled]="pagination.currentPage===1" (click)="changePage(pagination.currentPage-1)">Previous</span>
+          </li>
+          <li class="page-item" *ngFor="item of paginationPages;let index as item">
+            <a style="cursor: pointer;" class="page-link " [class.active]="pagination.currentPage===index" (click)="changePage(index)">{{index}}</a>
+         </li>
+          <li class="page-item">
+            <a class="page-link"  (click)="changePage(pagination.currentPage+1)" [class.disabled]="pagination.currentPage===pagination.total">Next</a>
+          </li>
+        </ul>
+      </nav>
+    <div>
+      <select class="form-control" [(ngModel)]="pagination.per_page" (change)="getCommande()">
+        <option *ngFor="let item of LimitPage" [value]="item" [selected]="pagination.per_page==item">
+            {{item}}
+        </option>
+      </select>
+    </div>
+  </div>
+    <div  class="popup" [class.open]="isPopupOpen" *ngIf="InfoCommande.infoUser && InfoCommande.infoUser.length > 0"  >
         <div class="popup-content">
-            
-         <p>aaaaaaaa</p>
-         <p>aaaaaaaa</p>
-         <p>aaaaaaaa</p>
-         <p>aaaaaaaa</p>
-dfdsvgs
-         
+            <div class="text-center">
+                <h1 style="font-weight: bold; color: #272343;">Num Commande :  {{InfoCommande.infoUser[0].NumCommande}}</h1>
+            </div>
+            <table>
+               <thead>
+                  <th>
+                    #
+                 </th>
+                 <th>
+                  Name
+                 </th>
+                 <th>
+                  image
+               </th>
+               <th>
+                Quantity
+             </th>
+             <th>
+              Price
+           </th>
+               </thead>
+               <tbody>
+                  <tr *ngFor="let item of InfoCommande.ListProducts;let i=index">
+                      <td>{{item.id}}</td>
+                      <td>{{item.name}}</td>
+                      <td>
+                         <img  [src]="'http://localhost:8888/PRODUCT-SERVICE/products/images/'+item.image" alt="">
+                      </td>
+                      <td>{{item.qte}}</td>
+                      <td>{{item.price}} TND</td>
+                  </tr>
+               </tbody>
+            </table>
+            <div>
+               <h1 class="text-center mt-5" style="font-weight: bold; color: #272343;" >Client Info</h1>
+            </div>
+            <table>
+              <thead>
+                 <th>
+                  Name
+                </th>
+                <th>
+                  LastName
+                </th>
+                <th>
+                  Cin
+              </th>
+              <th>
+                email
+            </th>
+              <th>
+                phone
+            </th>
+              </thead>
+              <tbody>
+                 <tr>
+                     <td>{{InfoCommande.infoUser[0].Name}}</td>
+                     <td>{{InfoCommande.infoUser[0].LastName}}</td>
+                     <td>{{InfoCommande.infoUser[0].Cin}}</td>
+                     <td>{{InfoCommande.infoUser[0].email}}</td>
+                     <td>{{InfoCommande.infoUser[0].phone}}</td>
+                 </tr>
+              </tbody>
+           </table>
         </div>  
         <button class="close" (click)="closePopup()"><i class="fas fa-x"></i></button> 
       </div>
