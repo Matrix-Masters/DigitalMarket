@@ -8,6 +8,11 @@ export class WishlistService {
 
   constructor(private http:HttpClient) { }
 
- 
+  addToWishlist(data:any)
+  {
+    return this.http.post(`${port}/FEEDBACK-SERVICE/FeedBack/addToWishlist`,data);
+  }
+
+  
 
 }
