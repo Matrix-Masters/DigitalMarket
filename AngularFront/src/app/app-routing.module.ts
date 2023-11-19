@@ -5,6 +5,7 @@ import { GererProduitComponent } from './AdminCompoenent/GererProduitComponents/
 import { HomeComponent } from './home/home/home.component';
 import { DashboardComponent } from './AdminCompoenent/dashboard/dashboard.component';
 import { CategoryListComponent } from './AdminCompoenent/GererCategory/category-list/category-list.component';
+import { GererCommandeComponent } from './AdminCompoenent/gerer-commande/gerer-commande.component';
 import { GererSupplierComponent } from './AdminCompoenent/GererSuppliersComponents/gerer-supplier/gerer-supplier.component';
 import { LocationCommandeComponent } from './ClientComponent/location-commande/location-commande.component';
 import { AccueilClientComponent } from './AccueilClient/accueil-client/accueil-client.component';
@@ -15,14 +16,14 @@ import { FournisseurInterfaceComponent } from './Fournissuer/fournisseur-interfa
 import { FournisseurDashboardComponent } from './Fournissuer/fournisseur-dashboard/fournisseur-dashboard.component';
 import { AddProductComponent } from './Fournissuer/add-product/add-product.component';
 
-
-
 const routes: Routes = [
    {path:'',component:HomeComponent},
    {path:'classer',component:ClasserProductComponent},
    {path:"dash",component:DashboardComponent},
    {path:'gererProduit',component:GererProduitComponent},
    {path:'listCategory',component:CategoryListComponent},
+   {path:'Commandes',component:GererCommandeComponent},
+   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
    {path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
    {path:'gererSupplier',component:GererSupplierComponent},
    {path:'Commandes_Taken',component:LocationCommandeComponent},

@@ -39,6 +39,9 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "./node_modules/aos/dist/aos.css",
+              "src/styles.scss",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.css",
               "./node_modules/leaflet/dist/leaflet.css",
               "src/styles.scss"
             ],

@@ -37,6 +37,14 @@
 					</a>
 				</li>
 				<li>
+					<a [routerLink]="['/Commandes']" [ngClass]="{'active': current === '/Commandes'}" >
+							<mat-icon class="icon">engineering</mat-icon>
+							<p  class="nav-item">
+								Gerer Commande
+							</p>
+					</a>
+				</li>
+				<li>
 					<a class="close_sidebar" (click)="OpenedSideBar=!OpenedSideBar">
 							<mat-icon class="icon">
 								{{OpenedSideBar ? 'arrow_left' : 'arrow_right'}}
