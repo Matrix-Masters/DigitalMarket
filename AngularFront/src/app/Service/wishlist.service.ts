@@ -12,7 +12,12 @@ export class WishlistService {
   {
     return this.http.post(`${port}/FEEDBACK-SERVICE/FeedBack/addToWishlist`,data);
   }
+  showList(id:number)
+  {
+    return this.http.get(`${port}/FEEDBACK-SERVICE/FeedBack/showList?id=`+id);
+  }
 
+  
   
 
 }
