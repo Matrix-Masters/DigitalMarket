@@ -14,11 +14,13 @@ export class CommandeServiceService {
   DetailsProd(id:number){
     return this.http.get(`${port}/PRODUCT-SERVICE/products/GetDetailsProd?id=`+id);
   }
-  getCommandes(page: number, size: number, search: string)
+  getCommandes(page: number, size: number, search: string,data:string)
   {
     
-    return this.http.get(`${port}/GESTIONCOMMANDE-SERVICE/commande/GetCommandsWaiting?page=${page}&size=${size}&${search!='' ? 'search='+search : ''}`);
+    return this.http.get(`${port}/GESTIONCOMMANDE-SERVICE/commande/GetCommandsWaiting?page=${page}&size=${size}&${search!='' ? 'search='+search : ''}&type=${data}`);
   }
+
+ 
 
 
 }
