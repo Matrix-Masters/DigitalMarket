@@ -1,74 +1,25 @@
-<app-navbar />
+<app-navbar></app-navbar>
 <section>
-    <h1>My Favorite List</h1>
+  <h1>My Favorite List</h1>
   <div class="list">
-              <div class="product">
-                <button class="delete-button" >
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <img alt="shoes1" src="https://i.ibb.co/g3cNNkG/shoes1.jpg">
-                  <div><h2>SOME SHOES</h2>
-            <p class="price">15<sup>.00</sup></p>
-            <p class="descr">Lorem ipsum dolor sit amet, consectetur adipiscing elit<b>incididunt</b></p>
-                  <br>
-                  <a href="#"><p>Add to cart</p></a></div>
-              </div>
-              <div class="product">
-                  <img alt="shoes2" src="https://i.ibb.co/ctgdL77/shoes2.jpg">
-                  <div><h2>SOME SHOES</h2>
-             <p class="price">15<sup>.00</sup></p>
-            <p class="descr">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-                  <br>
-                  <a href="#"><p>Add to cart</p></a></div>
-              </div>
-              <div class="product">
-                  <img alt="shoes3" src="https://i.ibb.co/1TKmGRd/shoes3.jpg">
-                  <div><h2>SOME SHOES</h2>
-             <p class="price">15<sup>.00</sup></p>
-            <p class="descr">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-                  <br>
-                  <a href="#"><p>Add to cart</p></a></div>
-              </div>
-               <div class="product">
-                  <img alt="shoes4" src="https://i.ibb.co/0j9Rp1p/shoes4.jpg">
-                  <div><h2>SOME SHOES</h2>
-             <p class="price">15<sup>.00</sup></p>
-            <p class="descr">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-                  <br>
-                  <a href="#"><p>Add to cart</p></a></div>
-              </div> 
-              <div class="product">
-                <img alt="shoes4" src="https://i.ibb.co/0j9Rp1p/shoes4.jpg">
-                <div><h2>SOME SHOES</h2>
-           <p class="price">15<sup>.00</sup></p>
-          <p class="descr">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-                <br>
-                <a href="#"><p>Add to cart</p></a></div>
-            </div> 
-            <div class="product">
-                <img alt="shoes4" src="https://i.ibb.co/0j9Rp1p/shoes4.jpg">
-                <div><h2>SOME SHOES</h2>
-           <p class="price">15<sup>.00</sup></p>
-          <p class="descr">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-                <br>
-                <a href="#"><p>Add to cart</p></a></div>
-            </div> 
-            <div class="product">
-                <img alt="shoes4" src="https://i.ibb.co/0j9Rp1p/shoes4.jpg">
-                <div><h2>SOME SHOES</h2>
-           <p class="price">15<sup>.00</sup></p>
-          <p class="descr">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod temporLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod temporLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod temporLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-                <br>
-                <a href="#"><p>Add to cart</p></a></div>
-            </div> 
-            <div class="product">
-                <img alt="shoes4" src="https://i.ibb.co/0j9Rp1p/shoes4.jpg">
-                <div><h2>SOME SHOES</h2>
-           <p class="price">15<sup>.00</sup></p>
-          <p class="descr">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-                <br>
-                <a href="#"><p>Add to cart</p></a></div>
-            </div> 
+    <div class="product" *ngFor="let item of wishlist">
+      <button class="delete-button" (click)="toggleFavorite(item.productDetails.id)">
+        <i class="fas fa-minus"></i>
+      </button>
+      <img src="https://i.ibb.co/g3cNNkG/shoes1.jpg">
+      <!-- [src]="item.productDetails?.image" -->
+      <div> 
+        <h2>{{ item.productDetails?.name }}</h2>
+        <p class="price">
+            <!-- {{ item.productDetails?.prix }} -->
+        </p>
+        <p class="descr">
+           <!-- {{ item.productDetails?.desc }} -->
+        </p>
+        <br>
+        <a href="#"><p>Add to cart</p></a>
+      </div>
+    </div>
   </div>
-  </section>
-<app-footer/>
+</section>
+<app-footer></app-footer>
