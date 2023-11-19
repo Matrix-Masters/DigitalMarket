@@ -34,11 +34,26 @@ import { CardCartComponent } from './AccueilClient/card-cart/card-cart.component
 import { NotFoundComponentComponent } from './notfound/not-found-component/not-found-component.component';
 import { CommandeComponent } from './ClientComponent/commande/commande.component';
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+import { LIstEmpolyersComponent } from './superAdminComponents/Employers/list-empolyers/list-empolyers.component';
+import { AddEmployerComponent } from './superAdminComponents/Employers/add-employer/add-employer.component';
+import { GenerateAccountDialogComponent } from './superAdminComponents/Employers/generate-account-dialog/generate-account-dialog.component';
+import { ConfirmDialogComponentComponent } from './superAdminComponents/Employers/confirm-dialog-component/confirm-dialog-component.component';
+>>>>>>> 1243372463967393d879d0a75b7ef35c03a34aeb
 import { CommandeClientComponent } from './ClientComponent/commande-client/commande-client.component';
+import { FournisseurDashboardComponent } from './Fournissuer/fournisseur-dashboard/fournisseur-dashboard.component';
+import { FournisseurInterfaceComponent } from './Fournissuer/fournisseur-interface/fournisseur-interface.component';
+import { FournisseurNavbarCompComponent } from './Fournissuer/fournisseur-navbar-comp/fournisseur-navbar-comp.component';
+import { FournisseurSideBarCompComponent } from './Fournissuer/fournisseur-side-bar-comp/fournisseur-side-bar-comp.component';
+import { AddProductComponent } from './Fournissuer/add-product/add-product.component';
 
+<<<<<<< HEAD
 
 >>>>>>> talel
+=======
+>>>>>>> 1243372463967393d879d0a75b7ef35c03a34aeb
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,12 +81,29 @@ import { CommandeClientComponent } from './ClientComponent/commande-client/comma
     CommandeComponent,
     GererSupplierComponent,
 <<<<<<< HEAD
+<<<<<<< HEAD
     LocationCommandeComponent
 =======
     LocationCommandeComponent,
+=======
+    LIstEmpolyersComponent,
+    AddEmployerComponent,
+    GenerateAccountDialogComponent,
+    ConfirmDialogComponentComponent
+>>>>>>> 1243372463967393d879d0a75b7ef35c03a34aeb
     CommandeClientComponent
+    LocationCommandeComponent,
+    FournisseurDashboardComponent,
+    FournisseurInterfaceComponent,
+    FournisseurNavbarCompComponent,
+    FournisseurSideBarCompComponent,
+    AddProductComponent
 
+
+<<<<<<< HEAD
 >>>>>>> talel
+=======
+>>>>>>> 1243372463967393d879d0a75b7ef35c03a34aeb
   ],
   imports: [
     BrowserModule,

@@ -19,6 +19,7 @@ export class GererSupplierComponent implements OnInit{
   searchControl = new FormControl('');
   statusControl = new FormControl('all');
   dateControl = new FormControl(new Date());
+  loading = false;
   suppliers=null;
   // suppliersWithProducts = new FormControl(false);
   // suppliersWithoutProducts = new FormControl(false);
@@ -68,21 +69,38 @@ export class GererSupplierComponent implements OnInit{
       this.suppliers==null;
     }
   }
-  AcceptSupplier(id:any){
-    this.AdminServiceService.AcceptSupplier(id).subscribe((res:any)=>{
-      this._snackBar.open("Supplier accepted", 'close', {
-        duration: 3000
-      })
-      this.getSuppliersFilter();
-    })
-    }
-  RefuseSupplier(id:any){
-    this.AdminServiceService.RefuseSiupplier(id).subscribe((res:any)=>{
-      this._snackBar.open("Supplier Refused", 'close', {
-        duration: 3000
-      })
-      this.getSuppliersFilter();
-    })
+  AcceptSupplier(id: any) {
+    this.loading = true;
+    this.AdminServiceService.AcceptSupplier(id).subscribe(
+      (res: any) => {
+        this._snackBar.open('Supplier accepted', 'close', {
+          duration: 3000,
+        });
+        this.loading = false;
+        this.getSuppliersFilter();
+      },
+      (error: any) => {
+        console.error('Error accepting supplier:', error);
+        this.loading = false;
+      }
+    );
+  }
+
+  RefuseSupplier(id: any) {
+    this.loading = true;
+    this.AdminServiceService.RefuseSiupplier(id).subscribe(
+      (res: any) => {
+        this._snackBar.open('Supplier Refused', 'close', {
+          duration: 3000,
+        });
+        this.loading = false;
+        this.getSuppliersFilter();
+      },
+      (error: any) => {
+        console.error('Error refusing supplier:', error);
+        this.loading = false;
+      }
+    );
   }
 
 }

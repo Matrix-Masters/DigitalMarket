@@ -1,0 +1,23 @@
+.header{
+  background-color: #1C4E80;
+  height: 50px;
+  border-radius: 10px;
+  padding-top: 15px;
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-left: 12px;
+  display: flex;
+  justify-content: space-between;
+  .title{
+      color: #fff;
+      font-weight: 400;
+  }
+  .right-side{
+      display: flex;
+      align-items: center;
+      .action{
+          margin-top: -12px;
+      }
+  }
+}
+

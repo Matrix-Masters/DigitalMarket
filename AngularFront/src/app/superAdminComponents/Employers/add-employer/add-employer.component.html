@@ -1,0 +1,70 @@
+<button mat-raised-button color="primary"
+  [routerLink]="['/gererEmployers']"><mat-icon>arrow_back</mat-icon>back</button>
+<div class="container mt-5">
+  <div class="shadow-lg row mt-5" style="margin-top: 6%!important;">
+    <div class="col">
+      <img src="../../../../../../assets/Add User-rafiki.png" alt="" height="550px" width="600px">
+    </div>
+    <form [formGroup]="employerForm" class="mt-5 col" style="width: 100%;">
+      <h2 class="text-center mb-4">Add Employer</h2>
+
+      <div class="form-group">
+        <mat-form-field style="width: 100%;">
+          <input matInput placeholder="First Name" formControlName="firstName">
+          <mat-error *ngIf="isFieldInvalid('firstName', 'required')">First Name is required</mat-error>
+          <mat-error *ngIf="isFieldInvalid('firstName', 'minlength')">Minimum length is 3 characters</mat-error>
+          <mat-error *ngIf="isFieldInvalid('firstName', 'maxlength')">Maximum length is 8 characters</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field style="width: 100%;">
+          <input matInput placeholder="Last Name" formControlName="lastName">
+          <mat-error *ngIf="isFieldInvalid('lastName', 'required')">Last Name is required</mat-error>
+          <mat-error *ngIf="isFieldInvalid('lastName', 'minlength')">Minimum length is 3 characters</mat-error>
+          <mat-error *ngIf="isFieldInvalid('lastName', 'maxlength')">Maximum length is 8 characters</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field style="width: 100%;">
+          <input matInput placeholder="Phone Number" formControlName="PhoneNumber">
+          <mat-error *ngIf="isFieldInvalid('PhoneNumber', 'required')">Phone Number is required</mat-error>
+          <mat-error *ngIf="isFieldInvalid('PhoneNumber', 'minlength')">Minimum length is 8 characters</mat-error>
+          <mat-error *ngIf="isFieldInvalid('PhoneNumber', 'maxlength')">Maximum length is 8 characters</mat-error>
+          <mat-error *ngIf="isFieldInvalid('PhoneNumber', 'pattern')">Please enter a valid phone number</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field style="width: 100%;">
+          <mat-label>Gender</mat-label>
+          <mat-select formControlName="gender">
+            <mat-option value="male">Male</mat-option>
+            <mat-option value="female">Female</mat-option>
+          </mat-select>
+          <mat-error *ngIf="isFieldInvalid('gender', 'required')">Gender is required</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field style="width: 100%;">
+          <mat-label>Role</mat-label>
+          <mat-select formControlName="role">
+            <mat-option value="Admin technique">Admin Technique</mat-option>
+            <mat-option value="Admin organisateur">Admin Organisateur</mat-option>
+            <mat-option value="Admin commande">Admin Commande</mat-option>
+            <mat-option value="livreur">Livreur</mat-option>
+          </mat-select>
+          <mat-error *ngIf="isFieldInvalid('role', 'required')">Role is required</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group text-center">
+        <button mat-raised-button color="primary" (click)="submitForm()">
+          <mat-icon>autorenew</mat-icon>generate account
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -12,7 +12,14 @@ import { AccueilClientComponent } from './AccueilClient/accueil-client/accueil-c
 import { AccueilCartComponent } from './AccueilClient/accueil-cart/accueil-cart.component';
 import { NotFoundComponentComponent } from './notfound/not-found-component/not-found-component.component';
 import { CommandeComponent } from './ClientComponent/commande/commande.component';
+
+import { LIstEmpolyersComponent } from './superAdminComponents/Employers/list-empolyers/list-empolyers.component';
+import { AddEmployerComponent } from './superAdminComponents/Employers/add-employer/add-employer.component';
 import { CommandeClientComponent } from './ClientComponent/commande-client/commande-client.component';
+import { FournisseurInterfaceComponent } from './Fournissuer/fournisseur-interface/fournisseur-interface.component';
+import { FournisseurDashboardComponent } from './Fournissuer/fournisseur-dashboard/fournisseur-dashboard.component';
+import { AddProductComponent } from './Fournissuer/add-product/add-product.component';
+
 
 const routes: Routes = [
    {path:'',component:HomeComponent},
@@ -22,14 +29,19 @@ const routes: Routes = [
    {path:'listCategory',component:CategoryListComponent},
    {path:'Commandes',component:GererCommandeComponent},
    { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
-   {path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
    {path:'gererSupplier',component:GererSupplierComponent},
    {path:'Commandes_Taken',component:LocationCommandeComponent},
    {path:'categories/:id',component:AccueilClientComponent},
    {path:'cart',component:AccueilCartComponent},
    {path:'Commande',component:CommandeComponent},
+   {path:"gererEmployers",component:LIstEmpolyersComponent},
+   {path:"addEmploye",component:AddEmployerComponent},
    {path:'CommandeLocation',component:CommandeClientComponent},
+   {path:"fournisseur",component:FournisseurInterfaceComponent},
+   {path:"fournisseurDash",component:FournisseurDashboardComponent},
+   {path:"addProductFournisseur",component:AddProductComponent},
    {path:"**",component:NotFoundComponentComponent}
+
 ]
 
 

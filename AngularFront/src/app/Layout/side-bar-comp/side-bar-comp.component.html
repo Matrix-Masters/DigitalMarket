@@ -1,9 +1,70 @@
+
+<mat-drawer-container class="allSidebar">
+  <mat-drawer [class]="OpenedSideBar ? 'sidebar' : 'sidebar close'" mode="side" opened="true">
+    <div class="logo">
+      <img src="../../../assets/DIGITAL MARKET logo.png" alt="">
+    </div>
+    <ul>
+      <li>
+        <a [routerLink]="['/dash']" [ngClass]="{'active': current === '/dash'}">
+          <mat-icon class="icon">grid_view</mat-icon>
+          <p class="nav-item">
+            Dashboard
+          </p>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/classer']" [ngClass]="{'active': current === '/classer'}">
+          <mat-icon class="icon">engineering</mat-icon>
+          <p class="nav-item">
+            Classer Product
+          </p>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/gererProduit']" [ngClass]="{'active': current === '/gererProduit'}">
+          <mat-icon class="icon">engineering</mat-icon>
+          <p class="nav-item">
+            Gerer Product
+          </p>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/listCategory']" [ngClass]="{'active': current === '/listCategory'}">
+          <mat-icon class="icon">engineering</mat-icon>
+          <p class="nav-item">
+            Gerer Category
+          </p>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/gererSupplier']" [ngClass]="{'active': current === '/gererSupplier'}">
+          <mat-icon class="icon">store</mat-icon>
+          <p class="nav-item">
+            Gerer suppliers
+          </p>
+        </a>
+      </li>
+      <li>
+        <a class="close_sidebar" (click)="OpenedSideBar=!OpenedSideBar">
+          <mat-icon class="icon">
+            {{OpenedSideBar ? 'arrow_left' : 'arrow_right'}}
+          </mat-icon>
+        </a>
+      </li>
+    </ul>
+  </mat-drawer>
+  <mat-drawer-content [ngStyle]="{'margin-left': OpenedSideBar ? '230px' : '130px'}">
+    <ng-content></ng-content>
+  </mat-drawer-content>
+</mat-drawer-container>
+
 <mat-drawer-container class="allSidebar" >
 	<mat-drawer  [class]="OpenedSideBar ? 'sidebar' : 'sidebar close'" mode="side" opened="true">
 			<div class="logo" >
 				<img src="../../../assets/DIGITAL MARKET logo.png" alt="">
 			</div>
-			<ul> 
+			<ul>
 				<li>
 					<a  [routerLink]="['/dash']" [ngClass]="{'active': current === '/dash'}">
 							<mat-icon class="icon">grid_view</mat-icon>
@@ -57,3 +118,4 @@
 		<ng-content  ></ng-content>
 	</mat-drawer-content>
 </mat-drawer-container>
+
