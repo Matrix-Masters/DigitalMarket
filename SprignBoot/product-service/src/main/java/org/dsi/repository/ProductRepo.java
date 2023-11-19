@@ -54,6 +54,10 @@ public interface ProductRepo extends JpaRepository<Product,Long> {
 		 
 		 @Query(value="SELECT MAX(prix) AS max_price FROM product where status = 1",nativeQuery=true)
 		 double getMaxPrice();
+		 
+		 @Query(value = "SELECT * from product WHERE status = :status And id_user=:id",nativeQuery = true)
+		 Page<Product> getProductsFournisseur(int status,long id,Pageable pageable);
+		
 
 		
 		 
