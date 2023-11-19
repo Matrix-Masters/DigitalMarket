@@ -9,8 +9,9 @@ import { Location } from '@angular/common';
 export class AccueilCartComponent implements OnInit{
 
   constructor(public productServiceStorage:ProductsServiceLocalStorageService,private location: Location){}
-products:any
-
+  products:any
+  total:number=0
+  nbrArticle:number=0
 
 getListProducts(){
   const productString = localStorage.getItem('products');
@@ -27,6 +28,10 @@ clearAll(){
 
   ngOnInit(): void {
     this.getListProducts()
+    for(let i = 0; i < this.products?.length; i++){
+      this.total += Number(this.products[i].prix) * Number(this.products[i].quantity);
+      this.nbrArticle = (this.products.length)
+    }
   }
 
 }

@@ -1,8 +1,10 @@
   
   <app-navbar></app-navbar>
-
   <div class="container mt-5 py-5" >
-    <p class="titre">ConfirmCommande</p>
+        <div class="header">
+          <h2 class="header-text">Confirm Command</h2>
+          <h3 class="header-text-2" >Add Products</h3>
+        </div>
     <mat-stepper  [linear]="FormInfo.invalid" #stepper animationDuration="1500">
         <mat-step [stepControl]="FormInfo">
           <form [formGroup]="FormInfo" class="p-5 shadow-lg" (ngSubmit)="Step1()">

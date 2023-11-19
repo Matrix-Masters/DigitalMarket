@@ -10,18 +10,17 @@ export const addCommande = async (req: Request, res: Response) => {
         const ligneCommandes = [];
 
         for (let i = 0; i < req.body.LigneCommandes.length; i++) {
-            prixTotal += req.body.LigneCommandes[i].prix * req.body.LigneCommandes[i].Quantity;
+            prixTotal += req.body.LigneCommandes[i].prix * req.body.LigneCommandes[i].quantity;
 
             const ligneCommande = new LigneCommande({
                 Commande_id: null, 
-                Product_id: req.body.LigneCommandes[i].Product_id,
-                Quantity: req.body.LigneCommandes[i].Quantity,
+                Product_id: req.body.LigneCommandes[i].id,
+                Quantity: req.body.LigneCommandes[i].quantity,
                 prix: req.body.LigneCommandes[i].prix,
             });
 
             const savedLigneCommande = await ligneCommande.save();
             ligneCommandes.push(savedLigneCommande._id);
-
         }
 
         const commande = new Commande({
@@ -44,7 +43,7 @@ export const addCommande = async (req: Request, res: Response) => {
         const commandeSaved = await commande.save();
         // test worked :) add commande for every null commande
         for (let i = 0; i < ligneCommandes.length; i++) {
-            await LigneCommande.findByIdAndUpdate(ligneCommandes[i], { Commande_id: commandeSaved._id });
+            await LigneCommande.findByIdAndUpdate(ligneCommandes[i], {Commande_id:commandeSaved._id});
         }
         res.status(201).json(commandeSaved);
     } catch (e) {
@@ -52,6 +51,8 @@ export const addCommande = async (req: Request, res: Response) => {
     }
 
 }
+
+
 
 export const GetCommandeDispo = async (req: Request, res: Response) => {
 
@@ -86,6 +87,44 @@ export const GetCommandeDispo = async (req: Request, res: Response) => {
         res.status(500).json({ message: err.message });
     }
 
+}
+
+export const GetCommandeByIdUser=async (req:Request,res:Response)=>{
+    try{
+        const listCommandes=await Commande.find({
+            $and: [
+                {  Client_id:req.params.Client_id, },
+                {   Status:"Taken", },
+            ]
+        }).exec();
+        res.status(200).json(listCommandes);
+    }catch(e:any){
+        res.status(500).json({message:e.message})
+    }
+}
+
+
+export const GetLivraisonByNumCommande = async (req:Request,res:Response)=>{
+    try{
+        const livr=await Livraison.findOne({NumCommande:req.params.num}).exec();
+        if (!livr) {
+            res.status(404).json({ message: "No Found" });
+        } else {
+            res.status(200).json(livr);
+        }
+    }catch(e:any){
+        res.status(500).json({message:e.message})
+    }
+}
+
+export const ChangerLocationLivreur=async(req:Request,res:Response)=>{
+    try{
+        await Livraison.findOneAndUpdate({NumCommande:req.params.num},{$set:{Location:req.body.Location}});
+        await Commande.findOneAndUpdate({NumCommande:req.params.num},{$set:{Status:"Shipped"}});
+        res.status(200).json({message:"updated"});
+    }catch(e:any){
+        res.status(500).json({message:e.message})
+    }
 }
 
 

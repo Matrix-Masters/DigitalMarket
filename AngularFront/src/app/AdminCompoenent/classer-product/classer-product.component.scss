@@ -6,6 +6,7 @@
   .example-container {
     width: 300px;
   }
+ 
   .example-list {
     border: solid 1px #ccc;
     max-height: 280px;
@@ -307,6 +308,15 @@
     }
   }
   
+}
+
+
+.title__image{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+ 
 }
 
 

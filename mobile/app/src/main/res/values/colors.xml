@@ -13,7 +13,6 @@
     <color name="gradient1">#000000</color>
     <color name="gradient2">#151515</color>
     <color name="gradient3">#3E3C3C</color>
-    <color name="red">#FFFF0000</color>
     <color name="gradientBtn1">#9F8B6D</color>
     <color name="gradientBtn2">#9F8B6D</color>
     <color name="gradientBtn3">#504637</color>
@@ -21,6 +20,8 @@
     <color name="yellow">#FFf7eb75</color>
     <color name="brown">#FFbda179</color>
     <color name="marron">#FF684a26</color>
-    <color name="red2">#FFf47d5d</color>
+    <color name="red1">#FFf47d5d</color>
     <color name="backgroundNight">#FF9F8B6D</color>
+    <color name="whitePure">#FFFFFF</color>
+    <color name="gray_background">#FCFBFB</color>
 </resources>

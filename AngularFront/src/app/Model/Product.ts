@@ -1,5 +1,4 @@
 export class Product{
-
  id:any;
  name: any;
  desc:any;

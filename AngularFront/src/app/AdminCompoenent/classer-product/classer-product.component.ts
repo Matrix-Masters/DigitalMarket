@@ -162,7 +162,6 @@ export class ClasserProductComponent implements OnInit {
 
   onFileChanged(event: any) {
     const file = event.target.files[0];
-    
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
@@ -170,22 +169,22 @@ export class ClasserProductComponent implements OnInit {
     };
     
   }
+
   AddCategory() {
-    var CategData = {
-      nom: this.Categname,
-      image: this.image
-    }
-    console.log(CategData);
-    this.AdminServiceService.AddCategory(CategData).subscribe({
-      next: (res: any) => {
-        console.log(res, 'response');
-        
-      },
-      error: (err: any) => {
-        console.log(err, 'errors');
-        alert('Category added successfully');
+    this.AdminServiceService.AddCategory(
+      {
+        "nom":this.Categname,
+        "image":this.image
       }
-    });
+    ).subscribe(
+      (res:any)=>{
+          alert("Added With Success");
+          this.GetCatg();
+          this.closePopup();
+      },(error:any)=>{
+        console.log(error);
+      }
+    )
   }
   
 }

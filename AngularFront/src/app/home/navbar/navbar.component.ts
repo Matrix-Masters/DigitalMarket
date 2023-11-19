@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthServiceService } from 'src/app/Service/auth-service.service';
 import { CategoryServiceService } from 'src/app/Service/category-service.service';
 
 
@@ -10,24 +11,14 @@ import { CategoryServiceService } from 'src/app/Service/category-service.service
 })
 export class NavbarComponent implements OnInit {
   categories:any;
-  //categories : any[] = ['SkinCare', 'Make up','Haire care','bath & body','Beauti supplements','Promos'];
   id:any
-  @Output() dataEvent = new EventEmitter<Number>();
 
 
-  passId() {
-    this.getIdFromUrl();
-    const data = 'Data from the child component';
-    this.dataEvent.emit(this.id);
-  }
 
-  constructor(public categoriesService : CategoryServiceService,private route: ActivatedRoute){}
 
-  getIdFromUrl(){
-    this.route.params.subscribe((params:any)=>{
-        this.id= params['id'];
-     })
-  }
+  constructor(public AuthServiceService:AuthServiceService, public categoriesService : CategoryServiceService,private route: ActivatedRoute , private router: Router){}
+
+
 
   ngOnInit():void {
     this.categoriesService.getAllCategories().subscribe(
@@ -40,7 +31,7 @@ export class NavbarComponent implements OnInit {
     )
   }
 
-  
+
 
 
 }

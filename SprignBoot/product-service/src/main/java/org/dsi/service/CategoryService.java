@@ -14,18 +14,14 @@ public class CategoryService {
 	 @Autowired
 	 CategoryRepo RepoCat;
 	 
-	 @Autowired
-	 NodeSync nodesync;
 
 	 public void AddCategory(Category cat) throws Exception {
 		   if(RepoCat.findByNom(cat.getNom()) != null) {
 			   throw new Exception("Category Already Exist"); 
 		   }else {
 				RepoCat.save(cat);
-				/*JSONObject jsoUser=new JSONObject();
-				jsoUser.appendField("nom",cat.getNom());
-	  			jsoUser.appendField("image",cat.getImage());
-				nodesync.AddCategory(jsoUser);*/
 		   }
 	 }
+	 
+	 
 }

@@ -21,24 +21,28 @@ import { SideBarCompComponent } from './Layout/side-bar-comp/side-bar-comp.compo
 import { NavbarCompComponent } from './Layout/navbar-comp/navbar-comp.component';
 import { DashboardComponent } from './AdminCompoenent/dashboard/dashboard.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { CategoryListComponent } from './AdminCompoenent/GererCategory/category-list/category-list.component'
+import { CategoryListComponent } from './AdminCompoenent/GererCategory/category-list/category-list.component';
+import { GererCommandeComponent } from './AdminCompoenent/gerer-commande/gerer-commande.component'
 import { GererSupplierComponent } from './AdminCompoenent/GererSuppliersComponents/gerer-supplier/gerer-supplier.component';
 import { CommonModule } from '@angular/common';
 import { DatePipe } from '@angular/common';
 import { LocationCommandeComponent } from './ClientComponent/location-commande/location-commande.component';
-
 import { AccueilClientComponent } from './AccueilClient/accueil-client/accueil-client.component';
 import { AccueilBodyComponent } from './AccueilClient/accueil-body/accueil-body.component';
 import { AccueilCartComponent } from './AccueilClient/accueil-cart/accueil-cart.component';
 import { CardCartComponent } from './AccueilClient/card-cart/card-cart.component';
-
 import { NotFoundComponentComponent } from './notfound/not-found-component/not-found-component.component';
 import { CommandeComponent } from './ClientComponent/commande/commande.component';
 import { LIstEmpolyersComponent } from './superAdminComponents/Employers/list-empolyers/list-empolyers.component';
 import { AddEmployerComponent } from './superAdminComponents/Employers/add-employer/add-employer.component';
 import { GenerateAccountDialogComponent } from './superAdminComponents/Employers/generate-account-dialog/generate-account-dialog.component';
 import { ConfirmDialogComponentComponent } from './superAdminComponents/Employers/confirm-dialog-component/confirm-dialog-component.component';
-
+import { CommandeClientComponent } from './ClientComponent/commande-client/commande-client.component';
+import { FournisseurDashboardComponent } from './Fournissuer/fournisseur-dashboard/fournisseur-dashboard.component';
+import { FournisseurInterfaceComponent } from './Fournissuer/fournisseur-interface/fournisseur-interface.component';
+import { FournisseurNavbarCompComponent } from './Fournissuer/fournisseur-navbar-comp/fournisseur-navbar-comp.component';
+import { FournisseurSideBarCompComponent } from './Fournissuer/fournisseur-side-bar-comp/fournisseur-side-bar-comp.component';
+import { AddProductComponent } from './Fournissuer/add-product/add-product.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +61,7 @@ import { ConfirmDialogComponentComponent } from './superAdminComponents/Employer
     NavbarCompComponent,
     DashboardComponent,
     CategoryListComponent,
+    GererCommandeComponent,
     AccueilClientComponent,
     AccueilBodyComponent,
     AccueilCartComponent,
@@ -65,11 +70,18 @@ import { ConfirmDialogComponentComponent } from './superAdminComponents/Employer
     NotFoundComponentComponent,
     CommandeComponent,
     GererSupplierComponent,
-    LocationCommandeComponent,
     LIstEmpolyersComponent,
     AddEmployerComponent,
     GenerateAccountDialogComponent,
     ConfirmDialogComponentComponent
+    CommandeClientComponent
+    LocationCommandeComponent,
+    FournisseurDashboardComponent,
+    FournisseurInterfaceComponent,
+    FournisseurNavbarCompComponent,
+    FournisseurSideBarCompComponent,
+    AddProductComponent
+
 
   ],
   imports: [

@@ -6,7 +6,10 @@ import { port } from 'src/env';
 })
 export class AuthServiceService {
 
+  isAuth:Boolean=false;
   constructor(private http:HttpClient){
+     localStorage.setItem("token","dsqd");
+     this.isAuth=localStorage.getItem("token") ? true : false;
   }
   
   AdddUser(user:any){

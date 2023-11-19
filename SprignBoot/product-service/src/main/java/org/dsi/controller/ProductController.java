@@ -42,7 +42,7 @@ public class ProductController {
 	@PostMapping("/AddProduct")
 	public ResponseEntity<?> AddProduct(@RequestParam("file") MultipartFile file,
 			@RequestParam("description") String desc,
-			@RequestParam("name") String name,@RequestParam("Quantite") int Quantite,
+			@RequestParam("name") String name,@RequestParam("quantite") int Quantite,
 			@RequestParam("prix") double prix,@RequestParam(name="category",required = false) Category category){
 		  			ProducInfo product=new ProducInfo(name,Quantite,prix,category,desc);
 		  			ProductService.AddProductService(product,file);
@@ -183,24 +183,7 @@ public class ProductController {
 			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
 		}
 	}
-	
-  /*
-    @PutMapping("/AcceptProduct")
-	public ResponseEntity<?> AcceptProduct(@RequestParam("id") long id){
-		Product prod=ProductRepo.ProductWithId(id);
-		prod.setStatus(1);
-		ProductRepo.save(prod);
-		return  ResponseEntity.ok().body("Product accepted");
-	}
-	 @PutMapping("/RefuseProduct")
-	 public ResponseEntity<?> RefuseProduct(@RequestParam("id") long id){
-		Product prod=ProductRepo.ProductWithId(id);
-		prod.setStatus(2);
-		ProductRepo.save(prod);
-		return  ResponseEntity.ok().body("Product refused");
-	}
-	*/
-	
+
 	@PutMapping("/PendingProduct")
 	public ResponseEntity<?> PendingProduct(@RequestParam("id") Long id){
 		Product prod=ProductRepo.ProductWithId(id);

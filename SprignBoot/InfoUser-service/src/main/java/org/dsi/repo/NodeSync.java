@@ -13,6 +13,7 @@ public interface NodeSync {
 	@RequestMapping(method = RequestMethod.POST, value = "/Commande/AddUser")
     void addInfoUser(@RequestBody JSONObject data);
 	
+	
 	@RequestMapping(method=RequestMethod.PUT, value= "/Commande/AcceptSupplier")
 	void AcceptUser(@RequestBody JSONObject userEmail);
 	

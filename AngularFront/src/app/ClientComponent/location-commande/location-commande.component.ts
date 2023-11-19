@@ -1,10 +1,8 @@
-import { Component ,OnInit,Output,EventEmitter} from '@angular/core';
+import { Component ,OnInit,Output,EventEmitter } from '@angular/core';
 import L  from 'leaflet';
 import 'leaflet';
 import 'leaflet-routing-machine';
 import { LocationClientService } from 'src/app/Service/location-client.service';
-
-
 
 @Component({
   selector: 'app-location-commande',
@@ -114,7 +112,6 @@ InitMap(){
       "OpenStreetMap": openstreetmap,
      }
   
-
      L.control.layers(baseMaps).addTo(this.map);
 
      this.map.on('click', (e:any) => {
@@ -139,8 +136,9 @@ InitMap(){
               "Address : "+res.results[0].formatted)
           .openOn(this.map);
         });
+
       });
-  });
+    });
   }
   
   ngOnInit(): void {
