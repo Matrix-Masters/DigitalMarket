@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Product } from 'src/app/Model/Product';
 import { CommandeServiceService } from 'src/app/Service/commande-service.service';
 
@@ -9,7 +10,7 @@ import { CommandeServiceService } from 'src/app/Service/commande-service.service
 })
 export class GererCommandeComponent {
 
-  constructor(private commandeService: CommandeServiceService) {
+  constructor(private commandeService: CommandeServiceService,private MatSnackBar:MatSnackBar) {
     this.pagination={
       currentPage:1,
       total:0,
@@ -23,15 +24,19 @@ export class GererCommandeComponent {
     }
 
   }
-
+selectedCommand!:any
 
   changePage(num:number){
     this.pagination.currentPage=num;
   }
   isPopupOpen: boolean = false;
-  openPopup() {
-    this.isPopupOpen = true;
-    console.log("works")
+
+  
+  openPopup(CommandeId: any) {
+   
+  //  this.selectedCommand = this.commandes.find((item) => item.id === CommandeId) || null;
+   
+    
   }
 
   
@@ -68,7 +73,8 @@ export class GererCommandeComponent {
     image:string,
     id:number,
     name:string,
-    qte:number
+    qte:number,
+    price:number
   }[],
   infoUser:
     { 
@@ -81,9 +87,38 @@ export class GererCommandeComponent {
     }[]
  }
 
+ AccepteCommade(num:number){
+    this.commandeService.AcceptCommand(num,{
+      "userid":2
+    }).subscribe((res:any)=>{
+       this.getCommande();
+       this.MatSnackBar.open("Accept Commande",'close',{
+         duration:3000
+       })
+    })
+ }
+
+ commandeType:string="Waiting"
+ choseCommande(type:string){
+  this.commandeType=type;
+  this.getCommande();
+ }
+
+ RefusedCommand(num:number){
+  this.commandeService.RefusedCommand(num,{
+    "userid":2
+  }).subscribe((res:any)=>{
+     this.getCommande();
+     this.MatSnackBar.open("Commande Refused",'close',{
+       duration:3000
+     })
+  })
+}
 
   getCommande() {
-    this.commandeService.getCommandes(this.pagination.currentPage, this.pagination.per_page, this.pageSearch)
+    this.commandeService.getCommandes(this.pagination.currentPage, this.pagination.per_page, this.pageSearch,this.commandeType
+     
+      )
       .subscribe(
         (res: any) => {
           console.log(res);
@@ -106,18 +141,21 @@ export class GererCommandeComponent {
     this.InfoCommande.infoUser=[];
     this.InfoCommande.prixTotal=0;
   }
+
+
   showCommandeInfo(command: any) {
+    this.isPopupOpen = true;
     this.clearInfo();
     command.LigneCommandes.forEach((val: any) => {
       var idProduct = val.Product_id;
       this.commandeService.DetailsProd(idProduct).subscribe((res: any) => {
-        console.log(res);
         this.InfoCommande.ListProducts.push(
           {
            'image':res.image as string,
            'id':res.id as number,
            'name':res.name as string,
-           'qte':val.Quantity as number
+           'qte':val.Quantity as number,
+           'price':val.prix as number
           }
         );
     });
@@ -131,7 +169,8 @@ export class GererCommandeComponent {
     'phone':command.phone   as string,
  });
  this.InfoCommande.prixTotal=command.PrixTotal
-  console.log(this.InfoCommande);
+  console.log(this.InfoCommande.infoUser[0].NumCommande);
+  
 }
 
 }
