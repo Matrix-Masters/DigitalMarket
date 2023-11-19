@@ -1,5 +1,20 @@
 
 .dashboard{
-    margin: 15px;
-  }
+    margin: 40px;
+    .titre{
+      font-size: 25px;
+      font-weight: bold;
+      color: #1C4E80;
+    }
+    .filter{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .paginator{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+}
   

@@ -1,7 +1,175 @@
 <app-fournisseur-side-bar-comp>
     <app-fournisseur-navbar-comp></app-fournisseur-navbar-comp>
-    <div class="dashboard">
-       
-    </div>
+        <div class="dashboard">
+                 <p class="titre">Products</p>
+                <div class="filter mt-2 py-3">
+                     <div class="maniere_affichage ">
+                        <mat-button-toggle-group #group="matButtonToggleGroup">
+                            <mat-button-toggle value="card" aria-label="Text align left">
+                              <mat-icon>dashboard_customize</mat-icon>
+                            </mat-button-toggle>
+                            <mat-button-toggle value="list" aria-label="Text align center">
+                              <mat-icon>reorder</mat-icon>
+                            </mat-button-toggle>
+                          </mat-button-toggle-group>
+                     </div>
+                     <div>
+                        <mat-form-field appearance="fill" >
+                            <mat-label>Fill form field</mat-label>
+                            <input matInput placeholder="Search By Name">
+                            <mat-icon matSuffix>manage_search</mat-icon>
+                          </mat-form-field>
+                     </div>
+                     <div>
+                        <mat-form-field>
+                            <mat-label>Status</mat-label>
+                            <mat-select>
+                                <mat-option value="0">Waiting</mat-option>
+                                <mat-option value="1">Accepted</mat-option>
+                                <mat-option value="2">Refused</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                     </div>
+                </div>
+                <div>
+                   <div class="row" data-aos="fade-left" *ngIf="group.value=='card';else listTable">
+                       <div class="col-lg-3">
+                        <mat-card class="example-card">
+                            <mat-card-header>
+                              <div mat-card-avatar class="example-header-image"></div>
+                              <mat-card-title>Shiba Inu</mat-card-title>
+                              <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                            </mat-card-header>
+                            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+                            <mat-card-content>
+                              <p>
+                                lest of the six original and distinct spitz breeds of dog from Japan.
+                              </p>
+                            </mat-card-content>
+                            <mat-card-actions>
+                              <button mat-button>LIKE</button>
+                              <button mat-button>SHARE</button>
+                            </mat-card-actions>
+                          </mat-card>
+                       </div>
+                       <div class="col-lg-3">
+                        <mat-card class="example-card">
+                            <mat-card-header>
+                              <div mat-card-avatar class="example-header-image"></div>
+                              <mat-card-title>Shiba Inu</mat-card-title>
+                              <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                            </mat-card-header>
+                            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+                            <mat-card-content>
+                              <p>
+                                lest of the six original and distinct spitz breeds of dog from Japan.
+                              </p>
+                            </mat-card-content>
+                            <mat-card-actions>
+                              <button mat-button>LIKE</button>
+                              <button mat-button>SHARE</button>
+                            </mat-card-actions>
+                          </mat-card>
+                       </div>
+                       <div class="col-lg-3">
+                        <mat-card class="example-card">
+                            <mat-card-header>
+                              <div mat-card-avatar class="example-header-image"></div>
+                              <mat-card-title>Shiba Inu</mat-card-title>
+                              <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                            </mat-card-header>
+                            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+                            <mat-card-content>
+                              <p>
+                                lest of the six original and distinct spitz breeds of dog from Japan.
+                              </p>
+                            </mat-card-content>
+                            <mat-card-actions>
+                              <button mat-button>LIKE</button>
+                              <button mat-button>SHARE</button>
+                            </mat-card-actions>
+                          </mat-card>
+                       </div>
+                       <div class="col-lg-3">
+                        <mat-card class="example-card">
+                            <mat-card-header>
+                              <div mat-card-avatar class="example-header-image"></div>
+                              <mat-card-title>Shiba Inu</mat-card-title>
+                              <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                            </mat-card-header>
+                            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+                            <mat-card-content>
+                              <p>
+                                lest of the six original and distinct spitz breeds of dog from Japan.
+                              </p>
+                            </mat-card-content>
+                            <mat-card-actions>
+                              <button mat-button>LIKE</button>
+                              <button mat-button>SHARE</button>
+                            </mat-card-actions>
+                          </mat-card>
+                       </div>
+                   </div>
+                   <ng-template #listTable>
+                    <table class="table" data-aos="fade-right">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">First</th>
+                            <th scope="col">Last</th>
+                            <th scope="col">Handle</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">3</th>
+                            <td colspan="2">Larry the Bird</td>
+                            <td>@twitter</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                   </ng-template>
+                </div>
+                <div class="paginator mt-3">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                          <li class="page-item">
+                            <a class="page-link"  tabindex="-1" >
+                                next
+                            </a>
+                          </li>
+                          <li class="page-item"><a class="page-link active" >1</a></li>
+                          <li class="page-item"><a class="page-link" >2</a></li>
+                          <li class="page-item"><a class="page-link" >3</a></li>
+                          <li class="page-item">
+                            <a class="page-link" >
+                               previous
+                            </a>
+                          </li>
+                        </ul>
+                      </nav>
+                      <div>
+                        <select name="per_page" class="form-control">
+                            <option value="2" >2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                         </select>
+                      </div>
+                </div>
+        </div>
 </app-fournisseur-side-bar-comp>
 
