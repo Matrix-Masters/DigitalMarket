@@ -120,26 +120,50 @@ export const AcceptCommand=async (req:Request,res:Response)=>{
     try{
       
        await Commande.findOneAndUpdate({NumCommande:req.params.num},{$set:{Status:"Available"}});
-       
+       notifyNotificationService(req.body.userid,"Your Command Accepted");
        res.status(201).json("Accepted");
     }catch(e:any){
        res.status(500).json({message:e.message})
     }
 }
+
+export const RefusedCommand=async (req:Request,res:Response)=>{
+    try{
+      
+       await Commande.findOneAndUpdate({NumCommande:req.params.num},{$set:{Status:"Refused"}});
+       notifyNotificationService(req.body.userid,"Your Command Refused");
+       res.status(201).json("Refused");
+    }catch(e:any){
+       res.status(500).json({message:e.message})
+    }
+}
+
+
+function notifyNotificationService(userid:any,message:String) {
+  const axios = require('axios');
+  axios.post('http://localhost:8888/FEEDBACK-SERVICE/FeedBack/AddNotif', { 
+     idEnvoi: "3",
+     idRecu:`${userid}`,
+     Message:message,
+     etat:0
+   });
+}
+
 //admin
 export const GetCommandsWaiting = async (req: Request, res: Response) => {
 
     let page: number = parseInt(req.query.page?.toString() || '1');
     let size: number = parseInt(req.query.size?.toString() || '2');
     const search = req.query.search || '';
+    const type = req.query.type || 'Waiting';
     
-    try {
+   try {
 
         const Commandes = await Commande.paginate(
             {
                 $and: [
                     { NumCommande: { $regex: new RegExp(search.toString(), 'i') } },
-                    { Status: "Waiting" },
+                    { Status:type.toString() },
                 ]
             },
             {
