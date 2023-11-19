@@ -42,7 +42,6 @@ export class FavoriteListClientComponent {
     );
   }
   
-
   toggleFavorite(id: any): void {
     this.wishlistService
       .addToWishlist({
@@ -74,4 +73,5 @@ export class FavoriteListClientComponent {
         }
       );
   }
+
 }
