@@ -13,6 +13,7 @@ export class CardCartComponent implements OnInit{
 @Input() products:any
 length:any
 total:number=0
+
 updateQte(product: any) {
   this.productServiceStorage.updateQte(product);
   location.reload();
@@ -25,6 +26,14 @@ deleteProduct(product:any){
   this.productServiceStorage.deleteProduct(product)
   this.location.replaceState('/cart');
   location.reload();
+}
+plusQte(product:any){
+  product.quantity +=1;
+}
+
+moinsQte(product:any){
+  if(product.quantity>0)
+  product.quantity -=1;
 }
 
 ngOnInit(): void {
