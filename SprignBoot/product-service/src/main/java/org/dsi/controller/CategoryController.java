@@ -29,11 +29,9 @@ public class CategoryController {
 		if (cat.getNom() == null || cat.getNom().isEmpty()) {
 			return new ResponseEntity<>("Category name cannot be empty", HttpStatus.BAD_REQUEST);
 		}
-
 		try {
 			ServiceCat.AddCategory(cat);
-
-			return new ResponseEntity<String>("Category Added",HttpStatus.OK);
+			return new ResponseEntity<>("Category Added", HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
 		}

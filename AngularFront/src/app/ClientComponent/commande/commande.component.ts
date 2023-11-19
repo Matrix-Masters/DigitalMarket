@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import confetti from 'canvas-confetti';
 import { CommandeServiceService } from 'src/app/Service/commande-service.service';
 import { ProductsServiceLocalStorageService } from 'src/app/Service/products-service-local-storage.service';
@@ -13,7 +14,7 @@ import { ProductsServiceLocalStorageService } from 'src/app/Service/products-ser
 })
 export class CommandeComponent {
 
-  constructor(private localStorageProduct:ProductsServiceLocalStorageService, private MatSnackBar:MatSnackBar,private _formBuilder: FormBuilder,private CommandeServiceService:CommandeServiceService) {
+  constructor(private router:Router,private localStorageProduct:ProductsServiceLocalStorageService, private MatSnackBar:MatSnackBar,private _formBuilder: FormBuilder,private CommandeServiceService:CommandeServiceService) {
     
     this.FormInfo = this._formBuilder.group({
         Name:this.NameForm,
@@ -171,12 +172,17 @@ getEmailError(){
    )
         .subscribe((res:any)=>{
           this.StartConfetti();
-          this.FormInfo.reset();
           this.localStorageProduct.clearProductList();
           this.Location.lat=0;
           this.Location.lng=0;
           this.Location.name="";
           this.MatSnackBar.open("Commande Confirmer","Ok",{ duration: 2000,});
+          setTimeout(()=>
+          {
+            this.FormInfo.reset();
+            location.reload()
+           },3000);
+       
         },(err:any)=>{
           console.log(err);
         })

@@ -52,6 +52,8 @@ export const addCommande = async (req: Request, res: Response) => {
 
 }
 
+
+
 export const GetCommandeDispo = async (req: Request, res: Response) => {
 
     let page: number = parseInt(req.query.page?.toString() || '1');
@@ -85,6 +87,44 @@ export const GetCommandeDispo = async (req: Request, res: Response) => {
         res.status(500).json({ message: err.message });
     }
 
+}
+
+export const GetCommandeByIdUser=async (req:Request,res:Response)=>{
+    try{
+        const listCommandes=await Commande.find({
+            $and: [
+                {  Client_id:req.params.Client_id, },
+                {   Status:"Taken", },
+            ]
+        }).exec();
+        res.status(200).json(listCommandes);
+    }catch(e:any){
+        res.status(500).json({message:e.message})
+    }
+}
+
+
+export const GetLivraisonByNumCommande = async (req:Request,res:Response)=>{
+    try{
+        const livr=await Livraison.findOne({NumCommande:req.params.num}).exec();
+        if (!livr) {
+            res.status(404).json({ message: "No Found" });
+        } else {
+            res.status(200).json(livr);
+        }
+    }catch(e:any){
+        res.status(500).json({message:e.message})
+    }
+}
+
+export const ChangerLocationLivreur=async(req:Request,res:Response)=>{
+    try{
+        await Livraison.findOneAndUpdate({NumCommande:req.params.num},{$set:{Location:req.body.Location}});
+        await Commande.findOneAndUpdate({NumCommande:req.params.num},{$set:{Status:"Shipped"}});
+        res.status(200).json({message:"updated"});
+    }catch(e:any){
+        res.status(500).json({message:e.message})
+    }
 }
 
 

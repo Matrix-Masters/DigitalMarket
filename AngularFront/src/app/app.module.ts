@@ -33,6 +33,7 @@ import { AccueilCartComponent } from './AccueilClient/accueil-cart/accueil-cart.
 import { CardCartComponent } from './AccueilClient/card-cart/card-cart.component';
 import { NotFoundComponentComponent } from './notfound/not-found-component/not-found-component.component';
 import { CommandeComponent } from './ClientComponent/commande/commande.component';
+import { CommandeClientComponent } from './ClientComponent/commande-client/commande-client.component';
 
 import { FournisseurDashboardComponent } from './Fournissuer/fournisseur-dashboard/fournisseur-dashboard.component';
 import { FournisseurInterfaceComponent } from './Fournissuer/fournisseur-interface/fournisseur-interface.component';
@@ -66,14 +67,13 @@ import { AddProductComponent } from './Fournissuer/add-product/add-product.compo
     NotFoundComponentComponent,
     CommandeComponent,
     GererSupplierComponent,
-
+    CommandeClientComponent
     LocationCommandeComponent,
     FournisseurDashboardComponent,
     FournisseurInterfaceComponent,
     FournisseurNavbarCompComponent,
     FournisseurSideBarCompComponent,
     AddProductComponent
-
 
   ],
   imports: [
