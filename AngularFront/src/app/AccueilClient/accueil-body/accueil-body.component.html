@@ -71,51 +71,45 @@
 
       <div class="filtre-card mt-4">
         <mat-card style="border: solid 2px #F2F2F2;">
-          <mat-card-header class="title"> <span style="margin-right: 70%;">Filter by</span><mat-icon>expand_more</mat-icon></mat-card-header>
+          <mat-card-header class="title"> <span style="margin-right: 70%;">Filter by</span><mat-icon type="button" data-bs-toggle="collapse" data-bs-target="#collapseFilter">expand_more</mat-icon></mat-card-header>
 
-          <li class="list-group-item d-flex justify-content-between align-items-start py-4">
-            <div class="ms-2 me-auto">
-              <div class="py-2 uppercase" style="font-size: 15px;font-weight: normal;"><span>Name Product </span></div>
+          <div class="body" id="collapseFilter">
+            <li class="list-group-item d-flex justify-content-between align-items-start py-4">
+              <div class="ms-2 me-auto">
+                <div class="py-2 uppercase" style="font-size: 15px;font-weight: normal;"><span>Name Product </span></div>
 
-              <div class="inputs d-flex mt-1">
-                <input  [(ngModel)]="search" type="text" style="margin-right: 50px;border-radius: 10px;height: 30px;border: #919191 2px solid;">
-                <button (click)="getProductsByCategoryId()" mat-mini-fab color="light" style="box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);">
-                  <mat-icon>search</mat-icon>
-                </button>
-              </div>
-
-            </div>
-
-          </li>
-
-          <li class="list-group-item d-flex justify-content-between align-items-start py-4">
-            <div class="ms-2 me-auto">
-              <div class="py-2 uppercase" style="font-size: 15px;font-weight: normal;">Price</div>
-
-              <div class="inputs d-flex mt-1">
-
-                <div class="input-min d-flex" style="margin-right: 5px;">
-                  <label for="" class="uppercase mt-2 px-1">Min :</label>
-                  <input type="number" [(ngModel)]="min" style="border-radius: 10px;height: 30px;border: #919191 2px solid;width: 50px;margin-top: 5px;">
+                <div class="inputs d-flex mt-1">
+                  <input  [(ngModel)]="search" (input)="getProductsByCategoryId()" type="text" style="margin-right: 50px;border-radius: 10px;height: 30px;border: #919191 2px solid;">
                 </div>
 
-                <div class="input-min d-flex" style="margin-right: 5px;">
-                  <label for="" class="uppercase mt-2 px-1">Max :</label>
-                  <input type="number" [(ngModel)]="max" style="border-radius: 10px;height: 30px;border: #919191 2px solid;width: 50px;margin-top: 5px;">
+              </div>
+
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start mt-2">
+              <div class="ms-2 me-auto">
+                <div class="py-2 uppercase" style="font-size: 15px;font-weight: normal;">Price</div>
+
+                <div class="inputs d-flex mt-1">
+
+                  <div class="input-min d-flex" style="margin-right: 5px;">
+                    <label for="" class="uppercase mt-3 px-2">Min :</label>
+                    <input type="number" [(ngModel)]="min" (input)="getProductsByCategoryId()" style="border-radius: 10px;height: 40px;border: #919191 2px solid;width: 60px;margin-top: 5px;text-align: center;">
+                  </div>
+
+                  <div class="input-min d-flex" style="margin-right: 5px;">
+                    <label for="" class="uppercase mt-3 px-2">Max :</label>
+                    <input type="number" [(ngModel)]="max" (input)="getProductsByCategoryId()" style="border-radius: 10px;height: 40px;border: #919191 2px solid;width: 60px;margin-top: 5px;text-align: center;">
+                  </div>
                 </div>
+                <div class="py-2 uppercase mt-3" style="font-size: 15px;font-weight: normal;">
+                  <button mat-mini-fab (click)="clearInputs()"  style="box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);display: flex;">
 
-                <button mat-mini-fab color="light" (click)="getProductsByCategoryId()" style="box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);">
-                  <mat-icon>filter_list</mat-icon>
-                </button>
+                    <mat-icon>clear</mat-icon>
+                  </button>
+                </div>
               </div>
-              <div class="py-2 uppercase mt-3" style="font-size: 15px;font-weight: normal;">
-                <button mat-mini-fab (click)="clearInputs()"  style="box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);display: flex;">
-
-                  <mat-icon>clear</mat-icon>
-                </button>
-              </div>
-            </div>
-          </li>
+            </li>
+          </div>
         </mat-card>
       </div>
     </div>
@@ -140,13 +134,13 @@
       <!-- -------------------------product card ---------------------------->
       <div class="row">
         <ng-container *ngIf="products?.length>0">
-          <div class="col col-12 col-sm-6  d-flex justify-content-center" *ngFor="let item of products">
+          <div class="col col-12 col-sm-6 col-lg-4  d-flex justify-content-center" *ngFor="let item of products">
             <app-card [products]="item" [new]="false"></app-card>
           </div>
         </ng-container>
         <ng-container *ngIf="products?.length==0">
           <div class="no-product d-flex justify-content-center pt-5">
-            <h3 style="font-size: 20px;">No products available <span *ngIf='search!=""'>with name <span style="font-weight: bold;font-size: 24px;margin-left: 5px;">{{search}}</span></span></h3>
+            <h3 style="font-size: 20px;">We couldn't find a match for <span *ngIf='search!=""' style="font-weight: 500;font-size: 20px;margin-left: 5px;">"{{search}}" </span> and price between <span style="font-weight: 500;font-size: 20px;margin-left: 5px;">"{{min}} - {{max}}"</span></h3>
           </div>
         </ng-container>
       </div>

@@ -1,3 +1,7 @@
+body{
+  overflow: hidden;
+  box-sizing: border-box;
+}
 .card-cart{
   background-color: #ffffff;
   margin-top: 5vh;
@@ -52,7 +56,7 @@
 }
 
 .img-product{
-  width: 375px;
+  width: 350px;
   padding: 29px;
   border-radius: 46px;
 }
@@ -103,4 +107,18 @@
     line-height: 20px;
   }
 }
-
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input{
+  border-radius: 5px;
+  height: 28px;
+  border: none;
+  text-align: center;
+}
+.qte{
+  border: none;
+  background-color: #ffffff;
+}

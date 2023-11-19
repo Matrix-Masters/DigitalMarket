@@ -3,7 +3,7 @@
 			<div class="logo" >
 				<img src="../../../assets/DIGITAL MARKET logo.png" alt="">
 			</div>
-			<ul> 
+			<ul>
 				<li>
 					<a  [routerLink]="['/dash']" [ngClass]="{'active': current === '/dash'}">
 							<mat-icon class="icon">grid_view</mat-icon>
@@ -33,6 +33,14 @@
 							<mat-icon class="icon">engineering</mat-icon>
 							<p  class="nav-item">
 								Gerer Category
+							</p>
+					</a>
+				</li>
+				<li>
+					<a [routerLink]="['/Commandes']" [ngClass]="{'active': current === '/Commandes'}" >
+							<mat-icon class="icon">engineering</mat-icon>
+							<p  class="nav-item">
+								Gerer Commande
 							</p>
 					</a>
 				</li>
