@@ -24,7 +24,6 @@
                 <input type="text" [(ngModel)]="Categname" name="name" id="title" class="form-controll"/>
               </div>
               
-              
               <div class="form-group file-area">
                     <label for="images">Image <span>The maximum allowable size for your image is 4 MB</span></label>
                 <input type="file"  name="image" id="images" required="required" multiple="multiple"  (change)="onFileChanged($event)"/>
@@ -91,23 +90,32 @@
     <div *ngIf="Categories=='';else catgShow">
         No Categories
     </div>
-    <ng-template #catgShow>
+    <ng-template #catgShow >
+   
       <div class="example-container category" *ngFor="let itemCat of Categories">
-        <p class="text-center mt-2 title_cat">{{itemCat['nom']}}</p>
+        <div class="text-center mt-4 title_cat title__image">
+          <mat-chip-option color="accent"  selected  >
+              {{itemCat['nom']}}
+        </mat-chip-option>
+        <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
+          <img [src]="itemCat['image']"  class="shadow-lg" height="70px" width="80px" style="border-radius: 50%;" alt="">
+     </button>
+        </div>
         <div
           cdkDropList
           [cdkDropListData]="Categories"
           class="example-list"
-          (cdkDropListDropped)="drop($event,itemCat)">
-          <div class="example-box" *ngIf="itemCat['Products']=='';else elseBlock">
+          (cdkDropListDropped)="drop($event, itemCat)"
+        >
+          <div  class="example-box" *ngIf="itemCat['Products'] == ''; else elseBlock">
             <div>
               No Product
             </div>
           </div>
           <ng-template #elseBlock>
-            <div class="example-box"  *ngFor="let item of itemCat['Products']">
-              <div class="card-product">
-                <div class="titre_card">
+            <div class="example-box" *ngFor="let item of itemCat['Products']">
+              <div class="card-product"   >
+                <div class="titre_card"  >
                   {{item['name']}}
                 </div>
                 <div>

@@ -92,7 +92,7 @@ export class CommandeClientComponent  implements OnInit  {
                       c.lat, c.lng
                   ]);
               }
-          }, 2 * i);
+          }, 1000 * i);
           if(i==routeCoordinates.length-1){
             if (this.locationsMatch(lastCoordinate, this.LocationForClient)) {
               this.ChangerLocationLivreur(this.LocationForClient, this.SelectCommande.NumCommande);
