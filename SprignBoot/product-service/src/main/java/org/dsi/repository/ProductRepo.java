@@ -57,7 +57,9 @@ public interface ProductRepo extends JpaRepository<Product,Long> {
 		 
 		 @Query(value = "SELECT * from product WHERE status = :status And id_user=:id",nativeQuery = true)
 		 Page<Product> getProductsFournisseur(int status,long id,Pageable pageable);
-		
+		 
+		 @Query(value="SELECT * from product WHERE status = :status And id_user=:id and name LIKE %:name% ",nativeQuery=true)
+			Page<Product> getProductsFournisseurByName(int status,long id,String name,Pageable pageable );
 
 		
 		 
