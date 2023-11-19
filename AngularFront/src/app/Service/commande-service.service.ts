@@ -20,7 +20,11 @@ export class CommandeServiceService {
     return this.http.get(`${port}/GESTIONCOMMANDE-SERVICE/commande/GetCommandsWaiting?page=${page}&size=${size}&${search!='' ? 'search='+search : ''}&type=${data}`);
   }
 
- 
+  AcceptCommand(num:number,data:any){
+    return this.http.put(`${port}/GESTIONCOMMANDE-SERVICE/commande/AcceptCommand/${num}`,data);
+  }
+
+  
 
 
 }
