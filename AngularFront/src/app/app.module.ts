@@ -43,6 +43,7 @@ import { FournisseurInterfaceComponent } from './Fournissuer/fournisseur-interfa
 import { FournisseurNavbarCompComponent } from './Fournissuer/fournisseur-navbar-comp/fournisseur-navbar-comp.component';
 import { FournisseurSideBarCompComponent } from './Fournissuer/fournisseur-side-bar-comp/fournisseur-side-bar-comp.component';
 import { AddProductComponent } from './Fournissuer/add-product/add-product.component';
+import { ListProductsFournisseurComponent } from './Fournissuer/list-products-fournisseur/list-products-fournisseur.component';
 
 
 @NgModule({
@@ -82,7 +83,8 @@ import { AddProductComponent } from './Fournissuer/add-product/add-product.compo
     FournisseurInterfaceComponent,
     FournisseurNavbarCompComponent,
     FournisseurSideBarCompComponent,
-    AddProductComponent
+    AddProductComponent,
+    ListProductsFournisseurComponent
   ],
   imports: [
     BrowserModule,

@@ -56,6 +56,8 @@ public class ProductController {
 		product.appendField("name", prod.getName());
 		product.appendField("image",prod.getImageProduct());
 		product.appendField("id",id);
+		product.appendField("prix", prod.getPrix());
+		product.appendField("description",prod.getDescription());
 		return ResponseEntity.ok(product);
 	}
 	

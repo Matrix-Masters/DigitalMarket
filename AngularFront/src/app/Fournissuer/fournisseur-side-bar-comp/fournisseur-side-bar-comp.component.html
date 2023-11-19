@@ -21,6 +21,14 @@
 					</a>
 				</li>
 				<li>
+					<a [routerLink]="['/ListProductsFournisseur']" [ngClass]="{'active': current === '/ListProductsFournisseur'}" >
+							<mat-icon class="icon">engineering</mat-icon>
+							<p  class="nav-item">
+								Consult Products
+							</p>
+					</a>
+				</li>
+				<li>
 					<a class="close_sidebar" (click)="OpenedSideBar=!OpenedSideBar">
 							<mat-icon class="icon">
 								{{OpenedSideBar ? 'arrow_left' : 'arrow_right'}}
