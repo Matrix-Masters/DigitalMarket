@@ -24,4 +24,14 @@ export const AddToWishlist = async (req: Request, res: Response) => {
       }
     };
 
-
+    export const ShowWishlist = async (req: Request, res: Response) => {
+      try {
+        const idUser = req.params.idUser;
+        const wishlist = await whishlist.find({ idUser });
+        res.status(200).json(wishlist);
+      } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Internal server error" });
+      }
+    };
+    
