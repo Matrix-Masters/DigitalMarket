@@ -1,0 +1,41 @@
+<div>
+
+  <div class="container mt-4">
+    <h2>Commande Details</h2>
+    <table class="table">
+      <tbody>
+        <tr (click)="toggleExpand()" style="cursor: pointer;">
+          <th scope="row">NumCommande</th>
+          <td>{{ NumCommande }}</td>
+          <th scope="row">PrixTotal</th>
+          <td>{{ PrixTotal }}</td>
+          <th scope="row">Phone</th>
+          <td>{{ phone }}</td>
+          <td>
+            <button class="btn btn-danger" (click)="deleteCommande()">
+              <i class="bi bi-trash"></i> Delete
+            </button>
+          </td>
+        </tr>
+        <tr *ngIf="isExpanded">
+          <th scope="row">Name</th>
+          <td>{{ Name }}</td>
+          <th scope="row">Cin</th>
+          <td>{{ Cin }}</td>
+          <th scope="row">LastName</th>
+          <td>{{ LastName }}</td>
+          <th scope="row">Email</th>
+          <td>{{ email }}</td>
+          <th scope="row">LigneCommandes</th>
+          <td>
+            <ul>
+              <li *ngFor="let ligneCommande of LigneCommandes">{{ ligneCommande.Date }}</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+</div>
