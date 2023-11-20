@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import Commande from "../Model/Commande";
 import LigneCommande from "../Model/LigneCommande";
 import Livraison from "../Model/Livraison";
+import { stat } from "fs";
 
 export const addCommande = async (req: Request, res: Response) => {
 
@@ -167,9 +168,10 @@ export const getCommandesByClientPaginate = async (req: Request, res: Response) 
 
       const Commandes = await Commande.paginate(
           {
-              $and: [
-                  { Client_id: { $regex: new RegExp(Client_id.toString(), 'i') } },
-              ]
+            $and: [
+              { Client_id: { $regex: new RegExp(Client_id.toString(), 'i') } },
+              { $or: [{ Status: "Refused" }, { Status: "Available" }] }
+            ]
           },
           {
               page: page,
