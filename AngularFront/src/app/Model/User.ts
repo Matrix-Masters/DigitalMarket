@@ -3,5 +3,5 @@ export class User{
   lastName:any;
   numTlf:any;
   cin:any;
-  sex:any;
+  sexe:any;
  }
