@@ -249,13 +249,13 @@ public class ProductController {
 	
 	@GetMapping("/getProductsNewArrivals")
 	public ResponseEntity<?> getProductsNewArrivals(){
-		try {
-			List<Product> products = ProductService.getProductNewArrivals();
-			return ResponseEntity.ok(products);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return ResponseEntity.badRequest().body("No Products found");
-		}
+			try {
+				List<Product> products = ProductService.getProductNewArrivals();
+				return ResponseEntity.ok(products);
+			} catch (Exception e) {
+				e.printStackTrace();
+				return ResponseEntity.badRequest().body("No Products found");
+			}
 		
 	}
 	
@@ -361,6 +361,19 @@ public class ProductController {
 	    	
 	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while fetching paginated products.");
 	    }
+	}
+	
+	
+	@PutMapping("/ChangerQuantiteProduct")
+	public ResponseEntity<?> ChangerQuantiteProduct(@RequestParam("id") Long id,@RequestParam("qte") int qte){
+		try {
+			 ProductService.ChangerQuantite(id, qte);
+		        return ResponseEntity.status(HttpStatus.OK).body("Product Updated");
+		} catch (Exception e) {
+			e.printStackTrace();
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while fetching paginated products.");
+		}
+
 	}
 	
 	
