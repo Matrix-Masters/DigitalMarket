@@ -24,9 +24,9 @@
                         <mat-form-field >
                             <mat-label>Status</mat-label>
                             <mat-select  [(ngModel)]="Status" (ngModelChange)="getProduct()" >
-                                <mat-option value="0">Waiting</mat-option>
-                                <mat-option value="1">Accepted</mat-option>
-                                <mat-option value="2">Refused</mat-option>
+                                <mat-option value="0" >Waiting</mat-option>
+                                <mat-option value="1" >Accepted</mat-option>
+                                <mat-option value="2" >Refused</mat-option>
                             </mat-select>
                           </mat-form-field>
                      </div>
@@ -83,10 +83,10 @@
                         </ng-template>
                    </div>
                    <ng-template #listTable>
-                    <table class="table table-primary  table-responsive table-striped    mt-5"  data-aos="fade-right">
-                      <thead class="table-dark table-sm">
-                          <tr>
-                            <th scope="col">#</th>
+                    <table class="table table-responsive"  data-aos="fade-right">
+                      <thead class="table table-sm">
+                          <tr class="text-center">
+                            <th scope="col">Image</th>
                             <th scope="col">Name</th>
                             <th scope="col">Quantity</th>
                             <th scope="col">NB Sales</th>
@@ -94,12 +94,14 @@
                           </tr>
                         </thead>
                         <tbody *ngIf="Products!='';else noProducts">
-                          <tr *ngFor="let product of Products" >
-                              <td>{{product.id}}</td>
-                              <td>{{product.name}}</td>
-                              <td  [matTooltip]="product.name + '  is nearing an out-of-stock status. Please provide us with Other product '" [matTooltipDisabled]="product.quantite >= 10 ? true : null" [style]="product.quantite < 10 ? 'background-color: red;color: #fff;' : ''">{{product.quantite}}</td>
-                              <td>{{product.nbSales}}</td>
-                              <td>{{product.prix}}</td>
+                          <tr *ngFor="let product of Products" class="text-center" style="padding: 35px;" >
+                              <td>
+                                <img  width="50px"  [src]="'http://localhost:8888/PRODUCT-SERVICE/products/images/' + product.imageProduct" >
+                              </td>
+                              <td class="mt-5 py-5">{{product.name}}</td>
+                              <td class="mt-5 py-5" [matTooltip]="product.name + '  is nearing an out-of-stock status. Please provide us with Other product '" [matTooltipDisabled]="product.quantite >= 10 ? true : null" [style]="product.quantite < 10 ? 'color: red;' : ''">{{product.quantite}}</td>
+                              <td class="mt-5 py-5">{{product.nbSales}}</td>
+                              <td class="mt-5 py-5">{{product.prix}}</td>
                           </tr>
                         </tbody>
                         <ng-template #noProducts>
@@ -109,8 +111,6 @@
                             </tr>
                         </tbody>
                         </ng-template>
-                        
-                       
                       </table>
                    </ng-template>
                   </ng-template>
