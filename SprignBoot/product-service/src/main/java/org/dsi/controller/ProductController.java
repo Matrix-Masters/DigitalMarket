@@ -329,9 +329,9 @@ public class ProductController {
 	public ResponseEntity<?> GetProductsFournisseur(
 			@RequestParam(name="search",defaultValue="") String name,
     		@RequestParam(name = "page", defaultValue = "0") int page,
-			@RequestParam(name = "per_page", defaultValue = "5") int size,
+			@RequestParam(name = "per_page", defaultValue = "4") int size,
 			@RequestParam(name = "status",defaultValue = "1") int status,
-			@RequestParam(name = "id") long idFournisseur
+			@RequestParam(name = "id") Long idFournisseur
 			){
 		if (page < 0 || size <= 0 ) {
 	        return ResponseEntity.badRequest().body("Invalid page or per_page values.");
