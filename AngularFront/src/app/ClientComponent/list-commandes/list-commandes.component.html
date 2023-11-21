@@ -56,7 +56,7 @@
         </table>
       </div>
     </div>
-    <nav *ngIf="pagesArray.length > 1">
+    <nav>
       <ul class="pagination">
         <li class="page-item">
           <a class="page-link" (click)="previousPage()">Previous</a>
@@ -74,8 +74,7 @@
         </li>
       </ul>
       <div>
-        <label for="limit">Limit:</label>
-        <input matInput type="number" id="limit" [(ngModel)]="limit_model" (change)="onLimitChange()">
+        <input matInput [(ngModel)]="limit_model" (change)="onLimitChange()">
       </div>
     </nav>
 

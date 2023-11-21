@@ -110,6 +110,6 @@ export class ListCommandesComponent implements OnInit{
     return pagesToShow;
   }
   isActivePage(page: any): boolean {
-    return page === this.page;
+    return page == this.page;
   }
 }

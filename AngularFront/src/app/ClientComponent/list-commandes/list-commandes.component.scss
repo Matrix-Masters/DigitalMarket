@@ -104,8 +104,8 @@ nav {
       cursor: pointer;
 
       a.page-link {
-        color: black !important;
-        text-decoration: none !important;
+        color: black;
+        text-decoration: none;
         padding: 5px 10px;
         border: 1px solid #ddd;
         background: white;
@@ -116,7 +116,13 @@ nav {
         }
       }
 
+      &.active {
+        background: black !important;
+        color: white !important;
+        a.page-link {
 
+        }
+      }
 
       &.ellipsis {
         span {
