@@ -45,6 +45,8 @@ import { FournisseurSideBarCompComponent } from './Fournissuer/fournisseur-side-
 import { AddProductComponent } from './Fournissuer/add-product/add-product.component';
 import { EditProfileComponent } from './EditProfile/edit-profile/edit-profile.component';
 import { EditProfileBodyComponent } from './EditProfile/edit-profile-body/edit-profile-body.component';
+import { EditInfoPersonelComponent } from './EditProfile/edit-info-personel/edit-info-personel.component';
+import { EditEmailComponent } from './EditProfile/edit-email/edit-email.component';
 
 
 @NgModule({
@@ -86,7 +88,9 @@ import { EditProfileBodyComponent } from './EditProfile/edit-profile-body/edit-p
     FournisseurSideBarCompComponent,
     AddProductComponent,
     EditProfileComponent,
-    EditProfileBodyComponent
+    EditProfileBodyComponent,
+    EditInfoPersonelComponent,
+    EditEmailComponent
   ],
   imports: [
     BrowserModule,
