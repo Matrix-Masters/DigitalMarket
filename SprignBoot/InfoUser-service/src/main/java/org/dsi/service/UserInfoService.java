@@ -81,7 +81,7 @@ public class UserInfoService {
 	}
 	
 	
-	public void updateUser(UserInfo user,Long id) throws Exception {
+	public void updateUser(InfoUser user,Long id) throws Exception {
 		
 		InfoUser user1 = userRepo.getUserById(id);
 		
