@@ -1,1 +1,51 @@
-<p>edit-profile-body works!</p>
+<mat-card class="container mt-5">
+  <!------------------------------header------------------>
+  <mat-toolbar class="d-flex justify-content-between flex-wrap" style="background-color: #ffffff;height: 80px;">
+    <h2 class="header-text">User Profile</h2>
+    <div class="btns">
+      <button mat-raised-button [disabled]="" style="margin-right: 20px;">Cancel</button>
+      <button mat-raised-button color="primary">
+        <mat-icon>save</mat-icon> Save
+      </button>
+    </div>
+  </mat-toolbar>
+
+  <!------------------------------info-personel------------------>
+
+  <mat-card class="container mt-5">
+    <mat-card-header>
+      <h2 class="header-text">Personal Infos</h2>
+    </mat-card-header>
+    <mat-card-actions class="d-flex">
+      <div class="avatar">
+
+        <div class="img d-flex flex-wrap">
+          <div class="">
+            <img src="../../../assets/ImagesSignup/Digital Market.png" alt="mdo" width="100" height="100" class="rounded-circle mx-4 mb-4">
+          </div>
+          <div class="pwd">
+            <p class="name">Ghassen Ahmed</p>
+            <button mat-raised-button class="btn-pwd mb-4"> <mat-icon>lock</mat-icon> <span class="pwd-p">CHANGE PASSWORD</span> </button>
+          </div>
+
+        </div>
+
+
+        <div class="data d-flex">
+          <input
+          class="input-img"
+          name="file"
+          id="file"
+          label="Votre image"
+          type="file"
+          >
+          <br>
+        </div>
+
+      </div>
+
+    </mat-card-actions>
+  </mat-card>
+  <!------------------------------ /info-personel------------------>
+</mat-card>
+<!------------------------------/header------------------>
