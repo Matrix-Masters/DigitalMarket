@@ -56,10 +56,10 @@ public class InfoUserController {
 	
 	
 	@PostMapping(value="/updateUser")
-	public ResponseEntity<?> updateUser (@RequestBody UserInfo user,Long id){
+	public ResponseEntity<?> updateUser (@RequestBody InfoUser user,Long id){
 		try {
 			userInfoService.updateUser(user, id);
-			return  ResponseEntity.ok().body("User updated successfully");
+			return  ResponseEntity.ok().body("User updated successfully"+user);
 			
 		} catch (Exception e) {
 			
