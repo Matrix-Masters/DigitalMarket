@@ -15,7 +15,7 @@
 
     <button class="navbar-toggler" mat-button [matMenuTriggerFor]="aboveMenu" >
       <i class="bi bi-list" style="font-size: 35px"></i>
-      
+
      <mat-menu #aboveMenu="matMenu" yPosition="above">
        <button mat-menu-item routerLink="/cart"> <i class="bi bi-cart-fill menu-boredered"></i>Cart </button>
        <button mat-menu-item *ngIf="!AuthServiceService.isAuth"><i class="bi bi-person-circle menu-boredered"></i>User</button>
@@ -56,6 +56,11 @@
           <button mat-menu-item >
             <mat-icon>favorite</mat-icon>
             <span >WishList</span>
+          </button>
+
+          <button mat-menu-item >
+            <mat-icon>supervised_user_circle</mat-icon>
+            <span >Profile</span>
           </button>
         </mat-menu>
         <mat-menu #auth="matMenu">
