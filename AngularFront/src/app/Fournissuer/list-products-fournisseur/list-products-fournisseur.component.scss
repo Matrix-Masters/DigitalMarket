@@ -17,4 +17,20 @@
       align-items: center;
     }
 }
-  
+
+.empty{
+  color: #000;
+  font-weight: 500;
+  font-size: 25px;
+}
+
+.pagination{
+    li{
+      cursor: pointer;
+    }
+}
+
+.card-text{
+  display: flex;
+  justify-content: space-between;
+}
