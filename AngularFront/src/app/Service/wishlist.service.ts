@@ -14,7 +14,7 @@ export class WishlistService {
   }
   showList(id:number)
   {
-    return this.http.get(`${port}/FEEDBACK-SERVICE/FeedBack/showList?id=`+id);
+    return this.http.get(`${port}/FEEDBACK-SERVICE/FeedBack/showList/${id}`);
   }
 
   RemoveProductFromWhishlist(data : any)
