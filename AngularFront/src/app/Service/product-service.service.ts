@@ -23,4 +23,8 @@ export class ProductServiceService{
       formData.append('file', image);
       return this.http.post(`${port}/PRODUCT-SERVICE/products/AddProduct?name=${name}&description=${description}&prix=${prix}&quantite=${quantite}`,formData);
   }
+  getProductById(id:any){
+    return this.http.get(`${port}/PRODUCT-SERVICE/products/GetDetailsProd?id=${id}`);
+  }
+
 }
