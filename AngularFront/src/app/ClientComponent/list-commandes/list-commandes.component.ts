@@ -15,9 +15,12 @@ import { ProductServiceService } from 'src/app/Service/product-service.service';
   ]
 })
 export class ListCommandesComponent implements OnInit{
+  productDataMap: { [key: string]: any } = {};
   selectedCommandes=-1;
+  pagesArray: number[] = [];
   page = 1;
   limit = 1;
+  limit_model = 0;
   pages = 100;
   total=0;
   commandes:any;
@@ -25,7 +28,7 @@ export class ListCommandesComponent implements OnInit{
     ngOnInit(): void {
       this.getCommandeByIdClient();
     }
-    onPageChange(page: number): void {
+    onPageChange(page: any): void {
       this.page = page;
       this.getCommandeByIdClient();
     }
@@ -36,6 +39,9 @@ export class ListCommandesComponent implements OnInit{
           this.pages=res.pages;
           this.page=res.page;
           this.limit=res.limit;
+          this.pagesArray = Array.from({ length: this.pages }, (_, index) => index + 1);
+          console.log(this.pages);
+
       }),
       (error:any)=>{
         console.log(error);
@@ -44,13 +50,66 @@ export class ListCommandesComponent implements OnInit{
   toggleRowDetails(index: number): void {
     this.selectedCommandes = index==this.selectedCommandes ? -1 : index;
   }
-  getProductById(id:any){
-    this.productService.getProductById(id).subscribe((res:any)=>{
-      console.log(res);
-        return res;
-    }),
-    (error:any)=>{
-      console.log(error);
+  onLimitChange(): void {
+    this.limit = this.limit_model;
+    this.getCommandeByIdClient();
+  }
+
+  getProductById(id: any): any {
+    if (this.productDataMap[id]) {
+      return this.productDataMap[id];
     }
+
+
+    this.productService.getProductById(id).subscribe(
+      (res: any) => {
+        console.log(res);
+        this.productDataMap[id] = res;
+      },
+      (error: any) => {
+        console.log(error);
+        return null;
+      }
+    )
+  }
+  nextPage(): void {
+    if (this.page < this.pages) {
+      this.page++;
+      this.getCommandeByIdClient();
+    }
+  }
+
+  previousPage(): void {
+    if (this.page > 1) {
+      this.page--;
+      this.getCommandeByIdClient();
+    }
+  }
+  pagesWithEllipsis(): (number | string)[] {
+    const displayedPages = this.pages;
+    const ellipsisThreshold=5;
+
+    let pagesToShow: (number | string)[] = [];
+    let startPage = Math.max(1, this.page - Math.floor(displayedPages / 2));
+    let endPage = Math.min(this.pages, startPage + displayedPages - 1);
+
+    if (startPage > ellipsisThreshold) {
+      pagesToShow.push(1, 'ellipsis');
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      pagesToShow.push(i);
+    }
+
+    if (endPage < this.pages - 1) {
+      pagesToShow.push('ellipsis', this.pages);
+    } else if (endPage < this.pages) {
+      pagesToShow.push(this.pages);
+    }
+
+    return pagesToShow;
+  }
+  isActivePage(page: any): boolean {
+    return page === this.page;
   }
 }
