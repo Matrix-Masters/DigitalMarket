@@ -34,9 +34,9 @@ export class AddProductComponent implements OnInit {
       if(this.NameForm.hasError("required")){
          return 'You must enter a product name';
       } else if(this.NameForm.hasError("minlength")){
-        return 'Product price length must be at least 1' ;
+        return 'Product name length must be at least 1' ;
       }else if(this.NameForm.hasError("maxlength")){
-        return 'Product price length must be at most 7';
+        return 'Product name length must be at most 7';
       }
     }
     return '';
