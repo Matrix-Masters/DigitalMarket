@@ -25,7 +25,44 @@
           </div>
           <div class="pwd">
             <p class="name">Ghassen Ahmed</p>
-            <button mat-raised-button class="btn-pwd mb-4"> <mat-icon>lock</mat-icon> <span class="pwd-p">CHANGE PASSWORD</span> </button>
+            <button mat-raised-button class="btn-pwd mb-4" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> <mat-icon>lock</mat-icon> <span class="pwd-p">CHANGE PASSWORD</span> </button>
+            <!---------------------------------modal changer password------------------------------- -->
+
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Change Password</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <mat-form-field class="example-full-width" style="width: 100%;background-color: #ffffff;">
+                      <mat-label>Current Password</mat-label>
+                      <input matInput type="password">
+                    </mat-form-field>
+
+                    <mat-divider class="py-4 mt-2"></mat-divider>
+
+                    <mat-form-field class="example-full-width" style="width: 100%;background-color: #ffffff;">
+                      <mat-label>Password</mat-label>
+                      <input matInput type="password">
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width" style="width: 100%;background-color: #ffffff;">
+                      <mat-label>Confirm Password</mat-label>
+                      <input matInput type="password">
+                    </mat-form-field>
+
+                  </div>
+                  <div class="modal-footer">
+                    <button mat-raised-button  type="button" data-bs-dismiss="modal">CANCEL</button>
+                    <button mat-raised-button type="button">SAVE</button>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <!---------------------------------/modal changer password------------------------------- -->
           </div>
 
         </div>
@@ -43,8 +80,54 @@
         </div>
 
       </div>
-
     </mat-card-actions>
+    <mat-card-footer>
+      <div class="form-info-personnel mt-4">
+        <div class="row">
+          <div class="col col-xl-6 col-md-6 col-lg-6 col-sm-12 col-12">
+            <mat-form-field class="example-full-width" style="width: 100%;">
+              <mat-label>First name</mat-label>
+              <input matInput>
+            </mat-form-field>
+          </div>
+          <div class="col col-xl-6 col-md-6 col-lg-6 col-sm-12 col-12">
+            <mat-form-field class="example-full-width" style="width: 100%;">
+              <mat-label>First name</mat-label>
+              <input matInput>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+
+          <div class="col col-xl-4 col-md-6 col-lg-4 col-sm-6 col-12">
+            <mat-form-field class="example-full-width" style="width: 100%;">
+              <mat-label>Telephone</mat-label>
+              <input type="tel" matInput placeholder="555-555-1234">
+              <mat-icon matSuffix>phone</mat-icon>
+            </mat-form-field>
+          </div>
+
+          <div class="col col-xl-4 col-md-6 col-lg-4 col-sm-6 col-12">
+            <mat-form-field class="example-full-width" style="width: 100%;">
+              <mat-label>Cin</mat-label>
+              <input type="number" matInput placeholder="114411058">
+              <mat-icon matSuffix>assignment</mat-icon>
+            </mat-form-field>
+          </div>
+
+          <div class="col col-xl-4 col-md-6 col-lg-4 col-sm-6 col-12">
+            <mat-form-field style="width: 100%;">
+              <mat-label>Select your gender</mat-label>
+              <mat-select>
+                <mat-option value="option1">Male</mat-option>
+                <mat-option value="option2">Female</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+        </div>
+      </div>
+    </mat-card-footer>
   </mat-card>
   <!------------------------------ /info-personel------------------>
 </mat-card>
