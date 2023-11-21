@@ -1,40 +1,67 @@
 <div>
-
+  <app-navbar></app-navbar>
   <div class="container mt-4">
-    <h2>Commande Details</h2>
-    <table class="table">
-      <tbody>
-        <tr (click)="toggleExpand()" style="cursor: pointer;">
-          <th scope="row">NumCommande</th>
-          <td>{{ NumCommande }}</td>
-          <th scope="row">PrixTotal</th>
-          <td>{{ PrixTotal }}</td>
-          <th scope="row">Phone</th>
-          <td>{{ phone }}</td>
-          <td>
-            <button class="btn btn-danger" (click)="deleteCommande()">
-              <i class="bi bi-trash"></i> Delete
-            </button>
-          </td>
-        </tr>
-        <tr *ngIf="isExpanded">
-          <th scope="row">Name</th>
-          <td>{{ Name }}</td>
-          <th scope="row">Cin</th>
-          <td>{{ Cin }}</td>
-          <th scope="row">LastName</th>
-          <td>{{ LastName }}</td>
-          <th scope="row">Email</th>
-          <td>{{ email }}</td>
-          <th scope="row">LigneCommandes</th>
-          <td>
-            <ul>
-              <li *ngFor="let ligneCommande of LigneCommandes">{{ ligneCommande.Date }}</li>
-            </ul>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="card">
+      <div class="card-body">
+        <table class="table table-bordered table-responsive-md custom-table">
+          <thead class="thead-secondary">
+            <tr>
+              <th class="">NumCommande</th>
+              <th class="">Prix Total</th>
+              <th class="">Name</th>
+              <th class="">Last Name</th>
+              <th class="">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let commande of commandes; let i = index">
+              <tr [ngClass]="{'table-info': selectedCommandes === i, 'table-light': selectedCommandes !== i}"
+                (click)="toggleRowDetails(i)" scope="row">
+                <td>{{ commande.NumCommande }}</td>
+                <td>{{ commande.PrixTotal }}</td>
+                <td>{{ commande.Name }}</td>
+                <td>{{ commande.LastName }}</td>
+                <td>
+                  <button mat-icon-button (click)="toggleRowDetails(i)">
+                    <mat-icon>{{ selectedCommandes === i ? 'expand_less' : 'expand_more' }}</mat-icon>
+                  </button>
+                </td>
+              </tr>
+              <tr *ngIf="selectedCommandes === i">
+                <td colspan="5">
+                  <div class="card-body">
+                    <table class="table ">
+                      <thead class="thead-dark">
+                        <tr>
+                          <th class="">Quantity</th>
+                          <th class="">Price</th>
+                          <th>product</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let ligneCommande of commande.LigneCommandes">
+                          <td>{{ ligneCommande.Quantity }}</td>
+                          <td>{{ ligneCommande.prix }}</td>
+                          <td>{{getProductById(ligneCommande.Product_id)}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!--
+    <nav *ngIf="commandes.length > limit">
+      <ul class="pagination">
+        <li class="page-item" *ngFor="let page in pages">
+          <a class="page-link" (click)="onPageChange(page)">{{ page }}</a>
+        </li>
+      </ul>
+    </nav> -->
   </div>
 
 
