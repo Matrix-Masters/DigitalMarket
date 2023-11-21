@@ -81,3 +81,63 @@
     }
 	}
 }
+
+.mat-input-element {
+  width: 100%;
+  box-sizing: border-box;
+}
+.mat-form-field {
+  margin-top: 10px;
+}
+nav {
+  background: white !important;
+
+  .pagination {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+
+    .page-item {
+      margin: 0 5px;
+      display: inline-block;
+      cursor: pointer;
+
+      a.page-link {
+        color: black !important;
+        text-decoration: none !important;
+        padding: 5px 10px;
+        border: 1px solid #ddd;
+        background: white;
+        cursor: pointer;
+
+        &:hover {
+          background: #f1f1f1;
+        }
+      }
+
+
+
+      &.ellipsis {
+        span {
+          font-size: 18px;
+          line-height: 1;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+
+  div {
+    label {
+      color: black;
+      margin-right: 10px;
+    }
+
+    input {
+      width: 50px;
+      padding: 5px;
+    }
+  }
+}
+

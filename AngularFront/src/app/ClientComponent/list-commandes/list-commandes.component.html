@@ -42,7 +42,9 @@
                         <tr *ngFor="let ligneCommande of commande.LigneCommandes">
                           <td>{{ ligneCommande.Quantity }}</td>
                           <td>{{ ligneCommande.prix }}</td>
-                          <td>{{getProductById(ligneCommande.Product_id)}}</td>
+                          <td><img alt="prod_image" [src]="'http://localhost:8001/PRODUCT-SERVICE/products/images/'+
+                              getProductById(ligneCommande.Product_id)?.image">
+                          </td>
                         </tr>
                       </tbody>
                     </table>
@@ -54,14 +56,29 @@
         </table>
       </div>
     </div>
-    <!--
-    <nav *ngIf="commandes.length > limit">
+    <nav *ngIf="pagesArray.length > 1">
       <ul class="pagination">
-        <li class="page-item" *ngFor="let page in pages">
-          <a class="page-link" (click)="onPageChange(page)">{{ page }}</a>
+        <li class="page-item">
+          <a class="page-link" (click)="previousPage()">Previous</a>
+        </li>
+        <ng-container *ngFor="let p of pagesWithEllipsis()">
+          <li class="page-item" *ngIf="p === 'ellipsis'">
+            <span class="ellipsis">...</span>
+          </li>
+          <li class="page-item" *ngIf="p !== 'ellipsis'" [class.active]="isActivePage(p)">
+            <a class="page-link" (click)="onPageChange(p)">{{ p }}</a>
+          </li>
+        </ng-container>
+        <li class="page-item">
+          <a class="page-link" (click)="nextPage()">Next</a>
         </li>
       </ul>
-    </nav> -->
+      <div>
+        <label for="limit">Limit:</label>
+        <input matInput type="number" id="limit" [(ngModel)]="limit_model" (change)="onLimitChange()">
+      </div>
+    </nav>
+
   </div>
 
 
