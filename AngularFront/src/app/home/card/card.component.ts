@@ -19,9 +19,9 @@ constructor(public productServiceStorage:ProductsServiceLocalStorageService, pri
 
   addProduct(product :any) {
     this.productServiceStorage.addProduct(product);
-    this.MatSnackBar.open("Product Added",'',{
-      duration:2000,
-    })
+      this.MatSnackBar.open("Product Added",'',{
+        duration:2000,
+      })
   }
 
 
