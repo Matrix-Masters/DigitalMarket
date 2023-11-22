@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.sql.rowset.serial.SerialBlob;
 
@@ -15,6 +16,7 @@ import org.dsi.entity.InfoUser;
 import org.dsi.entity.Product;
 import org.dsi.payload.contractInfo;
 import org.dsi.repo.ContractRepo;
+import org.dsi.repo.ProductRepo;
 import org.dsi.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,28 +35,39 @@ public class ContractService {
 	@Autowired
 	UserInfoService userinfo;
 	
-	  public void AddContract(MultipartFile file,contractInfo contractInfo) throws Exception {
-		    String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-		    String fileName =  timestamp+"_"+file.getOriginalFilename();
-			String uploadDir = "ContractPhoto/";
-			Contract contract=new Contract();
-			ArrayList<Product> listproduct=new ArrayList<>();
-			try {
-				//Blob pdfBlob = FileUpload.saveFile(uploadDir, fileName, file);
-				FileUpload.saveFile(uploadDir, fileName, file);
-				contract.setNameContract(fileName);
-				contract.setDoneWorkDate(contractInfo.getDoneWorkDate());
-				for(int i=0;i<contractInfo.getListProduct().size();i++) {
-					listproduct.add(contractInfo.getListProduct().get(i));
-				}
-				ContractRepo.save(contract);
-				InfoUser user=userinfo.getInfoUserById(contractInfo.getIdUer());
-				user.setContract(contract);
-				userrepo.save(user);
-			} catch (IllegalStateException | IOException e) {
-				e.printStackTrace();
-			}
-	  }
+	@Autowired
+	ProductRepo ProductRepo;
+	
+	public void AddContract(MultipartFile file, contractInfo contractInfo) throws Exception {
+	    String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+	    String fileName = timestamp + "_" + file.getOriginalFilename();
+	    String uploadDir = "ContractPhoto";
+	    
+	    Contract contract = new Contract();
+	    try {
+	        FileUpload.saveFile(uploadDir, fileName, file);
+	        contract.setNameContract(fileName);
+	        contract.setDoneWorkDate(contractInfo.getDoneWorkDate());
+	        contract.setListProduct(new ArrayList<>());
+	       // contract.setListProduct(contractInfo.getListProduct());
+	        Contract contract_returned = ContractRepo.save(contract);
+
+	        for (String product : contractInfo.getListProduct()) {
+	            Product newProduct = new Product();
+	            newProduct.setName(product);
+	            newProduct.setContract_tab(contract_returned);
+	            ProductRepo.save(newProduct);
+	            contract_returned.getListProduct().add(newProduct);
+	        }
+	        InfoUser user = userinfo.getInfoUserById(contractInfo.getIdUer());
+	        user.setContract(contract_returned);
+	        userrepo.save(user);
+	    } catch (IllegalStateException | IOException e) {
+	        e.printStackTrace();
+	        throw new Exception("Failed to add contract: " + e.getMessage());
+	    }
+	}
+
 	  
 	  private Blob convertMultipartFileToBlob(MultipartFile file) throws IOException, SQLException {
 	        try (InputStream inputStream = file.getInputStream()) {
