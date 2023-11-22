@@ -17,4 +17,13 @@
     <string name="supplier">SUPPLIER</string>
     <string name="CLIENT">Start shopping for what you love. Discover now!</string>
     <string name="titlle2">Your Decision!</string>
+    <string name="my_products">My Products</string>
+    <string name="addProduct">Add New Product</string>
+    <string name="add">Add</string>
+    <string name="product_name">Product Name</string>
+    <string name="select_image">Select Image</string>
+    <string name="add_product">Add Product</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
+    <string name="products_stats">Products Stats</string>
 </resources>

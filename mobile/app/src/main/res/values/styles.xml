@@ -4,4 +4,22 @@
         <item name="android:fontFamily">@font/oswaldt</item>
     </style>
 
+    <style name="NavDrawerItemStyle">
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+    </style>
+
+    <style name="CustomAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@color/brown</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/white</item>
+    </style>
+
+    <style name="CustomMenuItemStyle">
+        <item name="android:iconTint">@color/gradientBtn3</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+
+    </style>
+
 </resources>
