@@ -27,7 +27,5 @@ export class CommandeServiceService {
   RefusedCommand(num:number,data:any){
     return this.http.put(`${port}/GESTIONCOMMANDE-SERVICE/commande/RefusedCommand/${num}`,data);
   }
-
-
 }
 
