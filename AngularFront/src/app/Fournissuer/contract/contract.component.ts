@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import * as p5 from 'p5';
 import { jsPDF } from "jspdf";
+import autoTable from 'jspdf-autotable'
+import { ContractServiceService } from 'src/app/Service/contract-service.service';
+
+
+
 
 @Component({
   selector: 'app-contract',
@@ -10,7 +15,7 @@ import { jsPDF } from "jspdf";
 
 export class ContractComponent implements OnInit {
 
-  constructor() { }
+  constructor(private ContractServiceService:ContractServiceService) { }
   canvas: any;
   c: p5.Color[] = [];
 
@@ -37,9 +42,14 @@ export class ContractComponent implements OnInit {
     this.canvas = new p5(sketch);
   }
 
+  products=[
+      "accesoire","tv"
+  ]
+
   image:string="";
 
   captureSignature() {
+    
     const signatureDataUrl = this.canvas.canvas.toDataURL();
     this.canvas.clear();
    // this.canvas.isEmpty();
@@ -65,36 +75,69 @@ export class ContractComponent implements OnInit {
     doc.text('INDETERMINATE – DETERMINED DURATION',30,49 );
     doc.setFontSize(12);
     doc.setFont("times", "bold");
-    doc.text('Nom :',12,70);
-    doc.text('Prénom :',12,77);
-    doc.text('Email :',12,84);
+    doc.text('Nom :',12,85);
+    doc.text('Prénom :',12,90);
+    doc.text('Email :',12,95);
     doc.setFont("times", "normal");
-    doc.text("Talel",24,70);
-    doc.text("Mejri",30,77);
-    doc.text("talel@gmail.com",26,84);
+    doc.text("Talel",24,85);
+    doc.text("Mejri",30,90);
+    doc.text("talel@gmail.com",26,95);
     doc.setFontSize(15);
     doc.setFont("times", "bold");
     doc.text("Article 1: PURPOSE OF THE CONTRACT",12,110);
     doc.setFont("times", "normal");
     doc.setFontSize(14);
-    doc.text("This contract is intended to define the rights and obligations of the contractors during the term",12,118);
-    doc.text(" of the work.",12,125)
+    doc.text("This contract is intended to define the rights and obligations of the contractors during the term",15,118);
+    doc.text(" of the work.",15,125)
 
     doc.setFontSize(15);
     doc.setFont("times", "bold");
-    doc.text("Article 2: PURPOSE OF THE CONTRACT",12,140);
+    doc.text("Article 2: The Contractors During",12,140);
     doc.setFont("times", "normal");
     doc.setFontSize(14);
-    doc.text("This contract is intended to define the rights and obligations of the contractors during the term",12,148);
-    doc.text("of the work.",12,155)
-
+    doc.text("This contract is Start from 12/09/2002 to 15/06/2002",15,148);
     doc.text("Signature",158,doc.internal.pageSize.height - 50);
-    doc.addImage(this.image, 158, doc.internal.pageSize.height - 45, 20, 20);
-    
+    doc.addImage(this.image, 158, doc.internal.pageSize.height - 47, 20, 20);
+
+    const header = ['Name Product'];
+    const body = this.products.map(product => [product]);
+    doc.setFont("times", "bold");
+    doc.setFontSize(15);
+    doc.text("Article 3: Your Products",12,160);
+      autoTable(doc, {
+        theme:'grid',
+        bodyStyles:{fontStyle:'bold',halign:'center'},
+        margin: { top: 168 },
+        head: [header],
+        body: body
+      })
+
     doc.setFontSize(12);
     doc.text('If you have any questions about Contract, do not hesitate to contact us' ,45, doc.internal.pageSize.height - 20);
+    doc.text('1/1',105, doc.internal.pageSize.height - 10);
     doc.save(`Contract.pdf`);   
+    const pdfBase64 = doc.output('datauristring');
+    const pdfFile = this.base64ToFile(pdfBase64, 'Contract.pdf', 'application/pdf');
+    this.ContractServiceService.AddConract(
+          pdfFile,
+          "dd",
+          new Date(),
+          [],
+          1
+    ).subscribe((res:any)=>{
+       
+    })
 
+  }
+
+  base64ToFile(base64: string, filename: string, mimeType: string): File {
+    const byteCharacters = atob(base64.split(',')[1]);
+    const byteArrays: number[] = [];
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteArrays.push(byteCharacters.charCodeAt(i));
+    }
+    const byteArray = new Uint8Array(byteArrays);
+    return new File([byteArray], filename, { type: mimeType });
   }
 
 }
