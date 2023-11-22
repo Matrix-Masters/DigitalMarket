@@ -10,7 +10,7 @@
   </div>
   </div>
 
-<nav class="navbar navbar-expand-lg" style="height: 90px;background-color: #F0F0F0;">
+<nav class="navbar navbar-expand-lg " style="height: 120px;background-color: #F0F0F0;">
   <div class="container-fluid">
 
     <button class="navbar-toggler" mat-button [matMenuTriggerFor]="aboveMenu" >
@@ -36,8 +36,8 @@
       </button>
     </div>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul>
-        <li class="bordered" routerLink="/cart"><i class="bi bi-cart-fill"></i>Cart</li>
+      <ul class="pt-4">
+        <li class="bordered" routerLink="/cart" [matBadge]="nbrArticle"><i class="bi bi-cart-fill"></i>Cart</li>
         <li class="bordered" routerLink="/auth/signup/Supplier"><i class="bi bi-shop"></i>Become vendor</li>
         <li  [matMenuTriggerFor]="auth" *ngIf="!AuthServiceService.isAuth"><i class="bi bi-person-circle" ></i>User</li>
         <li [matMenuTriggerFor]="user" class="bordered" *ngIf="AuthServiceService.isAuth"  class="d-block link-dark text-decoration-none">
