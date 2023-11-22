@@ -193,13 +193,12 @@ export const getCommandesByClientPaginate = async (req: Request, res: Response) 
 };
 export const deleteCommandeById = async (req: Request, res: Response) => {
   const commandId = req.query.id;
-  res.status(500).json(commandId);
   try {
     const deletedCommand = await Commande.findByIdAndDelete(commandId);
     if (!deletedCommand) {
-      return res.status(404).json({ message: 'Command not found' });
+        return res.status(404).json({ message: 'Command not found' });
     }
-    await LigneCommande.deleteMany({ Commande_id: deletedCommand._id });
+    await LigneCommande.deleteMany({ Commande_id:  commandId});
     res.status(200).json({ message: 'commande deleted succesfully' });
   } catch (err) {
     console.error(err);

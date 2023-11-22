@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CommandeServiceService } from 'src/app/Service/commande-service.service';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { ProductServiceService } from 'src/app/Service/product-service.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponentComponent } from 'src/app/superAdminComponents/Employers/confirm-dialog-component/confirm-dialog-component.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-list-commandes',
   templateUrl: './list-commandes.component.html',
@@ -24,7 +27,7 @@ export class ListCommandesComponent implements OnInit{
   pages = 0;
   total=0;
   commandes:any;
-    constructor(private CommandeService :  CommandeServiceService , private productService:ProductServiceService) { }
+    constructor(private CommandeService :  CommandeServiceService , private productService:ProductServiceService,private dialog: MatDialog,private snackbar:MatSnackBar) { }
     ngOnInit(): void {
       this.getCommandeByIdClient();
     }
@@ -81,5 +84,25 @@ export class ListCommandesComponent implements OnInit{
       this.getCommandeByIdClient();
     }
   }
+  onDeleteCommand(commandId: number): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponentComponent,{
+      width: '300px',
+      data: { message: 'Are you sure you want to delete this commande?' },
+    });
 
+    dialogRef.afterClosed().subscribe((result) => {
+      this.CommandeService.deleteCommandeById(commandId).subscribe((res: any) => {
+        this.snackbar._openedSnackBarRef = this.snackbar.open('Commande deleted successfully', 'Close', {
+          duration: 3000,
+        });
+        this.getCommandeByIdClient();
+      }),((error: any) => {
+        this.snackbar._openedSnackBarRef = this.snackbar.open('Error while deleting Commande', 'Close', {
+          duration: 3000,
+        });
+      });
+    });
+
+
+  }
 }

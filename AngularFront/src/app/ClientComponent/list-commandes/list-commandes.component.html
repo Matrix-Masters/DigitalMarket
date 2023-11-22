@@ -25,7 +25,7 @@
                   <button mat-icon-button (click)="toggleRowDetails(i)">
                     <mat-icon>{{ selectedCommandes === i ? 'expand_less' : 'expand_more' }}</mat-icon>
                   </button>
-                  <button mat-icon-button>
+                  <button mat-icon-button (click)="onDeleteCommand(commande._id)">
                     <mat-icon>delete</mat-icon>
                   </button>
                 </td>
