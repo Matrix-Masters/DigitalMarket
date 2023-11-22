@@ -143,8 +143,8 @@
               <mat-form-field style="width: 100%;">
                 <mat-label>Change your gender</mat-label>
                 <mat-select [(ngModel)]="user.sexe" [value]="user.sexe">
-                  <mat-option value="Male" (change)="user.sexe='Male'">Male</mat-option>
-                  <mat-option value="Female" (change)="user.sexe='Female'">Female</mat-option>
+                  <mat-option value="Male" (click)="user.sexe='Male'">Male</mat-option>
+                  <mat-option value="Female" (click)="user.sexe='Female'">Female</mat-option>
                 </mat-select>
 
               </mat-form-field>
