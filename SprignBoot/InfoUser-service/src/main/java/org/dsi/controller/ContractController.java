@@ -2,6 +2,7 @@ package org.dsi.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.dsi.entity.Product;
 import org.dsi.payload.contractInfo;
@@ -30,13 +31,13 @@ public class ContractController {
 			   @RequestParam("file") MultipartFile file,
 			   @RequestParam("nameContract") String nameContract,
 			   @RequestParam("DoneWorkDate") Date DoneWorkDate,
-			   @RequestParam("products") ArrayList<Product> product,
+			   @RequestParam("products") List<String> product,
 			   @RequestParam("idUer") Long idUer
 			){		
 		try {
 			contractInfo contr=new contractInfo(nameContract,DoneWorkDate,product,idUer);
 			ContractService.AddContract(file,contr);
-			return new ResponseEntity<>("Contract Added",HttpStatus.OK);
+			return new ResponseEntity<>(product,HttpStatus.OK);
 		}catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
 		}
