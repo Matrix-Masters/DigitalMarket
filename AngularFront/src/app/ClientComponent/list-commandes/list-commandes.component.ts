@@ -21,15 +21,11 @@ export class ListCommandesComponent implements OnInit{
   page = 1;
   limit = 1;
   limit_model = 0;
-  pages = 100;
+  pages = 0;
   total=0;
   commandes:any;
     constructor(private CommandeService :  CommandeServiceService , private productService:ProductServiceService) { }
     ngOnInit(): void {
-      this.getCommandeByIdClient();
-    }
-    onPageChange(page: any): void {
-      this.page = page;
       this.getCommandeByIdClient();
     }
     getCommandeByIdClient(){
@@ -50,8 +46,8 @@ export class ListCommandesComponent implements OnInit{
   toggleRowDetails(index: number): void {
     this.selectedCommandes = index==this.selectedCommandes ? -1 : index;
   }
+
   onLimitChange(): void {
-    this.limit = this.limit_model;
     this.getCommandeByIdClient();
   }
 
@@ -85,31 +81,5 @@ export class ListCommandesComponent implements OnInit{
       this.getCommandeByIdClient();
     }
   }
-  pagesWithEllipsis(): (number | string)[] {
-    const displayedPages = this.pages;
-    const ellipsisThreshold=5;
 
-    let pagesToShow: (number | string)[] = [];
-    let startPage = Math.max(1, this.page - Math.floor(displayedPages / 2));
-    let endPage = Math.min(this.pages, startPage + displayedPages - 1);
-
-    if (startPage > ellipsisThreshold) {
-      pagesToShow.push(1, 'ellipsis');
-    }
-
-    for (let i = startPage; i <= endPage; i++) {
-      pagesToShow.push(i);
-    }
-
-    if (endPage < this.pages - 1) {
-      pagesToShow.push('ellipsis', this.pages);
-    } else if (endPage < this.pages) {
-      pagesToShow.push(this.pages);
-    }
-
-    return pagesToShow;
-  }
-  isActivePage(page: any): boolean {
-    return page == this.page;
-  }
 }

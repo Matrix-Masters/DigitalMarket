@@ -2,48 +2,55 @@
   <app-navbar></app-navbar>
   <div class="container mt-4">
     <div class="card">
-      <div class="card-body">
-        <table class="table table-bordered table-responsive-md custom-table">
+
+      <div class="card-body table-responsive">
+        <table class="table table-bordered table-responsive-md custom-table text-center">
           <thead class="thead-secondary">
             <tr>
               <th class="">NumCommande</th>
-              <th class="">Prix Total</th>
               <th class="">Name</th>
-              <th class="">Last Name</th>
-              <th class="">Actions</th>
+              <th class="hide-on-small">Last Name</th>
+              <th class="hide-on-small">Prix Total</th>
             </tr>
           </thead>
           <tbody>
             <ng-container *ngFor="let commande of commandes; let i = index">
               <tr [ngClass]="{'table-info': selectedCommandes === i, 'table-light': selectedCommandes !== i}"
-                (click)="toggleRowDetails(i)" scope="row">
+                scope="row">
                 <td>{{ commande.NumCommande }}</td>
-                <td>{{ commande.PrixTotal }}</td>
                 <td>{{ commande.Name }}</td>
-                <td>{{ commande.LastName }}</td>
+                <td class="hide-on-small">{{ commande.LastName }}</td>
+                <td class="hide-on-small">{{ commande.PrixTotal }} TND</td>
                 <td>
                   <button mat-icon-button (click)="toggleRowDetails(i)">
                     <mat-icon>{{ selectedCommandes === i ? 'expand_less' : 'expand_more' }}</mat-icon>
                   </button>
+                  <button mat-icon-button>
+                    <mat-icon>delete</mat-icon>
+                  </button>
                 </td>
               </tr>
               <tr *ngIf="selectedCommandes === i">
-                <td colspan="5">
+                <td colspan="8" class="text-center">
                   <div class="card-body">
                     <table class="table ">
                       <thead class="thead-dark">
                         <tr>
-                          <th class="">Quantity</th>
-                          <th class="">Price</th>
-                          <th>product</th>
+                          <th>Quantity</th>
+                          <th>Price</th>
+                          <th class="hide-on-small">product image</th>
+                          <th>total price</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr *ngFor="let ligneCommande of commande.LigneCommandes">
                           <td>{{ ligneCommande.Quantity }}</td>
                           <td>{{ ligneCommande.prix }}</td>
-                          <td><img alt="prod_image" [src]="'http://localhost:8001/PRODUCT-SERVICE/products/images/'+
-                              getProductById(ligneCommande.Product_id)?.image">
+                          <td><img alt="prod_image" height="100px" width="100px" [src]="'http://localhost:8888/PRODUCT-SERVICE/products/images/'+ getProductById(ligneCommande.Product_id)?.image
+                              ">
+                          </td>
+                          <td>
+                            {{ ligneCommande.Quantity * ligneCommande.prix }} TND
                           </td>
                         </tr>
                       </tbody>
@@ -55,28 +62,23 @@
           </tbody>
         </table>
       </div>
-    </div>
-    <nav>
-      <ul class="pagination">
-        <li class="page-item">
-          <a class="page-link" (click)="previousPage()">Previous</a>
-        </li>
-        <ng-container *ngFor="let p of pagesWithEllipsis()">
-          <li class="page-item" *ngIf="p === 'ellipsis'">
-            <span class="ellipsis">...</span>
-          </li>
-          <li class="page-item" *ngIf="p !== 'ellipsis'" [class.active]="isActivePage(p)">
-            <a class="page-link" (click)="onPageChange(p)">{{ p }}</a>
-          </li>
-        </ng-container>
-        <li class="page-item">
-          <a class="page-link" (click)="nextPage()">Next</a>
-        </li>
-      </ul>
-      <div>
-        <input matInput [(ngModel)]="limit_model" (change)="onLimitChange()">
+      <div class="card-actions">
+        <nav>
+          <ul class="pagination">
+            <li class="page-item">
+              <button class="page-link" (click)="previousPage()">Previous</button>
+            </li>
+            <li class="page-item">
+              <button class="page-link" (click)="nextPage()">Next</button>
+            </li>
+          </ul>
+          <div>
+            <input matInput [(ngModel)]="limit" (change)="onLimitChange()">
+          </div>
+        </nav>
       </div>
-    </nav>
+    </div>
+
 
   </div>
 
