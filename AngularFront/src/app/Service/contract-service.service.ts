@@ -9,15 +9,9 @@ import { Contract } from '../Model/Contract';
 export class ContractServiceService {
 
   constructor(private http:HttpClient) { }
-   contractInfo: Contract = {
-    nameContract: "Your Contract Name",
-    doneWorkDate: new Date(),
-    listProduct: "dsdsd",
-    idUser: 1,
-  };
+
 
   AddConract(file:any,nameContract:any,DoneWorkDate:any,product:any,idUer:any){
-   
     const formData = new FormData();
     formData.append('file', file);
     formData.append('nameContract', nameContract);
