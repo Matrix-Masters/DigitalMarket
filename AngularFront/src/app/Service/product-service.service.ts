@@ -22,7 +22,7 @@ export class ProductServiceService{
   }
 
   addProduct(image:any,name:any,description:any,prix:any,quantite:any){
-    const formData = new FormData();
+      const formData = new FormData();
       formData.append('file', image);
       return this.http.post(`${port}/PRODUCT-SERVICE/products/AddProduct?name=${name}&description=${description}&prix=${prix}&quantite=${quantite}`,formData);
   }
