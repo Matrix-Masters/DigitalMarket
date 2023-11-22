@@ -71,5 +71,10 @@ export class ProductsServiceLocalStorageService {
     const products = localStorage.getItem(this.STORAGE_KEY);
     return products !== null ? JSON.parse(products) : [];
   }
+  getLength():Number|undefined{
+    const products = localStorage.getItem(this.STORAGE_KEY);
+    console.log(products?.length);
+    return products?.length;
+  }
 
 }

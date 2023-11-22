@@ -43,6 +43,9 @@ import { FournisseurInterfaceComponent } from './Fournissuer/fournisseur-interfa
 import { FournisseurNavbarCompComponent } from './Fournissuer/fournisseur-navbar-comp/fournisseur-navbar-comp.component';
 import { FournisseurSideBarCompComponent } from './Fournissuer/fournisseur-side-bar-comp/fournisseur-side-bar-comp.component';
 import { AddProductComponent } from './Fournissuer/add-product/add-product.component';
+import { EditProfileComponent } from './EditProfile/edit-profile/edit-profile.component';
+import { EditProfileBodyComponent } from './EditProfile/edit-profile-body/edit-profile-body.component';
+
 
 
 @NgModule({
@@ -82,7 +85,9 @@ import { AddProductComponent } from './Fournissuer/add-product/add-product.compo
     FournisseurInterfaceComponent,
     FournisseurNavbarCompComponent,
     FournisseurSideBarCompComponent,
-    AddProductComponent
+    AddProductComponent,
+    EditProfileComponent,
+    EditProfileBodyComponent,
   ],
   imports: [
     BrowserModule,

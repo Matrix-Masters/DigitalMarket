@@ -1,0 +1,201 @@
+<mat-card class="container mt-5">
+  <!------------------------------header------------------>
+  <mat-toolbar class="d-flex justify-content-between flex-wrap" style="background-color: #ffffff;height: 80px;">
+    <h2 class="header-text">User Profile</h2>
+  </mat-toolbar>
+
+
+
+  <div class="cards">
+      <!------------------------------info-personel------------------>
+  <mat-card class="container mt-5">
+    <mat-card-header >
+      <div class="header d-flex justify-content-between flex-wrap" style="width: 100%;">
+        <h2 class="header-text">Personal Infos</h2>
+      <div class="btns ">
+        <button mat-raised-button [disabled]="" style="margin-right: 20px;">Cancel</button>
+        <button mat-raised-button color="primary" (click)="updateUser(user)">
+          <mat-icon>save</mat-icon> Save
+        </button>
+      </div>
+      </div>
+
+    </mat-card-header>
+    <mat-divider class="py-4"></mat-divider>
+    <mat-card-actions class="d-flex">
+      <div class="avatar">
+
+        <div class="img d-flex flex-wrap">
+          <div class="">
+            <img src="../../../assets/ImagesSignup/Digital Market.png" alt="mdo" width="100" height="100" class="rounded-circle mx-4 mb-4">
+          </div>
+          <div class="pwd">
+            <p class="name">Ghassen Ahmed</p>
+            <button mat-raised-button class="btn-pwd mb-4" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> <mat-icon>lock</mat-icon> <span class="pwd-p">CHANGE PASSWORD</span> </button>
+            <!---------------------------------modal changer password------------------------------- -->
+
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Change Password</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <mat-form-field class="example-full-width" style="width: 100%;background-color: #ffffff;">
+                      <mat-label>Current Password</mat-label>
+                      <input matInput type="password">
+                    </mat-form-field>
+
+                    <mat-divider class="py-4 mt-2"></mat-divider>
+
+                    <mat-form-field class="example-full-width" style="width: 100%;background-color: #ffffff;">
+                      <mat-label>Password</mat-label>
+                      <input matInput type="password">
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width" style="width: 100%;background-color: #ffffff;">
+                      <mat-label>Confirm Password</mat-label>
+                      <input matInput type="password">
+                    </mat-form-field>
+
+                  </div>
+                  <div class="modal-footer">
+                    <button mat-raised-button  type="button" data-bs-dismiss="modal">CANCEL</button>
+                    <button mat-raised-button type="button">SAVE</button>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <!---------------------------------/modal changer password------------------------------- -->
+          </div>
+
+        </div>
+
+
+        <div class="data d-flex">
+          <input
+          class="input-img"
+          name="file"
+          id="file"
+          label="Votre image"
+          type="file"
+          >
+          <br>
+        </div>
+
+      </div>
+    </mat-card-actions>
+    <mat-card-footer class="py-5">
+      <div class="form-info-personnel mt-4">
+        <form action="" [formGroup]="editInfoGroup" (ngSubmit)="updateUser(user)">
+
+          <div class="row">
+            <div class="col col-xl-6 col-md-6 col-lg-6 col-sm-12 col-12">
+              <mat-form-field class="example-full-width" style="width: 100%;">
+                <mat-label>First name</mat-label>
+                <input matInput [(ngModel)]="user.firstName" [formControl]="firstNameForm" >
+                <mat-icon matSuffix  [style.color]="firstNameForm.invalid ? 'red' : 'green'">
+                  {{firstNameForm.invalid ? 'close' : 'done_outline'}}
+                </mat-icon>
+                <mat-error *ngIf="firstNameForm.invalid">{{firstNameFormError()}}</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col col-xl-6 col-md-6 col-lg-6 col-sm-12 col-12">
+              <mat-form-field class="example-full-width" style="width: 100%;">
+                <mat-label>Last name</mat-label>
+                <input matInput [(ngModel)]="user.lastName" [formControl]="lastNameForm">
+                <mat-icon matSuffix  [style.color]="lastNameForm.invalid ? 'red' : 'green'">
+                  {{lastNameForm.invalid ? 'close' : 'done_outline'}}
+                </mat-icon>
+                <mat-error *ngIf="lastNameForm.invalid">{{lastNameFormError()}}</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+
+            <div class="col col-xl-4 col-md-6 col-lg-4 col-sm-6 col-12">
+              <mat-form-field class="example-full-width" style="width: 100%;">
+                <mat-label>Phone</mat-label>
+                <input type="tel" matInput placeholder="555-555-1234" [(ngModel)]="user.numTlf" [formControl]="numForm">
+                <mat-icon matSuffix>phone</mat-icon>
+                <mat-icon matSuffix  [style.color]="numForm.invalid ? 'red' : 'green'">
+                  {{numForm.invalid ? 'close' : 'done_outline'}}
+                </mat-icon>
+                <mat-error *ngIf="numForm.invalid">{{numFormError()}}</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col col-xl-4 col-md-6 col-lg-4 col-sm-6 col-12">
+              <mat-form-field class="example-full-width" style="width: 100%;">
+                <mat-label>Cin</mat-label>
+                <mat-icon matSuffix>assignment</mat-icon>
+                <input type="text" matInput placeholder="114411058" [(ngModel)]="user.cin" [formControl]="cinForm">
+                <mat-icon matSuffix  [style.color]="cinForm.invalid ? 'red' : 'green'">
+                  {{cinForm.invalid ? 'close' : 'done_outline'}}
+                </mat-icon>
+                <mat-error *ngIf="cinForm.invalid">{{cinFormError()}}</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col col-xl-4 col-md-6 col-lg-4 col-sm-6 col-12">
+              <mat-form-field style="width: 100%;">
+                <mat-label>Change your gender</mat-label>
+                <mat-select [(ngModel)]="user.sexe" [value]="user.sexe">
+                  <mat-option value="Male" (click)="user.sexe='Male'">Male</mat-option>
+                  <mat-option value="Female" (click)="user.sexe='Female'">Female</mat-option>
+                </mat-select>
+
+              </mat-form-field>
+            </div>
+
+          </div>
+
+        </form>
+
+      </div>
+    </mat-card-footer>
+  </mat-card>
+  <!------------------------------ /info-personel------------------>
+   <!------------------------------email------------------>
+  <mat-card class="container mt-5 d-flex flex-column" style="height: 400px;">
+    <mat-card-header>
+      <div class="header d-flex justify-content-between flex-wrap" style="width: 100%;">
+        <h2 class="header-text">Email</h2>
+      <div class="btns ">
+        <button mat-raised-button [disabled]="" style="margin-right: 20px;">Cancel</button>
+        <button mat-raised-button color="primary">
+          <mat-icon>save</mat-icon> Save
+        </button>
+      </div>
+      </div>
+    </mat-card-header>
+    <mat-divider class="py-4"></mat-divider>
+    <mat-card-actions>
+      <div class="email-change" style="width: 100%;">
+        <div class="row">
+
+          <div class="col col-xl-6 col-md-6 col-lg-6 col-sm-6 col-12">
+            <mat-form-field class="example-full-width" style="width: 100%;">
+              <mat-label>Email</mat-label>
+              <input matInput>
+            </mat-form-field>
+          </div>
+          <div class="col col-xl-6 col-md-6 col-lg-l col-sm-6 col-12">
+            <mat-form-field class="example-full-width" style="width: 100%;">
+              <mat-label>New Email</mat-label>
+              <input matInput>
+            </mat-form-field>
+          </div>
+
+        </div>
+      </div>
+
+      </mat-card-actions>
+  </mat-card>
+   <!------------------------------/email------------------>
+  </div>
+
+</mat-card>
+<!------------------------------/header------------------>
