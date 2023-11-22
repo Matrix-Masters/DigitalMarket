@@ -91,6 +91,7 @@ export class ListCommandesComponent implements OnInit{
     });
 
     dialogRef.afterClosed().subscribe((result) => {
+      if(result){
       this.CommandeService.deleteCommandeById(commandId).subscribe((res: any) => {
         this.snackbar._openedSnackBarRef = this.snackbar.open('Commande deleted successfully', 'Close', {
           duration: 3000,
@@ -101,6 +102,7 @@ export class ListCommandesComponent implements OnInit{
           duration: 3000,
         });
       });
+    }
     });
 
 
