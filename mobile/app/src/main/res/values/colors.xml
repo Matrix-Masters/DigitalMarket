@@ -7,13 +7,14 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
+    <color name="Aero">#7CB9E8</color>
     <color name="iconColor">#FF0000</color>
     <color name="buttonColor">#00FF00</color>
     <color name="strokeColor">#0000FF</color>
     <color name="gradient1">#000000</color>
     <color name="gradient2">#151515</color>
     <color name="gradient3">#3E3C3C</color>
-    <color name="red">#FFFF0000</color>
+    <color name="Red">#FFFF0000</color>
     <color name="gradientBtn1">#9F8B6D</color>
     <color name="gradientBtn2">#9F8B6D</color>
     <color name="gradientBtn3">#504637</color>
