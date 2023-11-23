@@ -16,6 +16,7 @@ export class FavoriteListClientComponent {
   ngOnInit(): void {
     
     this.loadWishlist();
+   this.getNotificationsByIdRecu(2);
   }
 
   loadWishlist() {
@@ -33,7 +34,7 @@ export class FavoriteListClientComponent {
             }
           );
         });
-        console.log(this.wishlist);
+       
         
       },
       error => {
@@ -72,6 +73,27 @@ export class FavoriteListClientComponent {
           );
         }
       );
+  }
+
+  notifications: string[] = [];
+  getNotificationsByIdRecu(idRecu: any) {
+    this.commandeService.getNotificationsByIdRecu(2).subscribe(
+      (res: any) => {
+       
+        this.notifications = res;
+        console.log(this.notifications); 
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+  
+  showNotifications = false;
+
+
+  toggleNotifications() {
+    this.showNotifications = !this.showNotifications;
   }
 
 }
