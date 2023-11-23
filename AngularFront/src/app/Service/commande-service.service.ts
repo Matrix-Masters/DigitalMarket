@@ -27,5 +27,12 @@ export class CommandeServiceService {
   RefusedCommand(num:number,data:any){
     return this.http.put(`${port}/GESTIONCOMMANDE-SERVICE/commande/RefusedCommand/${num}`,data);
   }
+
+  getNotificationsByIdRecu(idRecu: any) {
+    return this.http.get(`${port}/FEEDBACK-SERVICE/FeedBack/getNotificationsByIdRecu/${idRecu}`);
+  }
+
+
+
 }
 
