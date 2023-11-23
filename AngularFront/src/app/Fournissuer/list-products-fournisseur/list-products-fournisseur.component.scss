@@ -1,0 +1,38 @@
+
+.dashboard{
+    margin: 40px;
+    .titre{
+      font-size: 25px;
+      font-weight: bold;
+      color: #1C4E80;
+    }
+    .filter{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .paginator{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+}
+
+.empty{
+  color: #000;
+  font-weight: 500;
+  font-size: 25px;
+}
+
+.pagination{
+    li{
+      cursor: pointer;
+    }
+}
+
+.card-text{
+  display: flex;
+  justify-content: space-between;
+}
+
+

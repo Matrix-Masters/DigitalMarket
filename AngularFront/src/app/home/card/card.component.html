@@ -1,5 +1,5 @@
 <mat-card style="height: fit-content;text-align: center;margin-bottom: 20px;margin-top: 20px; max-width: min-content;" class="card" *ngIf="products">
-  <img src="../../../assets/product.jfif" height="150px">
+  <img [src]="'http://localhost:8888/PRODUCT-SERVICE/products/images/'+products['imageProduct']" height="150px">
   <mat-card-header class="py-3 product-name comic justify-content-center">{{products['name']}}</mat-card-header>
   <mat-card-content class="py-1 comic category">{{products['category']['nom']}}</mat-card-content>
   <mat-card-content class="py-1 comic price" style="color: rgb(17, 150, 17);">{{products['prix']}} TND</mat-card-content>

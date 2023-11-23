@@ -47,6 +47,8 @@ public class Product {
     
     private long IdUser=0;
     
+    private long nbSales=0;
+    
     @CreationTimestamp
 	private Timestamp created_at;
 	

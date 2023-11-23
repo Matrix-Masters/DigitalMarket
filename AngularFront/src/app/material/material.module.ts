@@ -28,6 +28,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 @NgModule({
   imports:[
     MatIconModule,
@@ -63,6 +64,7 @@ import { MatTableModule } from '@angular/material/table';
     MatCheckboxModule,
     MatProgressSpinnerModule,
     MatTableModule
+    MatButtonToggleModule
   ],
 
   exports:[
@@ -99,6 +101,7 @@ import { MatTableModule } from '@angular/material/table';
     MatCheckboxModule,
     MatProgressSpinnerModule,
     MatTableModule
+    MatButtonToggleModule
 ]
 })
 export class MaterialModule { }
