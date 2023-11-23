@@ -11,3 +11,14 @@ export const AddNotif=async (Req:Request,res:Response)=>{
           res.status(500).json({ error: err });
         }
 }
+
+export const getNotificationsByIdRecu = async (req: Request, res: Response) => {
+  try {
+      const { idRecu } = req.params; 
+      const notifications = await notification.find({ idRecu });
+      res.json(notifications);
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+  }
+};

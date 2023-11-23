@@ -25,15 +25,6 @@ export const AddUser = async (req: Request, res: Response) => {
 }
 
 
-// function notifyNotificationService(userid:any) {
-//   const axios = require('axios');
-//   axios.post('http://localhost:8888/FEEDBACK-SERVICE/FeedBack/AddNotif', { 
-//      idEnvoi: `${userid}`,
-//      idRecu:"2",
-//      Message:"test",
-//      etat:0
-//    });
-// }
 
 
 export const GetUserByEmail = async (req: Request, res: Response) => {
@@ -54,6 +45,7 @@ export const AcceptUser = async (req: Request, res: Response) => {
     return res.status(500).json({ error: 'Internal server error' });
   }
 };
+
 export const RefuseSupplier = async (req: Request, res: Response) => {
   try {
     var user = await InfoUser.findOneAndUpdate({email:req.body.email},{$set:{status:2}});

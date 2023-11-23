@@ -33,6 +33,7 @@ import { AccueilCartComponent } from './AccueilClient/accueil-cart/accueil-cart.
 import { CardCartComponent } from './AccueilClient/card-cart/card-cart.component';
 import { NotFoundComponentComponent } from './notfound/not-found-component/not-found-component.component';
 import { CommandeComponent } from './ClientComponent/commande/commande.component';
+import { FavoriteListClientComponent } from './AccueilClient/favorite-list-client/favorite-list-client.component';
 import { LIstEmpolyersComponent } from './superAdminComponents/Employers/list-empolyers/list-empolyers.component';
 import { AddEmployerComponent } from './superAdminComponents/Employers/add-employer/add-employer.component';
 import { GenerateAccountDialogComponent } from './superAdminComponents/Employers/generate-account-dialog/generate-account-dialog.component';
@@ -48,6 +49,7 @@ import { ListProductsFournisseurComponent } from './Fournissuer/list-products-fo
 import { ContractComponent } from './Fournissuer/contract/contract.component';
 import { EditProfileComponent } from './EditProfile/edit-profile/edit-profile.component';
 import { EditProfileBodyComponent } from './EditProfile/edit-profile-body/edit-profile-body.component';
+
 
 
 @NgModule({
@@ -77,6 +79,7 @@ import { EditProfileBodyComponent } from './EditProfile/edit-profile-body/edit-p
     CommandeComponent,
     GererSupplierComponent,
     LocationCommandeComponent,
+    FavoriteListClientComponent,
     LIstEmpolyersComponent,
     AddEmployerComponent,
     GenerateAccountDialogComponent,
@@ -92,7 +95,7 @@ import { EditProfileBodyComponent } from './EditProfile/edit-profile-body/edit-p
     ListProductsFournisseurComponent,
     ContractComponent,
     EditProfileComponent,
-    EditProfileBodyComponent,
+    EditProfileBodyComponent
   ],
   imports: [
     BrowserModule,
