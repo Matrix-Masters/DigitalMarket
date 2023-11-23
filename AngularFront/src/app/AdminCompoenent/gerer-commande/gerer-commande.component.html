@@ -1,7 +1,13 @@
 <app-side-bar-comp>
     <app-navbar-comp>
       <h2>hello</h2>
+      
+      
     </app-navbar-comp>
+    
+    
+    
+
     <div class="search_btns">
       <div class="search">
         <input placeholder="Search By Num" type="text" [(ngModel)]="pageSearch" (keyup)="getCommande()">
@@ -11,6 +17,21 @@
         <button [class]="'mx-2 btn btn' + (commandeType === 'Waiting' ? '-warning' : '-secondary')" style="color: #fff;" (click)="choseCommande('Waiting')">Waiting</button>
         <button [class]="'mx-2 btn btn' + (commandeType === 'Available' ? '-primary' : '-secondary')" (click)="choseCommande('Available')">Accepted</button>
         <button [class]="'mx-2 btn btn' + (commandeType === 'Refused' ? '-danger' : '-secondary')" (click)="choseCommande('Refused')">Refused</button>
+        <label class="drop">
+          <input type="checkbox" id="target-drop-example"> 
+          <span class="control" [class.new-notifications]="hasNewNotifications" >
+            Notifications
+            <span class="notification-count">{{ notifications.length }}</span>
+          </span>
+          <ul class="drop-items">
+            <li class="item-drop" *ngFor="let notification of notifications">
+              <p>{{ notification }}</p>
+            </li>
+          </ul>
+        
+          <!-- Alternative to close dropdown with click out -->
+          <label for="target-drop-example" class="overlay-close" (click)="resetNotifications()"></label>
+        </label>
       </div>
     </div>
    

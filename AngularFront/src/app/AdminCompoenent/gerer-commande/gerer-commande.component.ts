@@ -59,6 +59,7 @@ selectedCommand!:any
   ngOnInit()
   {
     this.getCommande();
+    console.log(this.notifications)
    }
 
    LimitPage=[
@@ -115,27 +116,34 @@ selectedCommand!:any
   })
 }
 
-  getCommande() {
-    this.commandeService.getCommandes(this.pagination.currentPage, this.pagination.per_page, this.pageSearch,this.commandeType
-     
-      )
-      .subscribe(
-        (res: any) => {
-          console.log(res);
-          this.commandes = res.docs;
-          this.pagination.currentPage=res.page;
-          this.pagination.total=res.pages;
-          this.pagination.per_page=res.limit;
-          this.paginationPages=Array.from({
-            length:this.pagination.total},(_,i)=>i+1);
-            console.log(this.paginationPages);
-            
-        },
-        (error) => {
-          console.error('Error fetching commands:', error);
-        }
-      );
-  }
+getCommande() {
+  this.commandeService.getCommandes(
+    this.pagination.currentPage,
+    this.pagination.per_page,
+    this.pageSearch,
+    this.commandeType
+  ).subscribe(
+    (res: any) => {
+      const previousCommandCount = this.commandes.length;
+
+      // Update the commandes array with the new data
+      this.commandes = res.docs;
+      this.pagination.currentPage = res.page;
+      this.pagination.total = res.pages;
+      this.pagination.per_page = res.limit;
+      this.paginationPages = Array.from({ length: this.pagination.total }, (_, i) => i + 1);
+
+      const newCommandCount = this.commandes.length - previousCommandCount;
+      if (newCommandCount > 0) {
+        this.notifications.push(`${newCommandCount} new commande Arrived`);
+        this.hasNewNotifications = true;
+      }
+    },
+    (error) => {
+      console.error('Error fetching commands:', error);
+    }
+  );
+}
   clearInfo(){
     this.InfoCommande.ListProducts=[];
     this.InfoCommande.infoUser=[];
@@ -172,6 +180,22 @@ selectedCommand!:any
   console.log(this.InfoCommande.infoUser[0].NumCommande);
   
 }
+
+notifications: string[] = [];
+showDropdown = false;
+
+hasNewNotifications: boolean = false;
+
+toggleDropdown(): void {
+  this.showDropdown = !this.showDropdown;
+  
+}
+
+resetNotifications() {
+  // Reset notifications.length to 0 when the dropdown is opened
+  this.notifications.length = 0;
+}
+
 
 }
 
