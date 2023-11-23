@@ -99,9 +99,17 @@ public class ProductService {
 		  	}else {
 		  		prod.setCategory(cat);
 				ProductRepo.save(prod);
-				//JSONObject jsoUser=new JSONObject();
-	  			//jsoUser.appendField("categoryId",cat.getId());
-				//Product prod1=nodesync.UpdateIdProducts(id, jsoUser);
+		  	}
+	  }
+	  
+	  
+	  public void ChangerQuantite(long id,int qte) throws Exception{
+		  Product prod=ProductRepo.ProductWithId(id);
+		  	if(prod==null) {
+		  	   throw new Exception("Product Not Found");
+		  	}else {
+		  		prod.setQuantite(prod.getQuantite()-qte);
+				ProductRepo.save(prod);
 		  	}
 	  }
 	  

@@ -19,6 +19,8 @@ import { CommandeClientComponent } from './ClientComponent/commande-client/comma
 import { FournisseurInterfaceComponent } from './Fournissuer/fournisseur-interface/fournisseur-interface.component';
 import { FournisseurDashboardComponent } from './Fournissuer/fournisseur-dashboard/fournisseur-dashboard.component';
 import { AddProductComponent } from './Fournissuer/add-product/add-product.component';
+import { ListProductsFournisseurComponent } from './Fournissuer/list-products-fournisseur/list-products-fournisseur.component';
+import { ContractComponent } from './Fournissuer/contract/contract.component';
 import { EditProfileComponent } from './EditProfile/edit-profile/edit-profile.component';
 
 
@@ -41,9 +43,10 @@ const routes: Routes = [
    {path:"fournisseur",component:FournisseurInterfaceComponent},
    {path:"fournisseurDash",component:FournisseurDashboardComponent},
    {path:"addProductFournisseur",component:AddProductComponent},
+   {path:"ListProductsFournisseur",component:ListProductsFournisseurComponent},
+   {path:"ContractComponent",component:ContractComponent},
    {path:"editProfile",component:EditProfileComponent},
    {path:"**",component:NotFoundComponentComponent}
-
 ]
 
 

@@ -9,9 +9,12 @@
     </div>
     <div class="action">
       <button mat-button [matMenuTriggerFor]="menu">
-        <!--<img src="../../../favicon.ico" alt="">-->
+        <img style="border-radius: 25px;" src="../../../favicon.ico" alt="" width="30px">
       </button>
       <mat-menu #menu="matMenu">
+        <button mat-menu-item  [routerLink]="['/ContractComponent']">
+          <mat-icon>description</mat-icon>Contract
+        </button>
         <button mat-menu-item>
           <mat-icon>settings</mat-icon>Setting
         </button>
