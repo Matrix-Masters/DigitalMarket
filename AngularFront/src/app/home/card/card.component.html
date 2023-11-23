@@ -5,7 +5,7 @@
   <mat-card-content class="py-1 comic price" style="color: rgb(17, 150, 17);">{{products['prix']}} TND</mat-card-content>
   <div class="d-flex justify-content-center">
     <button mat-flat-button class="buy" style="margin-top: 5px;width: 60%;border-radius: 25px;" (click)="addProduct(products)">Buy</button>
-    <button mat-icon-button (click)="toggleFavorite()" class="">
+    <button mat-icon-button (click)="toggleFavorite(products['id'])" class="">
       <mat-icon [style.color]="isFavorite? 'red' : 'gray'" mat-fab>favorite</mat-icon>
     </button>
   </div>
