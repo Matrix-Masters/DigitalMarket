@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthServiceService } from 'src/app/Service/auth-service.service';
 import { CategoryServiceService } from 'src/app/Service/category-service.service';
 import { ProductServiceService } from 'src/app/Service/product-service.service';
+import { ProductsServiceLocalStorageService } from 'src/app/Service/products-service-local-storage.service';
 
 @Component({
   selector: 'app-accueil-body',
@@ -11,9 +13,10 @@ import { ProductServiceService } from 'src/app/Service/product-service.service';
 export class AccueilBodyComponent implements OnInit {
   categories:any;
   categoryId:any;
-  constructor(private router: Router,private CategoryService : CategoryServiceService,private route : ActivatedRoute,private ProductService:ProductServiceService){}
+  constructor(public AuthServiceService:AuthServiceService,private router: Router,private CategoryService : CategoryServiceService,private route : ActivatedRoute,private ProductService:ProductServiceService){}
   category:any
   products:any
+  productSt:any
   count_page:any
   page=0
   per_page=4
@@ -21,7 +24,14 @@ export class AccueilBodyComponent implements OnInit {
   min=1
   max=0
   maxPrice=0
+  nbrArticle:number=0
 
+  getListProducts(){
+    const productString = localStorage.getItem('products');
+    if(productString) {
+      this.productSt = JSON.parse(productString);
+    }
+  }
   refreshPage(id:any): void {
     const currentUrl = this.router.url;
     this.categoryId=id;
@@ -77,6 +87,9 @@ clearInputs(){
   this.getProductsByCategoryId()
 }
 
+getProducts(){
+
+}
 
   ngOnInit(){
     this.route.params.subscribe((params:any)=>{
@@ -93,6 +106,11 @@ clearInputs(){
         console.log(err);
       }
     )
+    this.getListProducts()
+    for(let i = 0; i < this.productSt?.length; i++){
+      this.nbrArticle = (this.productSt.length)
+    }
+
   }
 
 
