@@ -88,7 +88,7 @@ import { EditProfileBodyComponent } from './EditProfile/edit-profile-body/edit-p
     FournisseurNavbarCompComponent,
     FournisseurSideBarCompComponent,
     AddProductComponent,
-    ListCommandesComponent
+    ListCommandesComponent,
     ListProductsFournisseurComponent,
     ContractComponent,
     EditProfileComponent,

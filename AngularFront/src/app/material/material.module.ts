@@ -63,7 +63,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     MatNativeDateModule,
     MatCheckboxModule,
     MatProgressSpinnerModule,
-    MatTableModule
+    MatTableModule,
     MatButtonToggleModule
   ],
 
@@ -100,7 +100,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     MatNativeDateModule,
     MatCheckboxModule,
     MatProgressSpinnerModule,
-    MatTableModule
+    MatTableModule,
     MatButtonToggleModule
 ]
 })
