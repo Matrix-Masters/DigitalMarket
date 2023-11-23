@@ -107,4 +107,11 @@ export class ListCommandesComponent implements OnInit{
 
 
   }
+  hasNextPage(): boolean {
+    return this.page < this.pages;
+  }
+
+  hasPreviousPage(): boolean {
+    return this.page > 1;
+  }
 }

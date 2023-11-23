@@ -11,9 +11,10 @@
               <th class="">Name</th>
               <th class="hide-on-small">Last Name</th>
               <th class="hide-on-small">Prix Total</th>
+              <th class="hide-on-small">Status</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody *ngIf="commandes.length>0">
             <ng-container *ngFor="let commande of commandes; let i = index">
               <tr [ngClass]="{'table-info': selectedCommandes === i, 'table-light': selectedCommandes !== i}"
                 scope="row">
@@ -21,6 +22,7 @@
                 <td>{{ commande.Name }}</td>
                 <td class="hide-on-small">{{ commande.LastName }}</td>
                 <td class="hide-on-small">{{ commande.PrixTotal }} TND</td>
+                <td>{{ commande.Status }}</td>
                 <td>
                   <button mat-icon-button (click)="toggleRowDetails(i)">
                     <mat-icon>{{ selectedCommandes === i ? 'expand_less' : 'expand_more' }}</mat-icon>
@@ -29,6 +31,7 @@
                     <mat-icon>delete</mat-icon>
                   </button>
                 </td>
+
               </tr>
               <tr *ngIf="selectedCommandes === i">
                 <td colspan="8" class="text-center">
@@ -60,16 +63,23 @@
               </tr>
             </ng-container>
           </tbody>
+          <tbody *ngIf="commandes.length === 0 || commandes==null">
+            <tr>
+              <td colspan="5">You have no shipped or Refused commandes ! Start Adding Some</td>
+            </tr>
+          </tbody>
         </table>
       </div>
       <div class="card-actions">
-        <nav>
+        <nav *ngIf="pages>1">
           <ul class="pagination">
             <li class="page-item">
-              <button class="page-link" (click)="previousPage()">Previous</button>
+              <button class="page-link" (click)="hasPreviousPage() ? previousPage() : null"
+                [disabled]="!hasPreviousPage()" [ngClass]="{'disabled-button': !hasPreviousPage()}">Previous</button>
             </li>
             <li class="page-item">
-              <button class="page-link" (click)="nextPage()">Next</button>
+              <button class="page-link" (click)="hasNextPage() ? nextPage() : null" [disabled]="!hasNextPage()"
+                [ngClass]="{'disabled-button': !hasNextPage()}">Next</button>
             </li>
           </ul>
           <div>
