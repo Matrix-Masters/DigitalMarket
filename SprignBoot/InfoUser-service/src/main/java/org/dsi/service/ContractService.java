@@ -2,6 +2,9 @@ package org.dsi.service;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -19,6 +22,8 @@ import org.dsi.repo.ContractRepo;
 import org.dsi.repo.ProductRepo;
 import org.dsi.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -67,13 +72,17 @@ public class ContractService {
 	        throw new Exception("Failed to add contract: " + e.getMessage());
 	    }
 	}
-
-	  
-	  private Blob convertMultipartFileToBlob(MultipartFile file) throws IOException, SQLException {
-	        try (InputStream inputStream = file.getInputStream()) {
-	            byte[] bytes = new byte[(int) file.getSize()];
-	            inputStream.read(bytes);
-	            return new SerialBlob(bytes);
+	
+	 public Resource loadFileAsResource(String fileName) throws MalformedURLException {
+	        Path filePath = Paths.get("ContractPhoto").resolve(fileName).normalize();
+	        Resource resource = new UrlResource(filePath.toUri());
+	        if (resource.exists()) {
+	            return resource;
+	        } else {
+	            throw new RuntimeException("File not found: " + fileName);
 	        }
 	    }
+
+	  
+	 
 }
