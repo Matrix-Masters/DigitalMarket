@@ -17,7 +17,7 @@ export class NavbarComponent implements OnInit {
   nbrArticle:number=0
 
 
-  constructor(public AuthServiceService:AuthServiceService, public categoriesService : CategoryServiceService,private route: ActivatedRoute , private router: Router,private productStorage:ProductsServiceLocalStorageService){}
+  constructor(public AuthServiceService:AuthServiceService, public categoriesService : CategoryServiceService){}
 
 
 
