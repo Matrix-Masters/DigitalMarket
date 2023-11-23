@@ -1,0 +1,29 @@
+body{
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.labels{
+  color: #08213a;
+  font-weight: 600;
+}
+
+.inputs{
+  width: 80%;
+}
+@media screen and (max-width: 519px) {
+  .inputs{
+    width: 80%;
+  }
+  .img-err{
+    font-size: 80%;
+  }
+}
+
+@media screen and (max-width: 471px) {
+  .inputs{
+    width: 80%;
+  }
+  .img-err{
+    font-size: 80%;
+  }
+}

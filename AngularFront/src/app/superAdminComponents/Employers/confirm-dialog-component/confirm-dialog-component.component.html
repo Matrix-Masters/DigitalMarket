@@ -1,0 +1,8 @@
+<div style="z-index: 9999999999999999999!important;">
+  <h2 mat-dialog-title>Confirmation</h2>
+  <mat-dialog-content>{{ data.message }}</mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Confirm</button>
+  </mat-dialog-actions>
+</div>

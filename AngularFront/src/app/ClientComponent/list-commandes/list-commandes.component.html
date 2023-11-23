@@ -1,0 +1,96 @@
+<div>
+  <app-navbar></app-navbar>
+  <div class="container mt-4">
+    <div class="card">
+
+      <div class="card-body table-responsive">
+        <table class="table table-bordered table-responsive-md custom-table text-center">
+          <thead class="thead-secondary">
+            <tr>
+              <th class="">NumCommande</th>
+              <th class="">Name</th>
+              <th class="hide-on-small">Last Name</th>
+              <th class="hide-on-small">Prix Total</th>
+              <th class="hide-on-small">Status</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="commandes.length>0">
+            <ng-container *ngFor="let commande of commandes; let i = index">
+              <tr [ngClass]="{'table-info': selectedCommandes === i, 'table-light': selectedCommandes !== i}"
+                scope="row">
+                <td>{{ commande.NumCommande }}</td>
+                <td>{{ commande.Name }}</td>
+                <td class="hide-on-small">{{ commande.LastName }}</td>
+                <td class="hide-on-small">{{ commande.PrixTotal }} TND</td>
+                <td>{{ commande.Status }}</td>
+                <td>
+                  <button mat-icon-button (click)="toggleRowDetails(i)">
+                    <mat-icon>{{ selectedCommandes === i ? 'expand_less' : 'expand_more' }}</mat-icon>
+                  </button>
+                  <button mat-icon-button (click)="onDeleteCommand(commande._id)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </td>
+
+              </tr>
+              <tr *ngIf="selectedCommandes === i">
+                <td colspan="8" class="text-center">
+                  <div class="card-body">
+                    <table class="table ">
+                      <thead class="thead-dark">
+                        <tr>
+                          <th>Quantity</th>
+                          <th>Price</th>
+                          <th class="hide-on-small">product image</th>
+                          <th>total price</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let ligneCommande of commande.LigneCommandes">
+                          <td>{{ ligneCommande.Quantity }}</td>
+                          <td>{{ ligneCommande.prix }}</td>
+                          <td><img alt="prod_image" height="100px" width="100px" [src]="'http://localhost:8888/PRODUCT-SERVICE/products/images/'+ getProductById(ligneCommande.Product_id)?.image
+                              ">
+                          </td>
+                          <td>
+                            {{ ligneCommande.Quantity * ligneCommande.prix }} TND
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+          <tbody *ngIf="commandes.length === 0 || commandes==null">
+            <tr>
+              <td colspan="5">You have no shipped or Refused commandes ! Start Adding Some</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-actions">
+        <nav *ngIf="pages>1">
+          <ul class="pagination">
+            <li class="page-item">
+              <button class="page-link" (click)="hasPreviousPage() ? previousPage() : null"
+                [disabled]="!hasPreviousPage()" [ngClass]="{'disabled-button': !hasPreviousPage()}">Previous</button>
+            </li>
+            <li class="page-item">
+              <button class="page-link" (click)="hasNextPage() ? nextPage() : null" [disabled]="!hasNextPage()"
+                [ngClass]="{'disabled-button': !hasNextPage()}">Next</button>
+            </li>
+          </ul>
+          <div>
+            <input matInput [(ngModel)]="limit" (change)="onLimitChange()">
+          </div>
+        </nav>
+      </div>
+    </div>
+
+
+  </div>
+
+
+</div>

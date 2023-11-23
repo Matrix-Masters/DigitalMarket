@@ -12,7 +12,7 @@ import { PythonServiceService } from 'src/app/Service/python-service.service';
 })
 
 export class SignupComponent implements OnInit {
-  
+
 
   ngOnInit(): void {
     this.ActivatedRoute.params.subscribe((res)=>{
@@ -25,9 +25,9 @@ export class SignupComponent implements OnInit {
       private AuthServiceService:AuthServiceService,
       private PythonServiceService:PythonServiceService,
       private MatSnackBar:MatSnackBar,
-      private ActivatedRoute:ActivatedRoute) 
+      private ActivatedRoute:ActivatedRoute)
        {
- 
+
     this.SignUpForm=this.formBuilder.group({
       FirstName:this.FirstNameForm,
       LastName:this.LastNameForm,
@@ -39,8 +39,8 @@ export class SignupComponent implements OnInit {
     });
 
   }
- 
- 
+
+
 
   NumTlfForm=new FormControl('',[Validators.required,Validators.minLength(8),Validators.maxLength(8),Validators.pattern("^[0-9]*$")]);
   FirstNameForm=new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(8)]);
@@ -53,7 +53,7 @@ export class SignupComponent implements OnInit {
   getFirstNameFormError(){
     if(this.FirstNameForm.touched){
       if(this.FirstNameForm.hasError("required")){
-         return 'You must enter a first name';
+        return 'You must enter a first name';
       } else if(this.FirstNameForm.hasError("minlength")){
         return 'You must enter a valid first name';
       }else if(this.FirstNameForm.hasError("maxlength")){
@@ -63,7 +63,7 @@ export class SignupComponent implements OnInit {
     return '';
   }
 
-  
+
 
     getLastNameFormError(){
       if(this.LastNameForm.touched){
@@ -82,7 +82,7 @@ export class SignupComponent implements OnInit {
         if(this.LastNameForm.touched){
           if(this.LastNameForm.hasError("required")){
              return 'You must enter a Role';
-          }  
+          }
           }
           return '';
         }
@@ -93,7 +93,7 @@ export class SignupComponent implements OnInit {
             if(this.NumTlfForm.hasError("required")){
                return 'You must enter a phone number';
             }else if(this.NumTlfForm.hasError("minlength")){
-              return 'You must enter a valid phone number';  
+              return 'You must enter a valid phone number';
             }else if(this.NumTlfForm.hasError("maxlength")){
               return 'You must enter a valid phone number';
             }else if(this.NumTlfForm.hasError("pattern")){
@@ -102,7 +102,7 @@ export class SignupComponent implements OnInit {
           }
           return '';
         }
-          
+
 
       getPasswordFormError(){
         if(this.passwordForm.touched){
@@ -138,7 +138,7 @@ export class SignupComponent implements OnInit {
           return '';
         }
 
-       
+
 
   imageError:String=""
   image:String="";
@@ -162,7 +162,7 @@ export class SignupComponent implements OnInit {
     }
   }
 
-  visibility:boolean=false; 
+  visibility:boolean=false;
 
   SignUp(){
     if(this.SignUpForm.valid){
@@ -195,7 +195,7 @@ export class SignupComponent implements OnInit {
             this.MatSnackBar.open(err.error.error,'',{
               duration:2000,
             })
-            
+
           })
         }else{
           this.imageError="You must upload an image";
@@ -217,7 +217,7 @@ export class SignupComponent implements OnInit {
             this.SignUpForm.reset();
         },(error)=>{
           console.log(error);
-          
+
            this.MatSnackBar.open(error.error,'',{
              duration:2000,
           })

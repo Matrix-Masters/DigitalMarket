@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import Commande from "../Model/Commande";
 import LigneCommande from "../Model/LigneCommande";
 import Livraison from "../Model/Livraison";
+import { stat } from "fs";
 
 export const addCommande = async (req: Request, res: Response) => {
 
@@ -50,7 +51,9 @@ export const addCommande = async (req: Request, res: Response) => {
     }
 
 }
-//livreur
+
+
+
 export const GetCommandeDispo = async (req: Request, res: Response) => {
 
     let page: number = parseInt(req.query.page?.toString() || '1');
@@ -86,6 +89,44 @@ export const GetCommandeDispo = async (req: Request, res: Response) => {
 
 }
 
+export const GetCommandeByIdUser=async (req:Request,res:Response)=>{
+    try{
+        const listCommandes=await Commande.find({
+            $and: [
+                {  Client_id:req.params.Client_id, },
+                {   Status:"Taken", },
+            ]
+        }).exec();
+        res.status(200).json(listCommandes);
+    }catch(e:any){
+        res.status(500).json({message:e.message})
+    }
+}
+
+
+export const GetLivraisonByNumCommande = async (req:Request,res:Response)=>{
+    try{
+        const livr=await Livraison.findOne({NumCommande:req.params.num}).exec();
+        if (!livr) {
+            res.status(404).json({ message: "No Found" });
+        } else {
+            res.status(200).json(livr);
+        }
+    }catch(e:any){
+        res.status(500).json({message:e.message})
+    }
+}
+
+export const ChangerLocationLivreur=async(req:Request,res:Response)=>{
+    try{
+        await Livraison.findOneAndUpdate({NumCommande:req.params.num},{$set:{Location:req.body.Location}});
+        await Commande.findOneAndUpdate({NumCommande:req.params.num},{$set:{Status:"Shipped"}});
+        res.status(200).json({message:"updated"});
+    }catch(e:any){
+        res.status(500).json({message:e.message})
+    }
+}
+
 
 export const AddLivraison=async (req:Request,res:Response)=>{
      try{
@@ -115,6 +156,7 @@ try {
     res.status(400).send(e);
 }
 */
+
 
 export const AcceptCommand=async (req:Request,res:Response)=>{
     try{
@@ -199,3 +241,52 @@ export const deleteCommande = async (req: Request, res: Response) => {
       res.status(500).send({ error: err.message });
     }
   };
+
+
+export const getCommandesByClientPaginate = async (req: Request, res: Response) => {
+  let page: number = parseInt(req.query.page?.toString() || '1');
+  let size: number = parseInt(req.query.size?.toString() || '5');
+  const Client_id = req.query.Client_id || '';
+  
+  try {
+
+      const Commandes = await Commande.paginate(
+          {
+            $and: [
+              { Client_id: { $regex: new RegExp(Client_id.toString(), 'i') } },
+              { $or: [{ Status: "Refused" }, { Status: "Available" }] }
+            ]
+          },
+          {
+              page: page,
+              limit: size,
+              populate: 'LigneCommandes'
+          },
+      );
+
+      if (!Commandes) {
+          res.status(404).json({ message: "Not Found" });
+      } else {
+          res.status(200).json(Commandes);
+      }
+
+  } catch (err: any) {
+      console.error(err);
+      res.status(500).json({ message: err.message });
+  }
+};
+export const deleteCommandeById = async (req: Request, res: Response) => {
+  const commandId = req.query.id;
+  try {
+    const deletedCommand = await Commande.findByIdAndDelete(commandId);
+    if (!deletedCommand) {
+        return res.status(404).json({ message: 'Command not found' });
+    }
+    await LigneCommande.deleteMany({ Commande_id:  commandId});
+    res.status(200).json({ message: 'commande deleted succesfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
+  }
+};
+

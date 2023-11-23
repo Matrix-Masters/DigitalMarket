@@ -14,6 +14,19 @@ import { NotFoundComponentComponent } from './notfound/not-found-component/not-f
 import { CommandeComponent } from './ClientComponent/commande/commande.component';
 import { FavoriteListClientComponent } from './AccueilClient/favorite-list-client/favorite-list-client.component';
 
+import { LIstEmpolyersComponent } from './superAdminComponents/Employers/list-empolyers/list-empolyers.component';
+import { AddEmployerComponent } from './superAdminComponents/Employers/add-employer/add-employer.component';
+import { CommandeClientComponent } from './ClientComponent/commande-client/commande-client.component';
+import { FournisseurInterfaceComponent } from './Fournissuer/fournisseur-interface/fournisseur-interface.component';
+import { FournisseurDashboardComponent } from './Fournissuer/fournisseur-dashboard/fournisseur-dashboard.component';
+import { AddProductComponent } from './Fournissuer/add-product/add-product.component';
+import { ListCommandesComponent } from './ClientComponent/list-commandes/list-commandes.component';
+import { ListProductsFournisseurComponent } from './Fournissuer/list-products-fournisseur/list-products-fournisseur.component';
+import { ContractComponent } from './Fournissuer/contract/contract.component';
+import { EditProfileComponent } from './EditProfile/edit-profile/edit-profile.component';
+
+
+
 const routes: Routes = [
    {path:'',component:HomeComponent},
    {path:'classer',component:ClasserProductComponent},
@@ -28,8 +41,17 @@ const routes: Routes = [
    {path:'cart',component:AccueilCartComponent},
    {path:'Commande',component:CommandeComponent},
    {path:'FavoriteList',component:FavoriteListClientComponent},
-   {path:"**",component:NotFoundComponentComponent},
-
+   {path:"gererEmployers",component:LIstEmpolyersComponent},
+   {path:"addEmploye",component:AddEmployerComponent},
+   {path:'CommandeLocation',component:CommandeClientComponent},
+   {path:"fournisseur",component:FournisseurInterfaceComponent},
+   {path:"fournisseurDash",component:FournisseurDashboardComponent},
+   {path:"addProductFournisseur",component:AddProductComponent},
+   {path:"listeCommandesClient",component:ListCommandesComponent},
+   {path:"ListProductsFournisseur",component:ListProductsFournisseurComponent},
+   {path:"ContractComponent",component:ContractComponent},
+   {path:"editProfile",component:EditProfileComponent},
+   {path:"**",component:NotFoundComponentComponent}
 ]
 
 

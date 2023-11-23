@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthServiceService } from 'src/app/Service/auth-service.service';
 import { CategoryServiceService } from 'src/app/Service/category-service.service';
+import { ProductsServiceLocalStorageService } from 'src/app/Service/products-service-local-storage.service';
 
 
 @Component({
@@ -11,9 +13,21 @@ import { CategoryServiceService } from 'src/app/Service/category-service.service
 export class NavbarComponent implements OnInit {
   categories:any;
   id:any
+  products:any
+  nbrArticle:number=0
 
 
-  constructor(public categoriesService : CategoryServiceService,private route: ActivatedRoute , private router: Router){}
+  constructor(public AuthServiceService:AuthServiceService, public categoriesService : CategoryServiceService,private route: ActivatedRoute , private router: Router,private productStorage:ProductsServiceLocalStorageService){}
+
+
+
+  getListProducts(){
+    const productString = localStorage.getItem('products');
+    if(productString) {
+      this.products = JSON.parse(productString);
+    }
+  }
+
 
 
 
@@ -26,6 +40,13 @@ export class NavbarComponent implements OnInit {
         console.log(err);
       }
     )
+
+    this.getListProducts()
+    for(let i = 0; i < this.products?.length; i++){
+      this.nbrArticle = (this.products.length)
+    }
+
+
   }
 
 

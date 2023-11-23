@@ -8,15 +8,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
 })
-export class CardComponent implements OnInit {
-  isFavorite: boolean = false;
-  constructor(
-    public productServiceStorage: ProductsServiceLocalStorageService,
-    private wishlistService: WishlistService,
-    private snackBar: MatSnackBar
-  ) {}
-  @Input() products: any;
-  @Input() new: boolean = true;
+
+export class CardComponent  implements OnInit{
+isFavorite:boolean = false;
+constructor(public productServiceStorage:ProductsServiceLocalStorageService, private MatSnackBar:MatSnackBar,private wishlistService: WishlistService,){}
+@Input() products:any
+@Input() new:boolean = true;
+
 
   toggleFavorite(id: any): void {
     this.wishlistService
@@ -51,6 +49,9 @@ export class CardComponent implements OnInit {
 
   addProduct(product: any) {
     this.productServiceStorage.addProduct(product);
+      this.MatSnackBar.open("Product Added",'',{
+        duration:2000,
+      })
   }
 
   clear() {

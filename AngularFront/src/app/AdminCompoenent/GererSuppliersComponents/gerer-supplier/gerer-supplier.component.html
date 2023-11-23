@@ -2,8 +2,11 @@
   <app-navbar-comp></app-navbar-comp>
   <div class="container">
     <h1>gerer suppliers</h1>
-    <mat-toolbar style="width: 55%;margin-left: 0%;margin-top: 5%;" color="none">
-      <mat-toolbar-row style="height: 100%;border-radius: 20px;background-color: transparent;">
+    <mat-toolbar style="width: 80%; margin-left: 10%; margin-top: 5%; display: flex; flex-direction: column"
+      color="none">
+      <mat-toolbar-row
+        style="height: 100%; border-radius: 20px; background-color: transparent; justify-content: space-between;">
+
         <mat-form-field class="example-filter-field">
           <mat-label>Search</mat-label>
           <input matInput placeholder="Ex. Supplier Name" [formControl]="searchControl">
@@ -25,21 +28,15 @@
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
-        <!-- <div style="margin-left: 3%;">
-
-          <mat-checkbox class="example-filter-field" [(ngModel)]="suppliersWithProducts">Suppliers with
-            Products</mat-checkbox>
-
-          <mat-checkbox class="example-filter-field" [(ngModel)]="suppliersWithoutProducts">Suppliers without
-            Products</mat-checkbox>
-
-        </div> -->
       </mat-toolbar-row>
     </mat-toolbar>
 
-    <!-- Filter bar here -->
+    <h1 class="alert alert-danger mt-5 text-center" style="width: 80%;margin-left: 10%;" *ngIf="suppliers==null">there's
+      no
+      Suppliers</h1>
 
-    <table class="table mt-3">
+
+    <table class="table mt-3" *ngIf="suppliers!=null">
       <thead>
         <tr>
           <th scope="col">Photo</th>
@@ -71,12 +68,15 @@
           <td>
 
             <button mat-button appearance="legacy" class="shadow" (click)="AcceptSupplier(supplier.id)"
-              *ngIf="supplier.status!=1">
-              <mat-icon style="color: green;">check</mat-icon>
+              *ngIf="supplier.status != 1">
+              <mat-icon style="color: green" *ngIf="!loading">check</mat-icon>
+              <mat-spinner *ngIf="loading" diameter="20" color="accent"></mat-spinner>
             </button>
-            <button mat-button appearance="legacy" style="margin-left: 5%;" class="shadow" *ngIf="supplier.status!=2"
+
+            <button mat-button appearance="legacy" style="margin-left: 5%;" class="shadow" *ngIf="supplier.status != 2"
               (click)="RefuseSupplier(supplier.id)">
-              <mat-icon color="warn">close</mat-icon>
+              <mat-icon color="warn" *ngIf="!loading">close</mat-icon>
+              <mat-spinner *ngIf="loading" diameter="20" color="accent"></mat-spinner>
             </button>
           </td>
         </tr>

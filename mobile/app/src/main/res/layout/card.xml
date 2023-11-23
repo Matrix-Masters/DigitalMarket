@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginBottom="30dp"
+    android:id="@+id/prod_card"
+    app:cardCornerRadius="20dp"
+    android:elevation="50dp"
+    >
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnCount="2"
+        android:rowCount="1"
+        >
+        <ImageView
+            android:id="@+id/prod_img"
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            android:src="@drawable/appstore"
+            />
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:columnCount="1"
+            android:rowCount="2"
+            >
+
+            <TextView
+                android:id="@+id/prod_name"
+                android:layout_width="281dp"
+                android:layout_height="72dp"
+                android:text="Tuque d'alpaga"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+               android:paddingLeft="10dp"
+                android:paddingTop="20dp"
+                />
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="66dp"
+                android:columnCount="2"
+                android:rowCount="1">
+
+                <TextView
+                    android:id="@+id/prod_price"
+                    android:layout_width="115dp"
+                    android:layout_marginRight="50dp"
+                    android:textColor="@color/black"
+                    android:text="90,00$"
+                    android:textSize="20dp"
+                    android:paddingLeft="20dp"/>
+
+                <Button
+                    android:id="@+id/prod_btn"
+                    android:layout_height="wrap_content"
+                    android:text="By Now" />
+            </GridLayout>
+        </GridLayout>
+
+    </GridLayout>
+
+</androidx.cardview.widget.CardView>

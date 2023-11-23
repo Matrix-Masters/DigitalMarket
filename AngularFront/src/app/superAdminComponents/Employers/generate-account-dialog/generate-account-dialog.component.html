@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Generated Account</h2>
+<div mat-dialog-content>
+  <p>Email: {{ generatedEmail }}</p>
+  <p>Password: {{ generatedPassword }}</p>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="downloadTxt()"> <mat-icon>download</mat-icon>Download as TXT</button>
+  <button mat-button (click)="onNoClick()">Close</button>
+</div>

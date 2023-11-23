@@ -28,7 +28,7 @@ public interface ProductRepo extends JpaRepository<Product,Long> {
 		@Query(value="select * from product where status=1 ",nativeQuery=true)
 		Page<Product> getProductPaginate(Pageable pageable );
 		
-		@Query(value="SELECT * FROM product WHERE status = 1 AND name LIKE :name ",nativeQuery=true)
+		@Query(value="SELECT * FROM product WHERE status = 1 AND name LIKE %:name% ",nativeQuery=true)
 		Page<Product> getProductPaginateSearch(String name,Pageable pageable );
 		
 		@Query(value="select * from product where status=2 ",nativeQuery=true)
@@ -46,14 +46,20 @@ public interface ProductRepo extends JpaRepository<Product,Long> {
 		 @Query(value="SELECT * FROM product WHERE  status = 1 and category_id=:cat_id and prix>= :min and prix<= :max",nativeQuery=true)
 			Page<Product> getProductByCategoryPaginatePrice(Long cat_id, double min, double max,Pageable pageable);
 		 
-		 @Query(value="SELECT * FROM product WHERE  status = 1 and category_id=:cat_id and name LIKE :name ",nativeQuery=true)
+		 @Query(value="SELECT * FROM product WHERE  status = 1 and category_id=:cat_id and name LIKE %:name% ",nativeQuery=true)
 			Page<Product> getProductByCategoryPaginateSearch(Long cat_id,String name,Pageable pageable );
 		 
-		 @Query(value="SELECT * FROM product WHERE  status = 1 and category_id=:cat_id  and prix>= :min and prix <= :max and name LIKE :name",nativeQuery=true)
+		 @Query(value="SELECT * FROM product WHERE  status = 1 and category_id=:cat_id  and prix>= :min and prix <= :max and name LIKE %:name%",nativeQuery=true)
 			Page<Product> getProductByCategoryPaginatePriceSearch(Long cat_id,double min,double max,String name,Pageable pageable );
 		 
 		 @Query(value="SELECT MAX(prix) AS max_price FROM product where status = 1",nativeQuery=true)
 		 double getMaxPrice();
+		 
+		 @Query(value = "SELECT * from product WHERE status = :status And id_user=:id",nativeQuery = true)
+		 Page<Product> getProductsFournisseur(int status,long id,Pageable pageable);
+		 
+		 @Query(value="SELECT * from product WHERE status = :status And id_user=:id and name LIKE %:name% ",nativeQuery=true)
+			Page<Product> getProductsFournisseurByName(int status,long id,String name,Pageable pageable );
 
 		
 		 
