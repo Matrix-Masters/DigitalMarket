@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import confetti from 'canvas-confetti';
 import { CommandeServiceService } from 'src/app/Service/commande-service.service';
+import { ProductServiceService } from 'src/app/Service/product-service.service';
 import { ProductsServiceLocalStorageService } from 'src/app/Service/products-service-local-storage.service';
 
 
@@ -14,7 +15,7 @@ import { ProductsServiceLocalStorageService } from 'src/app/Service/products-ser
 })
 export class CommandeComponent {
 
-  constructor(private router:Router,private localStorageProduct:ProductsServiceLocalStorageService, private MatSnackBar:MatSnackBar,private _formBuilder: FormBuilder,private CommandeServiceService:CommandeServiceService) {
+  constructor(private productService:ProductServiceService, private router:Router,private localStorageProduct:ProductsServiceLocalStorageService, private MatSnackBar:MatSnackBar,private _formBuilder: FormBuilder,private CommandeServiceService:CommandeServiceService) {
     
     this.FormInfo = this._formBuilder.group({
         Name:this.NameForm,
@@ -152,7 +153,7 @@ getEmailError(){
   ConfirmCommande(){
    var num_com=Math.floor(Math.random() * 99999);
    var products=this.localStorageProduct.GetProduct();
-
+   
    this.CommandeServiceService.AddCommande(
       {
           "NumCommande":num_com,
@@ -171,20 +172,25 @@ getEmailError(){
         }
    )
         .subscribe((res:any)=>{
-          this.StartConfetti();
-          this.localStorageProduct.clearProductList();
-          this.Location.lat=0;
-          this.Location.lng=0;
-          this.Location.name="";
-          this.MatSnackBar.open("Commande Confirmer","Ok",{ duration: 2000,});
-          setTimeout(()=>
-          {
-            this.FormInfo.reset();
-            location.reload()
-           },3000);
-       
+          products.forEach((val:any)=>{
+             this.productService.ChangerQuantiteProduct(val.id,val.quantity).subscribe((res:any)=>{
+               // console.log(res);
+             })
+             this.StartConfetti();
+             this.localStorageProduct.clearProductList();
+             this.Location.lat=0;
+             this.Location.lng=0;
+             this.Location.name="";
+             this.MatSnackBar.open("Commande Confirmer","Ok",{ duration: 2000,});
+             setTimeout(()=>
+             {
+               this.FormInfo.reset();
+               location.reload()
+              },3000);
+          })
         },(err:any)=>{
-          console.log(err);
+          this.MatSnackBar.open(err.error.keyPattern.email ? 'Email' : '',"Ok",{ duration: 2000,});
+          console.log();
         })
   }
 }

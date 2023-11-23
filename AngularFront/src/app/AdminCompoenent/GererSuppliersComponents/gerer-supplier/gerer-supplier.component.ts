@@ -2,7 +2,6 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { error } from 'jquery';
 import { debounceTime } from 'rxjs';
 import { AdminServiceService } from 'src/app/Service/admin-service.service';
 import { GravatarService } from 'src/app/Service/gravatar.service';
@@ -21,8 +20,6 @@ export class GererSupplierComponent implements OnInit{
   dateControl = new FormControl(new Date());
   loading = false;
   suppliers=null;
-  // suppliersWithProducts = new FormControl(false);
-  // suppliersWithoutProducts = new FormControl(false);
   gravatarUrl:string;
 
   ngOnInit(): void {
@@ -39,14 +36,6 @@ export class GererSupplierComponent implements OnInit{
     this.dateControl.valueChanges.pipe(debounceTime(300)).subscribe((value) => {
       this.getSuppliersFilter();
     });
-
-    // this.suppliersWithProducts.valueChanges.pipe(debounceTime(300)).subscribe((value) => {
-
-    // });
-
-    // this.suppliersWithoutProducts.valueChanges.pipe(debounceTime(300)).subscribe((value) => {
-
-    // });
   }
   getSuppliersFilter(){
     var status=3

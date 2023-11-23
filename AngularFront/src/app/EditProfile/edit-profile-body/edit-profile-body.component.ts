@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import { User } from 'src/app/Model/User';
 import { UserServiceService } from 'src/app/Service/user-service.service';
 
@@ -16,19 +16,61 @@ editInfoGroup:FormGroup;
   user:User = { firstName: '', lastName:'',sexe: '',cin:'' ,numTlf:''}
   constructor(private userService:UserServiceService,private formBuilder:FormBuilder){
     this.editInfoGroup = this.formBuilder.group({
-
         firstName:this.firstNameForm,
         lastName:this.lastNameForm,
         cin:this.cinForm,
         num:this.numForm
       })
+      this.emailGroupValid=this.formBuilder.group({
+        old_email:this.old_emailForm,
+        new_email:this.new_emailForm,
+      });
+      this.old_emailForm.setValue("ghassenahmed74@gmail.com");
+     
+    }
 
-  }
+    EmailValid(email: string): ValidatorFn {
+      return (control: AbstractControl): { [key: string]: any } | null => {
+        const emailNew = control.value;
+        if (emailNew != email) {
+          return null;  
+        } else {
+          return { 'SomeEmail': true };  
+        }
+      };
+    }
+  emailGroupValid:FormGroup;
   firstNameForm=new FormControl('',[Validators.required,Validators.minLength(2),Validators.maxLength(20)]);
   lastNameForm=new FormControl('',[Validators.required,Validators.minLength(2),Validators.maxLength(20)]);
   cinForm=new FormControl('',[Validators.required,Validators.minLength(8),Validators.maxLength(8),Validators.pattern("^[0-9]*$")]);
   numForm=new FormControl('',[Validators.required,Validators.minLength(8),Validators.maxLength(8),Validators.pattern("^[0-9]*$")]);
+  old_emailForm=new FormControl('',[Validators.required,Validators.email]);
+  new_emailForm = new FormControl('', [Validators.required, Validators.email, this.EmailValid(this.old_emailForm.value!)]);
+  
+  old_emailFormError(){
+    if(this.old_emailForm.touched){
+      if(this.old_emailForm.hasError("required")){
+         return 'You must enter a email';
+      } else if(this.old_emailForm.hasError("email")){
+        return 'Your email is not valid' ;
+      }
+    }
+    return '';
+  }
 
+  new_emailFormError(){
+    if(this.new_emailForm.touched){
+      if(this.new_emailForm.hasError("required")){
+         return 'You must enter a email';
+      } else if(this.new_emailForm.hasError("email")){
+        return 'Your email is not valid' ;
+      }else if(this.new_emailForm.hasError("SomeEmail")){
+        return 'Your email is not valid' ;
+      }
+    }
+    return '';
+  }
+  
   firstNameFormError(){
     if(this.firstNameForm.touched){
       if(this.firstNameForm.hasError("required")){
@@ -116,13 +158,20 @@ editInfoGroup:FormGroup;
 
   }
 
-
+  UpdateEmail(){
+    if (this.emailGroupValid.valid) {
+        this.userService.SendEmailChanged(this.old_emailForm.value,this.new_emailForm.value).subscribe((res:any)=>{
+          console.log(res);
+        },(error:any)=>{
+          console.log(error);
+        });
+    }else{
+      this.emailGroupValid.markAllAsTouched();
+    }
+  }
 
   ngOnInit(): void {
     this.getUserById()
   }
-
-
-
 
 }

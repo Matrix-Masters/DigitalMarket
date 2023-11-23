@@ -17,4 +17,8 @@ export class UserServiceService {
   getUserById(id:any){
     return this.http.get(`${port}/INFOUSER-SERVICE/getUserById?id=${id}`);
   }
+
+  SendEmailChanged(email_old:any,email_new:any){
+    return this.http.get(`${port}/INFOUSER-SERVICE/SendEmailChanged?email_new=${email_new}&email_old=${email_old}`);
+  }
 }

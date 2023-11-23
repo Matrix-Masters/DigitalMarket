@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import Commande from "../Model/Commande";
 import LigneCommande from "../Model/LigneCommande";
 import Livraison from "../Model/Livraison";
+import { stat } from "fs";
 
 export const addCommande = async (req: Request, res: Response) => {
 
@@ -41,7 +42,6 @@ export const addCommande = async (req: Request, res: Response) => {
         });
 
         const commandeSaved = await commande.save();
-        // test worked :) add commande for every null commande
         for (let i = 0; i < ligneCommandes.length; i++) {
             await LigneCommande.findByIdAndUpdate(ligneCommandes[i], {Commande_id:commandeSaved._id});
         }
@@ -156,3 +156,137 @@ try {
     res.status(400).send(e);
 }
 */
+
+
+export const AcceptCommand=async (req:Request,res:Response)=>{
+    try{
+      
+       await Commande.findOneAndUpdate({NumCommande:req.params.num},{$set:{Status:"Available"}});
+       notifyNotificationService(req.body.userid,"Your Command Accepted");
+       res.status(201).json("Accepted");
+    }catch(e:any){
+       res.status(500).json({message:e.message})
+    }
+}
+
+export const RefusedCommand=async (req:Request,res:Response)=>{
+    try{
+      
+       await Commande.findOneAndUpdate({NumCommande:req.params.num},{$set:{Status:"Refused"}});
+       notifyNotificationService(req.body.userid,"Your Command Refused");
+       res.status(201).json("Refused");
+    }catch(e:any){
+       res.status(500).json({message:e.message})
+    }
+}
+
+
+function notifyNotificationService(userid:any,message:String) {
+  const axios = require('axios');
+  axios.post('http://localhost:8888/FEEDBACK-SERVICE/FeedBack/AddNotif', { 
+     idEnvoi: "3",
+     idRecu:`${userid}`,
+     Message:message,
+     etat:0
+   });
+}
+
+//admin
+export const GetCommandsWaiting = async (req: Request, res: Response) => {
+
+    let page: number = parseInt(req.query.page?.toString() || '1');
+    let size: number = parseInt(req.query.size?.toString() || '2');
+    const search = req.query.search || '';
+    const type = req.query.type || 'Waiting';
+    
+   try {
+
+        const Commandes = await Commande.paginate(
+            {
+                $and: [
+                    { NumCommande: { $regex: new RegExp(search.toString(), 'i') } },
+                    { Status:type.toString() },
+                ]
+            },
+            {
+                page: page,
+                limit: size,
+                populate: 'LigneCommandes'
+            },
+        );
+
+        if (!Commandes) {
+            res.status(404).json({ message: "No Found" });
+        } else {
+            res.status(200).json(Commandes);
+        }
+
+    } catch (err: any) {
+        console.error(err);
+        res.status(500).json({ message: err.message });
+    }
+
+}
+export const deleteCommande = async (req: Request, res: Response) => {
+    try {
+      const id = req.params.id;
+      const deletedCommande = await Commande.findByIdAndDelete(id);
+  
+      if (deletedCommande) {
+        res.status(200).send(deletedCommande);
+      } else {
+        res.status(404).send({ error: 'Commande not found' });
+      }
+    } catch (err: any) {
+      res.status(500).send({ error: err.message });
+    }
+  };
+
+
+export const getCommandesByClientPaginate = async (req: Request, res: Response) => {
+  let page: number = parseInt(req.query.page?.toString() || '1');
+  let size: number = parseInt(req.query.size?.toString() || '5');
+  const Client_id = req.query.Client_id || '';
+  
+  try {
+
+      const Commandes = await Commande.paginate(
+          {
+            $and: [
+              { Client_id: { $regex: new RegExp(Client_id.toString(), 'i') } },
+              { $or: [{ Status: "Refused" }, { Status: "Available" }] }
+            ]
+          },
+          {
+              page: page,
+              limit: size,
+              populate: 'LigneCommandes'
+          },
+      );
+
+      if (!Commandes) {
+          res.status(404).json({ message: "Not Found" });
+      } else {
+          res.status(200).json(Commandes);
+      }
+
+  } catch (err: any) {
+      console.error(err);
+      res.status(500).json({ message: err.message });
+  }
+};
+export const deleteCommandeById = async (req: Request, res: Response) => {
+  const commandId = req.query.id;
+  try {
+    const deletedCommand = await Commande.findByIdAndDelete(commandId);
+    if (!deletedCommand) {
+        return res.status(404).json({ message: 'Command not found' });
+    }
+    await LigneCommande.deleteMany({ Commande_id:  commandId});
+    res.status(200).json({ message: 'commande deleted succesfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
+  }
+};
+

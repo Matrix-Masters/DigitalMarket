@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+    >
+ <group
+        android:id="@+id/group1"
+        android:checkableBehavior="single"
+
+     >
+        <item
+            android:id="@+id/item1"
+            android:icon="@drawable/baseline_featured_play_list_24"
+            android:title="@string/my_products"
+            android:checked="true"
+            />
+        <item
+            android:id="@+id/item2"
+            android:icon="@drawable/baseline_add_circle_24"
+            android:title="@string/addProduct"
+            android:checked="true"
+            style="@style/CustomMenuItemStyle"
+            />
+        <item
+            android:id="@+id/item3"
+            android:icon="@drawable/baseline_query_stats_24"
+            android:title="@string/products_stats"
+            android:checked="true"
+
+            style="@style/CustomMenuItemStyle"/>
+    </group>
+
+
+    <group
+        android:id="@+id/group2"
+        android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/profile"
+                    android:icon="@drawable/baseline_account_circle_24"
+                    style="@style/CustomMenuItemStyle"
+                    android:title="@string/profile">
+                </item>
+
+                <item
+                    android:id="@+id/logout"
+                    android:icon="@drawable/baseline_arrow_circle_left_24"
+                    style="@style/CustomMenuItemStyle"
+                    android:title="@string/logout" />
+    </group>
+</menu>

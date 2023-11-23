@@ -56,6 +56,8 @@ public class ProductController {
 		product.appendField("name", prod.getName());
 		product.appendField("image",prod.getImageProduct());
 		product.appendField("id",id);
+		product.appendField("prix", prod.getPrix());
+		product.appendField("description",prod.getDescription());
 		return ResponseEntity.ok(product);
 	}
 	
@@ -247,13 +249,13 @@ public class ProductController {
 	
 	@GetMapping("/getProductsNewArrivals")
 	public ResponseEntity<?> getProductsNewArrivals(){
-		try {
-			List<Product> products = ProductService.getProductNewArrivals();
-			return ResponseEntity.ok(products);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return ResponseEntity.badRequest().body("No Products found");
-		}
+			try {
+				List<Product> products = ProductService.getProductNewArrivals();
+				return ResponseEntity.ok(products);
+			} catch (Exception e) {
+				e.printStackTrace();
+				return ResponseEntity.badRequest().body("No Products found");
+			}
 		
 	}
 	
@@ -310,7 +312,7 @@ public class ProductController {
 		        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while fetching paginated products.");
 		    }
 	}
-	
+
 	@GetMapping("/getMaxPrice")
 	public ResponseEntity<?> getMaxPrice(){
 		double max = ProductRepo.getMaxPrice();
@@ -321,6 +323,60 @@ public class ProductController {
 		}
 		
 	}
+	
+	
+	@GetMapping("/GetProductsFournisseur")
+	public ResponseEntity<?> GetProductsFournisseur(
+			@RequestParam(name="search",defaultValue="") String name,
+    		@RequestParam(name = "page", defaultValue = "0") int page,
+			@RequestParam(name = "per_page", defaultValue = "4") int size,
+			@RequestParam(name = "status",defaultValue = "1") int status,
+			@RequestParam(name = "id") Long idFournisseur
+			){
+		if (page < 0 || size <= 0 ) {
+	        return ResponseEntity.badRequest().body("Invalid page or per_page values.");
+	 		}
+	    
+	 		try {
+	        Page<Product> products;
+	        if(name.isEmpty()==true) {
+	        	products=ProductRepo.getProductsFournisseur(status,idFournisseur,PageRequest.of(page, size));
+	        } else {
+	        	products=ProductRepo.getProductsFournisseurByName(status,idFournisseur,name,PageRequest.of(page, size));
+	        }
+	        
+	        int total = products.getTotalPages();
+	        int[] count_page = new int[total];
+	        for (int i = 0; i < total; i++) {
+	            count_page[i] = i;
+	        }
+
+	        JSONObject json=new JSONObject();
+	        json.appendField("data",products);
+	        json.appendField("count_page", count_page);
+	        json.appendField("page", page);
+	        return ResponseEntity.ok(json);
+	        
+	    } catch (Exception e) {
+	    	
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while fetching paginated products.");
+	    }
+	}
+	
+	
+	@PutMapping("/ChangerQuantiteProduct")
+	public ResponseEntity<?> ChangerQuantiteProduct(@RequestParam("id") Long id,@RequestParam("qte") int qte){
+		try {
+			 ProductService.ChangerQuantite(id, qte);
+		        return ResponseEntity.status(HttpStatus.OK).body("Product Updated");
+		} catch (Exception e) {
+			e.printStackTrace();
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while fetching paginated products.");
+		}
+
+	}
+	
+	
 	
 	
 	

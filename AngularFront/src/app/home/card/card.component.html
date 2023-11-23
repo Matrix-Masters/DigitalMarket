@@ -1,28 +1,28 @@
 <!-- <mat-card style="height: fit-content;text-align: center;margin-bottom: 20px;margin-top: 20px; max-width: min-content;" class="card" *ngIf="products">
-  <img src="../../../assets/product.jfif" height="150px">
+  <img [src]="'http://localhost:8888/PRODUCT-SERVICE/products/images/'+products['imageProduct']" height="150px">
   <mat-card-header class="py-3 product-name comic justify-content-center">{{products['name']}}</mat-card-header>
   <mat-card-content class="py-1 comic category">{{products['category']['nom']}}</mat-card-content>
   <mat-card-content class="py-1 comic price" style="color: rgb(17, 150, 17);">{{products['prix']}} TND</mat-card-content>
   <div class="d-flex justify-content-center">
     <button mat-flat-button class="buy" style="margin-top: 5px;width: 60%;border-radius: 25px;" (click)="addProduct(products)">Buy</button>
-    <button mat-icon-button (click)="toggleFavorite()" class="">
+    <button mat-icon-button (click)="toggleFavorite(products['id'])" class="">
       <mat-icon [style.color]="isFavorite? 'red' : 'gray'" mat-fab>favorite</mat-icon>
     </button>
   </div>
   <div class="new" *ngIf="new">
     <p>new product</p>
   </div>
-</mat-card> -->
+</mat-card>  -->
 <div class="cards" *ngIf="products" style="width: 280px;">
 <li class="product-item">
       <figure class="product-info">
           <div class="product-info-img">
-              <img src="https://i.ibb.co/2Pvg3yh/images.jpg" alt="description image">
+              <img [src]="'http://localhost:8888/PRODUCT-SERVICE/products/images/'+products['imageProduct']" alt="description image">
           </div>
           <figcaption class="product-info-description">
               <div class="d-flex justify-content-between">
                 <h2 class="title mt-2">{{products['name']}}</h2>
-                <button mat-icon-button (click)="toggleFavorite()" class="">
+                <button mat-icon-button  class="">
                   <mat-icon [style.color]="isFavorite? 'red' : 'gray'" mat-fab>favorite</mat-icon>
                 </button>
               </div>

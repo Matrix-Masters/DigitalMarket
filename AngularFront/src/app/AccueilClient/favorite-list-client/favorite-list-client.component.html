@@ -1,0 +1,25 @@
+<app-navbar></app-navbar>
+<section>
+  <h1>My Favorite List</h1>
+  <div class="list">
+    <div class="product" *ngFor="let item of wishlist">
+      <button class="delete-button" (click)="toggleFavorite(item.productDetails.id)">
+        <i class="fas fa-minus"></i>
+      </button>
+      <img src="https://i.ibb.co/g3cNNkG/shoes1.jpg">
+      <!-- [src]="item.productDetails?.image" -->
+      <div> 
+        <h2>{{ item.productDetails?.name }}</h2>
+        <p class="price">
+            <!-- {{ item.productDetails?.prix }} -->
+        </p>
+        <p class="descr">
+           <!-- {{ item.productDetails?.desc }} -->
+        </p>
+        <br>
+        <a href="#"><p>Add to cart</p></a>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

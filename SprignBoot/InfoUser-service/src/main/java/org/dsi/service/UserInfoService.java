@@ -80,7 +80,7 @@ public class UserInfoService {
 		}	
 	}
 	
-	
+
 	public void updateUser(InfoUser user,Long id) throws Exception {
 		
 		InfoUser user1 = userRepo.getUserById(id);
@@ -101,4 +101,8 @@ public class UserInfoService {
 		}
 		
 	}
+	
+	
+   
+
 }
