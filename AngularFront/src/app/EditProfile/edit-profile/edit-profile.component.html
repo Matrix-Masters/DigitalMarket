@@ -1,11 +1,5 @@
 <div class="animation">
   <div class="container-anim d-flex align-content-center">
-    <div class="container-flag mt-2 " style="margin-right: 20px;">
-      <div class="red"></div>
-      <div class="black"></div>
-      <div class="white"></div>
-      <div class="green"></div>
-    </div>
     <h1 class="" style="font-size: 20px;">free palestine</h1>
     <div class="container-flag mt-2">
       <div class="red"></div>
@@ -14,9 +8,9 @@
       <div class="green"></div>
     </div>
   </div>
-</div>
+  </div>
 
-<nav class="navbar navbar-expand-lg " style="height: 120px;background-color: #F0F0F0;">
+<nav class="navbar navbar-expand-lg" style="height: 120px;background-color: #F0F0F0;">
   <div class="container-fluid">
 
     <button class="navbar-toggler" mat-button [matMenuTriggerFor]="aboveMenu" >
@@ -34,7 +28,6 @@
      </mat-menu>
  </button>
  <a class="navbar-brand" routerLink="/">DIGITAL MARKET</a>
-
 
     <div class="input-group">
       <input class="form-control me-2" type="search" placeholder="Search Products" aria-label="Search" style="height: 50px;">
@@ -84,8 +77,5 @@
     </div>
     </div>
 </nav>
-
-<div class="container nav2">
-  <li class="categories d-none d-lg-block">All Categories <i class="bi bi-arrow-down-short" ></i></li>
-  <li *ngFor="let item of categories" routerLink="/categories/{{item['id']}}" class="categories d-none d-lg-block" >{{item['nom']}}</li>
-</div>
+<app-edit-profile-body></app-edit-profile-body>
+<app-footer></app-footer>

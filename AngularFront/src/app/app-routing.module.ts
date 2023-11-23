@@ -21,6 +21,7 @@ import { FournisseurDashboardComponent } from './Fournissuer/fournisseur-dashboa
 import { AddProductComponent } from './Fournissuer/add-product/add-product.component';
 import { ListProductsFournisseurComponent } from './Fournissuer/list-products-fournisseur/list-products-fournisseur.component';
 import { ContractComponent } from './Fournissuer/contract/contract.component';
+import { EditProfileComponent } from './EditProfile/edit-profile/edit-profile.component';
 
 
 const routes: Routes = [
@@ -44,6 +45,7 @@ const routes: Routes = [
    {path:"addProductFournisseur",component:AddProductComponent},
    {path:"ListProductsFournisseur",component:ListProductsFournisseurComponent},
    {path:"ContractComponent",component:ContractComponent},
+   {path:"editProfile",component:EditProfileComponent},
    {path:"**",component:NotFoundComponentComponent}
 ]
 
