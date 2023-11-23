@@ -45,11 +45,11 @@ export class ContractComponent implements OnInit {
   }
 
 
-  
+
   image:string="";
- 
+
   captureSignature() {
-    
+
     const signatureDataUrl = this.canvas.canvas.toDataURL();
     this.canvas.clear();
    // this.canvas.isEmpty();
@@ -115,7 +115,7 @@ export class ContractComponent implements OnInit {
     doc.text('If you have any questions about Contract, do not hesitate to contact us' ,45, doc.internal.pageSize.height - 20);
     doc.text('1/1',105, doc.internal.pageSize.height - 10);
     var nameContract:string=`${Math.random()+this.name}.pdf`;
-    doc.save(`${nameContract}`);   
+    doc.save(`${nameContract}`);
     const pdfBase64 = doc.output('datauristring');
     const pdfFile = this.base64ToFile(pdfBase64, `${nameContract}`, 'application/pdf');
     console.log(this.datePipe.transform(this.date, 'yyyy-MM-dd HH:mm:ss'));
