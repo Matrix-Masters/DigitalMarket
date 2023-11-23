@@ -312,7 +312,7 @@ public class ProductController {
 		        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while fetching paginated products.");
 		    }
 	}
-	
+
 	@GetMapping("/getMaxPrice")
 	public ResponseEntity<?> getMaxPrice(){
 		double max = ProductRepo.getMaxPrice();

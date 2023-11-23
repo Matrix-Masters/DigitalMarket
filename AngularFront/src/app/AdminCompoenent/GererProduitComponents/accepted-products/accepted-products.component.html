@@ -7,7 +7,7 @@
       <div class="col-md-4" *ngFor="let product of products; let i = index;">
         <div class="card d-flex justify-content-center mt-3" style="width: 100% !important;">
           <div class="card-image">
-            <img [src]="'http://localhost:8888/PRODUCT-SERVICE/products/images/'+product['imageProduct']"
+            <img [src]="'http://localhost:8001/PRODUCT-SERVICE/products/images/'+product['imageProduct']"
               style="height: 100px; width: 100px;" alt="product-image" class="thumbnail-image" />
           </div>
           <div class="card-header">

@@ -43,11 +43,11 @@ import { FournisseurInterfaceComponent } from './Fournissuer/fournisseur-interfa
 import { FournisseurNavbarCompComponent } from './Fournissuer/fournisseur-navbar-comp/fournisseur-navbar-comp.component';
 import { FournisseurSideBarCompComponent } from './Fournissuer/fournisseur-side-bar-comp/fournisseur-side-bar-comp.component';
 import { AddProductComponent } from './Fournissuer/add-product/add-product.component';
+import { ListCommandesComponent } from './ClientComponent/list-commandes/list-commandes.component';
 import { ListProductsFournisseurComponent } from './Fournissuer/list-products-fournisseur/list-products-fournisseur.component';
 import { ContractComponent } from './Fournissuer/contract/contract.component';
 import { EditProfileComponent } from './EditProfile/edit-profile/edit-profile.component';
 import { EditProfileBodyComponent } from './EditProfile/edit-profile-body/edit-profile-body.component';
-
 
 
 @NgModule({
@@ -88,6 +88,7 @@ import { EditProfileBodyComponent } from './EditProfile/edit-profile-body/edit-p
     FournisseurNavbarCompComponent,
     FournisseurSideBarCompComponent,
     AddProductComponent,
+    ListCommandesComponent
     ListProductsFournisseurComponent,
     ContractComponent
     EditProfileComponent,
