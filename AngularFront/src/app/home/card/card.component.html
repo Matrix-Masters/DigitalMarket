@@ -1,4 +1,4 @@
-<mat-card style="height: fit-content;text-align: center;margin-bottom: 20px;margin-top: 20px; max-width: min-content;" class="card" *ngIf="products">
+<!-- <mat-card style="height: fit-content;text-align: center;margin-bottom: 20px;margin-top: 20px; max-width: min-content;" class="card" *ngIf="products">
   <img [src]="'http://localhost:8888/PRODUCT-SERVICE/products/images/'+products['imageProduct']" height="150px">
   <mat-card-header class="py-3 product-name comic justify-content-center">{{products['name']}}</mat-card-header>
   <mat-card-content class="py-1 comic category">{{products['category']['nom']}}</mat-card-content>
@@ -12,4 +12,48 @@
   <div class="new" *ngIf="new">
     <p>new product</p>
   </div>
-</mat-card>
+</mat-card>  -->
+<div class="cards" *ngIf="products" style="width: 280px;">
+<li class="product-item">
+      <figure class="product-info">
+          <div class="product-info-img">
+              <img [src]="'http://localhost:8888/PRODUCT-SERVICE/products/images/'+products['imageProduct']" alt="description image">
+          </div>
+          <figcaption class="product-info-description">
+              <div class="d-flex justify-content-between">
+                <h2 class="title mt-2">{{products['name']}}</h2>
+                <button mat-icon-button  class="">
+                  <mat-icon [style.color]="isFavorite? 'red' : 'gray'" mat-fab>favorite</mat-icon>
+                </button>
+              </div>
+              <p class="py-1 comic category">{{products['category']['nom']}}</p>
+              <ul class="star-ranking">
+                  <li><img src="https://i.ibb.co/2kW5mnM/star.png">
+                  </li>
+                  <li><img src="https://i.ibb.co/2kW5mnM/star.png">
+                  </li>
+                  <li><img src="https://i.ibb.co/2kW5mnM/star.png">
+                  </li>
+                  <li><img src="https://i.ibb.co/2kW5mnM/star.png">
+                  </li>
+                  <li><img src="https://i.ibb.co/TwYYb93/star-1.png">
+                  </li>
+                  <li class="qtd-votes">
+                      <span>(200) <span class="new" style="margin-left: 15px;float: right;" *ngIf="new">New</span></span>
+
+                  </li>
+              </ul>
+
+          </figcaption>
+          <div class="price-box">
+              <div class="price">
+                  <div>
+                      <del>200dt</del>
+                      <ins class="d-block">{{products['prix']}} TND</ins>
+                  </div>
+              </div>
+              <button href="#" class="btn btn-buy">Buy now <i class="fas fa-arrow-right"></i></button>
+          </div>
+      </figure>
+</li>
+</div>
