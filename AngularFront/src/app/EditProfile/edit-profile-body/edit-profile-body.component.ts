@@ -25,7 +25,7 @@ editInfoGroup:FormGroup;
         old_email:this.old_emailForm,
         new_email:this.new_emailForm,
       });
-      this.old_emailForm.setValue("ghassenahmed74@gmail.com");
+      this.old_emailForm.setValue("khaoulajri@gmail.com");
      
     }
 

@@ -22,13 +22,13 @@
           <figcaption class="product-info-description">
               <div class="d-flex justify-content-between">
                 <h2 class="title mt-2">{{products['name']}}</h2>
-                <button mat-icon-button  class="">
+                <button mat-icon-button  class="" (click)="toggleFavorite(products['id'])">
                   <mat-icon [style.color]="isFavorite? 'red' : 'gray'" mat-fab>favorite</mat-icon>
                 </button>
               </div>
               <p class="py-1 comic category">{{products['category']['nom']}}</p>
               <ul class="star-ranking">
-                  <li><img src="https://i.ibb.co/2kW5mnM/star.png">
+                  <!-- <li><img src="https://i.ibb.co/2kW5mnM/star.png">
                   </li>
                   <li><img src="https://i.ibb.co/2kW5mnM/star.png">
                   </li>
@@ -37,9 +37,9 @@
                   <li><img src="https://i.ibb.co/2kW5mnM/star.png">
                   </li>
                   <li><img src="https://i.ibb.co/TwYYb93/star-1.png">
-                  </li>
+                  </li> -->
                   <li class="qtd-votes">
-                      <span>(200) <span class="new" style="margin-left: 15px;float: right;" *ngIf="new">New</span></span>
+                      <span><span class="new" style="margin-left: 15px;float: right;" *ngIf="new">New</span></span>
 
                   </li>
               </ul>
@@ -52,7 +52,7 @@
                       <ins class="d-block">{{products['prix']}} TND</ins>
                   </div>
               </div>
-              <button href="#" class="btn btn-buy">Buy now <i class="fas fa-arrow-right"></i></button>
+              <button href="#" class="btn btn-buy" (click)="addProduct(products)">Buy now <i class="fas fa-arrow-right"></i></button>
           </div>
       </figure>
 </li>
