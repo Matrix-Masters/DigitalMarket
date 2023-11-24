@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 export class CardComponent  implements OnInit{
 isFavorite:boolean = false;
-constructor(public productServiceStorage:ProductsServiceLocalStorageService, private MatSnackBar:MatSnackBar,private wishlistService: WishlistService,){}
+constructor(public productServiceStorage:ProductsServiceLocalStorageService, private MatSnackBar:MatSnackBar,private wishlistService: WishlistService){}
 @Input() products:any
 @Input() new:boolean = true;
 
@@ -25,7 +25,7 @@ constructor(public productServiceStorage:ProductsServiceLocalStorageService, pri
       .subscribe(
         (response: any) => {
           console.log('Added to wishlist successfully', response);
-          this.snackBar.open(response.message, 'Close', {
+          this.MatSnackBar.open(response.message, 'Close', {
             duration: 3000,
           });
 
@@ -36,7 +36,7 @@ constructor(public productServiceStorage:ProductsServiceLocalStorageService, pri
 
           this.isFavorite = !this.isFavorite;
 
-          this.snackBar.open(
+          this.MatSnackBar.open(
             'Failed to add the Product to your wishlist',
             'Close',
             {

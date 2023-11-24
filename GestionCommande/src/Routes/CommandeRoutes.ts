@@ -6,6 +6,7 @@ import { addCommande,GetCommandeDispo,AddLivraison,
          GetCommandsWaiting,
          RefusedCommand,
          AcceptCommand,
+         deleteCommande,
          deleteCommandeById} from "../Controller/CommandeController"
 
 

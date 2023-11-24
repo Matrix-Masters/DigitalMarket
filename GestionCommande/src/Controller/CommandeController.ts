@@ -244,6 +244,7 @@ export const deleteCommande = async (req: Request, res: Response) => {
 
 
 export const getCommandesByClientPaginate = async (req: Request, res: Response) => {
+
   let page: number = parseInt(req.query.page?.toString() || '1');
   let size: number = parseInt(req.query.size?.toString() || '5');
   const Client_id = req.query.Client_id || '';
@@ -254,7 +255,7 @@ export const getCommandesByClientPaginate = async (req: Request, res: Response) 
           {
             $and: [
               { Client_id: { $regex: new RegExp(Client_id.toString(), 'i') } },
-              { $or: [{ Status: "Refused" }, { Status: "Available" }] }
+              { $or: [{ Status: "Refused" }, { Status: "Shipped" }] }
             ]
           },
           {
@@ -274,7 +275,9 @@ export const getCommandesByClientPaginate = async (req: Request, res: Response) 
       console.error(err);
       res.status(500).json({ message: err.message });
   }
+  
 };
+
 export const deleteCommandeById = async (req: Request, res: Response) => {
   const commandId = req.query.id;
   try {
