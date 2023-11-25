@@ -129,7 +129,7 @@
         android:layout_gravity="center"
         android:fontFamily="Oswald"
         android:gravity="center"
-        android:textColor="@color/red"
+        android:textColor="@color/Red"
         android:textSize="12dp"
         android:textStyle="normal" />
     <Button

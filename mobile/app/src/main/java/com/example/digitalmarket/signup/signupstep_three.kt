@@ -100,7 +100,7 @@ class signupstep_three : AppCompatActivity() {
             }else{
                 Snackbar
                     .make(root, "All Fields Are Required", Snackbar.LENGTH_LONG)
-                    .setBackgroundTint(getResources().getColor(R.color.red))
+                    .setBackgroundTint(getResources().getColor(R.color.Red))
                     .setAction("Try  Again", View.OnClickListener {  }).show()
             }
 
