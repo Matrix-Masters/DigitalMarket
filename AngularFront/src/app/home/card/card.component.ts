@@ -11,7 +11,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 export class CardComponent  implements OnInit{
 isFavorite:boolean = false;
+
 constructor(public productServiceStorage:ProductsServiceLocalStorageService, private snackBar:MatSnackBar,private wishlistService: WishlistService,){}
+
 @Input() products:any
 @Input() new:boolean = true;
 

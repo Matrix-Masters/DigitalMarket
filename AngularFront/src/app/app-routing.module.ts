@@ -13,7 +13,6 @@ import { AccueilCartComponent } from './AccueilClient/accueil-cart/accueil-cart.
 import { NotFoundComponentComponent } from './notfound/not-found-component/not-found-component.component';
 import { CommandeComponent } from './ClientComponent/commande/commande.component';
 import { FavoriteListClientComponent } from './AccueilClient/favorite-list-client/favorite-list-client.component';
-
 import { LIstEmpolyersComponent } from './superAdminComponents/Employers/list-empolyers/list-empolyers.component';
 import { AddEmployerComponent } from './superAdminComponents/Employers/add-employer/add-employer.component';
 import { CommandeClientComponent } from './ClientComponent/commande-client/commande-client.component';
@@ -53,7 +52,6 @@ const routes: Routes = [
    {path:"editProfile",component:EditProfileComponent},
    {path:"**",component:NotFoundComponentComponent}
 ]
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

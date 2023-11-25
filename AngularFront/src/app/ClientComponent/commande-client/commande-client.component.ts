@@ -92,15 +92,15 @@ export class CommandeClientComponent  implements OnInit  {
                       c.lat, c.lng
                   ]);
               }
-          }, 1000 * i);
+          }, 100 * i);
           if(i==routeCoordinates.length-1){
-            if (this.locationsMatch(lastCoordinate, this.LocationForClient)) {
+           // if (this.locationsMatch(lastCoordinate, this.LocationForClient)) {
               this.ChangerLocationLivreur(this.LocationForClient, this.SelectCommande.NumCommande);
               this.getCommandes();
               this._snackBar.open('Command Shipped', 'Close', {
                    duration: 3000
               });
-            }
+            //}
           }
       });
   })
