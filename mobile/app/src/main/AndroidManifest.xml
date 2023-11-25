@@ -18,18 +18,13 @@
         <activity
             android:name=".HomeActivity"
             android:exported="true"
-<<<<<<< HEAD
-=======
             android:label="@string/app_name"
->>>>>>> 913a8b3ce713ccae0d3b99b104b53f940950156e
             android:theme="@style/Theme.DigitalMarket">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
-
 
         <activity android:name=".signup.SignUpStepOne" android:exported="true" />
         <activity android:name=".signup.signup_second_step" android:exported="true" />
@@ -39,18 +34,11 @@
         <activity android:name=".FournisseurAddProduct"/>
         <activity android:name=".fournisseur_profile" />
         <activity android:name=".IntroScreen1" android:exported="true" />
-=======
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".signup.SignUpStepOne"   android:exported="true" />
-        <activity
-            android:name=".IntroScreen1"
-            android:exported="true"></activity>
->>>>>>> 913a8b3ce713ccae0d3b99b104b53f940950156e
         <activity android:name=".IntroScreen2" />
         <activity android:name=".IntroScreen3" />
         <activity android:name=".IntroScreen4" />
         <activity android:name=".FournisseurDashboard" />
-<<<<<<< HEAD
+
         <activity
             android:name=".listProduct.ListProduct"
             android:exported="true"
@@ -61,16 +49,11 @@
         <activity
             android:name=".Client.DashboardClient"
             android:exported="false" />
-=======
 
->>>>>>> 913a8b3ce713ccae0d3b99b104b53f940950156e
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-<<<<<<< HEAD
+
 
 </manifest>
-=======
-</manifest>
->>>>>>> 913a8b3ce713ccae0d3b99b104b53f940950156e
