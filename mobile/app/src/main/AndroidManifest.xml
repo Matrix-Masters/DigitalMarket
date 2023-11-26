@@ -42,7 +42,7 @@
         <activity
             android:name=".listProduct.ListProduct"
             android:exported="true"
-            />
+           />
         <activity
             android:name=".Client.Settings"
             android:exported="false" />
@@ -57,3 +57,4 @@
 
 
 </manifest>
+

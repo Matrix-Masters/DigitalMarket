@@ -11,14 +11,13 @@
   <component name="ChangeListManager">
     <list default="true" id="9b5af394-d925-4f66-b690-3189374bbac6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AngularFront/src/app/AccueilClient/accueil-body/accueil-body.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/AngularFront/src/app/AccueilClient/accueil-body/accueil-body.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AngularFront/src/app/AdminCompoenent/gerer-commande/gerer-commande.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/AngularFront/src/app/AdminCompoenent/gerer-commande/gerer-commande.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AngularFront/src/app/AdminCompoenent/gerer-commande/gerer-commande.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/AngularFront/src/app/AdminCompoenent/gerer-commande/gerer-commande.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AngularFront/src/app/AdminCompoenent/gerer-commande/gerer-commande.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/AngularFront/src/app/AdminCompoenent/gerer-commande/gerer-commande.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AngularFront/src/app/Service/commande-service.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/AngularFront/src/app/Service/commande-service.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AngularFront/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/AngularFront/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FeedBack/src/Router/NotifRouter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/FeedBack/src/Router/NotifRouter.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FeedBack/src/controller/NotificationController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/FeedBack/src/controller/NotificationController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/app/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/app/src/main/java/com/example/digitalmarket/signup/SignUpStepOne.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/app/src/main/java/com/example/digitalmarket/signup/SignUpStepOne.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/app/src/main/java/com/example/digitalmarket/signup/signup_second_step.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/app/src/main/java/com/example/digitalmarket/signup/signup_second_step.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/app/src/main/java/com/example/digitalmarket/signup/signupstep_three.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/app/src/main/java/com/example/digitalmarket/signup/signupstep_three.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/app/src/main/res/layout/activity_signupstep_three.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/app/src/main/res/layout/activity_signupstep_three.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/app/src/main/res/navigation/nav_graph.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/app/src/main/res/navigation/nav_graph.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
