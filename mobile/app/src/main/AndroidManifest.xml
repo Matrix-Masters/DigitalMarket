@@ -13,6 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DigitalMarket"
         tools:targetApi="31">
+
+        <!-- Remove duplicate declaration -->
         <activity
             android:name=".HomeActivity"
             android:exported="true"
@@ -23,18 +25,35 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".signup.SignUpStepOne" android:exported="true" />
+        <activity android:name=".signup.signup_second_step" android:exported="true" />
+        <activity android:name=".signup.signupstep_three" android:exported="true" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".signup.SignUpStepOne"   android:exported="true" />
-        <activity
-            android:name=".IntroScreen1"
-            android:exported="true"></activity>
+        <activity android:name=".ProductDetails" />
+        <activity android:name=".FournisseurAddProduct"/>
+        <activity android:name=".fournisseur_profile" />
+        <activity android:name=".IntroScreen1" android:exported="true" />
         <activity android:name=".IntroScreen2" />
         <activity android:name=".IntroScreen3" />
         <activity android:name=".IntroScreen4" />
         <activity android:name=".FournisseurDashboard" />
 
+        <activity
+            android:name=".listProduct.ListProduct"
+            android:exported="true"
+            />
+        <activity
+            android:name=".Client.Settings"
+            android:exported="false" />
+        <activity
+            android:name=".Client.DashboardClient"
+            android:exported="false" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
+
+
 </manifest>
