@@ -1,20 +1,22 @@
 package com.example.digitalmarket.listProduct
 
+import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import android.widget.Toast.makeText
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.digitalmarket.Client.panier.PanierData
+import com.example.digitalmarket.Client.sharedPreferncesConfig
 import com.example.digitalmarket.R
 
-class ListProductAdapter(private val products: ArrayList<Product>) : RecyclerView.Adapter<ListProductAdapter.MyViewHolder>() {
+class ListProductAdapter(private val context: Context, private val products: ArrayList<Product>) : RecyclerView.Adapter<ListProductAdapter.MyViewHolder>() {
 
     private var selectedPosition = RecyclerView.NO_POSITION
-
+    val sharedPreference: sharedPreferncesConfig = sharedPreferncesConfig(context)
     inner class MyViewHolder(itemview: View) : RecyclerView.ViewHolder(itemview), View.OnClickListener {
         val name: TextView = itemview.findViewById(R.id.prod_name)
         val img: ImageView = itemview.findViewById(R.id.prod_img)
@@ -40,6 +42,22 @@ class ListProductAdapter(private val products: ArrayList<Product>) : RecyclerVie
         holder.img.setImageResource(item.img_id)
         holder.name.text = item.name
         holder.price.text = item.price.toString()
+        holder.btn.setOnClickListener {
+
+            var retrievedProductList = sharedPreference.getList("Products")?.toMutableList() ?: mutableListOf()
+            val existingProductIndex = retrievedProductList.indexOfFirst { it.nameProduct == item.name }
+
+            if (existingProductIndex != -1) {
+                retrievedProductList[existingProductIndex].qte += 1
+            } else {
+                retrievedProductList.add(PanierData(item.name, item.img_id, 1, item.price))
+            }
+
+            sharedPreference.saveList("Products", retrievedProductList)
+            retrievedProductList = sharedPreference.getList("Products")?.toMutableList() ?: mutableListOf()
+            Log.i("eee", retrievedProductList.toString())
+
+        }
 
         if (selectedPosition == position) {
             holder.itemView.setBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.white))
@@ -54,6 +72,7 @@ class ListProductAdapter(private val products: ArrayList<Product>) : RecyclerVie
     }
 
     fun onItemClick(position: Int) {
+        sharedPreference.clearSharedPreference();
         selectedPosition = position
         notifyDataSetChanged()
     }
