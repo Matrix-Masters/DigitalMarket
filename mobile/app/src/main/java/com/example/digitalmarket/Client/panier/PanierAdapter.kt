@@ -74,7 +74,7 @@ class PanierAdapter (private val context: Context, private var products: ArrayLi
         holder.Delete.setOnClickListener {
             var alert=AlertDialog.Builder(context);
             alert.setTitle("Confirmation")
-            alert.setMessage("Do You Wanna Delete from Panier${item.nameProduct}");
+            alert.setMessage("Do You Wanna Delete from Panier ${item.nameProduct}");
             alert.setPositiveButton("Ok"){alert,Wich->
                 var retrievedProductList = sharedPreference.getList("Products")?.toMutableList() ?: mutableListOf()
                 retrievedProductList.remove(item);
@@ -87,7 +87,6 @@ class PanierAdapter (private val context: Context, private var products: ArrayLi
             }
             alert.setNegativeButton("No"){alert,Wich->alert.cancel()}
             alert.show();
-
         }
     }
 
@@ -100,7 +99,7 @@ class PanierAdapter (private val context: Context, private var products: ArrayLi
         for (product in products) {
             total+=product.prix*product.qte;
         }
-        return  total;
+        return String.format("%.3f", total).toDouble()
     }
 
     fun onItemClick(position: Int) {
