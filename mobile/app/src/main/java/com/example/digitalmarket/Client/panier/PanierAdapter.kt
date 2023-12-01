@@ -63,7 +63,8 @@ class PanierAdapter (private val context: Context, private var products: ArrayLi
             if( retrievedProductList[position].qte>1){
                 retrievedProductList[position].qte -= 1
             }else{
-                retrievedProductList.remove(item);
+                    retrievedProductList.remove(item);
+                    notifyDataSetChanged();
             }
             sharedPreference.saveList("Products", retrievedProductList)
             notifyItemChanged(position);
@@ -78,8 +79,8 @@ class PanierAdapter (private val context: Context, private var products: ArrayLi
             alert.setPositiveButton("Ok"){alert,Wich->
                 var retrievedProductList = sharedPreference.getList("Products")?.toMutableList() ?: mutableListOf()
                 retrievedProductList.remove(item);
-                sharedPreference.saveList("Products", retrievedProductList)
                 notifyItemChanged(position);
+                sharedPreference.saveList("Products", retrievedProductList)
                 notifyDataSetChanged();
                 this.products=sharedPreference.getList("Products")!!
                 listener.onItemChanged()
@@ -103,7 +104,6 @@ class PanierAdapter (private val context: Context, private var products: ArrayLi
     }
 
     fun onItemClick(position: Int) {
-        sharedPreference.clearSharedPreference();
         selectedPosition = position
         notifyDataSetChanged()
     }
