@@ -1,5 +1,6 @@
 package com.example.digitalmarket.Client.panier
 
+import android.app.AlertDialog
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.digitalmarket.Client.sharedPreferncesConfig
 import com.example.digitalmarket.R
@@ -27,6 +29,7 @@ class PanierAdapter (private val context: Context, private var products: ArrayLi
         val qte:TextView=itemview.findViewById(R.id.qte)
         val plus:Button=itemview.findViewById(R.id.plus)
         val moins:Button=itemview.findViewById(R.id.minus)
+        val Delete:ImageView=itemview.findViewById(R.id.Delete)
         init {
             itemview.setOnClickListener(this)
         }
@@ -67,6 +70,24 @@ class PanierAdapter (private val context: Context, private var products: ArrayLi
             notifyDataSetChanged();
             this.products=sharedPreference.getList("Products")!!
             listener.onItemChanged()
+        }
+        holder.Delete.setOnClickListener {
+            var alert=AlertDialog.Builder(context);
+            alert.setTitle("Confirmation")
+            alert.setMessage("Do You Wanna Delete from Panier${item.nameProduct}");
+            alert.setPositiveButton("Ok"){alert,Wich->
+                var retrievedProductList = sharedPreference.getList("Products")?.toMutableList() ?: mutableListOf()
+                retrievedProductList.remove(item);
+                sharedPreference.saveList("Products", retrievedProductList)
+                notifyItemChanged(position);
+                notifyDataSetChanged();
+                this.products=sharedPreference.getList("Products")!!
+                listener.onItemChanged()
+                Toast.makeText(context,"Deleted",Toast.LENGTH_LONG).show();
+            }
+            alert.setNegativeButton("No"){alert,Wich->alert.cancel()}
+            alert.show();
+
         }
     }
 
