@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/prod_card"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginBottom="30dp"
+    android:elevation="50dp"
+    android:orientation="vertical"
+    app:cardCornerRadius="20dp">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnCount="2"
+        android:rowCount="1">
+
+        <ImageView
+            android:id="@+id/prod_img"
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            android:src="@drawable/appstore" />
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:columnCount="1"
+            android:rowCount="2">
+
+            <TextView
+                android:id="@+id/prod_name"
+                android:layout_width="281dp"
+                android:layout_height="72dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="20dp"
+                android:text="Tuque d'alpaga"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+            <GridLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:columnCount="5"
+                android:rowCount="1">
+
+                <TextView
+                    android:id="@+id/prod_price"
+                    android:layout_width="103dp"
+                    android:layout_height="38dp"
+                    android:layout_marginRight="10dp"
+                    android:paddingLeft="20dp"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
+
+                <Button
+                    android:id="@+id/plus"
+                    android:layout_width="56dp"
+                    android:layout_height="wrap_content"
+                    android:text="+" />
+
+                <TextView
+                    android:id="@+id/qte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
+
+                <Button
+                    android:id="@+id/minus"
+                    android:layout_width="56dp"
+                    android:layout_height="wrap_content"
+                    android:text="-" />
+            </GridLayout>
+        </GridLayout>
+
+    </GridLayout>
+
+</androidx.cardview.widget.CardView>
