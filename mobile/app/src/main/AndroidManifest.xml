@@ -18,7 +18,7 @@
 
         <!-- Remove duplicate declaration -->
         <activity
-            android:name=".Client.DashboardClient"
+            android:name=".HomeActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.DigitalMarket">
@@ -46,9 +46,8 @@
             android:exported="true"
            />
         <activity
-            android:name=".HomeActivity"
+            android:name=".Client.DashboardClient"
             android:exported="false" />
-
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

@@ -59,12 +59,21 @@ class signup_second_step : AppCompatActivity() {
         // Submit Formulaire
         signupbtn.setOnClickListener {
             if(TestAllValid()){
-                val intent= Intent(this,signupstep_three::class.java)
-                intent.putExtra("name",name);
-                intent.putExtra("last",last);
-                intent.putExtra("num_tlf", Mobile.text.toString())
-                intent.putExtra("email", Email.text.toString());
-                startActivity(intent);
+                if(Mobile.text.isEmpty() || Email.text.isEmpty() || Password.text.isEmpty()){
+                    Snackbar
+                        .make(root, "All Fields Are Required", Snackbar.LENGTH_LONG)
+                        .setBackgroundTint(getResources().getColor(R.color.Red))
+                        .setAction("Try  Again", View.OnClickListener {  }).show()
+                }else{
+                    val intent= Intent(this,signupstep_three::class.java)
+                    intent.putExtra("name",name);
+                    intent.putExtra("last",last);
+                    intent.putExtra("num_tlf", Mobile.text.toString())
+                    intent.putExtra("role",role.toString());
+                    intent.putExtra("email", Email.text.toString());
+                    intent.putExtra("Password", Password.text.toString());
+                    startActivity(intent);
+                }
             }else{
                 Snackbar
                     .make(root, "All Fields Are Required", Snackbar.LENGTH_LONG)
