@@ -9,6 +9,7 @@ import android.provider.MediaStore
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
@@ -23,7 +24,9 @@ lateinit var radioButtonHomme:RadioButton
 lateinit var radioButtonFemme:RadioButton
 lateinit var UploadFile:TextView
 lateinit var imageView: ImageView
+lateinit var uploadcard:TextView
 private  val PICK_IMAGE_REQUEST = 1
+lateinit var ContainerPhoto:LinearLayout
 var upload = false
 class signupstep_three : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,27 +40,31 @@ class signupstep_three : AppCompatActivity() {
         val num_tlf =intent.getStringExtra("num_tlf")
         val name =intent.getStringExtra("name")
         val lastname =intent.getStringExtra("last")
+        val password =intent.getStringExtra("Password")
+        uploadcard=findViewById(R.id.uploadcard)
         DescText=findViewById(R.id.descSignup)
+        ContainerPhoto=findViewById(R.id.ContainerPhoto)
+        if(role.toString()=="client"){
+            ContainerPhoto.visibility=View.GONE
+            uploadcard.visibility=View.GONE
+        }
         DescText.text = "Add your details to sign up " + (if (role == null) "User" else role)
         //Initialiser
         imageView = findViewById(R.id.imageView)
-
         RadioLayout=findViewById(R.id.RadioLayout)
         radioGroup=findViewById(R.id.radioGroup)
         radioButtonHomme=findViewById(R.id.radioButtonHomme)
         radioButtonFemme=findViewById(R.id.radioButtonFemme)
-
         UploadFile=findViewById(R.id.RequirePhoto)
         root=findViewById(R.id.root)
         signupbtn=findViewById(R.id.signupbtn)
+        logdin=findViewById(R.id.logdin)
         logdin.setOnClickListener {
             val intent= Intent(this,LoginActivity::class.java)
             startActivity(intent);
         }
-
         //Navigate to login with Message
         fun LoginWithSuccess(){
-
             //Send Message to Login
             var message=name.toString() + " Added With Success";
             val intent= Intent(this,LoginActivity::class.java)
@@ -67,7 +74,8 @@ class signupstep_three : AppCompatActivity() {
 
         signupbtn.setOnClickListener {
             if(TestAllValid()){
-                if(!upload){
+                var Required = role != "client"
+                if(!upload && Required){
                     UploadFile.error = ""
                     UploadFile.text = "Image upload is required"
                 }else{
@@ -78,19 +86,17 @@ class signupstep_three : AppCompatActivity() {
                     }
                     val ad: AlertDialog.Builder
                     ad = AlertDialog.Builder(this)
-                    var message=" Name : ${name.toString()}  \n" +
-                            " LastName : ${lastname.toString()}  \n" +
-                            " email : ${email.toString()}  \n " +
-                            "Mobile: ${num_tlf.toString()} \n " +
-                            "Gendre :${gendre} \n" ;
+                    var message="  Name : ${name.toString()}  \n" +
+                                "  LastName : ${lastname.toString()}  \n" +
+                                "  email : ${email.toString()}  \n " +
+                                "  Mobile: ${num_tlf.toString()} \n " +
+                                "  Gendre :${gendre} \n" ;
                     ad.setMessage(message)
                     ad.setTitle("Confirmation")
-
                     //confirm
                     ad.setPositiveButton(
                         "Confirm"
                     ) { dialogInterface, i ->  LoginWithSuccess() }
-
                     //close
                     ad.setNegativeButton("close",
                         { dialogInterface, i -> Int })
@@ -103,22 +109,13 @@ class signupstep_three : AppCompatActivity() {
                     .setBackgroundTint(getResources().getColor(R.color.Red))
                     .setAction("Try  Again", View.OnClickListener {  }).show()
             }
-
         }
-
     }
-
-    //Make Watcher For All Fields
-
-    //Run Watcher
 
     //Test All Valid
     fun TestAllValid(): Boolean {
         var valid = true
          if (RadioLayout.error != null) {
-            valid = false
-        }
-        else if (!upload) {
             valid = false
         }
         return valid
