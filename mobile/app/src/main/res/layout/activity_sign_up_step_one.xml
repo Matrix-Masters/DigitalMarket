@@ -45,7 +45,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="45px"
             android:layout_marginBottom="40dp"
-
             android:fontFamily="Oswald"
             android:hint="Name"
             android:inputType="text" />

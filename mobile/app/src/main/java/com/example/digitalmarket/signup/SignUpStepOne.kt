@@ -37,8 +37,8 @@ class SignUpStepOne : AppCompatActivity() {
         setContentView(R.layout.activity_sign_up_step_one)
         DescText=findViewById(R.id.descSignup)
         DescText.text = "Add your details to sign up " + (if (role == null) "User" else role)
-        //Initialiser
 
+        //Initialiser
         Name=findViewById(R.id.Name);
         NameLayout=findViewById(R.id.NameLayout)
 
@@ -58,22 +58,27 @@ class SignUpStepOne : AppCompatActivity() {
             startActivity(intent);
         }
 
-
         // Submit Formulaire
         signupbtn.setOnClickListener {
             if(TestAllValid()){
-                val intent= Intent(this,signup_second_step::class.java)
-                intent.putExtra("name",Name.text.toString());
-                intent.putExtra("last",LastName.text.toString());
-                intent.putExtra("role",role);
-                startActivity(intent);
+                if(Name.text.isEmpty() || LastName.text.isEmpty()){
+                    Snackbar
+                        .make(root, "All Fields Are Required", Snackbar.LENGTH_LONG)
+                        .setBackgroundTint(getResources().getColor(R.color.Red))
+                        .setAction("Try  Again", View.OnClickListener {  }).show()
+                }else{
+                    val intent= Intent(this,signup_second_step::class.java)
+                    intent.putExtra("name",Name.text.toString());
+                    intent.putExtra("last",LastName.text.toString());
+                    intent.putExtra("role",role);
+                    startActivity(intent);
+                }
             }else{
                 Snackbar
                     .make(root, "All Fields Are Required", Snackbar.LENGTH_LONG)
                     .setBackgroundTint(getResources().getColor(R.color.Red))
                     .setAction("Try  Again", View.OnClickListener {  }).show()
             }
-
         }
     }
 
@@ -82,7 +87,6 @@ class SignUpStepOne : AppCompatActivity() {
         addTextWatcher(Name, "Name")
         addTextWatcher(LastName, "Last" )
     }
-
 
     //Run Watcher
     private fun addTextWatcher(
@@ -126,7 +130,7 @@ class SignUpStepOne : AppCompatActivity() {
             return  true;
         }else if(NameField=="Last"){
             if(LastName.text.isEmpty()){
-                LastNameLayout.error="LastName est Obligatoire"
+                LastNameLayout.error="LastName equired"
                 return false
             }else if(LastName.text.length>10){
                 LastNameLayout.error=" LastName must be at least 10 characters long"
