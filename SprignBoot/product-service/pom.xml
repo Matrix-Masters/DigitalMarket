@@ -68,6 +68,16 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
+		<dependency>
+    		<groupId>com.google.zxing</groupId>
+    		<artifactId>core</artifactId>
+    		<version>3.4.1</version> <!-- You can use the latest version available -->
+		</dependency>  
+		<dependency>  
+			<groupId>com.google.zxing</groupId>  
+			<artifactId>javase</artifactId>  
+			<version>3.3.0</version>  
+		</dependency>  
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
