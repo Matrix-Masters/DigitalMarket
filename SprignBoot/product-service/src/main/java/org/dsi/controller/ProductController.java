@@ -3,18 +3,16 @@ package org.dsi.controller;
 import org.dsi.entity.Category;
 
 import org.dsi.entity.Product;
-import org.dsi.repository.NodeSync;
 import org.dsi.repository.ProductRepo;
+import org.dsi.service.FileUpload;
 import org.dsi.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,12 +21,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 import Payload.PaginateInfo;
 import Payload.ProducInfo;
 import net.minidev.json.JSONObject;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.lang.Long;
 import java.util.List;
 import java.util.Map;
+
+import javax.imageio.ImageIO;
+
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -38,6 +48,7 @@ public class ProductController {
 	
 	@Autowired
 	ProductRepo ProductRepo;
+
 
 	@PostMapping("/AddProduct")
 	public ResponseEntity<?> AddProduct(@RequestParam("file") MultipartFile file,
@@ -177,14 +188,30 @@ public class ProductController {
 	}
 	
 	@PutMapping("/AcceptProduct")
-	public ResponseEntity<?> AcceptProduct(@RequestParam("id") long id){
+	public ResponseEntity<?> AcceptProduct(@RequestParam("id") long id,@RequestBody ProducInfo prod){
 		try {
 			ProductService.AcceptProduct(id);
-			 return ResponseEntity.ok(Map.of("message", "product accepted succesfully"));
+			BufferedImage bufferedImage = generateQRCodeImage(prod);
+			File outputfile = new File("C:\\Users\\talel\\Desktop\\Matrix-Masters\\DigitalMarket\\SprignBoot\\product-service\\QrImages\\"+prod.getName()+".jpg");
+			ImageIO.write(bufferedImage, "jpg", outputfile);
+			return ResponseEntity.ok(Map.of("message", "product accepted succesfully"));
 		}catch (Exception e) {
 			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
 		}
 	}
+	
+	
+	public  BufferedImage generateQRCodeImage(ProducInfo barcodeText) throws WriterException {
+		StringBuilder str = new StringBuilder();
+		str = str.append("Name:").append(barcodeText.getName()).append("| |").append("Qte:").append(barcodeText.getQuantite()).append("| |").append("Prix:")
+				.append(barcodeText.getPrix());
+	    QRCodeWriter barcodeWriter = new QRCodeWriter();
+	    BitMatrix bitMatrix = 
+	      barcodeWriter.encode(str.toString(), BarcodeFormat.QR_CODE, 200, 200);
+
+	    return MatrixToImageWriter.toBufferedImage(bitMatrix);
+	}
+	
 
 	@PutMapping("/PendingProduct")
 	public ResponseEntity<?> PendingProduct(@RequestParam("id") Long id){
