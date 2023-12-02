@@ -21,7 +21,7 @@ public class FileController {
     @GetMapping("/products/images/{fileName:.+}")
     public ResponseEntity<?> serveFile(@PathVariable String fileName) {
         try {
-            Resource file = fileService.loadFileAsResource(fileName);
+            Resource file = fileService.loadFileAsResource(fileName,"ProductPhotos");
             return ResponseEntity.ok().body(file);
         } catch (Exception e) {
         	return new ResponseEntity<String>("Not Found",HttpStatus.NOT_FOUND);
