@@ -191,27 +191,11 @@ public class ProductController {
 	public ResponseEntity<?> AcceptProduct(@RequestParam("id") long id,@RequestBody ProducInfo prod){
 		try {
 			ProductService.AcceptProduct(id);
-			BufferedImage bufferedImage = generateQRCodeImage(prod);
-			File outputfile = new File("C:\\Users\\talel\\Desktop\\Matrix-Masters\\DigitalMarket\\SprignBoot\\product-service\\QrImages\\"+prod.getName()+".jpg");
-			ImageIO.write(bufferedImage, "jpg", outputfile);
 			return ResponseEntity.ok(Map.of("message", "product accepted succesfully"));
 		}catch (Exception e) {
 			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
 		}
 	}
-	
-	
-	public  BufferedImage generateQRCodeImage(ProducInfo barcodeText) throws WriterException {
-		StringBuilder str = new StringBuilder();
-		str = str.append("Name:").append(barcodeText.getName()).append("| |").append("Qte:").append(barcodeText.getQuantite()).append("| |").append("Prix:")
-				.append(barcodeText.getPrix());
-	    QRCodeWriter barcodeWriter = new QRCodeWriter();
-	    BitMatrix bitMatrix = 
-	      barcodeWriter.encode(str.toString(), BarcodeFormat.QR_CODE, 200, 200);
-
-	    return MatrixToImageWriter.toBufferedImage(bitMatrix);
-	}
-	
 
 	@PutMapping("/PendingProduct")
 	public ResponseEntity<?> PendingProduct(@RequestParam("id") Long id){

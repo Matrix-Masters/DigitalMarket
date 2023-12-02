@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import Commande from "../Model/Commande";
 import LigneCommande from "../Model/LigneCommande";
 import Livraison from "../Model/Livraison";
-import { stat } from "fs";
+
 
 export const addCommande = async (req: Request, res: Response) => {
 

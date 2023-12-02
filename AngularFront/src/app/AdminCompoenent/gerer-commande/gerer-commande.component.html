@@ -50,7 +50,6 @@
           </tr>
       </tbody>
       <ng-template #showCommande>
-      
         <tbody>
         <tr  *ngFor="let commande of commandes">
             <td  class="text-center">{{commande.NumCommande}}</td>
@@ -58,7 +57,7 @@
             <td class="text-center">{{commande.LigneCommandes.length}}</td>
             <td>
                 <ul class="wrapper">
-                    <li class="icon Accept" *ngIf="commandeType=='Waiting'" (click)="AccepteCommade(commande.NumCommande)">
+                    <li class="icon Accept" *ngIf="commandeType=='Waiting'" (click)="AccepteCommade(commande)">
                         <span class="tooltip">Accept</span>
                         <span><i class="fas fa-check"></i></span>
                     </li> 
@@ -131,7 +130,7 @@
                       <td>{{item.id}}</td>
                       <td>{{item.name}}</td>
                       <td>
-                         <img  [src]="'http://localhost:8888/PRODUCT-SERVICE/products/images/'+item.image" alt="">
+                         <img  style="width: 100px !important;" [src]="'http://localhost:8888/PRODUCT-SERVICE/products/images/'+item.image" alt="">
                       </td>
                       <td>{{item.qte}}</td>
                       <td>{{item.price}} TND</td>

@@ -13,8 +13,8 @@ import java.nio.file.Paths;
 @Service
 public class FileService {
 
-    public Resource loadFileAsResource(String fileName) throws MalformedURLException {
-        Path filePath = Paths.get("ProductPhotos").resolve(fileName).normalize();
+    public Resource loadFileAsResource(String fileName,String directory) throws MalformedURLException {
+        Path filePath = Paths.get(directory).resolve(fileName).normalize();
         Resource resource = new UrlResource(filePath.toUri());
         if (resource.exists()) {
             return resource;

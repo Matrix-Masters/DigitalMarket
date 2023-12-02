@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Product } from 'src/app/Model/Product';
 import { CommandeServiceService } from 'src/app/Service/commande-service.service';
+import { ProductServiceService } from 'src/app/Service/product-service.service';
 
 @Component({
   selector: 'app-gerer-commande',
@@ -10,7 +11,7 @@ import { CommandeServiceService } from 'src/app/Service/commande-service.service
 })
 export class GererCommandeComponent {
 
-  constructor(private commandeService: CommandeServiceService,private MatSnackBar:MatSnackBar) {
+  constructor(private commandeService: CommandeServiceService,private MatSnackBar:MatSnackBar,private ProductServiceService:ProductServiceService) {
     this.pagination={
       currentPage:1,
       total:0,
@@ -88,14 +89,32 @@ selectedCommand!:any
     }[]
  }
 
- AccepteCommade(num:number){
-    this.commandeService.AcceptCommand(num,{
+ AccepteCommade(commande:any){
+    this.commandeService.AcceptCommand(commande.NumCommande,{
       "userid":2
     }).subscribe((res:any)=>{
        this.getCommande();
+       this.GererFactureWithCodeQr(commande);
        this.MatSnackBar.open("Accept Commande",'close',{
          duration:3000
        })
+    })
+ }
+
+ GererFactureWithCodeQr(commande:any){
+    this.ProductServiceService.GenerateCodeQr(
+      {
+        "numCommande":"ds",
+        "name":"sdds",
+        "lastName":"commande.LastName",
+        "phone":"commande.phone",
+        "prixTotal":"commande.PrixTotal",
+        "location_logitude":"commande.location.longitude",
+        "location_latitude":"commande.location.latitude",
+        "location_name":"commande.location.nam"
+   }
+    ).subscribe((res:any)=>{  
+        console.log(res);
     })
  }
 
@@ -125,14 +144,12 @@ getCommande() {
   ).subscribe(
     (res: any) => {
       const previousCommandCount = this.commandes.length;
-
       // Update the commandes array with the new data
       this.commandes = res.docs;
       this.pagination.currentPage = res.page;
       this.pagination.total = res.pages;
       this.pagination.per_page = res.limit;
       this.paginationPages = Array.from({ length: this.pagination.total }, (_, i) => i + 1);
-
       const newCommandCount = this.commandes.length - previousCommandCount;
       if (newCommandCount > 0) {
         this.notifications.push(`${newCommandCount} new commande Arrived`);
