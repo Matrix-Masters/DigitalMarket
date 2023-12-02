@@ -58,6 +58,10 @@ let CommandeSchema=new mongoose.Schema({
         type:Date,
         default:Date.now
     },
+    NameFacture:{
+        type:String,
+        default: null
+    },
     LigneCommandes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'LigneCommande' }]
 })
 

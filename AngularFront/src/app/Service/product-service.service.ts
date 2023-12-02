@@ -31,9 +31,12 @@ export class ProductServiceService{
     return this.http.get(`${port}/PRODUCT-SERVICE/products/GetDetailsProd?id=${id}`);
   }
 
-
   ChangerQuantiteProduct(id:any,qte:any):Observable<String>{
       return this.http.put(`${port}/PRODUCT-SERVICE/products/ChangerQuantiteProduct?id=${id}&qte=${qte}`,{}) as Observable<String>;
+  }
+
+  GenerateCodeQr(commande:any){
+      return this.http.put(`${port}/PRODUCT-SERVICE/codeQr/GenerateCodeQr`,commande);
   }
   
 }
