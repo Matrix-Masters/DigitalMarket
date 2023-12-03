@@ -102,7 +102,8 @@ selectedCommand!:any
  }
 
  GererFactureWithCodeQr(commande:any){
-    this.ProductServiceService.GenerateCodeQr(
+  console.log(commande);
+   /* this.ProductServiceService.GenerateCodeQr(
       {
         "numCommande":"ds",
         "name":"sdds",
@@ -115,7 +116,7 @@ selectedCommand!:any
    }
     ).subscribe((res:any)=>{  
         console.log(res);
-    })
+    })*/
  }
 
  commandeType:string="Waiting"

@@ -64,10 +64,9 @@ public class Product {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
     private Category category;
+  
     
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.REMOVE,  fetch = FetchType.EAGER,mappedBy="product")
-    private List<Recommandation> recommandations;
+
     
     
 }
