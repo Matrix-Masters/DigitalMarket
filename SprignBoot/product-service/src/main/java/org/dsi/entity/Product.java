@@ -1,8 +1,10 @@
 package org.dsi.entity;
 
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -63,8 +65,9 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
     
-    @OneToMany(mappedBy="product")
-    private Set<Recommandation> recommandations;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.REMOVE,  fetch = FetchType.EAGER,mappedBy="product")
+    private List<Recommandation> recommandations;
     
     
 }
