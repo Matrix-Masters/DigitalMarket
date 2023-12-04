@@ -102,21 +102,35 @@ selectedCommand!:any
  }
 
  GererFactureWithCodeQr(commande:any){
-  console.log(commande);
-   /* this.ProductServiceService.GenerateCodeQr(
+    this.clearInfo();
+    commande.LigneCommandes.forEach((val: any) => {
+      var idProduct = val.Product_id;
+      this.commandeService.DetailsProd(idProduct).subscribe((res: any) => {
+        this.InfoCommande.ListProducts.push(
+          {
+           'image':res.image as string,
+           'id':res.id as number,
+           'name':res.name as string,
+           'qte':val.Quantity as number,
+           'price':val.prix as number
+          }
+        );
+    });
+  });
+    this.ProductServiceService.GenerateCodeQr(
       {
-        "numCommande":"ds",
-        "name":"sdds",
-        "lastName":"commande.LastName",
-        "phone":"commande.phone",
-        "prixTotal":"commande.PrixTotal",
-        "location_logitude":"commande.location.longitude",
-        "location_latitude":"commande.location.latitude",
-        "location_name":"commande.location.nam"
+        "numCommande":commande.NumCommande,
+        "name":commande.Name,
+        "lastName":commande.LastName,
+        "phone":commande.phone,
+        "prixTotal":commande.PrixTotal,
+        "location_logitude":commande.location.longitude,
+        "location_latitude":commande.location.latitude,
+        "location_name":commande.location.name,
    }
     ).subscribe((res:any)=>{  
         console.log(res);
-    })*/
+    })
  }
 
  commandeType:string="Waiting"
