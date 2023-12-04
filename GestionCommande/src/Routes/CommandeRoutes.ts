@@ -7,7 +7,8 @@ import { addCommande,GetCommandeDispo,AddLivraison,
          RefusedCommand,
          AcceptCommand,
          deleteCommande,
-         deleteCommandeById} from "../Controller/CommandeController"
+         deleteCommandeById,
+         UpdateNameFacture} from "../Controller/CommandeController"
 
 
 module.exports=(router:any)=>{
@@ -23,4 +24,5 @@ module.exports=(router:any)=>{
     router.put('/ChangerLocationLivreur/:num',ChangerLocationLivreur);
     router.get('/getCommandesByClient',getCommandesByClientPaginate);
     router.delete('/deleteCommande',deleteCommandeById);
+    router.put('/UpdateNameFacture/:num',UpdateNameFacture)
 }
