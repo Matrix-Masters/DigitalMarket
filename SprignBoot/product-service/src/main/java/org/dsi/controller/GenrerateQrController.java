@@ -52,7 +52,7 @@ public class GenrerateQrController {
 
 	
 	@PutMapping("/GenerateCodeQr")
-	public InfoFactureQr getFacture(@RequestBody InfoFactureQr info){
+	public JSONObject getFacture(@RequestBody InfoFactureQr info){
 		try {
 			BufferedImage bufferedImage = generateQRCodeImage(info);
 			String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
@@ -63,7 +63,9 @@ public class GenrerateQrController {
 			NameJson.appendField("NameFacture",name_facture+".jpg");
 			NodeSync.UpdateNameFacture(info.getNumCommande(), NameJson);
 			Path filePath = Paths.get("QrImages").resolve(name_facture).normalize();
-			return info;
+			JSONObject data=new JSONObject();
+			data.appendField("name",name_facture+".jpg");
+			return data;
 		}catch (Exception e) {
 			return null;
 		}
@@ -81,7 +83,7 @@ public class GenrerateQrController {
 	}
 	
 	
-	@GetMapping("/products/images/{fileName:.+}")
+	@GetMapping("/{fileName:.+}")
     public ResponseEntity<?> getQr(@PathVariable String fileName) {
         try {
             Resource file = fileService.loadFileAsResource(fileName,"QrImages");
