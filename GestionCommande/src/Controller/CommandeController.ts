@@ -162,7 +162,7 @@ export const AcceptCommand=async (req:Request,res:Response)=>{
     try{
       
        await Commande.findOneAndUpdate({NumCommande:req.params.num},{$set:{Status:"Available"}});
-       notifyNotificationService(req.body.userid,"Your Command Accepted");
+       //notifyNotificationService(req.body.userid,"Your Command Accepted");
        res.status(201).json("Accepted");
     }catch(e:any){
        res.status(500).json({message:e.message})
@@ -171,9 +171,8 @@ export const AcceptCommand=async (req:Request,res:Response)=>{
 
 export const RefusedCommand=async (req:Request,res:Response)=>{
     try{
-      
        await Commande.findOneAndUpdate({NumCommande:req.params.num},{$set:{Status:"Refused"}});
-       notifyNotificationService(req.body.userid,"Your Command Refused");
+       //notifyNotificationService(req.body.userid,"Your Command Refused");
        res.status(201).json("Refused");
     }catch(e:any){
        res.status(500).json({message:e.message})
@@ -292,4 +291,13 @@ export const deleteCommandeById = async (req: Request, res: Response) => {
     res.status(500).json(err);
   }
 };
+
+export const UpdateNameFacture =async (req:Request,res:Response)=>{
+    try{
+        await Commande.findOneAndUpdate({NumCommande:req.params.num},{$set:{NameFacture:req.body.NameFacture}});
+        res.status(200).json({ message: 'Name Added' });
+    }catch(err:any){
+        res.status(500).json({message:err.message})
+    }
+}
 
