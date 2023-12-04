@@ -10,6 +10,7 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
+import org.dsi.repository.NodeSync;
 import org.dsi.service.FileService;
 import org.dsi.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,7 @@ import com.google.zxing.qrcode.QRCodeWriter;
 
 import Payload.InfoFactureQr;
 import Payload.ProducInfo;
+import net.minidev.json.JSONObject;
 
 
 @RequestMapping("/codeQr")
@@ -44,19 +46,26 @@ public class GenrerateQrController {
 	
 	@Autowired
 	FileService fileService;
+	
+	@Autowired
+	NodeSync NodeSync;
 
-    
 	
 	@PutMapping("/GenerateCodeQr")
-	public InfoFactureQr getFacture(@RequestBody InfoFactureQr info){
+	public JSONObject getFacture(@RequestBody InfoFactureQr info){
 		try {
 			BufferedImage bufferedImage = generateQRCodeImage(info);
 			String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
 			String name_facture=timestamp+"_"+info.getNumCommande();
 			File outputfile = new File("C:\\Users\\talel\\Desktop\\Matrix-Masters\\DigitalMarket\\SprignBoot\\product-service\\QrImages\\"+name_facture+".jpg");
 			ImageIO.write(bufferedImage, "jpg", outputfile);
+			JSONObject NameJson=new JSONObject();
+			NameJson.appendField("NameFacture",name_facture+".jpg");
+			NodeSync.UpdateNameFacture(info.getNumCommande(), NameJson);
 			Path filePath = Paths.get("QrImages").resolve(name_facture).normalize();
-			return info;
+			JSONObject data=new JSONObject();
+			data.appendField("name",name_facture+".jpg");
+			return data;
 		}catch (Exception e) {
 			return null;
 		}
@@ -74,7 +83,7 @@ public class GenrerateQrController {
 	}
 	
 	
-	@GetMapping("/products/images/{fileName:.+}")
+	@GetMapping("/{fileName:.+}")
     public ResponseEntity<?> getQr(@PathVariable String fileName) {
         try {
             Resource file = fileService.loadFileAsResource(fileName,"QrImages");
