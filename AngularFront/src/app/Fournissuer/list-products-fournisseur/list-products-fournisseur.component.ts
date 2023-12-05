@@ -33,7 +33,7 @@ export class ListProductsFournisseurComponent implements OnInit {
 
   getProduct(){
     this.FournisseurServiceService.getProductFournisseur(
-        1,this.pagination.currentpage,this.pagination.per_page,this.search,this.Status
+        3,this.pagination.currentpage,this.pagination.per_page,this.search,this.Status
     ).subscribe((res:any)=>{
        this.Products=res.data.content;
        this.pagination.currentpage=res.page;
