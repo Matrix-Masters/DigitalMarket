@@ -38,5 +38,9 @@ export class ProductServiceService{
   GenerateCodeQr(commande:any){
       return this.http.put(`${port}/PRODUCT-SERVICE/codeQr/GenerateCodeQr`,commande);
   }
-  
+
+  getRecommandations(id:any){
+    return this.http.get(`${port}/PRODUCT-SERVICE/recommandations/getRecommandations?id=${id}`);
+  }
+
 }
