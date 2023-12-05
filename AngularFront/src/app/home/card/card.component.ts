@@ -15,7 +15,9 @@ isFavorite:boolean = false;
 constructor(public productServiceStorage:ProductsServiceLocalStorageService, private snackBar:MatSnackBar,private wishlistService: WishlistService,){}
 
 @Input() products:any
+@Input() productsRecommandations:any
 @Input() new:boolean = true;
+@Input() recommandations:boolean = true;
 
 
   toggleFavorite(id: any): void {
