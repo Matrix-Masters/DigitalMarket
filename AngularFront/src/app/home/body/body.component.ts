@@ -12,13 +12,16 @@ interface carouselImage{
 })
 export class BodyComponent  implements OnInit {
   products:any;
+  productsRecommandations:any
   constructor(public productService : ProductServiceService){}
   @Input() images : carouselImage[] = [];
   @Input() indicators = true;
   @Input() controls = true;
   selectedIndex=0;
+  id:any=19
   ngOnInit(): void {
     this.getProductNewArrivals();
+    this.getRecommandations();
   }
 
 
@@ -54,4 +57,18 @@ export class BodyComponent  implements OnInit {
       }
     )
   }
+
+  getRecommandations(){
+    this.productService.getRecommandations(this.id).subscribe(
+      res=>{
+        this.productsRecommandations=res;
+        console.log(this.productsRecommandations[0].product['imageProduct']);
+      },
+      err=>{
+        console.log(err);
+
+      }
+    )
+  }
+
 }
