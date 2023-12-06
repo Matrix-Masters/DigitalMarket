@@ -93,7 +93,7 @@ export const GetCommandeByIdUser=async (req:Request,res:Response)=>{
     try{
         const listCommandes=await Commande.find({
             $and: [
-                {  Client_id:req.params.Client_id, },
+                {   Client_id:req.params.Client_id, },
                 {   Status:"Taken", },
             ]
         }).exec();
@@ -298,6 +298,44 @@ export const UpdateNameFacture =async (req:Request,res:Response)=>{
         res.status(200).json({ message: 'Name Added' });
     }catch(err:any){
         res.status(500).json({message:err.message})
+    }
+}
+
+
+export const CalculerWalletSupplier=async (req:Request,res:Response)=>{
+    try{
+           const productsPropre=req.body.Products;
+           var walletDigital=0;
+           var wallet=0;
+           const commandes = await Commande.find({
+                Status: "Taken",
+            }).populate('LigneCommandes').exec();
+            var pourcentage=0;
+            if (commandes.length > 0) {
+                for (let i = 0; i < commandes.length; i++) {
+                   const ligneCommandes=commandes[i].LigneCommandes;
+                   for(let j=0;j<ligneCommandes.length;j++){
+                      for(let compt=0;compt<productsPropre.length;compt++){
+                        if(productsPropre[compt]==ligneCommandes[j].Product_id){
+                            wallet+=(ligneCommandes[j].prix*ligneCommandes[j].Quantity);
+                            if(ligneCommandes[j].prix<100){
+                                pourcentage=5;
+                            }else if(ligneCommandes[j].prix>=100 && ligneCommandes[j].prix<=500){
+                                pourcentage=8;
+                            }else if(ligneCommandes[j].prix>500){
+                                pourcentage=12;
+                            }
+                            walletDigital+=(ligneCommandes[j].prix*pourcentage/100)*ligneCommandes[j].Quantity;
+                        }
+                      }
+                   }
+                }
+                res.status(200).json({wallet:wallet-walletDigital});
+            } else {
+                res.status(404).json({ message: "Not Found" });
+            }
+    }catch(e:any){
+        res.status(500).json({message:e.message})
     }
 }
 
