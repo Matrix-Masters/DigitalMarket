@@ -123,4 +123,14 @@ public class ProductService {
 		    return products;
 		}
 	  
+	  	public List<Integer> getProductsByIdUser(long id) throws Exception {
+		  
+		    List<Integer> products = ProductRepo.getProductsByIdUser(id);
+		    
+		    if (products.isEmpty()) {
+		        throw new Exception("Products Not Found");
+		    }
+		    return products;
+		}
+	  
 }
