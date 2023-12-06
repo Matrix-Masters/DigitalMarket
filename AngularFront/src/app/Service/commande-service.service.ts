@@ -47,10 +47,16 @@ export class CommandeServiceService {
     return this.http.put(`${port}/GESTIONCOMMANDE-SERVICE/Commande/ChangerLocationLivreur/${num}`,Location);
   }
   getCommandeByIdClient(id:any,page:any,limit:any){
-  return this.http.get(`${port}/GESTIONCOMMANDE-SERVICE/Commande/getCommandesByClient?Client_id=${id}&page=${page}&size=${limit}`)
+    return this.http.get(`${port}/GESTIONCOMMANDE-SERVICE/Commande/getCommandesByClient?Client_id=${id}&page=${page}&size=${limit}`)
   }
+
   deleteCommandeById(id:any){
-  return this.http.delete(`${port}/GESTIONCOMMANDE-SERVICE/Commande/deleteCommande?id=${id}`)
+    return this.http.delete(`${port}/GESTIONCOMMANDE-SERVICE/Commande/deleteCommande?id=${id}`)
+  }
+
+  CalculerWalletSupplier(tab:any){
+      console.log(tab);
+      return this.http.post(`${port}/GESTIONCOMMANDE-SERVICE/Commande/CalculerWalletSupplier`,tab);
   }
 
 }
