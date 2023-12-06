@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 
 let LignCommandeSchema=new mongoose.Schema({
-    
     Quantity:{
         type:String,
         required:true
@@ -18,7 +17,6 @@ let LignCommandeSchema=new mongoose.Schema({
         type:String,
         required:true,
     },
-    
 })
 
 const LigneCommande=mongoose.model("LigneCommande",LignCommandeSchema)

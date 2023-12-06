@@ -387,6 +387,17 @@ public class ProductController {
 
 	}
 	
+	@GetMapping("/getProductsByIdUser")
+	public ResponseEntity<?> getProductsByIdUser(@RequestParam("id") long id){
+		try {
+				List<Integer> products=ProductService.getProductsByIdUser(id);
+		        return ResponseEntity.status(HttpStatus.OK).body(products);
+		} catch (Exception e) {
+			e.printStackTrace();
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while fetching paginated products.");
+		}
+	}
+	
 	
 	
 	

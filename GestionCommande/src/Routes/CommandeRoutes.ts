@@ -8,7 +8,8 @@ import { addCommande,GetCommandeDispo,AddLivraison,
          AcceptCommand,
          deleteCommande,
          deleteCommandeById,
-         UpdateNameFacture} from "../Controller/CommandeController"
+         UpdateNameFacture,
+         CalculerWalletSupplier} from "../Controller/CommandeController"
 
 
 module.exports=(router:any)=>{
@@ -25,4 +26,5 @@ module.exports=(router:any)=>{
     router.get('/getCommandesByClient',getCommandesByClientPaginate);
     router.delete('/deleteCommande',deleteCommandeById);
     router.put('/UpdateNameFacture/:num',UpdateNameFacture)
+    router.post('/CalculerWalletSupplier',CalculerWalletSupplier)
 }
