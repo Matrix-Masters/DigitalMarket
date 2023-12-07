@@ -3,6 +3,7 @@ import { ProductsServiceLocalStorageService } from 'src/app/Service/products-ser
 import { Product } from '../../Model/Product';
 import { WishlistService } from 'src/app/Service/wishlist.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ProductServiceService } from 'src/app/Service/product-service.service';
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -11,8 +12,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 export class CardComponent  implements OnInit{
 isFavorite:boolean = false;
-
-constructor(public productServiceStorage:ProductsServiceLocalStorageService, private snackBar:MatSnackBar,private wishlistService: WishlistService,){}
+user_id:any=21
+constructor(public productServiceStorage:ProductsServiceLocalStorageService, private snackBar:MatSnackBar,private wishlistService: WishlistService,private productService:ProductServiceService){}
 
 @Input() products:any
 @Input() productsRecommandations:any
@@ -51,6 +52,16 @@ constructor(public productServiceStorage:ProductsServiceLocalStorageService, pri
       );
   }
 
+  addCount(product_id:any,count:any){
+    this.productService.addCount(this.user_id,product_id,count).subscribe(
+      (response: any) => {
+        console.log('count added successfully', response);
+      },
+      (error: any) => {
+        console.error('Error adding to wishlist', error);
+      }
+    )
+  }
   addProduct(product: any) {
     this.productServiceStorage.addProduct(product);
       this.snackBar.open("Product Added",'',{
