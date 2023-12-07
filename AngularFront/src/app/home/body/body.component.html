@@ -43,7 +43,7 @@
 <div class="procucts d-flex" style="width: 100%;">
   <div class="products-paginate container " style="margin-top: 70px;">
     <div class="row2 row flex-wrap">
-      <div class="col2 col-md-6 col-sm-6 col-12 col-xl-4 col-lg-6 d-flex justify-content-center" style="margin-bottom: 40px;position: relative;" *ngFor="let item of products">
+      <div class="col2 col-md-6 col-sm-12 col-12 col-xl-4 col-lg-6 d-flex justify-content-center" style="margin-bottom: 40px;position: relative;" *ngFor="let item of products">
         <app-card [products]="item" [new]="true" [recommandations]="false"></app-card>
       </div>
     </div>
@@ -76,7 +76,7 @@
 <div class="top-seller procucts d-flex" style="width: 100%;">
   <div class="products-paginate container " style="margin-top: 70px;">
     <div class="row2 row py-2">
-      <div class="col2  col-md-6 col-sm-6 col-12 col-xl-4 col-lg-6 py-2 d-flex justify-content-center" style="margin-bottom: 40px;position: relative;" *ngFor="let item of products">
+      <div class="col2  col-md-6 col-sm-12 col-12 col-xl-4 col-lg-6 py-2 d-flex justify-content-center" style="margin-bottom: 40px;position: relative;" *ngFor="let item of products">
         <app-card class="centered-card" [products]="item" [new]="false" [recommandations]="false"></app-card>
       </div>
     </div>
@@ -100,7 +100,7 @@
 <div class="top-seller procucts d-flex" style="width: 100%;">
   <div class="products-paginate container " style="margin-top: 70px;">
     <div class="row2 row py-2">
-      <div class="col2  col-md-6 col-sm-6 col-12 col-xl-4 col-lg-6 py-2 d-flex justify-content-center" style="margin-bottom: 40px;position: relative;" *ngFor="let item of productsRecommandations">
+      <div class="col2  col-md-6 col-sm-12 col-12 col-xl-4 col-lg-6 py-2 d-flex justify-content-center" style="margin-bottom: 40px;position: relative;" *ngFor="let item of productsRecommandations">
         <app-card class="centered-card" [productsRecommandations]="item" [new]="false" [recommandations]="true"></app-card>
       </div>
     </div>
