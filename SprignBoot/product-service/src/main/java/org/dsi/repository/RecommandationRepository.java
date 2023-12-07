@@ -16,5 +16,9 @@ public interface RecommandationRepository extends JpaRepository<Recommandation, 
 	   
 	   @Query(value = "select * from recommandation order by count limit 6",nativeQuery=true)
 	   List<Recommandation> getDefaultRecommandations();
+	   
+	   @Query(value = "select * from recommandation where user_id=:user_id and product_id=:product_id",nativeQuery=true)
+	   Recommandation checkRecommandation(Long user_id,Long product_id);
 
+	  
 }
