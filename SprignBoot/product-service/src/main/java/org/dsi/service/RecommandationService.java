@@ -1,6 +1,9 @@
 package org.dsi.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.dsi.entity.Product;
 import org.dsi.entity.Recommandation;
@@ -19,16 +22,31 @@ public class RecommandationService {
 	ProductRepo productRepository;
 	
 	public List<Recommandation> getRecommandations(Long id) {
-
+		
 	    List<Recommandation> defaultRecommandations = recommandationRepository.getDefaultRecommandations();
 	    List<Recommandation> recommandationsById = recommandationRepository.getRecommandationsById(id);
-
+	   
+	    
+	    
+	    for(int i=0;i<defaultRecommandations.size()-1;i++) {
+	    	for(int j=i+1;j<defaultRecommandations.size();j++) {
+	    		if(defaultRecommandations.get(i).getProduct().getId()==defaultRecommandations.get(j).getProduct().getId()) {
+	    			if(defaultRecommandations.get(i).getCount()>defaultRecommandations.get(j).getCount()) {
+	    				defaultRecommandations.remove(i);
+	    			}else {
+	    				defaultRecommandations.remove(j);
+	    			}
+	    		}
+	    	}
+	    }
+	    
 	    if (recommandationsById.size() < 6) {
 	       return defaultRecommandations;  
 	    } else {
 	       return recommandationsById;
 	    }
 	}
+	
 	
 	
 	public void addCount(Long user_id,Long product_id,int count) {
