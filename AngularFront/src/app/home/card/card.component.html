@@ -23,7 +23,7 @@
           <figcaption class="product-info-description">
               <div class="d-flex justify-content-between">
                 <h2 class="title mt-2">{{products['name']}}</h2>
-                <button mat-icon-button  class="" (click)="toggleFavorite(products['id'])">
+                <button mat-icon-button  class="" (click)="toggleFavorite(products['id']);addCount(products['id'],15)">
                   <mat-icon [style.color]="isFavorite? 'red' : 'gray'" mat-fab>favorite</mat-icon>
                 </button>
               </div>
@@ -42,7 +42,7 @@
                       <ins class="d-block">{{products['prix']}} TND</ins>
                   </div>
               </div>
-              <button href="#" class="btn btn-buy" (click)="addProduct(products)">Buy now <i class="fas fa-arrow-right"></i></button>
+              <button href="#" class="btn btn-buy" (click)="addProduct(products);addCount(products['id'],30)">Buy now <i class="fas fa-arrow-right"></i></button>
           </div>
       </figure>
     </li>
