@@ -42,5 +42,8 @@ export class ProductServiceService{
   getRecommandations(id:any){
     return this.http.get(`${port}/PRODUCT-SERVICE/recommandations/getRecommandations?id=${id}`);
   }
+  addCount(user_id:any,product_id:any,count:any){
+    return this.http.post(`${port}/PRODUCT-SERVICE/recommandations/addRecommandation?user_id=${user_id}&product_id=${product_id}&count=${count}`,{});
+  }
 
 }
