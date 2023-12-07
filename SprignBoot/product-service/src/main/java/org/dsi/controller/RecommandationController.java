@@ -8,6 +8,7 @@ import org.dsi.service.RecommandationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,6 +33,20 @@ public class RecommandationController {
 			return null;
 		}
 		
+	}
+	
+	@PostMapping("/addRecommandation")
+	public ResponseEntity<?> addRecommandation(@RequestParam("user_id") Long user_id,@RequestParam("product_id") Long product_id, @RequestParam("count") int count){
+		
+		try {
+			
+			recommandationService.addCount(user_id, product_id, count);
+			return ResponseEntity.ok("Recommandation added or updated successfuly ");
+			
+		}catch(Exception e) {
+			
+			return null;
+		}
 	}
 
 }
