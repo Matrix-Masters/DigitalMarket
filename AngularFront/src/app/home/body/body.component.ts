@@ -18,7 +18,7 @@ export class BodyComponent  implements OnInit {
   @Input() indicators = true;
   @Input() controls = true;
   selectedIndex=0;
-  id:any=19
+  id:any=21
   ngOnInit(): void {
     this.getProductNewArrivals();
     this.getRecommandations();
@@ -62,7 +62,7 @@ export class BodyComponent  implements OnInit {
     this.productService.getRecommandations(this.id).subscribe(
       res=>{
         this.productsRecommandations=res;
-        console.log(this.productsRecommandations[0].product['imageProduct']);
+        console.log(this.productsRecommandations);
       },
       err=>{
         console.log(err);
