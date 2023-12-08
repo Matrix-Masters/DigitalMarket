@@ -42,5 +42,8 @@ export class ProductServiceService{
   getProductsByIdUser(id:any){
     return this.http.get(`${port}/PRODUCT-SERVICE/products/getProductsByIdUser?id=${id}`);
   }
-
+  
+  IncrementNbSales(id:any){
+    return this.http.put(`${port}/PRODUCT-SERVICE/products/IncrementNbSales?id=${id}`,{});
+  }
 }

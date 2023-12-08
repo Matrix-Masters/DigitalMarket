@@ -98,11 +98,21 @@ export class GererCommandeComponent {
        "userid":2
      }).subscribe((res:any)=>{
         this.getCommande();
+        this.IncermetnbSalesProduct(commande);
         this.GererFactureWithCodeQr(commande);
         this.MatSnackBar.open("Accept Commande",'close',{
           duration:3000
         })
      })
+  }
+
+  IncermetnbSalesProduct(commande:any){
+    commande.LigneCommandes.forEach((val: any) => {
+      var idProduct = val.Product_id;
+      this.ProductServiceService.IncrementNbSales(idProduct).subscribe((res:any)=>{
+         console.log(res);
+      })
+    })
   }
 
   GererFactureWithCodeQr(commande: any) {
