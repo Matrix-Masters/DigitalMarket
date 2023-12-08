@@ -57,6 +57,7 @@ public class UserInfoService {
 				newuser.setPassword(user.getPassword());
 				newuser.setNumTlf(user.getNumTlf());
 				newuser.setPhoto(null);
+				newuser.setStatus(0);
 				newuser.setSexe(user.getSexe());
 				newuser.setPhotoCin(user.getPhotoCin());
 				newuser.setRole(user.getRole());

@@ -12,7 +12,6 @@ eureka_client.init(eureka_server="http://localhost:8761/eureka",
 
 app = Flask(__name__)
 
-
 if not os.path.exists(r'C:\Users\talel\Desktop\PythonIA\uploads'):
     os.makedirs(r'C:\Users\talel\Desktop\PythonIA\uploads')
 
