@@ -3,20 +3,35 @@ package com.example.digitalmarket.signup
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.example.digitalmarket.LoginActivity
+import com.example.digitalmarket.Models.User
 import com.example.digitalmarket.R
+import com.example.digitalmarket.api.ServiceBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import java.io.File
+import java.util.jar.Manifest
 
 lateinit var RadioLayout:TextInputLayout
 lateinit var radioGroup:RadioGroup
@@ -27,7 +42,9 @@ lateinit var imageView: ImageView
 lateinit var uploadcard:TextView
 private  val PICK_IMAGE_REQUEST = 1
 lateinit var ContainerPhoto:LinearLayout
+lateinit var imageFile: File
 var upload = false
+private const val PERMISSION_REQUEST_CODE = 1
 class signupstep_three : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +61,7 @@ class signupstep_three : AppCompatActivity() {
         uploadcard=findViewById(R.id.uploadcard)
         DescText=findViewById(R.id.descSignup)
         ContainerPhoto=findViewById(R.id.ContainerPhoto)
-        if(role.toString()=="client"){
+        if(role.toString()=="Client"){
             ContainerPhoto.visibility=View.GONE
             uploadcard.visibility=View.GONE
         }
@@ -66,6 +83,31 @@ class signupstep_three : AppCompatActivity() {
         //Navigate to login with Message
         fun LoginWithSuccess(){
             //Send Message to Login
+            val scope = CoroutineScope(Dispatchers.Main)
+            scope.launch {
+                try {
+                    val gendre = if (radioButtonFemme.isChecked) {
+                        "Female"
+                    } else {
+                        "Male"
+                    }
+                    if(role=="Client"){
+                        var user=User(name,lastname,email,password,num_tlf,null,gendre,null,role);
+                        ServiceBuilder.apiService.CreateAnAccount(user);
+                    }else{
+                        val requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), imageFile)
+                        val imagePart = MultipartBody.Part.createFormData("image", imageFile.name, requestFile)
+                        val response = ServiceBuilder.apiService.ExtractData(imagePart);
+                        val responseData = response.toString();
+                        Log.i("test", "Response from Python: $responseData")
+                        var user=User(name,lastname,email,password,num_tlf,null,gendre,null,role);
+                        ServiceBuilder.apiService.CreateAnAccount(user);
+                        Log.i("test", "Response from Python: $responseData")
+                    }
+                }catch (e:Exception){
+                    Log.i("Errror",e.toString());
+                }
+            }
             var message=name.toString() + " Added With Success";
             val intent= Intent(this,LoginActivity::class.java)
             intent.putExtra("message",message);
@@ -74,7 +116,7 @@ class signupstep_three : AppCompatActivity() {
 
         signupbtn.setOnClickListener {
             if(TestAllValid()){
-                var Required = role != "client"
+                var Required = role != "Client"
                 if(!upload && Required){
                     UploadFile.error = ""
                     UploadFile.text = "Image upload is required"
@@ -133,17 +175,78 @@ class signupstep_three : AppCompatActivity() {
     fun pickImage(view: View) {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         startActivityForResult(intent, PICK_IMAGE_REQUEST)
+        requestPermissionsIfNeeded(view);
     }
 
-    //Chose Image
+
+    // Chose Image
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK) {
             val selectedImageUri = data?.data
             imageView.setImageURI(selectedImageUri)
-            upload=true;
-            clearError()
+
+            // Use ContentResolver to open an InputStream for the selected image URI
+            try {
+                val inputStream = contentResolver.openInputStream(selectedImageUri!!)
+                // Now you can use the inputStream to read the content of the selected image
+                // For example, you can use BitmapFactory to decode the stream into a Bitmap
+                // val bitmap = BitmapFactory.decodeStream(inputStream)
+
+                // Your further processing with the inputStream...
+
+                imageFile = File(getRealPathFromURI(selectedImageUri))
+                upload = true
+                clearError()
+            } catch (e: Exception) {
+                e.printStackTrace()
+                // Handle any exceptions that may occur when opening the input stream
+                // For example, you can show an error message to the user
+                Toast.makeText(this, "Error opening image", Toast.LENGTH_SHORT).show()
+            }
         }
     }
+
+    private fun getRealPathFromURI(uri: Uri?): String? {
+        val projection = arrayOf(MediaStore.Images.Media.DATA)
+        val cursor = contentResolver.query(uri!!, projection, null, null, null)
+        cursor?.use {
+            if (it.moveToFirst()) {
+                val columnIndex = it.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+                return it.getString(columnIndex)
+            }
+        }
+        return null
+    }
+    private fun requestPermissionsIfNeeded(v: View) {
+        val permission = android.Manifest.permission.READ_EXTERNAL_STORAGE
+        if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(permission), PERMISSION_REQUEST_CODE)
+        } else {
+            // Permission already granted, perform your operations here
+            pickImage(v)
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            PERMISSION_REQUEST_CODE -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // Permission granted, perform your operations here
+                    pickImage(findViewById(android.R.id.content))
+                } else {
+                    // Permission denied, handle accordingly
+                    Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+
 }
 
