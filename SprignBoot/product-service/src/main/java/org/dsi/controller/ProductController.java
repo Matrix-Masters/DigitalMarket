@@ -72,6 +72,14 @@ public class ProductController {
 		return ResponseEntity.ok(product);
 	}
 	
+	@PutMapping("/IncrementNbSales")
+	public ResponseEntity<?> IncrementNbSales(@RequestParam("id") Long id){
+		Product product = ProductRepo.findProductById(id);
+		product.setNbSales(product.getNbSales()+1);
+		ProductRepo.save(product);
+		return ResponseEntity.ok(product);
+	}
+	
 	@GetMapping("/AllProduct")
 	public ResponseEntity<?> getAllProductPaginate(
     		@RequestParam(name="search",defaultValue="") String name,
