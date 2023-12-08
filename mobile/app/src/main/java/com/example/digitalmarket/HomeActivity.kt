@@ -27,7 +27,7 @@ class HomeActivity : AppCompatActivity() {
                 .rotation(360f)
                 .setDuration(500)
                 .withEndAction {
-                    goSignup("client")
+                    goSignup("Client")
                     btnClient.animate()
                         .scaleX(1.0f)
                         .scaleY(1.0f)
@@ -48,7 +48,7 @@ class HomeActivity : AppCompatActivity() {
                 .rotation(360f)
                 .setDuration(500)
                 .withEndAction {
-                    goSignup("supplier")
+                    goSignup("Supplier")
                     btnSupplier.animate()
                         .scaleX(1.0f)
                         .scaleY(1.0f)

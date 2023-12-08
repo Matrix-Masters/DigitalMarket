@@ -24,8 +24,6 @@ import { ListProductsFournisseurComponent } from './Fournissuer/list-products-fo
 import { ContractComponent } from './Fournissuer/contract/contract.component';
 import { EditProfileComponent } from './EditProfile/edit-profile/edit-profile.component';
 
-
-
 const routes: Routes = [
    {path:'',component:HomeComponent},
    {path:'classer',component:ClasserProductComponent},
