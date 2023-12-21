@@ -8,6 +8,8 @@ import java.util.List;
 
 import org.dsi.entity.Category;
 import org.dsi.entity.Product;
+import org.dsi.entity.ProductImages;
+import org.dsi.repository.ImageProduct;
 import org.dsi.repository.NodeSync;
 import org.dsi.repository.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,9 @@ public class ProductService {
 
 	  @Autowired
 	  ProductRepo ProductRepo;
+	  
+	  @Autowired
+	  ImageProduct ImageProduct;
 	  
 		@Autowired
 		private NodeSync nodesync;
@@ -54,6 +59,23 @@ public class ProductService {
 	  			jsoUser.appendField("idUser",0);
 	  			jsoUser.appendField("idSpring",prod.getId());*/
 	  			//String prod1=nodesync.addProd(jsoUser);
+			} catch (IllegalStateException | IOException e) {
+				e.printStackTrace();
+			}
+	  }
+	  
+	  public void AddImagesService(MultipartFile file,Long id) {
+		    String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+		    String fileName =  timestamp+"_"+file.getOriginalFilename();
+			String uploadDir = "ProductPhotos/";
+			ProductImages prod=new ProductImages();
+			try {
+				FileUpload.saveFile(uploadDir, fileName, file);
+				Product product=ProductRepo.findById(id).get();
+				prod.setImagePriorite((long) 0);
+				prod.setImageProduct(fileName);
+				prod.setProduct(product);
+				ImageProduct.save(prod);
 			} catch (IllegalStateException | IOException e) {
 				e.printStackTrace();
 			}
