@@ -408,6 +408,15 @@ public class ProductController {
 	
 	
 	
+	@PostMapping("/AddImages")
+	public ResponseEntity<?> AddImages(@RequestParam("file") MultipartFile file,
+			@RequestParam("idProduct") Long idProduct){
+				ProductService.AddImagesService(file, idProduct);
+				return ResponseEntity.status(HttpStatus.OK).body("Add images");		
+	}
+	
+	
+	
 	
 	
 
