@@ -183,5 +183,15 @@ public class ProductService {
 		public void deleteImage(long id) {
 			ImageProductRepo.deleteById(id);
 		}
+		
+		public void IncrementQteProd(long id,int qte) throws Exception {
+			    Product prod=ProductRepo.ProductWithId(id);
+			  	if(prod==null) {
+			  	   throw new Exception("Product Not Found");
+			  	}else {
+			  		prod.setQuantite(qte);
+					ProductRepo.save(prod);
+			  	}
+		}
 	  
 }

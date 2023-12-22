@@ -437,8 +437,22 @@ public class ProductController {
 	public ResponseEntity<?> DeleteImage(@RequestParam("id") long id){
 		  ProductService.deleteImage(id);
 		  JSONObject json=new JSONObject();
-	      json.appendField("data","Change with success");
+	      json.appendField("data","Delete with success");
 	      return ResponseEntity.ok(json);
 	}
+	
+	@PutMapping("/IncrementQteProd")
+	public ResponseEntity<?> IncrementQteProd(@RequestParam("id") long id,@RequestParam("qte") int qte){
+		  try {
+			  ProductService.IncrementQteProd(id, qte);
+			  JSONObject json=new JSONObject();
+		      json.appendField("data","Change Qte with success");
+		      return ResponseEntity.ok(json);
+		} catch (Exception e) {
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while fetching paginated products.");
+		}
+		  
+	}
+	
 
 }
