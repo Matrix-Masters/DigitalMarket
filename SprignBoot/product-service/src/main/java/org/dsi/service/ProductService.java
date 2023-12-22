@@ -179,5 +179,9 @@ public class ProductService {
 			ImageProductRepo.save(prod2);
 			
 		}
+		
+		public void deleteImage(long id) {
+			ImageProductRepo.deleteById(id);
+		}
 	  
 }

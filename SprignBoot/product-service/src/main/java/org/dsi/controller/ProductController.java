@@ -432,5 +432,13 @@ public class ProductController {
 	      json.appendField("data","Change with success");
 	      return ResponseEntity.ok(json);
 	}
+	
+	@DeleteMapping("/DeleteImage")
+	public ResponseEntity<?> DeleteImage(@RequestParam("id") long id){
+		  ProductService.deleteImage(id);
+		  JSONObject json=new JSONObject();
+	      json.appendField("data","Change with success");
+	      return ResponseEntity.ok(json);
+	}
 
 }
