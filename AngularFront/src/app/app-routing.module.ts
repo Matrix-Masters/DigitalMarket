@@ -24,6 +24,7 @@ import { ListProductsFournisseurComponent } from './Fournissuer/list-products-fo
 import { ContractComponent } from './Fournissuer/contract/contract.component';
 import { EditProfileComponent } from './EditProfile/edit-profile/edit-profile.component';
 import { StockAdminComponent } from './AdminCompoenent/stock-admin/stock-admin.component';
+import { ImageProductComponent } from './AdminCompoenent/image-product/image-product.component';
 
 const routes: Routes = [
    {path:'',component:HomeComponent},
@@ -50,6 +51,7 @@ const routes: Routes = [
    {path:"ContractComponent",component:ContractComponent},
    {path:"editProfile",component:EditProfileComponent},
    {path:"stockadmin",component:StockAdminComponent},
+   {path:"ImageProduct/:id",component:ImageProductComponent},
    {path:"**",component:NotFoundComponentComponent}
 ]
 
