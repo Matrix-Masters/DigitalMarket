@@ -9,7 +9,9 @@
   margin-top: 12px;
   justify-content:center ;
 }
-
+.modal {
+  z-index: 1050; 
+}
 .example-list {
     width: 500px;
     max-width: 100%;

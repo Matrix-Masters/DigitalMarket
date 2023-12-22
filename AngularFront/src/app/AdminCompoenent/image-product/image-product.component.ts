@@ -36,6 +36,12 @@ export class ImageProductComponent implements OnInit {
       this.getImages(this.id);
     })
   }
+  
+  deleteImage(id:any){
+    this.ProductServiceService.DeleteImage(id).subscribe((data:any)=>{
+      this.getImages(this.id);
+    })
+  }
 
   image:any
   onFileChanged(event: any) {

@@ -64,4 +64,8 @@ export class ProductServiceService{
   ChangerPriorite(id1:number,id2:number){
     return this.http.put(`${port}/PRODUCT-SERVICE/products/ChangerPriorite?idProd1=${id1}&idProd2=${id2}`,{});
   }
+
+  DeleteImage(id:number){
+    return this.http.delete(`${port}/PRODUCT-SERVICE/products/DeleteImage?id=${id}`);
+  }
 }
