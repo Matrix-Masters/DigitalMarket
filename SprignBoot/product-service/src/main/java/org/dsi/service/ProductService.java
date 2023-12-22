@@ -31,7 +31,7 @@ public class ProductService {
 	  ProductRepo ProductRepo;
 	  
 	  @Autowired
-	  ImageProduct ImageProduct;
+	  ImageProduct ImageProductRepo;
 	  
 		@Autowired
 		private NodeSync nodesync;
@@ -64,7 +64,7 @@ public class ProductService {
 			}
 	  }
 	  
-	  public void AddImagesService(MultipartFile file,Long id) {
+	  public void AddImagesService(MultipartFile file,Long id) throws Exception {
 		    String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
 		    String fileName =  timestamp+"_"+file.getOriginalFilename();
 			String uploadDir = "ProductPhotos/";
@@ -72,10 +72,15 @@ public class ProductService {
 			try {
 				FileUpload.saveFile(uploadDir, fileName, file);
 				Product product=ProductRepo.findById(id).get();
-				prod.setImagePriorite((long) 0);
+				List<ProductImages> imagesPrio=this.ImagesProducts(id);
+				if (imagesPrio.size()!=0) {
+					prod.setImagePriorite(imagesPrio.get(imagesPrio.size()-1).getImagePriorite()+1);
+				}else {
+					prod.setImagePriorite((long) 0);
+				}
 				prod.setImageProduct(fileName);
 				prod.setProduct(product);
-				ImageProduct.save(prod);
+				ImageProductRepo.save(prod);
 			} catch (IllegalStateException | IOException e) {
 				e.printStackTrace();
 			}
@@ -153,6 +158,26 @@ public class ProductService {
 		        throw new Exception("Products Not Found");
 		    }
 		    return products;
+		}
+	  	
+		public List<ProductImages> ImagesProducts(long id) {
+		    List<ProductImages> productsImages = ImageProductRepo.getImagesProducts(id);
+		    return productsImages;
+		}
+		
+		public void ChangerPriorite(long idProd1,long idProd2) {
+			long prior1=ImageProductRepo.findById(idProd1).get().getImagePriorite();
+			long prior2=ImageProductRepo.findById(idProd2).get().getImagePriorite();
+			
+			ProductImages prod1=ImageProductRepo.findById(idProd1).get();
+			prod1.setImagePriorite(prior2);
+			
+			ProductImages prod2=ImageProductRepo.findById(idProd2).get();
+			prod2.setImagePriorite(prior1);
+			
+			ImageProductRepo.save(prod1);
+			ImageProductRepo.save(prod2);
+			
 		}
 	  
 }
