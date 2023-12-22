@@ -46,4 +46,22 @@ export class ProductServiceService{
   IncrementNbSales(id:any){
     return this.http.put(`${port}/PRODUCT-SERVICE/products/IncrementNbSales?id=${id}`,{});
   }
+
+  AllProduct(page:number,pageSize:number,search:string){
+    return this.http.get(`${port}/PRODUCT-SERVICE/products/AllProduct?page=${page}&per_page=${pageSize}${search!='' ? `&search=${search}` : ''}`);
+  }
+
+  ImageProducts(id:number){
+    return this.http.get(`${port}/PRODUCT-SERVICE/products/ImageProducts?id=${id}`);
+  }
+
+  AddImages(image:any,id:number){
+    const formData = new FormData();
+    formData.append('file', image);
+    return this.http.post(`${port}/PRODUCT-SERVICE/products/AddImages?idProduct=${id}`,formData);
+  } 
+
+  ChangerPriorite(id1:number,id2:number){
+    return this.http.put(`${port}/PRODUCT-SERVICE/products/ChangerPriorite?idProd1=${id1}&idProd2=${id2}`,{});
+  }
 }
