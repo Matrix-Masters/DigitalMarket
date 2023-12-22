@@ -1,6 +1,71 @@
 <app-side-bar-comp>
     <app-navbar-comp></app-navbar-comp>
-    <div class="m-4">
-        <p>stock-admin works!</p>
-    </div>
+    <div class="dashboard m-4">
+        <p class="titre">Products</p>
+       <div class="filter mt-2 py-3">
+            <div>
+               <mat-form-field appearance="fill" >
+                   <mat-label>Fill form field</mat-label>
+                   <input matInput placeholder="Search By Name" [(ngModel)]="search" (input)="onSearchChange()">
+                   <mat-icon matSuffix>manage_search</mat-icon>
+                 </mat-form-field>
+            </div>
+       </div>
+       <div>
+           <table class="table table-responsive"  data-aos="fade-right">
+             <thead class="table table-sm">
+                 <tr class="text-center">
+                   <th scope="col">#</th>
+                   <th scope="col">Image</th>
+                   <th scope="col">Name</th>
+                   <th scope="col">Operation</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr *ngFor="let product of Products" class="text-center" style="padding: 35px;" >
+                    <td class="mt-5 py-5">{{product.id}}</td>
+                     <td>
+                       <img width="50px" [src]="'http://localhost:8888/PRODUCT-SERVICE/products/images/' + product.imageProduct" >
+                     </td>
+                     <td class="mt-5 py-5">{{product.name}}</td>
+                     <td class="mt-5 py-5">
+                        <button  [routerLink]="'/ImageProduct/'+product.id" mat-mini-fab color="primary">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                    </td>
+                 </tr>
+               </tbody>
+             </table>
+       </div>
+       <div class="paginator mt-3">
+           <nav aria-label="Page navigation example">
+               <ul class="pagination justify-content-center">
+                 <li class="page-item">
+                   <a class="page-link" [class.disabled]="pagination.previous==true"   (click)="changerPage(pagination.currentpage-1)">
+                       Previous
+                   </a>
+                 </li>
+                 <li class="page-item" *ngFor="let item of pagination.count_page;let index as i">
+                        <a class="page-link" [class.active]="index==pagination.currentpage" (click)="changerPage(index)">
+                             {{index+1}}
+                       </a>
+                  </li>
+                 <li class="page-item">
+                   <a class="page-link" [class.disabled]="pagination.next==true" (click)="changerPage(pagination.currentpage+1)">
+                       Next
+                   </a>
+                 </li>
+               </ul>
+             </nav>
+             <div>
+               <select name="per_page" class="form-control"  [(ngModel)]="selectedPerPage" (ngModelChange)="onPerPageChange()" >
+                   <option value="2" >2</option>
+                   <option value="3">3</option>
+                   <option value="4">4</option>
+                   <option value="5">5</option>
+                   <option value="10">10</option>
+                </select>
+             </div>
+       </div>
+</div>
 </app-side-bar-comp>
