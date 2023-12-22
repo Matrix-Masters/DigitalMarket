@@ -3,6 +3,7 @@ package org.dsi.controller;
 import org.dsi.entity.Category;
 
 import org.dsi.entity.Product;
+import org.dsi.entity.ProductImages;
 import org.dsi.repository.ProductRepo;
 import org.dsi.service.FileUpload;
 import org.dsi.service.ProductService;
@@ -409,15 +410,27 @@ public class ProductController {
 	
 	
 	@PostMapping("/AddImages")
-	public ResponseEntity<?> AddImages(@RequestParam("file") MultipartFile file,
-			@RequestParam("idProduct") Long idProduct){
-				ProductService.AddImagesService(file, idProduct);
-				return ResponseEntity.status(HttpStatus.OK).body("Add images");		
+	public ResponseEntity<?> AddImages(@RequestParam("file") MultipartFile file,@RequestParam("idProduct") long idProduct) throws Exception{
+				  ProductService.AddImagesService(file, idProduct);
+				  JSONObject json=new JSONObject();
+			      json.appendField("data","Add images");
+			      return ResponseEntity.ok(json);	
 	}
 	
+	@GetMapping("/ImageProducts")
+	public ResponseEntity<?> ImageProducts(@RequestParam("id") long id){
+			  List<ProductImages> products=ProductService.ImagesProducts(id);
+			  JSONObject json=new JSONObject();
+		      json.appendField("data",products);
+		      return ResponseEntity.ok(json);
+	}
 	
-	
-	
-	
+	@PutMapping("/ChangerPriorite")
+	public ResponseEntity<?> ChangerPriorite(@RequestParam("idProd1") long idProd1,@RequestParam("idProd2") long idProd2){
+		  ProductService.ChangerPriorite(idProd1,idProd2);
+		  JSONObject json=new JSONObject();
+	      json.appendField("data","Change with success");
+	      return ResponseEntity.ok(json);
+	}
 
 }
