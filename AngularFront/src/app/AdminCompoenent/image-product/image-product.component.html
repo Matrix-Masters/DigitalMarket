@@ -1,0 +1,27 @@
+<app-side-bar-comp>
+    <app-navbar-comp></app-navbar-comp>
+    <p class="text-center mt-3 titre">Product : {{this.products[0].product.name}}</p>
+    <form (ngSubmit)="AddImage()" enctype="multipart/form-data">
+    <div class="d-flex justify-content-center gap-4 mt-3">
+        <div>
+            <p class="mt-2">Add Image </p>
+        </div>
+        <div>
+            <input type="file" (change)="onFileChanged($event)" class="form-control">
+        </div>
+    </div>
+    <div class="text-center">
+        <button type="submit"  mat-mini-fab color="primary">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+    </form>
+    <div class="dashboard m-4">
+        <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+              <div class="example-box" cdkDrag *ngFor="let item of products" class="text-center">
+                   <img [src]="'http://localhost:8888/PRODUCT-SERVICE/products/images/'+item.imageProduct" width="300px" height="100px" alt="">
+                   <hr>
+                </div>
+          </div>
+    </div>
+</app-side-bar-comp>

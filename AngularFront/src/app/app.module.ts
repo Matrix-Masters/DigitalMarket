@@ -50,6 +50,7 @@ import { ContractComponent } from './Fournissuer/contract/contract.component';
 import { EditProfileComponent } from './EditProfile/edit-profile/edit-profile.component';
 import { EditProfileBodyComponent } from './EditProfile/edit-profile-body/edit-profile-body.component';
 import { StockAdminComponent } from './AdminCompoenent/stock-admin/stock-admin.component';
+import { ImageProductComponent } from './AdminCompoenent/image-product/image-product.component';
 
 
 
@@ -97,7 +98,8 @@ import { StockAdminComponent } from './AdminCompoenent/stock-admin/stock-admin.c
     ContractComponent,
     EditProfileComponent,
     EditProfileBodyComponent,
-    StockAdminComponent
+    StockAdminComponent,
+    ImageProductComponent
   ],
   imports: [
     BrowserModule,
