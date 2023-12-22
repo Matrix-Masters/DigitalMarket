@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductServiceService } from 'src/app/Service/product-service.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { ProductServiceService } from 'src/app/Service/product-service.service';
 })
 export class StockAdminComponent implements OnInit{
 
-  constructor(private ProductServiceService:ProductServiceService){
+  constructor(private ProductServiceService:ProductServiceService,private MatSnackBar:MatSnackBar){
 
   }
 
@@ -52,6 +53,16 @@ export class StockAdminComponent implements OnInit{
   }
 
   selectedPerPage: number=5; 
+
+  IncementQte(id:number,qte:number){
+    this.ProductServiceService.IncrementQteProd(id,qte).subscribe((res:any)=>{
+      this.MatSnackBar.open("Quantity Changed with success",'close',{
+              duration:2000
+      }
+      )
+       this.getProduct();
+    })
+  }
 
   onPerPageChange() {
     this.pagination.per_page=this.selectedPerPage;

@@ -18,7 +18,8 @@
                    <th scope="col">#</th>
                    <th scope="col">Image</th>
                    <th scope="col">Name</th>
-                   <th scope="col">Operation</th>
+                   <th scope="col">AddQte</th>
+                   <th scope="col">AddImage</th>
                  </tr>
                </thead>
                <tbody>
@@ -28,6 +29,15 @@
                        <img width="50px" [src]="'http://localhost:8888/PRODUCT-SERVICE/products/images/' + product.imageProduct" >
                      </td>
                      <td class="mt-5 py-5">{{product.name}}</td>
+                     <td class="mt-5 py-5">
+                      <div class="d-flex justify-content-center gap-2">
+                        <input type="text" [(ngModel)]="product.quantite" class="form-control w-50">
+                        <button mat-mini-fab color="primary" (click)="IncementQte(product.id,product.quantite)">
+                          <mat-icon>add</mat-icon>
+                        </button>
+                      </div>
+                     </td>
+
                      <td class="mt-5 py-5">
                         <button  [routerLink]="'/ImageProduct/'+product.id" mat-mini-fab color="primary">
                             <mat-icon>edit</mat-icon>

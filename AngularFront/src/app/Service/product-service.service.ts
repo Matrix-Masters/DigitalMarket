@@ -68,4 +68,9 @@ export class ProductServiceService{
   DeleteImage(id:number){
     return this.http.delete(`${port}/PRODUCT-SERVICE/products/DeleteImage?id=${id}`);
   }
+
+  IncrementQteProd(id:number,qte:number){
+    return this.http.put(`${port}/PRODUCT-SERVICE/products/IncrementQteProd?id=${id}&qte=${qte}`,{});
+  }
+  
 }
