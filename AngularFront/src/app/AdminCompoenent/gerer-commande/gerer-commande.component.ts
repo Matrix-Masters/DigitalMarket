@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Product } from 'src/app/Model/Product';
 import { CommandeServiceService } from 'src/app/Service/commande-service.service';
-
+import { ConfirmDialogComponentComponent } from 'src/app/superAdminComponents/Employers/confirm-dialog-component/confirm-dialog-component.component';
 @Component({
   selector: 'app-gerer-commande',
   templateUrl: './gerer-commande.component.html',
@@ -10,7 +11,7 @@ import { CommandeServiceService } from 'src/app/Service/commande-service.service
 })
 export class GererCommandeComponent {
 
-  constructor(private commandeService: CommandeServiceService,private MatSnackBar:MatSnackBar) {
+  constructor(private commandeService: CommandeServiceService,private MatSnackBar:MatSnackBar,private dialog: MatDialog) {
     this.pagination={
       currentPage:1,
       total:0,
@@ -88,16 +89,28 @@ selectedCommand!:any
     }[]
  }
 
- AccepteCommade(num:number){
-    this.commandeService.AcceptCommand(num,{
-      "userid":2
-    }).subscribe((res:any)=>{
-       this.getCommande();
-       this.MatSnackBar.open("Accept Commande",'close',{
-         duration:3000
-       })
-    })
- }
+ AccepteCommade(selectedCommand: any) {
+  const clientId = selectedCommand.Client_id;
+  this.commandeService.AcceptCommand(selectedCommand.NumCommande, {
+    "userid": clientId
+  }).subscribe((res: any) => {
+    this.getCommande();
+    this.MatSnackBar.open("Commande Accepted", 'close', {
+      duration: 3000
+    });
+  });
+}
+RefusedCommand(selectedCommand:any){
+  const clientId = selectedCommand.Client_id;
+  this.commandeService.RefusedCommand(selectedCommand.NumCommande, {
+    "userid": clientId
+  }).subscribe((res:any)=>{
+     this.getCommande();
+     this.MatSnackBar.open("Commande Refused",'close',{
+       duration:3000
+     });
+  });
+}
 
  commandeType:string="Waiting"
  choseCommande(type:string){
@@ -105,16 +118,7 @@ selectedCommand!:any
   this.getCommande();
  }
 
- RefusedCommand(num:number){
-  this.commandeService.RefusedCommand(num,{
-    "userid":2
-  }).subscribe((res:any)=>{
-     this.getCommande();
-     this.MatSnackBar.open("Commande Refused",'close',{
-       duration:3000
-     })
-  })
-}
+ 
 
 getCommande() {
   this.commandeService.getCommandes(
@@ -125,8 +129,6 @@ getCommande() {
   ).subscribe(
     (res: any) => {
       const previousCommandCount = this.commandes.length;
-
-      // Update the commandes array with the new data
       this.commandes = res.docs;
       this.pagination.currentPage = res.page;
       this.pagination.total = res.pages;
@@ -150,7 +152,34 @@ getCommande() {
     this.InfoCommande.prixTotal=0;
   }
 
-
+  deleteCommande(commandeId : any)
+  {
+      const dialogRef = this.dialog.open(ConfirmDialogComponentComponent, {
+        width  : '300px',
+        data: { message: 'Are you sure you want to delete this commande ?' },
+        panelClass: 'custom-dialog-panel',
+      });
+  
+      dialogRef.afterClosed().subscribe(userConfirmed => {
+        if (userConfirmed) {
+              this.commandeService.deleteCommandeById(commandeId).subscribe(
+                (res: any) => {
+                  this.MatSnackBar.open('Commande deleted', 'close', {
+                    duration: 3000
+                  });
+                  this.getCommande();
+                },
+                (error) => {
+                  console.error('Error deleting commande:', error);
+                }
+              );
+            } else {
+              console.log('Deletion canceled by admin');
+            }
+          })
+    }
+  
+  
   showCommandeInfo(command: any) {
     this.isPopupOpen = true;
     this.clearInfo();
@@ -192,7 +221,6 @@ toggleDropdown(): void {
 }
 
 resetNotifications() {
-  // Reset notifications.length to 0 when the dropdown is opened
   this.notifications.length = 0;
 }
 

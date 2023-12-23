@@ -17,21 +17,6 @@
         <button [class]="'mx-2 btn btn' + (commandeType === 'Waiting' ? '-warning' : '-secondary')" style="color: #fff;" (click)="choseCommande('Waiting')">Waiting</button>
         <button [class]="'mx-2 btn btn' + (commandeType === 'Available' ? '-primary' : '-secondary')" (click)="choseCommande('Available')">Accepted</button>
         <button [class]="'mx-2 btn btn' + (commandeType === 'Refused' ? '-danger' : '-secondary')" (click)="choseCommande('Refused')">Refused</button>
-        <label class="drop">
-          <input type="checkbox" id="target-drop-example"> 
-          <span class="control" [class.new-notifications]="hasNewNotifications" >
-            Notifications
-            <span class="notification-count">{{ notifications.length }}</span>
-          </span>
-          <ul class="drop-items">
-            <li class="item-drop" *ngFor="let notification of notifications">
-              <p>{{ notification }}</p>
-            </li>
-          </ul>
-        
-          <!-- Alternative to close dropdown with click out -->
-          <label for="target-drop-example" class="overlay-close" (click)="resetNotifications()"></label>
-        </label>
       </div>
     </div>
    
@@ -58,11 +43,11 @@
             <td class="text-center">{{commande.LigneCommandes.length}}</td>
             <td>
                 <ul class="wrapper">
-                    <li class="icon Accept" *ngIf="commandeType=='Waiting'" (click)="AccepteCommade(commande.NumCommande)">
+                    <li class="icon Accept" *ngIf="commandeType=='Waiting'" (click)="AccepteCommade(commande)">
                         <span class="tooltip">Accept</span>
                         <span><i class="fas fa-check"></i></span>
                     </li> 
-                    <li class="icon Refuse" *ngIf="commandeType=='Waiting'" (click)="RefusedCommand(commande.NumCommande)" >
+                    <li class="icon Refuse" *ngIf="commandeType=='Waiting'" (click)="RefusedCommand(commande)" >
                         <span class="tooltip">Refuse</span>
                         <span><i class="fas fa-xmark"></i></span>
                     </li>
@@ -70,7 +55,7 @@
                         <span class="tooltip">Info</span>
                         <span><i class="fas fa-info"></i></span>
                     </li>
-                    <li class="icon Refuse" *ngIf=" commandeType=='Refused' " (click)="showCommandeInfo(commande)">
+                    <li class="icon Refuse" *ngIf=" commandeType=='Refused' " (click)="deleteCommande(commande._id)">
                       <span class="tooltip">Delete</span>
                       <span><i class="fas fa-trash"></i></span>
                   </li>
@@ -131,7 +116,7 @@
                       <td>{{item.id}}</td>
                       <td>{{item.name}}</td>
                       <td>
-                         <img  [src]="'http://localhost:8888/PRODUCT-SERVICE/products/images/'+item.image" alt="">
+                         <img  [src]="'http://localhost:8888/PRODUCT-SERVICE/products/images/'+item.image" alt="" width="50px">
                       </td>
                       <td>{{item.qte}}</td>
                       <td>{{item.price}} TND</td>
