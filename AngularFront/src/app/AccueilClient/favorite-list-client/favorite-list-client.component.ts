@@ -3,13 +3,14 @@ import { WishlistService } from 'src/app/Service/wishlist.service';
 import { CommandeServiceService } from 'src/app/Service/commande-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Websocket } from 'src/app/Service/websocket.service';
+import { ProductsServiceLocalStorageService } from 'src/app/Service/products-service-local-storage.service';
 @Component({
   selector: 'app-favorite-list-client',
   templateUrl: './favorite-list-client.component.html',
   styleUrls: ['./favorite-list-client.component.scss']
 })
 export class FavoriteListClientComponent {
-  constructor(private wishlistService: WishlistService , private commandeService: CommandeServiceService,private snackBar: MatSnackBar) { }
+  constructor(private wishlistService: WishlistService , private commandeService: CommandeServiceService,private snackBar: MatSnackBar,public productServiceStorage:ProductsServiceLocalStorageService) { }
 
   isFavorite: boolean = false;
   wishlist: any[] = [];
@@ -75,7 +76,12 @@ export class FavoriteListClientComponent {
         }
       );
   }
-
- 
+ products:any
+  addProduct(product: any) {
+    this.productServiceStorage.addProduct(product);
+      this.snackBar.open("Product Added",'',{
+        duration:2000,
+      })
+  }
 
 }
