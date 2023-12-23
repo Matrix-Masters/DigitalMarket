@@ -6,15 +6,14 @@
       <button class="delete-button" (click)="toggleFavorite(item.productDetails.id)">
         <i class="fas fa-minus"></i>
       </button>
-      <img src="https://i.ibb.co/g3cNNkG/shoes1.jpg">
-      <!-- [src]="item.productDetails?.image" -->
+      <img [src]="'http://localhost:8888/PRODUCT-SERVICE/products/images/'+item.productDetails?.image" width="150px">
       <div> 
         <h2>{{ item.productDetails?.name }}</h2>
         <p class="price">
-            <!-- {{ item.productDetails?.prix }} -->
+            {{ item.productDetails?.prix }} DT
         </p>
         <p class="descr">
-           <!-- {{ item.productDetails?.desc }} -->
+           {{ item.productDetails?.desc }}
         </p>
         <br>
         <a href="#"><p>Add to cart</p></a>

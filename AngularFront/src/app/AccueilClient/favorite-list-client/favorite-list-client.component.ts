@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { WishlistService } from 'src/app/Service/wishlist.service';
 import { CommandeServiceService } from 'src/app/Service/commande-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Websocket } from 'src/app/Service/websocket.service';
 @Component({
   selector: 'app-favorite-list-client',
   templateUrl: './favorite-list-client.component.html',
@@ -16,7 +17,7 @@ export class FavoriteListClientComponent {
   ngOnInit(): void {
     
     this.loadWishlist();
-   this.getNotificationsByIdRecu(2);
+ 
   }
 
   loadWishlist() {
@@ -46,7 +47,7 @@ export class FavoriteListClientComponent {
   toggleFavorite(id: any): void {
     this.wishlistService
       .addToWishlist({
-        idUser: 2,
+        idUser: 3,
         idProduct: id,
       })
       .subscribe(
@@ -75,25 +76,6 @@ export class FavoriteListClientComponent {
       );
   }
 
-  notifications: string[] = [];
-  getNotificationsByIdRecu(idRecu: any) {
-    this.commandeService.getNotificationsByIdRecu(2).subscribe(
-      (res: any) => {
-       
-        this.notifications = res;
-        console.log(this.notifications); 
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
-  
-  showNotifications = false;
-
-
-  toggleNotifications() {
-    this.showNotifications = !this.showNotifications;
-  }
+ 
 
 }

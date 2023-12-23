@@ -4,36 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/FirstFragment">
+
     <fragment
         android:id="@+id/FirstFragment"
-<<<<<<< HEAD
         android:name="com.example.digitalmarket.Client.Panier"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/activity_panier">
-=======
-        android:name="com.example.digitalmarket.Client.Settings"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/activity_settings">
 
->>>>>>> 84b1cc053b80fd21b0b8582b56c6c056adaf013e
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/SecondFragment"
-<<<<<<< HEAD
         android:name="com.example.digitalmarket.Client.Settings"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/activity_settings">
-=======
-        android:name="com.example.digitalmarket.Client.Panier"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/activity_panier">
 
->>>>>>> 84b1cc053b80fd21b0b8582b56c6c056adaf013e
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
+
 </navigation>
