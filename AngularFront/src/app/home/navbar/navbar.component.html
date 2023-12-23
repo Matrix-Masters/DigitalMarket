@@ -1,12 +1,12 @@
 <div class="animation">
   <div class="container-anim d-flex align-content-center">
-    <div class="container-flag mt-2 " style="margin-right: 20px;">
+    <div class="container-flag mt-2" style="margin-right: 20px">
       <div class="red"></div>
       <div class="black"></div>
       <div class="white"></div>
       <div class="green"></div>
     </div>
-    <h1 class="" style="font-size: 20px;">free palestine</h1>
+    <h1 class="" style="font-size: 20px">free palestine</h1>
     <div class="container-flag mt-2">
       <div class="red"></div>
       <div class="black"></div>
@@ -16,57 +16,117 @@
   </div>
 </div>
 
-<nav class="navbar navbar-expand-lg " style="height: 120px;background-color: #F0F0F0;">
+<nav
+  class="navbar navbar-expand-lg"
+  style="height: 120px; background-color: #f0f0f0"
+>
   <div class="container-fluid">
-
     <button class="navbar-toggler" mat-button [matMenuTriggerFor]="aboveMenu">
       <i class="bi bi-list" style="font-size: 35px"></i>
 
       <mat-menu #aboveMenu="matMenu" yPosition="above">
-        <button mat-menu-item routerLink="/cart"> <i class="bi bi-cart-fill menu-boredered"></i>Cart </button>
-        <button mat-menu-item *ngIf="!AuthServiceService.isAuth"><i
-            class="bi bi-person-circle menu-boredered"></i>User</button>
-        <button mat-menu-item routerLink="/auth/signup/Supplier"><i class="bi bi-shop menu-boredered"></i>Become
-          vendor</button>
+        <button mat-menu-item routerLink="/cart">
+          <i class="bi bi-cart-fill menu-boredered"></i>Cart
+        </button>
+        <button mat-menu-item *ngIf="!AuthServiceService.isAuth">
+          <i class="bi bi-person-circle menu-boredered"></i>User
+        </button>
+        <button mat-menu-item routerLink="/auth/signup/Supplier">
+          <i class="bi bi-shop menu-boredered"></i>Become vendor
+        </button>
         <mat-divider></mat-divider>
         <mat-list role="list">
-          <mat-list-item><span class="list-title" style="margin-right: 10px;">Categories</span><i
-              class="bi bi-arrow-down" style="font-size: 20px;"></i> </mat-list-item>
-          <mat-list-item role="listitem" routerLink="/categories/{{item['id']}}" *ngFor="let item of categories">
-            <button mat-button class="list-items">{{item['nom']}}</button></mat-list-item>
+          <mat-list-item
+            ><span class="list-title" style="margin-right: 10px"
+              >Categories</span
+            ><i class="bi bi-arrow-down" style="font-size: 20px"></i>
+          </mat-list-item>
+          <mat-list-item
+            role="listitem"
+            routerLink="/categories/{{ item['id'] }}"
+            *ngFor="let item of categories"
+          >
+            <button mat-button class="list-items">
+              {{ item["nom"] }}
+            </button></mat-list-item
+          >
         </mat-list>
       </mat-menu>
     </button>
     <a class="navbar-brand" routerLink="/">DIGITAL MARKET</a>
-     <mat-menu #aboveMenu="matMenu" yPosition="above">
-       <button mat-menu-item routerLink="/cart"> <i class="bi bi-cart-fill menu-boredered"></i>Cart </button>
-       <button mat-menu-item *ngIf="!AuthServiceService.isAuth"><i class="bi bi-person-circle menu-boredered"></i>User</button>
-       <button   mat-menu-item  routerLink="/auth/signup/Supplier" ><i  class="bi bi-shop menu-boredered"></i>Become vendor</button>
-       <mat-divider></mat-divider>
-       <mat-list role="list">
-         <mat-list-item ><span class="list-title" style="margin-right: 10px;">Categories</span><i class="bi bi-arrow-down" style="font-size: 20px;"></i> </mat-list-item>
-         <mat-list-item role="listitem" routerLink="/categories/{{item['id']}}"  *ngFor="let item of categories"> <button mat-button class="list-items">{{item['nom']}}</button></mat-list-item>
-       </mat-list>
-     </mat-menu>
-
-
+    <mat-menu #aboveMenu="matMenu" yPosition="above">
+      <button mat-menu-item routerLink="/cart">
+        <i class="bi bi-cart-fill menu-boredered"></i>Cart
+      </button>
+      <button mat-menu-item *ngIf="!AuthServiceService.isAuth">
+        <i class="bi bi-person-circle menu-boredered"></i>User
+      </button>
+      <button mat-menu-item routerLink="/auth/signup/Supplier">
+        <i class="bi bi-shop menu-boredered"></i>Become vendor
+      </button>
+      <mat-divider></mat-divider>
+      <mat-list role="list">
+        <mat-list-item
+          ><span class="list-title" style="margin-right: 10px">Categories</span
+          ><i class="bi bi-arrow-down" style="font-size: 20px"></i>
+        </mat-list-item>
+        <mat-list-item
+          role="listitem"
+          routerLink="/categories/{{ item['id'] }}"
+          *ngFor="let item of categories"
+        >
+          <button mat-button class="list-items">
+            {{ item["nom"] }}
+          </button></mat-list-item
+        >
+      </mat-list>
+    </mat-menu>
 
     <div class="input-group">
-      <input class="form-control me-2" type="search" placeholder="Search Products" aria-label="Search"
-        style="height: 50px;">
+      <input
+        class="form-control me-2"
+        type="search"
+        placeholder="Search Products"
+        aria-label="Search"
+        style="height: 50px"
+      />
       <button class="btn btn-outline-secondary" type="button">
         <i class="bi bi-search"></i>
       </button>
     </div>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="pt-4">
-        <li class="bordered" routerLink="/cart" [matBadge]="nbrArticle"><i class="bi bi-cart-fill"></i>Cart</li>
-        <li class="bordered" routerLink="/auth/signup/Supplier"><i class="bi bi-shop"></i>Become vendor</li>
-        <li [matMenuTriggerFor]="auth" *ngIf="!AuthServiceService.isAuth"><i class="bi bi-person-circle"></i>User</li>
-        <li [matMenuTriggerFor]="user" class="bordered" *ngIf="AuthServiceService.isAuth"
-          class="d-block link-dark text-decoration-none">
-          <img src="../../../assets/ImagesSignup/Digital Market.png" alt="mdo" width="32" height="32"
-            class="rounded-circle">
+        <li class="bordered" id="notif" (click)="openNotificationMenu($event)">
+          <mat-icon
+            matBadge="{{ notificationListOpened ? 0 : notifications.length }}"
+            matBadgeColor="primary"
+            [matMenuTriggerFor]="notificationsMenu"
+            >notifications</mat-icon
+          >
+        </li>
+        <li class="bordered" routerLink="/cart" [matBadge]="nbrArticle">
+          <i class="bi bi-cart-fill"></i>Cart
+        </li>
+        <li class="bordered" routerLink="/auth/signup/Supplier">
+          <i class="bi bi-shop"></i>Become vendor
+        </li>
+
+        <li [matMenuTriggerFor]="auth" *ngIf="!AuthServiceService.isAuth">
+          <i class="bi bi-person-circle"></i>User
+        </li>
+        <li
+          [matMenuTriggerFor]="user"
+          class="bordered"
+          *ngIf="AuthServiceService.isAuth"
+          class="d-block link-dark text-decoration-none"
+        >
+          <img
+            src="../../../assets/ImagesSignup/Digital Market.png"
+            alt="mdo"
+            width="32"
+            height="32"
+            class="rounded-circle"
+          />
           talel
         </li>
         <mat-menu #user="matMenu">
@@ -84,7 +144,7 @@
           </button>
           <button mat-menu-item routerLink="/editProfile">
             <mat-icon>supervised_user_circle</mat-icon>
-            <span >Profile</span>
+            <span>Profile</span>
           </button>
         </mat-menu>
         <mat-menu #auth="matMenu">
@@ -97,13 +157,32 @@
             <span>Sign Up</span>
           </button>
         </mat-menu>
+        <mat-menu #notificationsMenu="matMenu">
+          <div class="notification-list">
+            <mat-list>
+              <mat-list-item
+                class="notification-item"
+                *ngFor="let notification of notifications"
+              >
+                {{ notification.Message }}
+              </mat-list-item>
+            </mat-list>
+          </div>
+        </mat-menu>
       </ul>
     </div>
   </div>
 </nav>
 
 <div class="container nav2">
-  <li class="categories d-none d-lg-block">All Categories <i class="bi bi-arrow-down-short"></i></li>
-  <li *ngFor="let item of categories" routerLink="/categories/{{item['id']}}" class="categories d-none d-lg-block">
-    {{item['nom']}}</li>
+  <li class="categories d-none d-lg-block">
+    All Categories <i class="bi bi-arrow-down-short"></i>
+  </li>
+  <li
+    *ngFor="let item of categories"
+    routerLink="/categories/{{ item['id'] }}"
+    class="categories d-none d-lg-block"
+  >
+    {{ item["nom"] }}
+  </li>
 </div>
