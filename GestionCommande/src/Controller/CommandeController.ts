@@ -2,7 +2,9 @@ import { Request, Response } from "express";
 import Commande from "../Model/Commande";
 import LigneCommande from "../Model/LigneCommande";
 import Livraison from "../Model/Livraison";
-import { stat } from "fs";
+import io from "..";
+
+
 
 export const addCommande = async (req: Request, res: Response) => {
 
@@ -182,6 +184,7 @@ export const RefusedCommand=async (req:Request,res:Response)=>{
 
 
 function notifyNotificationService(userid:any,message:String) {
+    
   const axios = require('axios');
   axios.post('http://localhost:8888/FEEDBACK-SERVICE/FeedBack/AddNotif', { 
      idEnvoi: "3",
@@ -189,6 +192,8 @@ function notifyNotificationService(userid:any,message:String) {
      Message:message,
      etat:0
    });
+   
+
 }
 
 //admin
@@ -231,14 +236,14 @@ export const deleteCommande = async (req: Request, res: Response) => {
     try {
       const id = req.params.id;
       const deletedCommande = await Commande.findByIdAndDelete(id);
-  
+        
       if (deletedCommande) {
-        res.status(200).send(deletedCommande);
+        res.status(200).send("Commande deleted successfully");
       } else {
         res.status(404).send({ error: 'Commande not found' });
       }
     } catch (err: any) {
-      res.status(500).send({ error: err.message });
+      res.status(500).send({ error: 'Failed to delete Commande' });
     }
   };
 
