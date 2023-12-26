@@ -11,12 +11,12 @@
     <ImageView
         android:id="@+id/introImage"
         android:layout_width="wrap_content"
-        android:layout_height="350dp"
+        android:layout_height="370dp"
         android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp"
         android:src="@drawable/notification" />
 
@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/introImage"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="100dp"
         android:gravity="center"
         android:text="@string/title3"
         android:textAlignment="center"
@@ -51,10 +51,10 @@
     <Button
         android:id="@+id/introButton"
         android:layout_width="371dp"
-        android:layout_height="76dp"
+        android:layout_height="65dp"
         android:layout_below="@id/introDescription"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="85dp"
         android:backgroundTint="#000000"
         android:gravity="center"
         android:text="@string/next"
@@ -62,6 +62,5 @@
         android:textSize="18sp"
         style="@style/oswaldFont"
         />
-
 
 </RelativeLayout>
