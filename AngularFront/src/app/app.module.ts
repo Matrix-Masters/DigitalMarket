@@ -49,6 +49,7 @@ import { ListProductsFournisseurComponent } from './Fournissuer/list-products-fo
 import { ContractComponent } from './Fournissuer/contract/contract.component';
 import { EditProfileComponent } from './EditProfile/edit-profile/edit-profile.component';
 import { EditProfileBodyComponent } from './EditProfile/edit-profile-body/edit-profile-body.component';
+import { ReviewComponent } from './Review/review.component';
 
 
 
@@ -95,7 +96,8 @@ import { EditProfileBodyComponent } from './EditProfile/edit-profile-body/edit-p
     ListProductsFournisseurComponent,
     ContractComponent,
     EditProfileComponent,
-    EditProfileBodyComponent
+    EditProfileBodyComponent,
+    ReviewComponent
   ],
   imports: [
     BrowserModule,
