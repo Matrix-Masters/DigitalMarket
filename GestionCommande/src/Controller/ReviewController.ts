@@ -27,7 +27,17 @@ export const addReview = async (req: Request, res: Response) => {
 export const getAllReviews = async (req:Request,res:Response)=>{
 
     try{
-        const reviews = await Review.find({},{Content:1,Note:1,Product_id:1,User_id:1});
+        const reviews = await Review.find({Product_id:/null/});
+        res.status(200).json(reviews);
+    }catch(e:any){
+        res.status(500).json({message:e.message})
+    }
+}
+
+export const getProductsReviews = async (req:Request,res:Response)=>{
+
+    try{
+        const reviews = await Review.find();
         res.status(200).json(reviews);
     }catch(e:any){
         res.status(500).json({message:e.message})
