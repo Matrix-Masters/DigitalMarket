@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule,APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -51,9 +51,29 @@ import { EditProfileComponent } from './EditProfile/edit-profile/edit-profile.co
 import { EditProfileBodyComponent } from './EditProfile/edit-profile-body/edit-profile-body.component';
 import { StockAdminComponent } from './AdminCompoenent/stock-admin/stock-admin.component';
 import { ImageProductComponent } from './AdminCompoenent/image-product/image-product.component';
+import { KeycloakAngularModule } from 'keycloak-angular';
+import { KeycloakService as _KeycloakService } from 'keycloak-angular';
 
 
-
+function initialiserKeycloak(keycloak:_KeycloakService){
+  return()=>{
+    keycloak.init({
+      config:{
+        url:'http://localhost:8080',
+        realm:'DigitalMarket',
+        clientId:'angular_client'
+      },
+      initOptions:{
+        onLoad: 'login-required',
+        //onLoad:'check-sso',
+        flow:"standard",
+        checkLoginIframe: true,
+        silentCheckSsoRedirectUri:
+            window.location.origin + '/assets/verify-sso.html'
+      },
+    })
+  }
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -107,6 +127,7 @@ import { ImageProductComponent } from './AdminCompoenent/image-product/image-pro
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
+    KeycloakAngularModule,
     ReactiveFormsModule,
     DragDropModule,
     HttpClientModule,
@@ -114,7 +135,13 @@ import { ImageProductComponent } from './AdminCompoenent/image-product/image-pro
     CommonModule
   ],
   providers: [
-    DatePipe
+    DatePipe,
+    { 
+      provide: APP_INITIALIZER,
+      deps: [_KeycloakService],
+      useFactory: initialiserKeycloak,
+      multi: true,
+    }
   ],
   bootstrap: [AppComponent]
 })
