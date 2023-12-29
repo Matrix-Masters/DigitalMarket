@@ -11,3 +11,11 @@ body{
   margin-right: 20px;
   text-shadow: 0px 3px 3px rgba(255,255,255,0.5), 3px 3px 7px #000000;
 }
+.star {
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.star.selected {
+  color: gold;
+}
