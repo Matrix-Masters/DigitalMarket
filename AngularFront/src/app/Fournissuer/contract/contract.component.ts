@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as p5 from 'p5';
+import  p5 from 'p5';
 import { jsPDF } from "jspdf";
 import autoTable from 'jspdf-autotable'
 import { ContractServiceService } from 'src/app/Service/contract-service.service';
@@ -95,6 +95,15 @@ export class ContractComponent implements OnInit {
     doc.setFont("times", "normal");
     doc.setFontSize(14);
     doc.text(`This contract is Start from ${new Date().toString()} to ${this.date}`,15,148);
+
+    doc.setFontSize(15);
+    doc.setFont("times", "bold");
+    doc.text("Article 3: Price",12,160);
+    doc.setFont("times", "normal");
+    doc.text("Product Price < 100 TND : 5% for digitalMarket",18,170);
+    doc.text("Product Price Between 100 TND And 500 TND : 8% for digitalMarket",18,180);
+    doc.text("Product Price > 500 TND : 12% for digitalMarket",18,190);
+
     doc.text("Signature",158,doc.internal.pageSize.height - 50);
     doc.addImage(this.image, 158, doc.internal.pageSize.height - 47, 20, 20);
 
@@ -102,11 +111,11 @@ export class ContractComponent implements OnInit {
     const body = this.products.map((product:any) => [product]);
     doc.setFont("times", "bold");
     doc.setFontSize(15);
-    doc.text("Article 3: Your Products",12,160);
+    doc.text("Article 4: Your Products",12,205);
       autoTable(doc, {
         theme:'grid',
         bodyStyles:{fontStyle:'bold',halign:'center'},
-        margin: { top: 168 },
+        margin: { top: 210 },
         head: [header],
         body: body
       })
