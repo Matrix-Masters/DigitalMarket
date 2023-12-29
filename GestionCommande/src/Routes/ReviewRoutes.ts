@@ -1,5 +1,6 @@
-import { addReview ,getAllReviews } from "../Controller/ReviewController";
+import { addReview ,getAllReviews, getProductsReviews } from "../Controller/ReviewController";
 module.exports=(router:any)=>{
     router.post('/addReview',addReview);
     router.get('/getReviews',getAllReviews);
+    router.get('/getProductsReviews',getProductsReviews);
 }
