@@ -53,6 +53,7 @@ import { StockAdminComponent } from './AdminCompoenent/stock-admin/stock-admin.c
 import { ImageProductComponent } from './AdminCompoenent/image-product/image-product.component';
 import { KeycloakAngularModule } from 'keycloak-angular';
 import { KeycloakService as _KeycloakService } from 'keycloak-angular';
+import { IsAuthGuard } from './guard/is-auth.guard';
 
 
 function initialiserKeycloak(keycloak:_KeycloakService){
@@ -64,8 +65,8 @@ function initialiserKeycloak(keycloak:_KeycloakService){
         clientId:'angular_client'
       },
       initOptions:{
-        onLoad: 'login-required',
-        //onLoad:'check-sso',
+        //onLoad: 'login-required',
+        onLoad:'check-sso',
         flow:"standard",
         checkLoginIframe: true,
         silentCheckSsoRedirectUri:
@@ -135,6 +136,7 @@ function initialiserKeycloak(keycloak:_KeycloakService){
     CommonModule
   ],
   providers: [
+    IsAuthGuard,
     DatePipe,
     { 
       provide: APP_INITIALIZER,

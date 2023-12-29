@@ -25,6 +25,7 @@ import { ContractComponent } from './Fournissuer/contract/contract.component';
 import { EditProfileComponent } from './EditProfile/edit-profile/edit-profile.component';
 import { StockAdminComponent } from './AdminCompoenent/stock-admin/stock-admin.component';
 import { ImageProductComponent } from './AdminCompoenent/image-product/image-product.component';
+import { IsAuthGuard } from './guard/is-auth.guard';
 
 const routes: Routes = [
    {path:'',component:HomeComponent},
@@ -43,7 +44,7 @@ const routes: Routes = [
    {path:"gererEmployers",component:LIstEmpolyersComponent},
    {path:"addEmploye",component:AddEmployerComponent},
    {path:'CommandeLocation',component:CommandeClientComponent},
-   {path:"fournisseur",component:FournisseurInterfaceComponent},
+   {path:"fournisseur",component:FournisseurInterfaceComponent,canActivate :[IsAuthGuard]},
    {path:"fournisseurDash",component:FournisseurDashboardComponent},
    {path:"addProductFournisseur",component:AddProductComponent},
    {path:"listeCommandesClient",component:ListCommandesComponent},

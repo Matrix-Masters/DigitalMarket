@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Aos from 'aos';
 import { KeycloakService } from 'keycloak-angular';
-import { KeycloakProfile } from 'keycloak-js';
 import { SecurityServiceService } from './Service/security-service.service';
 
 @Component({

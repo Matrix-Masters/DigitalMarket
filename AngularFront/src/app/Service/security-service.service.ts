@@ -1,4 +1,4 @@
-import {Injectable} from "@angular/core";
+import {Injectable, OnInit} from "@angular/core";
 import {KeycloakProfile} from "keycloak-js";
 import {KeycloakEventType, KeycloakService} from "keycloak-angular";
 
@@ -8,28 +8,32 @@ import {KeycloakEventType, KeycloakService} from "keycloak-angular";
 
 export class SecurityServiceService {
 
+  public isLoggedin: boolean = false;
   public profile? : KeycloakProfile;
   
   constructor (public kcService: KeycloakService) {
+    this.isLoggedin=localStorage.getItem("user")? true :false;
     this.init();
   }
 
   init(){
-    this.kcService.keycloakEvents$.subscribe({
-      next: (e) => {
-        console.log(e);
-        if (e.type == KeycloakEventType.OnAuthSuccess) {
-          console.log("OnAuthSuccess")
-          this.kcService.loadUserProfile().then(profile=>{
-            this.profile=profile;
-          });
-        }
-      },
-      error : err => {
-        console.log(err);
-      }
-    });
-  }
+        this.kcService.keycloakEvents$.subscribe({
+          next: (e) => {
+            if (e.type == KeycloakEventType.OnAuthSuccess) {
+              this.kcService.loadUserProfile().then((profile:any)=>{
+                this.kcService.getUserRoles();
+                this.profile=profile;
+                this.isLoggedin=true;
+                localStorage.setItem("roles",JSON.stringify(this.kcService.getUserRoles()));
+                localStorage.setItem("user",JSON.stringify(profile));
+              });
+            }
+          },
+          error : err => {
+            console.log(err);
+          }
+      });
+    }  
 
   public hasRoleIn(roles:string[]):boolean{
     let userRoles = this.kcService.getUserRoles();
