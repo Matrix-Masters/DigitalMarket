@@ -26,33 +26,35 @@ import { EditProfileComponent } from './EditProfile/edit-profile/edit-profile.co
 import { StockAdminComponent } from './AdminCompoenent/stock-admin/stock-admin.component';
 import { ImageProductComponent } from './AdminCompoenent/image-product/image-product.component';
 import { IsAuthGuard } from './guard/is-auth.guard';
+import { DetailsProductComponent } from './AccueilClient/details-product/details-product.component';
 
 const routes: Routes = [
    {path:'',component:HomeComponent},
-   {path:'classer',component:ClasserProductComponent},
-   {path:"dash",component:DashboardComponent},
-   {path:'gererProduit',component:GererProduitComponent},
+   {path:'classer',component:ClasserProductComponent,canActivate :[IsAuthGuard]},
+   {path:"dash",component:DashboardComponent,canActivate :[IsAuthGuard]},
+   {path:'gererProduit',component:GererProduitComponent,canActivate :[IsAuthGuard]},
    {path:'listCategory',component:CategoryListComponent},
    {path:'Commandes',component:GererCommandeComponent},
    { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
-   {path:'gererSupplier',component:GererSupplierComponent},
-   {path:'Commandes_Taken',component:LocationCommandeComponent},
+   {path:'gererSupplier',component:GererSupplierComponent,canActivate :[IsAuthGuard]},
+   {path:'Commandes_Taken',component:LocationCommandeComponent,canActivate :[IsAuthGuard]},
    {path:'categories/:id',component:AccueilClientComponent},
    {path:'cart',component:AccueilCartComponent},
-   {path:'Commande',component:CommandeComponent},
-   {path:'FavoriteList',component:FavoriteListClientComponent},
-   {path:"gererEmployers",component:LIstEmpolyersComponent},
-   {path:"addEmploye",component:AddEmployerComponent},
-   {path:'CommandeLocation',component:CommandeClientComponent},
+   {path:'Commande',component:CommandeComponent,canActivate :[IsAuthGuard]},
+   {path:'FavoriteList',component:FavoriteListClientComponent,canActivate :[IsAuthGuard]},
+   {path:"gererEmployers",component:LIstEmpolyersComponent,canActivate :[IsAuthGuard]},
+   {path:"addEmploye",component:AddEmployerComponent,canActivate :[IsAuthGuard]},
+   {path:'CommandeLocation',component:CommandeClientComponent,canActivate :[IsAuthGuard]},
    {path:"fournisseur",component:FournisseurInterfaceComponent,canActivate :[IsAuthGuard]},
-   {path:"fournisseurDash",component:FournisseurDashboardComponent},
-   {path:"addProductFournisseur",component:AddProductComponent},
-   {path:"listeCommandesClient",component:ListCommandesComponent},
-   {path:"ListProductsFournisseur",component:ListProductsFournisseurComponent},
-   {path:"ContractComponent",component:ContractComponent},
-   {path:"editProfile",component:EditProfileComponent},
-   {path:"stockadmin",component:StockAdminComponent},
+   {path:"fournisseurDash",component:FournisseurDashboardComponent,canActivate :[IsAuthGuard]},
+   {path:"addProductFournisseur",component:AddProductComponent,canActivate :[IsAuthGuard]},
+   {path:"listeCommandesClient",component:ListCommandesComponent,canActivate :[IsAuthGuard]},
+   {path:"ListProductsFournisseur",component:ListProductsFournisseurComponent,canActivate :[IsAuthGuard]},
+   {path:"ContractComponent",component:ContractComponent,canActivate :[IsAuthGuard]},
+   {path:"editProfile",component:EditProfileComponent,canActivate :[IsAuthGuard]},
+   {path:"stockadmin",component:StockAdminComponent,canActivate :[IsAuthGuard]},
    {path:"ImageProduct/:id",component:ImageProductComponent},
+   {path:"DetailProduct/:id",component:DetailsProductComponent},
    {path:"**",component:NotFoundComponentComponent}
 ]
 
