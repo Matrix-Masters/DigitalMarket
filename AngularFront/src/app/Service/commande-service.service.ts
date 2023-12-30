@@ -12,9 +12,11 @@ export class CommandeServiceService {
   AddCommande(data:any){
     return this.http.post(`${port}/GESTIONCOMMANDE-SERVICE/Commande/AddCommande`,data);
   }
+  
   DetailsProd(id:number){
     return this.http.get(`${port}/PRODUCT-SERVICE/products/GetDetailsProd?id=`+id);
   }
+
   getCommandes(page: number, size: number, search: string,data:string)
   {
     
@@ -33,8 +35,6 @@ export class CommandeServiceService {
     return this.http.get(`${port}/FEEDBACK-SERVICE/FeedBack/getNotificationsByIdRecu/${idRecu}`);
   }
 
-
-
   getCommandeByUser(userId:any){
     return this.http.get(`${port}/GESTIONCOMMANDE-SERVICE/Commande/GetCommandeByIdUser/${userId}`)
   }
@@ -46,6 +46,7 @@ export class CommandeServiceService {
   ChangerLocationLivreur(Location:any,num:any){
     return this.http.put(`${port}/GESTIONCOMMANDE-SERVICE/Commande/ChangerLocationLivreur/${num}`,Location);
   }
+
   getCommandeByIdClient(id:any,page:any,limit:any){
     return this.http.get(`${port}/GESTIONCOMMANDE-SERVICE/Commande/getCommandesByClient?Client_id=${id}&page=${page}&size=${limit}`)
   }
@@ -55,7 +56,6 @@ export class CommandeServiceService {
   }
 
   CalculerWalletSupplier(tab:any){
-      console.log(tab);
       return this.http.post(`${port}/GESTIONCOMMANDE-SERVICE/Commande/CalculerWalletSupplier`,tab);
   }
 
