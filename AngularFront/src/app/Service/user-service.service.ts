@@ -11,14 +11,14 @@ export class UserServiceService {
   constructor(private http:HttpClient) { }
 
   updateUser(user: User,id:any) {
-    return this.http.post(`${port}/INFOUSER-SERVICE/updateUser?id=${id}`,user);
+    return this.http.post(`${port}/INFOUSER-SERVICE/users/updateUser?id=${id}`,user);
   }
 
   getUserById(id:any){
-    return this.http.get(`${port}/INFOUSER-SERVICE/getUserById?id=${id}`);
+    return this.http.get(`${port}/INFOUSER-SERVICE/users/getUserById?id=${id}`);
   }
 
   SendEmailChanged(email_old:any,email_new:any){
-    return this.http.get(`${port}/INFOUSER-SERVICE/SendEmailChanged?email_new=${email_new}&email_old=${email_old}`);
+    return this.http.get(`${port}/INFOUSER-SERVICE/users/SendEmailChanged?email_new=${email_new}&email_old=${email_old}`);
   }
 }
