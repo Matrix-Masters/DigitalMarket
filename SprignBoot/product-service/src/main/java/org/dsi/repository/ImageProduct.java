@@ -13,5 +13,6 @@ public interface ImageProduct extends JpaRepository<ProductImages,Long> {
 	
 	@Query(value = "SELECT pi FROM ProductImages pi WHERE pi.product.id = :id order by pi.ImagePriorite")
 	List<ProductImages> getImagesProducts(@Param("id") long id);
+
  
 }

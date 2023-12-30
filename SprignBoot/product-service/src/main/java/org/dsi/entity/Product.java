@@ -59,6 +59,9 @@ public class Product {
 	
 	@UpdateTimestamp
 	private Timestamp updated_at;
+
+    /*@OneToMany(fetch = FetchType.EAGER, mappedBy = "product")
+    private List<ProductImages> productImages;*/
 	
     @Nullable
     @ManyToOne(fetch = FetchType.EAGER)
