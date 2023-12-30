@@ -50,7 +50,7 @@ export class ImageProductComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    this.ProductServiceService.ChangerPriorite(this.products[event.previousIndex].id,this.products[event.currentIndex].id).subscribe((data:any)=>{
+    this.ProductServiceService.ChangerPriorite(this.products[event.previousIndex].id,this.products[event.currentIndex].id,this.id).subscribe((data:any)=>{
        this.getImages(this.id);
     })
   }
