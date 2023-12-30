@@ -31,6 +31,7 @@ export class FournisseurNavbarCompComponent {
       "Products":prod,
     }).subscribe((res:any)=>{
        this.wallet=res.wallet;
+       console.log(this.wallet);
     })
   }
 

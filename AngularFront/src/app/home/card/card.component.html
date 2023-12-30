@@ -16,7 +16,7 @@
 <div class="cards" *ngIf="products" style="width: 280px;">
 <li class="product-item">
       <figure class="product-info">
-          <div class="product-info-img">
+          <div class="product-info-img" [routerLink]="'/DetailProduct/'+products['id']">
               <img [src]="'http://localhost:8888/PRODUCT-SERVICE/products/images/'+products['imageProduct']" alt="description image">
           </div>
           <figcaption class="product-info-description">
