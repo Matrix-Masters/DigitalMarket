@@ -3,6 +3,7 @@ import { ReviewServiceService, review } from '../Service/review-service.service'
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 
+
 @Component({
   selector: 'app-review',
   templateUrl: './review.component.html',
@@ -11,27 +12,33 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class ReviewComponent implements OnInit{
   selectedRating: number | null = null;
   starIndexes: number[] = [0, 1, 2, 3, 4];
+  selectedStars: boolean[] = [false, false, false, false, false];
   content:any=''
-  review: review ={content:'',note:'',product_id:"null",user_id:"null"};
+  review: review ={content:'',note:'',product_id:"null",user_id:7};
   constructor(private reviewService:ReviewServiceService,private cdr: ChangeDetectorRef,private MatSnackBar:MatSnackBar){}
   allReviews:any
-
-  setRating(rating: number): void {
-    this.selectedRating = rating;
-    this.review.note=this.selectedRating+".0"
-    console.log("note : "+this.review.note);
-
-  }
 
   clearRating(): void {
     this.selectedRating = null;
   }
-
-  changeContent(){
-    console.log(this.content);
-
+  setRating(rating: number): void {
+    this.selectedRating = rating || 0;
+    this.toggleSelection();
+    this.review.note = this.selectedRating + ".0";
   }
 
+  toggleSelection() {
+    for (let i = 0; i < this.selectedStars.length; i++) {
+      this.selectedStars[i] = false;
+    }
+    if (this.selectedRating !== null) {
+
+      for (let i = 0; i < this.selectedRating; i++) {
+        this.selectedStars[i] = true;
+      }
+    }
+    this.review.note = this.selectedRating + ".0";
+  }
   getAllReviews(){
     this.reviewService.getAllReviews().subscribe(res=>{
       this.allReviews=res
