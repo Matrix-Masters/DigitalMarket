@@ -1,0 +1,33 @@
+section{
+    display: flex;
+    justify-content: center;
+}
+
+.titre{
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+section div{
+    height: 200px;
+    width: 250px;
+    padding: 30px;
+    border-radius: 14px;
+    margin-left: -130px;
+    transition: all 0.25s ease-in-out;
+    cursor: pointer;
+}
+
+img{
+    object-fit: cover;
+    border-radius: 14px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+section div:hover{
+    transform: translateY(-16px) rotate(3deg);
+}
+
+section div:hover ~ div{
+    transform:translateX(130px)
+}

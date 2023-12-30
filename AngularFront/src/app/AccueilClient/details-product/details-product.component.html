@@ -1,0 +1,22 @@
+<div class="container d-flex justify-content-center mt-3 py-5">
+       <div class="col-xl-10 shadow-lg rounded">
+            <div>
+                <h1 class="text-center py-3" data-aos="fade-up">Détails du produit</h1>
+            </div>
+            <section class="mb-2" data-aos="fade-down">
+                <div *ngFor="let item of Images">
+                    <img [src]="'http://localhost:8888/PRODUCT-SERVICE/products/images/'+item.image" width="250px" height="200px" alt="">
+                </div>
+            </section>
+            <div class="mt-5 py-3" >
+                <h3 data-aos="fade-left" class="text-center"><span class="titre"> Category : </span> {{product[0].Category}}</h3>
+                <h3 data-aos="fade-right" class="text-center"><span class="titre"> name : </span> {{product[0].name}}</h3>
+                <h3 data-aos="fade-left" class="text-center"><span class="titre"> prix : </span> {{product[0].prix}} TND</h3>
+                <h3 data-aos="fade-right" class="text-center"><span class="titre"> quantite : </span> {{product[0].quantite}} </h3>
+                <h3 data-aos="fade-left" class="text-center"><span class="titre"> description : </span> {{product[0].description}}</h3>
+            </div>
+            <div class="text-center mb-2"> 
+                <button class="btn btn-primary" routerLink="/" >Back</button>
+            </div>
+       </div>
+</div>
