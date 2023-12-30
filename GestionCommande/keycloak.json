@@ -1,0 +1,10 @@
+{
+    "realm": "DigitalMarket",
+    "auth-server-url": "http://localhost:8080/",
+    "ssl-required": "external",
+    "resource": "node_client",
+    "credentials": {
+      "secret": "90gbrcyjseyNMF8fcpwBp4iAfbgot4vA"
+    },
+    "confidential-port": 0
+}
