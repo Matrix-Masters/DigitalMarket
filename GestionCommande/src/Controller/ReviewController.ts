@@ -26,7 +26,7 @@ export const addReview = async (req: Request, res: Response) => {
 export const getAllReviews = async (req:Request,res:Response)=>{
 
     try{
-        const reviews = await Review.find({Product_id:"null"}).exec();
+        const reviews = await Review.find({Product_id:"null"}).populate('User_id',).exec();
         res.status(200).json(reviews);
     }catch(e:any){
         res.status(500).json({message:e.message})

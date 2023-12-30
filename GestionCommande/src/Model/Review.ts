@@ -13,9 +13,10 @@ let ReviewSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    User_id:{
-        type:String,
-        required:true,
+    User_id: {
+        type: Number,  // Use ObjectId type for reference
+        ref: 'InfoUser',  // Reference the InfoUser model
+        required: true
     },
     Date:{
         type:Date,
