@@ -75,8 +75,12 @@ public class ProductService {
 				List<ProductImages> imagesPrio=this.ImagesProducts(id);
 				if (imagesPrio.size()!=0) {
 					prod.setImagePriorite(imagesPrio.get(imagesPrio.size()-1).getImagePriorite()+1);
+					product.setImageProduct(imagesPrio.get(0).getImageProduct());
+					ProductRepo.save(product);
 				}else {
 					prod.setImagePriorite((long) 0);
+					product.setImageProduct(fileName);
+					ProductRepo.save(product);
 				}
 				prod.setImageProduct(fileName);
 				prod.setProduct(product);
@@ -165,7 +169,8 @@ public class ProductService {
 		    return productsImages;
 		}
 		
-		public void ChangerPriorite(long idProd1,long idProd2) {
+		public void ChangerPriorite(long idProd1,long idProd2,long id) {
+			
 			long prior1=ImageProductRepo.findById(idProd1).get().getImagePriorite();
 			long prior2=ImageProductRepo.findById(idProd2).get().getImagePriorite();
 			
@@ -174,9 +179,14 @@ public class ProductService {
 			
 			ProductImages prod2=ImageProductRepo.findById(idProd2).get();
 			prod2.setImagePriorite(prior1);
-			
+	
 			ImageProductRepo.save(prod1);
 			ImageProductRepo.save(prod2);
+			
+			Product product=ProductRepo.findById(id).get();
+			List<ProductImages> imagesPrio=this.ImagesProducts(id);
+			product.setImageProduct(imagesPrio.get(0).getImageProduct());
+			ProductRepo.save(product);
 			
 		}
 		
