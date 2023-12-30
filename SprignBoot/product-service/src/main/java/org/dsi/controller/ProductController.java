@@ -407,10 +407,9 @@ public class ProductController {
 		}
 	}
 	
-	
-	
 	@PostMapping("/AddImages")
-	public ResponseEntity<?> AddImages(@RequestParam("file") MultipartFile file,@RequestParam("idProduct") long idProduct) throws Exception{
+	public ResponseEntity<?> AddImages(@RequestParam("file") MultipartFile file,@RequestParam("idProduct") long idProduct)
+			throws Exception{
 				  ProductService.AddImagesService(file, idProduct);
 				  JSONObject json=new JSONObject();
 			      json.appendField("data","Add images");
@@ -426,8 +425,8 @@ public class ProductController {
 	}
 	
 	@PutMapping("/ChangerPriorite")
-	public ResponseEntity<?> ChangerPriorite(@RequestParam("idProd1") long idProd1,@RequestParam("idProd2") long idProd2){
-		  ProductService.ChangerPriorite(idProd1,idProd2);
+	public ResponseEntity<?> ChangerPriorite(@RequestParam("idProd1") long idProd1,@RequestParam("idProd2") long idProd2,@RequestParam("id") long id){
+		  ProductService.ChangerPriorite(idProd1,idProd2,id);
 		  JSONObject json=new JSONObject();
 	      json.appendField("data","Change with success");
 	      return ResponseEntity.ok(json);
@@ -453,6 +452,5 @@ public class ProductController {
 		}
 		  
 	}
-	
 
 }

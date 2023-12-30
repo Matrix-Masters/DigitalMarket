@@ -120,6 +120,7 @@ public class CategoryController {
 
 	@DeleteMapping("/DeleteCategoryById")
 	public ResponseEntity<?> DeleteProductById(@RequestParam("id") Long id){
+		
 		Category category = cateRepo.findCategoryById(id);
 		try {
 			if(category == null) {
