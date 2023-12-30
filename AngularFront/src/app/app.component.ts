@@ -10,7 +10,6 @@ import { SecurityServiceService } from './Service/security-service.service';
 })
 export class AppComponent implements OnInit {
   
-  public isLoggedin: boolean = false;
   public userProfile:any;
 
   title = 'AngularFront';
@@ -22,8 +21,8 @@ export class AppComponent implements OnInit {
     this.SecurityServiceService.init();
     if(this.keycloakService.isLoggedIn()){
       this.keycloakService.loadUserProfile().then( async profile=>{
+        console.log(profile);
         this.userProfile=profile.username;
-        this.isLoggedin = true;
       });
     }  
   }

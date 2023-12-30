@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClasserProductComponent } from './AdminCompoenent/classer-product/classer-product.component';
 import { MaterialModule } from './material/material.module';
 import {FormsModule,ReactiveFormsModule } from "@angular/forms";
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { GererProduitComponent } from './AdminCompoenent/GererProduitComponents/gerer-produit/gerer-produit.component';
 import { AcceptedProductsComponent } from './AdminCompoenent/GererProduitComponents/accepted-products/accepted-products.component';
@@ -54,7 +54,11 @@ import { ImageProductComponent } from './AdminCompoenent/image-product/image-pro
 import { KeycloakAngularModule } from 'keycloak-angular';
 import { KeycloakService as _KeycloakService } from 'keycloak-angular';
 import { IsAuthGuard } from './guard/is-auth.guard';
-
+import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
+import { NgxsModule } from '@ngxs/store';
+import { AuthStore } from './Store/action';
+import { InterceptorGlobaleServiceService } from './interceptor/interceptor-globale-service.service';
+import { DetailsProductComponent } from './AccueilClient/details-product/details-product.component';
 
 function initialiserKeycloak(keycloak:_KeycloakService){
   return()=>{
@@ -120,11 +124,14 @@ function initialiserKeycloak(keycloak:_KeycloakService){
     EditProfileComponent,
     EditProfileBodyComponent,
     StockAdminComponent,
-    ImageProductComponent
+    ImageProductComponent,
+    DetailsProductComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    NgxsStoragePluginModule.forRoot(),
+    NgxsModule.forRoot([AuthStore]),
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
@@ -143,7 +150,12 @@ function initialiserKeycloak(keycloak:_KeycloakService){
       deps: [_KeycloakService],
       useFactory: initialiserKeycloak,
       multi: true,
-    }
+    },
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:InterceptorGlobaleServiceService,
+      multi:true
+    },
   ],
   bootstrap: [AppComponent]
 })
