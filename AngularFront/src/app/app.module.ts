@@ -50,6 +50,7 @@ import { ContractComponent } from './Fournissuer/contract/contract.component';
 import { EditProfileComponent } from './EditProfile/edit-profile/edit-profile.component';
 import { EditProfileBodyComponent } from './EditProfile/edit-profile-body/edit-profile-body.component';
 import { ReviewComponent } from './Review/review.component';
+import { StatsComponent } from './Fournissuer/statistiques/stats.component';
 
 
 
@@ -97,7 +98,8 @@ import { ReviewComponent } from './Review/review.component';
     ContractComponent,
     EditProfileComponent,
     EditProfileBodyComponent,
-    ReviewComponent
+    ReviewComponent,
+    StatsComponent
   ],
   imports: [
     BrowserModule,
