@@ -51,6 +51,7 @@ import { EditProfileComponent } from './EditProfile/edit-profile/edit-profile.co
 import { EditProfileBodyComponent } from './EditProfile/edit-profile-body/edit-profile-body.component';
 import { ReviewComponent } from './Review/review.component';
 import { StatsComponent } from './Fournissuer/statistiques/stats.component';
+import { CardRecommandationComponent } from './home/card-recommandation/card-recommandation.component';
 
 
 
@@ -99,7 +100,8 @@ import { StatsComponent } from './Fournissuer/statistiques/stats.component';
     EditProfileComponent,
     EditProfileBodyComponent,
     ReviewComponent,
-    StatsComponent
+    StatsComponent,
+    CardRecommandationComponent
   ],
   imports: [
     BrowserModule,

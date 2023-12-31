@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ProductsServiceLocalStorageService } from 'src/app/Service/products-service-local-storage.service';
-import { Product } from '../../Model/Product';
 import { WishlistService } from 'src/app/Service/wishlist.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductServiceService } from 'src/app/Service/product-service.service';
