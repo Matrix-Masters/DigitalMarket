@@ -28,6 +28,14 @@
 							</p>
 					</a>
 				</li>
+        <li>
+					<a [routerLink]="['/statsFournisseur']" [ngClass]="{'active': current === '/statsFournisseur'}" >
+							<mat-icon class="icon">format_list_bulleted</mat-icon>
+							<p  class="nav-item">
+								Statistics
+							</p>
+					</a>
+				</li>
 				<li>
 					<a class="close_sidebar" (click)="OpenedSideBar=!OpenedSideBar">
 							<mat-icon class="icon">
