@@ -23,6 +23,7 @@ import { ListCommandesComponent } from './ClientComponent/list-commandes/list-co
 import { ListProductsFournisseurComponent } from './Fournissuer/list-products-fournisseur/list-products-fournisseur.component';
 import { ContractComponent } from './Fournissuer/contract/contract.component';
 import { EditProfileComponent } from './EditProfile/edit-profile/edit-profile.component';
+import { StatsComponent } from './Fournissuer/statistiques/stats.component';
 
 
 
@@ -50,6 +51,7 @@ const routes: Routes = [
    {path:"ListProductsFournisseur",component:ListProductsFournisseurComponent},
    {path:"ContractComponent",component:ContractComponent},
    {path:"editProfile",component:EditProfileComponent},
+   {path:"statsFournisseur",component:StatsComponent},
    {path:"**",component:NotFoundComponentComponent}
 ]
 

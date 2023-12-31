@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { error } from 'jquery';
 import { ProductServiceService } from 'src/app/Service/product-service.service';
 
 @Component({
