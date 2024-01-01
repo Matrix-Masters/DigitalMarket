@@ -5,4 +5,5 @@ const router=express.Router();
 require("./CommandeRoutes")(router);
 require("./UserRoutes")(router);
 require("./ReviewRoutes")(router);
+require("./StatsRoute")(router);
 export default router;
