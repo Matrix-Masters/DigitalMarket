@@ -75,8 +75,9 @@
                                   </p>
                                   <p>
                                     {{product.nbSales}}
-                                 </p>
-                              </div>
+                                  </p>
+                                </div>
+
                                 </mat-card-content>
                               </mat-card>
                            </div>
@@ -91,6 +92,7 @@
                             <th scope="col">Quantity</th>
                             <th scope="col">NB Sales</th>
                             <th scope="col">Prix</th>
+                            <th scope="col">Statistics</th>
                           </tr>
                         </thead>
                         <tbody *ngIf="Products!='';else noProducts">
@@ -102,6 +104,14 @@
                               <td class="mt-5 py-5" [matTooltip]="product.name + '  is nearing an out-of-stock status. Please provide us with Other product '" [matTooltipDisabled]="product.quantite >= 10 ? true : null" [style]="product.quantite < 10 ? 'color: red;' : ''">{{product.quantite}}</td>
                               <td class="mt-5 py-5">{{product.nbSales}}</td>
                               <td class="mt-5 py-5">{{product.prix}}</td>
+                              <td class="mt-5 py-5">
+                                <button style="font-size: 20px;" mat-button data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                  <img src="../../../assets/stats.png" width="35px">
+                                </button>
+                              </td>
+                               <!---------------------- modal stats --------------------------------->
+
+                              <!---------------------- /modal stats --------------------------------->
                           </tr>
                         </tbody>
                         <ng-template #noProducts>

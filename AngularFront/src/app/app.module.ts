@@ -52,6 +52,7 @@ import { EditProfileBodyComponent } from './EditProfile/edit-profile-body/edit-p
 import { ReviewComponent } from './Review/review.component';
 import { StatsComponent } from './Fournissuer/statistiques/stats.component';
 import { CardRecommandationComponent } from './home/card-recommandation/card-recommandation.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 
 
@@ -101,7 +102,7 @@ import { CardRecommandationComponent } from './home/card-recommandation/card-rec
     EditProfileBodyComponent,
     ReviewComponent,
     StatsComponent,
-    CardRecommandationComponent
+    CardRecommandationComponent,
   ],
   imports: [
     BrowserModule,
@@ -113,7 +114,8 @@ import { CardRecommandationComponent } from './home/card-recommandation/card-rec
     DragDropModule,
     HttpClientModule,
     MatDialogModule,
-    CommonModule
+    CommonModule,
+    NgApexchartsModule,
   ],
   providers: [
     DatePipe
