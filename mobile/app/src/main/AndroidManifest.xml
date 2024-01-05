@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,8 +14,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DigitalMarket"
         tools:targetApi="34">
+        <activity
+            android:name=".FournisseurIntroScreen3"
+            android:exported="false" />
+        <activity
+            android:name=".FournisseurIntoScreen2"
+            android:exported="false" />
+        <activity
+            android:name=".FournisseurIntroScreen1"
+            android:exported="true" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-        <!-- Remove duplicate declaration -->
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+        <activity
+            android:name=".Client.CheckoutActivity"
+            android:exported="true" />
         <activity
             android:name=".HomeActivity"
             android:exported="true"
@@ -22,29 +39,29 @@
             android:theme="@style/Theme.DigitalMarket">
 
         </activity>
-
-        <activity android:name=".signup.SignUpStepOne" android:exported="true" />
-        <activity android:name=".signup.signup_second_step" android:exported="true" />
-        <activity android:name=".signup.signupstep_three" android:exported="true" />
+        <activity
+            android:name=".signup.SignUpStepOne"
+            android:exported="true" />
+        <activity
+            android:name=".signup.signup_second_step"
+            android:exported="true" />
+        <activity
+            android:name=".signup.signupstep_three"
+            android:exported="true" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".ProductDetails" />
-        <activity android:name=".FournisseurAddProduct"/>
+        <activity android:name=".FournisseurAddProduct" />
         <activity android:name=".fournisseur_profile" />
-        <activity android:name=".IntroScreen1" android:exported="true">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        </activity>
+        <activity
+            android:name=".IntroScreen1"
+            android:exported="true" />
         <activity android:name=".IntroScreen2" />
         <activity android:name=".IntroScreen3" />
         <activity android:name=".IntroScreen4" />
         <activity android:name=".FournisseurDashboard" />
-
         <activity
             android:name=".listProduct.ListProduct"
-            android:exported="true"
-           />
+            android:exported="true" />
         <activity
             android:name=".Client.Settings"
             android:exported="false" />
@@ -57,6 +74,4 @@
             android:resource="@array/preloaded_fonts" />
     </application>
 
-
 </manifest>
-
