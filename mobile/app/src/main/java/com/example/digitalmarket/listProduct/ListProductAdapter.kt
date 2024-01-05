@@ -39,9 +39,9 @@ class ListProductAdapter(private val context: Context, private val products: Arr
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item = products[position]
-        holder.img.setImageResource(item.img_id)
+        holder.img.setImageResource(R.drawable.product1)
         holder.name.text = item.name
-        holder.price.text = item.price.toString()
+        holder.price.text = item.prix.toString()
         holder.btn.setOnClickListener {
 
             var retrievedProductList = sharedPreference.getList("Products")?.toMutableList() ?: mutableListOf()
@@ -50,7 +50,7 @@ class ListProductAdapter(private val context: Context, private val products: Arr
             if (existingProductIndex != -1) {
                 retrievedProductList[existingProductIndex].qte += 1
             } else {
-                retrievedProductList.add(PanierData(item.name, item.img_id, 1, item.price))
+                retrievedProductList.add(PanierData(item.name,R.drawable.product1, 1, item.prix))
             }
 
             sharedPreference.saveList("Products", retrievedProductList)
