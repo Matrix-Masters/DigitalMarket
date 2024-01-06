@@ -24,6 +24,9 @@ public interface ProductRepo extends JpaRepository<Product,Long> {
 	   
 	   @Query(value="SELECT * FROM  product  WHERE id=:id",nativeQuery=true)
 		Product findProductById(Long id);
+	   
+	    /*@Query("SELECT p,pi.image_product,pi.image_priorite FROM Product p left JOIN product_images pi ON pi.product_id = p.id WHERE p.status = 1")
+	    Page<Product> getProductPaginate(Pageable pageable);*/
 		
 		@Query(value="select * from product where status=1 ",nativeQuery=true)
 		Page<Product> getProductPaginate(Pageable pageable );
@@ -59,9 +62,10 @@ public interface ProductRepo extends JpaRepository<Product,Long> {
 		 Page<Product> getProductsFournisseur(int status,long id,Pageable pageable);
 		 
 		 @Query(value="SELECT * from product WHERE status = :status And id_user=:id and name LIKE %:name% ",nativeQuery=true)
-			Page<Product> getProductsFournisseurByName(int status,long id,String name,Pageable pageable );
+		 Page<Product> getProductsFournisseurByName(int status,long id,String name,Pageable pageable );
 
 		
-		 
+		  @Query(value = "SELECT id FROM Product  WHERE id_user = :id")
+		  List<Integer> getProductsByIdUser(long id);
 		 
 }

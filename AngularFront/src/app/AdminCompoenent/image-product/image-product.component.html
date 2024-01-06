@@ -1,0 +1,56 @@
+<app-side-bar-comp>
+    <app-navbar-comp></app-navbar-comp>
+    <!-- <p class="text-center mt-3 titre">Product : {{this.products[0].product.name}}</p> -->
+    <form (ngSubmit)="AddImage()" enctype="multipart/form-data">
+    <div class="d-flex justify-content-center gap-4 mt-3">
+        <div>
+            <p class="mt-2">Add Image </p>
+        </div>
+        <div>
+            <input type="file" (change)="onFileChanged($event)" class="form-control">
+        </div>
+    </div>
+    <div class="text-center">
+        <button type="submit"  mat-mini-fab color="primary">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+    </form>
+    <div class="dashboard m-4">
+        <div *ngIf="products=='';else Empty">
+            <mat-card>
+                <mat-card-content>Image Not Found</mat-card-content>
+              </mat-card>
+        </div>
+        <ng-template #Empty>
+   
+            <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+                <div class="example-box" cdkDrag *ngFor="let item of products" class="text-center">
+                     <img [src]="'http://localhost:8888/PRODUCT-SERVICE/products/images/'+item.imageProduct" width="300px" height="100px" alt="">
+                      &nbsp;
+                     <button mat-mini-fab color="warn" (click)="deleteImage(item.id)" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                          <mat-icon>delete</mat-icon>
+                      </button>
+    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Do You Wanna Delete This Image ?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-danger" (click)="deleteImage(item.id)" >Delete</button>
+          </div>
+        </div>
+      </div>
+    </div> -->
+                      <hr>
+                  </div>
+            </div>
+        </ng-template>
+    </div>
+</app-side-bar-comp>

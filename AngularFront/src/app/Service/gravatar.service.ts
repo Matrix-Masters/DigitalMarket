@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as md5 from 'md5';
+import  md5 from 'md5';
 
 @Injectable({
   providedIn: 'root',

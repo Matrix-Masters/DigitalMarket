@@ -8,6 +8,8 @@ import java.util.List;
 
 import org.dsi.entity.Category;
 import org.dsi.entity.Product;
+import org.dsi.entity.ProductImages;
+import org.dsi.repository.ImageProduct;
 import org.dsi.repository.NodeSync;
 import org.dsi.repository.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,9 @@ public class ProductService {
 
 	  @Autowired
 	  ProductRepo ProductRepo;
+	  
+	  @Autowired
+	  ImageProduct ImageProductRepo;
 	  
 		@Autowired
 		private NodeSync nodesync;
@@ -54,6 +59,32 @@ public class ProductService {
 	  			jsoUser.appendField("idUser",0);
 	  			jsoUser.appendField("idSpring",prod.getId());*/
 	  			//String prod1=nodesync.addProd(jsoUser);
+			} catch (IllegalStateException | IOException e) {
+				e.printStackTrace();
+			}
+	  }
+	  
+	  public void AddImagesService(MultipartFile file,Long id) throws Exception {
+		    String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+		    String fileName =  timestamp+"_"+file.getOriginalFilename();
+			String uploadDir = "ProductPhotos/";
+			ProductImages prod=new ProductImages();
+			try {
+				FileUpload.saveFile(uploadDir, fileName, file);
+				Product product=ProductRepo.findById(id).get();
+				List<ProductImages> imagesPrio=this.ImagesProducts(id);
+				if (imagesPrio.size()!=0) {
+					prod.setImagePriorite(imagesPrio.get(imagesPrio.size()-1).getImagePriorite()+1);
+					product.setImageProduct(imagesPrio.get(0).getImageProduct());
+					ProductRepo.save(product);
+				}else {
+					prod.setImagePriorite((long) 0);
+					product.setImageProduct(fileName);
+					ProductRepo.save(product);
+				}
+				prod.setImageProduct(fileName);
+				prod.setProduct(product);
+				ImageProductRepo.save(prod);
 			} catch (IllegalStateException | IOException e) {
 				e.printStackTrace();
 			}
@@ -121,6 +152,56 @@ public class ProductService {
 		        throw new Exception("Products Not Found");
 		    }
 		    return products;
+		}
+	  
+	  	public List<Integer> getProductsByIdUser(long id) throws Exception {
+		  
+		    List<Integer> products = ProductRepo.getProductsByIdUser(id);
+		    
+		    if (products.isEmpty()) {
+		        throw new Exception("Products Not Found");
+		    }
+		    return products;
+		}
+	  	
+		public List<ProductImages> ImagesProducts(long id) {
+		    List<ProductImages> productsImages = ImageProductRepo.getImagesProducts(id);
+		    return productsImages;
+		}
+		
+		public void ChangerPriorite(long idProd1,long idProd2,long id) {
+			
+			long prior1=ImageProductRepo.findById(idProd1).get().getImagePriorite();
+			long prior2=ImageProductRepo.findById(idProd2).get().getImagePriorite();
+			
+			ProductImages prod1=ImageProductRepo.findById(idProd1).get();
+			prod1.setImagePriorite(prior2);
+			
+			ProductImages prod2=ImageProductRepo.findById(idProd2).get();
+			prod2.setImagePriorite(prior1);
+	
+			ImageProductRepo.save(prod1);
+			ImageProductRepo.save(prod2);
+			
+			Product product=ProductRepo.findById(id).get();
+			List<ProductImages> imagesPrio=this.ImagesProducts(id);
+			product.setImageProduct(imagesPrio.get(0).getImageProduct());
+			ProductRepo.save(product);
+			
+		}
+		
+		public void deleteImage(long id) {
+			ImageProductRepo.deleteById(id);
+		}
+		
+		public void IncrementQteProd(long id,int qte) throws Exception {
+			    Product prod=ProductRepo.ProductWithId(id);
+			  	if(prod==null) {
+			  	   throw new Exception("Product Not Found");
+			  	}else {
+			  		prod.setQuantite(qte);
+					ProductRepo.save(prod);
+			  	}
 		}
 	  
 }

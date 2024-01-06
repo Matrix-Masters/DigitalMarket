@@ -39,11 +39,47 @@ export class ProductServiceService{
       return this.http.put(`${port}/PRODUCT-SERVICE/codeQr/GenerateCodeQr`,commande);
   }
 
+
   getRecommandations(id:any){
     return this.http.get(`${port}/PRODUCT-SERVICE/recommandations/getRecommandations?id=${id}`);
   }
   addCount(user_id:any,product_id:any,count:any){
     return this.http.post(`${port}/PRODUCT-SERVICE/recommandations/addRecommandation?user_id=${user_id}&product_id=${product_id}&count=${count}`,{});
+  }
+
+
+  getProductsByIdUser(id:any){
+    return this.http.get(`${port}/PRODUCT-SERVICE/products/getProductsByIdUser?id=${id}`);
+  }
+  
+  IncrementNbSales(id:any){
+    return this.http.put(`${port}/PRODUCT-SERVICE/products/IncrementNbSales?id=${id}`,{});
+  }
+
+  AllProduct(page:number,pageSize:number,search:string){
+    return this.http.get(`${port}/PRODUCT-SERVICE/products/AllProduct?page=${page}&per_page=${pageSize}${search!='' ? `&search=${search}` : ''}`);
+  }
+
+  ImageProducts(id:number){
+    return this.http.get(`${port}/PRODUCT-SERVICE/products/ImageProducts?id=${id}`);
+  }
+
+  AddImages(image:any,id:number){
+    const formData = new FormData();
+    formData.append('file', image);
+    return this.http.post(`${port}/PRODUCT-SERVICE/products/AddImages?idProduct=${id}`,formData);
+  } 
+
+  ChangerPriorite(id1:number,id2:number,id:number){
+    return this.http.put(`${port}/PRODUCT-SERVICE/products/ChangerPriorite?idProd1=${id1}&idProd2=${id2}&id=${id}`,{});
+  }
+
+  DeleteImage(id:number){
+    return this.http.delete(`${port}/PRODUCT-SERVICE/products/DeleteImage?id=${id}`);
+  }
+
+  IncrementQteProd(id:number,qte:number){
+    return this.http.put(`${port}/PRODUCT-SERVICE/products/IncrementQteProd?id=${id}&qte=${qte}`,{});
   }
 
 }

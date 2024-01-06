@@ -6,9 +6,7 @@ import { port } from 'src/env';
 })
 export class PythonServiceService {
   
-  constructor(private http:HttpClient){
-
-  }
+  constructor(private http:HttpClient){}
   
   AddPhoto(image:any){ 
       const formData = new FormData();

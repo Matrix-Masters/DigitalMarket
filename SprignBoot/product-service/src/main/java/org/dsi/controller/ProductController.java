@@ -3,6 +3,7 @@ package org.dsi.controller;
 import org.dsi.entity.Category;
 
 import org.dsi.entity.Product;
+import org.dsi.entity.ProductImages;
 import org.dsi.repository.ProductRepo;
 import org.dsi.service.FileUpload;
 import org.dsi.service.ProductService;
@@ -69,6 +70,14 @@ public class ProductController {
 		product.appendField("id",id);
 		product.appendField("prix", prod.getPrix());
 		product.appendField("description",prod.getDescription());
+		return ResponseEntity.ok(product);
+	}
+	
+	@PutMapping("/IncrementNbSales")
+	public ResponseEntity<?> IncrementNbSales(@RequestParam("id") Long id){
+		Product product = ProductRepo.findProductById(id);
+		product.setNbSales(product.getNbSales()+1);
+		ProductRepo.save(product);
 		return ResponseEntity.ok(product);
 	}
 	
@@ -387,9 +396,61 @@ public class ProductController {
 
 	}
 	
+	@GetMapping("/getProductsByIdUser")
+	public ResponseEntity<?> getProductsByIdUser(@RequestParam("id") long id){
+		try {
+				List<Integer> products=ProductService.getProductsByIdUser(id);
+		        return ResponseEntity.status(HttpStatus.OK).body(products);
+		} catch (Exception e) {
+			e.printStackTrace();
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while fetching paginated products.");
+		}
+	}
 	
+	@PostMapping("/AddImages")
+	public ResponseEntity<?> AddImages(@RequestParam("file") MultipartFile file,@RequestParam("idProduct") long idProduct)
+			throws Exception{
+				  ProductService.AddImagesService(file, idProduct);
+				  JSONObject json=new JSONObject();
+			      json.appendField("data","Add images");
+			      return ResponseEntity.ok(json);	
+	}
 	
+	@GetMapping("/ImageProducts")
+	public ResponseEntity<?> ImageProducts(@RequestParam("id") long id){
+			  List<ProductImages> products=ProductService.ImagesProducts(id);
+			  JSONObject json=new JSONObject();
+		      json.appendField("data",products);
+		      return ResponseEntity.ok(json);
+	}
 	
+	@PutMapping("/ChangerPriorite")
+	public ResponseEntity<?> ChangerPriorite(@RequestParam("idProd1") long idProd1,@RequestParam("idProd2") long idProd2,@RequestParam("id") long id){
+		  ProductService.ChangerPriorite(idProd1,idProd2,id);
+		  JSONObject json=new JSONObject();
+	      json.appendField("data","Change with success");
+	      return ResponseEntity.ok(json);
+	}
 	
+	@DeleteMapping("/DeleteImage")
+	public ResponseEntity<?> DeleteImage(@RequestParam("id") long id){
+		  ProductService.deleteImage(id);
+		  JSONObject json=new JSONObject();
+	      json.appendField("data","Delete with success");
+	      return ResponseEntity.ok(json);
+	}
+	
+	@PutMapping("/IncrementQteProd")
+	public ResponseEntity<?> IncrementQteProd(@RequestParam("id") long id,@RequestParam("qte") int qte){
+		  try {
+			  ProductService.IncrementQteProd(id, qte);
+			  JSONObject json=new JSONObject();
+		      json.appendField("data","Change Qte with success");
+		      return ResponseEntity.ok(json);
+		} catch (Exception e) {
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while fetching paginated products.");
+		}
+		  
+	}
 
 }

@@ -54,6 +54,14 @@
         </a>
       </li>
       <li>
+        <a [routerLink]="['/stockadmin']" [ngClass]="{'active': current === '/stockadmin'}">
+          <mat-icon class="icon">image</mat-icon>
+          <p class="nav-item">
+             Images Product
+          </p>
+        </a>
+      </li>
+      <li>
         <a class="close_sidebar" (click)="OpenedSideBar=!OpenedSideBar">
           <mat-icon class="icon">
             {{OpenedSideBar ? 'arrow_left' : 'arrow_right'}}

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngxs/store';
 import { AuthServiceService } from 'src/app/Service/auth-service.service';
 import { CategoryServiceService } from 'src/app/Service/category-service.service';
 import { ProductsServiceLocalStorageService } from 'src/app/Service/products-service-local-storage.service';
@@ -17,7 +18,10 @@ export class NavbarComponent implements OnInit {
   nbrArticle:number=0
 
 
-  constructor(public AuthServiceService:AuthServiceService, public categoriesService : CategoryServiceService){}
+
+  constructor(public AuthServiceService:AuthServiceService, public categoriesService : CategoryServiceService){
+  
+  }
 
 
 
