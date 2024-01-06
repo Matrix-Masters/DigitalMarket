@@ -27,6 +27,7 @@
 </div>
 
 <section>
+  <!-- --------------------------- New arrivals -------------------------->
 <div class="container new-arrivals" style="margin-top: 70px;">
 
   <div class="d-flex justify-content-between align-items-center row">
@@ -38,12 +39,12 @@
 
 </div>
 
- <!-- ---------------------------section 1 -------------------------->
+
 <div class="procucts d-flex" style="width: 100%;">
   <div class="products-paginate container " style="margin-top: 70px;">
     <div class="row2 row flex-wrap">
-      <div class="col2 col-md-6 col-sm-6 col-12 col-xl-4 col-lg-6 d-flex justify-content-center" style="margin-bottom: 40px;position: relative;" *ngFor="let item of products">
-        <app-card [products]="item" [new]="true"></app-card>
+      <div class="col2 col-md-6 col-sm-12 col-12 col-xl-4 col-lg-6 d-flex justify-content-center" style="margin-bottom: 40px;position: relative;" *ngFor="let item of products">
+        <app-card [products]="item" [new]="true" [recommandations]="false"></app-card>
       </div>
     </div>
   </div>
@@ -54,11 +55,11 @@
   <button class="" style="padding: 10px;background-color: #fff;">Shop now</button>
  </div>
 
- <!-- --------------------------- /section 1 -------------------------->
+ <!-- --------------------------- /New arrivals -------------------------->
 
 
 
-<!-- ---------------------------section 2 -------------------------->
+<!-- --------------------------- Top Seller -------------------------->
 
 <div class="container new-arrivals " style="margin-top: 70px;">
 
@@ -75,17 +76,40 @@
 <div class="top-seller procucts d-flex" style="width: 100%;">
   <div class="products-paginate container " style="margin-top: 70px;">
     <div class="row2 row py-2">
-      <div class="col2  col-md-6 col-sm-6 col-12 col-xl-4 col-lg-6 py-2 d-flex justify-content-center" style="margin-bottom: 40px;position: relative;" *ngFor="let item of products">
-        <app-card class="centered-card" [products]="item" [new]="false"></app-card>
+      <div class="col2  col-md-6 col-sm-12 col-12 col-xl-4 col-lg-6 py-2 d-flex justify-content-center" style="margin-bottom: 40px;position: relative;" *ngFor="let item of products">
+        <app-card class="centered-card" [products]="item" [new]="false" [recommandations]="false"></app-card>
       </div>
     </div>
   </div>
 </div>
 
- <!-- --------------------------- /section 2 -------------------------->
+ <!-- --------------------------- /Top Seller -------------------------->
 
+<!-- --------------------------- Recommandations -------------------------->
+<div class="container new-arrivals " style="margin-top: 70px;">
 
+  <div class="d-flex justify-content-between align-items-center row">
+    <div class="text col-12 col-sm-6 col-xl-10 col-lg-9 p-2">
+      <span class="title" style="padding-top: 20px;">Recommended</span>
+      <span class="mini-title" style="padding-top: 20px;">see all</span>
+    </div>
+  </div>
 
+</div>
 
+<div class="top-seller procucts d-flex" style="width: 100%;">
+  <div class="products-paginate container " style="margin-top: 70px;">
+    <div class="row2 row py-2">
+      <div class="col2  col-md-6 col-sm-12 col-12 col-xl-4 col-lg-6 py-2 d-flex justify-content-center" style="margin-bottom: 40px;position: relative;" *ngFor="let item of productsRecommandations">
+        <app-card-recommandation class="centered-card" [productsRecommandations]="item" [new]="false" [recommandations]="true"></app-card-recommandation>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- --------------------------- /Recommandations -------------------------->
+
+<!-- --------------------------- Reviews -------------------------->
+<app-review></app-review>
+*<!-- ---------------------------/Reviews -------------------------->
 
 

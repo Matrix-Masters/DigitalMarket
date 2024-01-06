@@ -20,7 +20,7 @@ export class ProductsServiceLocalStorageService {
       newProduct.desc = product.desc;
       newProduct.quantity = 1;
       newProduct.status=product.status;
-      newProduct.imageSrc = product.imageSrc;
+      newProduct.imageProduct = product.imageProduct;
       this.productList.push(newProduct);
     }
     this.saveProductList();

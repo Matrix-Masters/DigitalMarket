@@ -1,0 +1,21 @@
+body{
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.font{
+  font-family: "Arial Black", Gadget, sans-serif;
+}
+.title{
+  font-size: 30px;
+  text-transform: uppercase;
+  margin-right: 20px;
+  text-shadow: 0px 3px 3px rgba(255,255,255,0.5), 3px 3px 7px #000000;
+}
+.star {
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.star.selected {
+  color: gold;
+}

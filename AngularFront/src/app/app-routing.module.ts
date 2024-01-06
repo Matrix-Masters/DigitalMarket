@@ -23,10 +23,16 @@ import { ListCommandesComponent } from './ClientComponent/list-commandes/list-co
 import { ListProductsFournisseurComponent } from './Fournissuer/list-products-fournisseur/list-products-fournisseur.component';
 import { ContractComponent } from './Fournissuer/contract/contract.component';
 import { EditProfileComponent } from './EditProfile/edit-profile/edit-profile.component';
+
+import { StatsComponent } from './Fournissuer/statistiques/stats.component';
+
+
+
 import { StockAdminComponent } from './AdminCompoenent/stock-admin/stock-admin.component';
 import { ImageProductComponent } from './AdminCompoenent/image-product/image-product.component';
 import { IsAuthGuard } from './guard/is-auth.guard';
 import { DetailsProductComponent } from './AccueilClient/details-product/details-product.component';
+
 
 const routes: Routes = [
    {path:'',component:HomeComponent},
@@ -55,6 +61,8 @@ const routes: Routes = [
    {path:"stockadmin",component:StockAdminComponent,canActivate :[IsAuthGuard]},
    {path:"ImageProduct/:id",component:ImageProductComponent},
    {path:"DetailProduct/:id",component:DetailsProductComponent},
+   {path:"statsFournisseur/:id",component:StatsComponent},
+
    {path:"**",component:NotFoundComponentComponent}
 ]
 

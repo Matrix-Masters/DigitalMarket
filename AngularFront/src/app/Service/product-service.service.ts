@@ -39,6 +39,15 @@ export class ProductServiceService{
       return this.http.put(`${port}/PRODUCT-SERVICE/codeQr/GenerateCodeQr`,commande);
   }
 
+
+  getRecommandations(id:any){
+    return this.http.get(`${port}/PRODUCT-SERVICE/recommandations/getRecommandations?id=${id}`);
+  }
+  addCount(user_id:any,product_id:any,count:any){
+    return this.http.post(`${port}/PRODUCT-SERVICE/recommandations/addRecommandation?user_id=${user_id}&product_id=${product_id}&count=${count}`,{});
+  }
+
+
   getProductsByIdUser(id:any){
     return this.http.get(`${port}/PRODUCT-SERVICE/products/getProductsByIdUser?id=${id}`);
   }
@@ -72,5 +81,5 @@ export class ProductServiceService{
   IncrementQteProd(id:number,qte:number){
     return this.http.put(`${port}/PRODUCT-SERVICE/products/IncrementQteProd?id=${id}&qte=${qte}`,{});
   }
-  
+
 }

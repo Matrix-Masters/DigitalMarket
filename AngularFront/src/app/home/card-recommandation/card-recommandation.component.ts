@@ -1,24 +1,22 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ProductsServiceLocalStorageService } from 'src/app/Service/products-service-local-storage.service';
-import { WishlistService } from 'src/app/Service/wishlist.service';
+import { Component, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductServiceService } from 'src/app/Service/product-service.service';
+import { ProductsServiceLocalStorageService } from 'src/app/Service/products-service-local-storage.service';
+import { WishlistService } from 'src/app/Service/wishlist.service';
+
 @Component({
-  selector: 'app-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.scss'],
+  selector: 'app-card-recommandation',
+  templateUrl: './card-recommandation.component.html',
+  styleUrls: ['./card-recommandation.component.scss']
 })
-
-export class CardComponent  implements OnInit{
-isFavorite:boolean = false;
-user_id:any=21
-constructor(public productServiceStorage:ProductsServiceLocalStorageService, private snackBar:MatSnackBar,private wishlistService: WishlistService,private productService:ProductServiceService){}
-
-@Input() products:any
-@Input() productsRecommandations:any
-@Input() new:boolean = true;
-@Input() recommandations:boolean = true;
-
+export class CardRecommandationComponent {
+  isFavorite:boolean = false;
+  user_id:any=21
+  constructor(public productServiceStorage:ProductsServiceLocalStorageService, private snackBar:MatSnackBar,private wishlistService: WishlistService,private productService:ProductServiceService){}
+  @Input() products:any
+  @Input() productsRecommandations:any
+  @Input() new:boolean = true;
+  @Input() recommandations:boolean = true;
 
   toggleFavorite(id: any): void {
     this.wishlistService
