@@ -17,14 +17,14 @@ export const getNbSales = async (req: Request, res: Response) => {
             LigneCommandes: { $elemMatch: { $in: idLigneCommandeProduct } }
         }).exec();
 
-        let nbSales: number = 0;
+        let Sales: number = 0;
         for (let i = 0; i < lignes.length; i++) {
-            nbSales += Number(lignes[i].Quantity);
+            Sales += Number(lignes[i].Quantity);
         }
-        const income = nbSales * Number(lignes[0]?.prix || 0);
-        const nbCommandes = orders.length;
+        const Income = Sales * Number(lignes[0]?.prix || 0);
+        const Orders = orders.length;
 
-        res.status(200).json({ nbSales, income, nbCommandes });
+        res.status(200).json({ Sales, Income, Orders });
     } catch (e) {
         console.error(e);
         res.status(500).send('Internal Server Error');

@@ -1,7 +1,14 @@
-<app-fournisseur-side-bar-comp>
-  <app-fournisseur-navbar-comp></app-fournisseur-navbar-comp>
-    <div class="dashboard container mt-4" style="margin-left: 30px;flex-direction: column;">
 
-    </div>
+<button mat-icon-button color="primary" class="mt-4 ml-2" routerLink="/ListProductsFournisseur">
+  <mat-icon>home</mat-icon>
+</button>
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+  <div class="chartContainer mx-auto" style="width: 60%; height: 80%;">
+    <canvas id="myChart"></canvas>
+  </div>
 
-</app-fournisseur-side-bar-comp>
+  <div class="chartContainer mx-auto" style="width: 30%; height: 80%;">
+    <canvas id="income"></canvas>
+  </div>
+</div>
+
