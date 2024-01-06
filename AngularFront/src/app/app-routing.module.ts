@@ -51,7 +51,7 @@ const routes: Routes = [
    {path:"ListProductsFournisseur",component:ListProductsFournisseurComponent},
    {path:"ContractComponent",component:ContractComponent},
    {path:"editProfile",component:EditProfileComponent},
-   {path:"statsFournisseur",component:StatsComponent},
+   {path:"statsFournisseur/:id",component:StatsComponent},
    {path:"**",component:NotFoundComponentComponent}
 ]
 

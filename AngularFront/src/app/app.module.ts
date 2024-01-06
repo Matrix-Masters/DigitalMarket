@@ -52,7 +52,8 @@ import { EditProfileBodyComponent } from './EditProfile/edit-profile-body/edit-p
 import { ReviewComponent } from './Review/review.component';
 import { StatsComponent } from './Fournissuer/statistiques/stats.component';
 import { CardRecommandationComponent } from './home/card-recommandation/card-recommandation.component';
-import { NgApexchartsModule } from 'ng-apexcharts';
+import { Chart } from 'chart.js';
+
 
 
 
@@ -115,7 +116,6 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     HttpClientModule,
     MatDialogModule,
     CommonModule,
-    NgApexchartsModule,
   ],
   providers: [
     DatePipe
