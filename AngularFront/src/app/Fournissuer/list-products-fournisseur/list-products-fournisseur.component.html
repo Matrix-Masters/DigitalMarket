@@ -105,13 +105,11 @@
                               <td class="mt-5 py-5">{{product.nbSales}}</td>
                               <td class="mt-5 py-5">{{product.prix}}</td>
                               <td class="mt-5 py-5">
-                                <button style="font-size: 20px;" mat-button data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                <button style="font-size: 20px;" mat-button  routerLink="/statsFournisseur/{{product.id}}">
                                   <img src="../../../assets/stats.png" width="35px">
                                 </button>
                               </td>
-                               <!---------------------- modal stats --------------------------------->
 
-                              <!---------------------- /modal stats --------------------------------->
                           </tr>
                         </tbody>
                         <ng-template #noProducts>

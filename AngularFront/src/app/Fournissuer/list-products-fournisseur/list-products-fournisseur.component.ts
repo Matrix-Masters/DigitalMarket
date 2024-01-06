@@ -10,7 +10,7 @@ export class ListProductsFournisseurComponent implements OnInit {
 
 
   constructor(private FournisseurServiceService:FournisseurServiceService){
-    
+
   }
 
   ngOnInit(): void {
@@ -18,7 +18,7 @@ export class ListProductsFournisseurComponent implements OnInit {
   }
 
   Products:any;
-  
+
   pagination={
     currentpage:0,
     per_page:5,
@@ -56,7 +56,7 @@ export class ListProductsFournisseurComponent implements OnInit {
     this.getProduct();
   }
 
-  selectedPerPage: number=5; 
+  selectedPerPage: number=5;
 
   onPerPageChange() {
     this.pagination.per_page=this.selectedPerPage;
