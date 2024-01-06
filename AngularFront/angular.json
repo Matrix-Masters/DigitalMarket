@@ -47,8 +47,7 @@
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "./node_modules/leaflet/dist/leaflet.js",
-              "node_modules/apexcharts/dist/apexcharts.min.js"
+              "./node_modules/leaflet/dist/leaflet.js"
             ]
           },
           "configurations": {
