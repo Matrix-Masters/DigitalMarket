@@ -63,6 +63,7 @@ import { NgxsModule } from '@ngxs/store';
 import { AuthStore } from './Store/action';
 import { InterceptorGlobaleServiceService } from './interceptor/interceptor-globale-service.service';
 import { DetailsProductComponent } from './AccueilClient/details-product/details-product.component';
+import { guardRoleGuard } from './guard/guard-role.guard';
 
 
 function initialiserKeycloak(keycloak:_KeycloakService){
@@ -154,6 +155,7 @@ function initialiserKeycloak(keycloak:_KeycloakService){
   providers: [
     IsAuthGuard,
     DatePipe,
+    guardRoleGuard,
     // {
     //   provide:HTTP_INTERCEPTORS,
     //   useClass:InterceptorGlobaleServiceService,
