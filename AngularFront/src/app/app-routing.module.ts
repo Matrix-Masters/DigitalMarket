@@ -35,7 +35,7 @@ const routes: Routes = [
    {path:'gererProduit',component:GererProduitComponent,canActivate :[IsAuthGuard]},
    {path:'listCategory',component:CategoryListComponent},
    {path:'Commandes',component:GererCommandeComponent},
-   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+   {path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
    {path:'gererSupplier',component:GererSupplierComponent,canActivate :[IsAuthGuard]},
    {path:'Commandes_Taken',component:LocationCommandeComponent,canActivate :[IsAuthGuard]},
    {path:'categories/:id',component:AccueilClientComponent},

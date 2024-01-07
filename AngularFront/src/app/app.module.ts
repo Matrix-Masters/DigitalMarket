@@ -145,16 +145,16 @@ function initialiserKeycloak(keycloak:_KeycloakService){
   providers: [
     IsAuthGuard,
     DatePipe,
+    // {
+    //   provide:HTTP_INTERCEPTORS,
+    //   useClass:InterceptorGlobaleServiceService,
+    //   multi:true
+    // },
     { 
       provide: APP_INITIALIZER,
       deps: [_KeycloakService],
       useFactory: initialiserKeycloak,
       multi: true,
-    },
-    {
-      provide:HTTP_INTERCEPTORS,
-      useClass:InterceptorGlobaleServiceService,
-      multi:true
     },
   ],
   bootstrap: [AppComponent]
