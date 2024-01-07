@@ -26,7 +26,7 @@
         <button mat-menu-item routerLink="/cart"> <i class="bi bi-cart-fill menu-boredered"></i>Cart </button>
         <button mat-menu-item *ngIf="!AuthServiceService.isAuth"><i
             class="bi bi-person-circle menu-boredered"></i>User</button>
-        <button mat-menu-item routerLink="/auth/signup/Supplier"><i class="bi bi-shop menu-boredered"></i>Become
+        <button *ngIf="!AuthServiceService.isAuth" mat-menu-item (click)="signup()"><i class="bi bi-shop menu-boredered"></i>Become
           vendor</button>
         <mat-divider></mat-divider>
         <mat-list role="list">
@@ -41,7 +41,7 @@
      <mat-menu #aboveMenu="matMenu" yPosition="above">
        <button mat-menu-item routerLink="/cart"> <i class="bi bi-cart-fill menu-boredered"></i>Cart </button>
        <button mat-menu-item *ngIf="!AuthServiceService.isAuth"><i class="bi bi-person-circle menu-boredered"></i>User</button>
-       <button   mat-menu-item  routerLink="/auth/signup/Supplier" ><i  class="bi bi-shop menu-boredered"></i>Become vendor</button>
+       <button *ngIf="!AuthServiceService.isAuth"   mat-menu-item  (click)="signup()" ><i  class="bi bi-shop menu-boredered"></i>Become vendor</button>
        <mat-divider></mat-divider>
        <mat-list role="list">
          <mat-list-item ><span class="list-title" style="margin-right: 10px;">Categories</span><i class="bi bi-arrow-down" style="font-size: 20px;"></i> </mat-list-item>
@@ -61,7 +61,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="pt-4">
         <li class="bordered" routerLink="/cart" [matBadge]="nbrArticle"><i class="bi bi-cart-fill"></i>Cart</li>
-        <li class="bordered" routerLink="/auth/signup/Supplier"><i class="bi bi-shop"></i>Become vendor</li>
+        <li *ngIf="!AuthServiceService.isAuth" class="bordered" (click)="signup()"><i class="bi bi-shop"></i>Become vendor</li>
         <li [matMenuTriggerFor]="auth" *ngIf="!AuthServiceService.isAuth"><i class="bi bi-person-circle"></i>User</li>
         <li [matMenuTriggerFor]="user" class="bordered" *ngIf="AuthServiceService.isAuth"
           class="d-block link-dark text-decoration-none">
@@ -86,16 +86,21 @@
             <mat-icon>supervised_user_circle</mat-icon>
             <span >Profile</span>
           </button>
+           <button mat-menu-item (click)="Logout()">
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+          </button>
         </mat-menu>
         <mat-menu #auth="matMenu">
-          <button mat-menu-item>
+          <button mat-menu-item (click)="Login()">
             <mat-icon>account_circle</mat-icon>
             <span>Log In</span>
           </button>
-          <button mat-menu-item routerLink="/auth/signup/Client">
+          <button mat-menu-item (click)="signup()">
             <mat-icon>account_box</mat-icon>
             <span>Sign Up</span>
           </button>
+        
         </mat-menu>
       </ul>
     </div>

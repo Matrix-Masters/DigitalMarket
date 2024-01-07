@@ -126,7 +126,6 @@ InitMap(){
       }).addTo(this.map);
 
       //Get Locate :) Formatted
-
       this.LocationClientService.getLocate(e.latlng.lat, e.latlng.lng).subscribe((res:any) => {
       this.CurrentLocation.emit({ lat: e.latlng.lat, lng: e.latlng.lng , name:res.results[0].formatted});
        var popup = L.popup();
