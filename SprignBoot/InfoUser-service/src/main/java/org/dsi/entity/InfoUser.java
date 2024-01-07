@@ -1,10 +1,7 @@
 package org.dsi.entity;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -27,8 +24,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-@Entity@Data@AllArgsConstructor@NoArgsConstructor
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class InfoUser {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,7 +37,8 @@ public class InfoUser {
 	
 	private String LastName;
 	
-	private String Email;
+	@Column(name = "email")
+	private String email;
 	
 	private String Password;
 	
@@ -78,6 +78,8 @@ public class InfoUser {
 	@Temporal(TemporalType.TIMESTAMP)
 	@ColumnDefault(value = "null")
 	private Date email_verified_at;
+	
+	private String keycloak_id; 
 
 	
 }
