@@ -16,12 +16,13 @@ export class HomeComponent implements OnInit {
   user:User;
   constructor(private store:Store,public categoriesService : CategoryServiceService,private UserService:UserServiceService){
     this.user=this.store.selectSnapshot(s=>s.AuthStore?.User);
-    this.greeting();
+    if(this.user){
+      this.greeting();
+    }
   }
 
   greeting(){
     if(this.user?.welcome_field!=1){
-      console.log("welcome "+this.user?.firstName);
         let test=new SpeechSynthesisUtterance("welcome "+this.user?.firstName);
         speechSynthesis.speak(test);
         setTimeout(() => {

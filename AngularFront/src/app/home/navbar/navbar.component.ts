@@ -26,7 +26,6 @@ export class NavbarComponent implements OnInit {
       public AuthServiceService:AuthServiceService, 
       public categoriesService : CategoryServiceService){
     this.user=this.store.selectSnapshot(s=>s.AuthStore?.User)
-    console.log(this.user.firstName);
   }
 
 
