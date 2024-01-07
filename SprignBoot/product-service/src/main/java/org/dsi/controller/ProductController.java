@@ -39,6 +39,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
+import javax.ws.rs.GET;
 
 @RestController
 @RequestMapping("/products")
@@ -73,7 +74,11 @@ public class ProductController {
 		product.appendField("description",prod.getDescription());
 		return ResponseEntity.ok(product);
 	}
-	
+	@GetMapping("/getAllProducts")
+	public ResponseEntity<?> GetProducts(){
+		List<Product> products = ProductRepo.findAll();
+		return ResponseEntity.ok(products);
+	}
 	@PutMapping("/IncrementNbSales")
 	public ResponseEntity<?> IncrementNbSales(@RequestParam("id") Long id){
 		Product product = ProductRepo.findProductById(id);

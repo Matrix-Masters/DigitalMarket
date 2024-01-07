@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ServiceBuilder {
 
-    private const val BASE_URL: String = "http://192.168.1.122:8888"
+    private const val BASE_URL: String = "http://192.168.1.14:8888"
 
     private val gson : Gson by lazy {
         GsonBuilder().setLenient().create()
