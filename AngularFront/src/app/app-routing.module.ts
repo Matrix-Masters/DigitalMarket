@@ -37,7 +37,7 @@ const routes: Routes = [
      component: ClasserProductComponent,
      canActivate: [IsAuthGuard, guardRoleGuard],
      data: {
-        role: ['AdminOrganisator']
+        role: ['AdminOrganisator','SuperAdmin']
      }
   },
   {
@@ -53,7 +53,7 @@ const routes: Routes = [
       component: GererProduitComponent,
       canActivate: [IsAuthGuard, guardRoleGuard],
       data: {
-         role: ['AdminTechnique']
+         role: ['AdminTechnique','SuperAdmin']
       }
    },
    { 
@@ -61,7 +61,7 @@ const routes: Routes = [
      component: GererSupplierComponent, 
      canActivate: [IsAuthGuard, guardRoleGuard],
      data: {
-        role: ['AdminTechnique']
+        role: ['AdminTechnique','SuperAdmin']
      }
   },
   { 
@@ -69,7 +69,7 @@ const routes: Routes = [
       component: CategoryListComponent,
       canActivate: [IsAuthGuard, guardRoleGuard],
       data: {
-         role: ['AdminOrganisator']
+         role: ['AdminOrganisator','SuperAdmin']
       }
   },
   {
@@ -77,7 +77,7 @@ const routes: Routes = [
      component: GererCommandeComponent,
      canActivate: [IsAuthGuard, guardRoleGuard],
      data: {
-        role: ['AdminCommande']
+        role: ['AdminCommande','SuperAdmin']
      }
   },
   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
@@ -108,7 +108,7 @@ const routes: Routes = [
       component: StockAdminComponent,
       canActivate: [IsAuthGuard, guardRoleGuard],
       data: {
-            role: ['AdminStock']
+            role: ['AdminStock','SuperAdmin']
       } 
    },
   { 
@@ -116,7 +116,7 @@ const routes: Routes = [
       component: ImageProductComponent,
       canActivate: [IsAuthGuard, guardRoleGuard],
       data: {
-            role: ['AdminStock']
+            role: ['AdminStock','SuperAdmin']
       } 
    },
   { path: 'DetailProduct/:id', component: DetailsProductComponent },
@@ -125,7 +125,7 @@ const routes: Routes = [
       component: StatsComponent,
       canActivate: [IsAuthGuard, guardRoleGuard],
       data: {
-         role: ['AdminStock']
+         role: ['AdminStock','SuperAdmin']
       }  
   },
   { path: '**', component: NotFoundComponentComponent }
