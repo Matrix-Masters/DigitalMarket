@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
-import { User } from 'src/app/Model/User';
+import { Store } from '@ngxs/store';
+import { User } from 'src/app/Model/User_Store';
+
 import { UserServiceService } from 'src/app/Service/user-service.service';
 
 @Component({
@@ -11,21 +13,28 @@ import { UserServiceService } from 'src/app/Service/user-service.service';
 export class EditProfileBodyComponent implements OnInit{
 [x: string]: any;
 editInfoGroup:FormGroup;
+  user:User;
+  id:any;
+  constructor(private store:Store,private userService:UserServiceService,private formBuilder:FormBuilder){
+    
+    this.user=this.store.selectSnapshot(s=>s.AuthStore?.User)
+    this.id=this.user?.iduser;
 
-  id:any=19
-  user:User = { firstName: '', lastName:'',sexe: '',cin:'' ,numTlf:''}
-  constructor(private userService:UserServiceService,private formBuilder:FormBuilder){
     this.editInfoGroup = this.formBuilder.group({
         firstName:this.firstNameForm,
         lastName:this.lastNameForm,
-        cin:this.cinForm,
         num:this.numForm
       })
+
       this.emailGroupValid=this.formBuilder.group({
         old_email:this.old_emailForm,
         new_email:this.new_emailForm,
       });
-      this.old_emailForm.setValue("khaoulajri@gmail.com");
+
+      this.firstNameForm.setValue(this.user?.firstName.toString());
+      this.lastNameForm.setValue(this.user?.lastName.toString());
+      this.numForm.setValue(this.user.numTlf);
+      this.old_emailForm.setValue(this.user.email.toString());
      
     }
 
@@ -39,6 +48,7 @@ editInfoGroup:FormGroup;
         }
       };
     }
+
   emailGroupValid:FormGroup;
   firstNameForm=new FormControl('',[Validators.required,Validators.minLength(2),Validators.maxLength(20)]);
   lastNameForm=new FormControl('',[Validators.required,Validators.minLength(2),Validators.maxLength(20)]);
@@ -132,11 +142,7 @@ editInfoGroup:FormGroup;
     this.userService.getUserById(this.id).subscribe((res:any)=>{
       this.user.firstName = res.firstName
       this.user.lastName = res.lastName
-      this.user.cin=res.cin
       this.user.numTlf=res.numTlf
-      this.user.sexe = res.sexe;
-     console.log(res);
-
     },(error:any)=>{
      console.log(error);
     }
@@ -145,7 +151,7 @@ editInfoGroup:FormGroup;
 
   updateUser(user:User){
     if (this.editInfoGroup.valid) {
-      this.userService.updateUser(user,19).subscribe((res:any)=>{
+      this.userService.updateUser(user,this.id).subscribe((res:any)=>{
         console.log(res);
         location.reload()
       },(error:any)=>{

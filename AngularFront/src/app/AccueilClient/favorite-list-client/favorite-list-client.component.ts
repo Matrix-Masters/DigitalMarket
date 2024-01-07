@@ -27,6 +27,7 @@ export class FavoriteListClientComponent {
     const idUser =   this.user?.iduser; 
     this.wishlistService.showList(idUser).subscribe(
       (response: any) => {
+        console.log('Wishlist fetched successfully', response);
         this.wishlist = response;
         this.wishlist.forEach(item => {
           this.commandeService.DetailsProd(item.idProduct).subscribe(

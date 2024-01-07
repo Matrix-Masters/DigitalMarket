@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ReviewServiceService, review } from '../Service/review-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Store } from '@ngxs/store';
 
 
 
@@ -14,8 +15,12 @@ export class ReviewComponent implements OnInit{
   starIndexes: number[] = [0, 1, 2, 3, 4];
   selectedStars: boolean[] = [false, false, false, false, false];
   content:any=''
-  review: review ={content:'',note:'',product_id:"null",user_id:7};
-  constructor(private reviewService:ReviewServiceService,private cdr: ChangeDetectorRef,private MatSnackBar:MatSnackBar){}
+  user:any;
+  review: review ={content:'',note:'',product_id:"null",user_id:null};
+  constructor(private Store:Store,private reviewService:ReviewServiceService,private cdr: ChangeDetectorRef,private MatSnackBar:MatSnackBar){
+    this.user=this.Store.selectSnapshot(s=>s.AuthStore?.User)
+    this.review.user_id=this.user?.iduser;
+  }
   allReviews:any
 
   clearRating(): void {
