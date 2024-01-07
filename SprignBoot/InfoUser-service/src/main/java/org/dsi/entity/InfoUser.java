@@ -80,6 +80,8 @@ public class InfoUser {
 	private Date email_verified_at;
 	
 	private String keycloak_id; 
+	
+	private String code;
 
 	
 }
