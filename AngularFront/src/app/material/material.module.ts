@@ -29,6 +29,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+
+
 @NgModule({
   imports:[
     MatIconModule,
@@ -64,7 +66,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     MatCheckboxModule,
     MatProgressSpinnerModule,
     MatTableModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
   ],
 
   exports:[
@@ -101,7 +103,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     MatCheckboxModule,
     MatProgressSpinnerModule,
     MatTableModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
 ]
 })
 export class MaterialModule { }

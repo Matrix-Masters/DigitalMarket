@@ -1,0 +1,85 @@
+<mat-divider></mat-divider>
+<div class="container new-arrivals " style="margin-top: 70px;margin-bottom: 100px;">
+  <div class="d-flex justify-content-between align-items-center row">
+    <div class="text col-12 col-sm-6 col-xl-10 col-lg-9 p-2">
+      <span class="title" style="padding-top: 20px;">Reviews</span>
+    </div>
+  </div>
+</div>
+
+<div class="container  mt-5">
+
+    <ng-container  *ngIf="allReviews ;else elseBlock">
+      <div class="review mb-4 mt-5" *ngFor="let i of allReviews">
+        <div class="review-card" style="width: 400px">
+          <div class="row" style="width: 100%;">
+            <div class="col col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+              <img src="../../assets/product.jfif" width="70px" height="70px" style="border-radius: 50%;">
+            </div>
+            <div class="col col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9" style="padding-top: 8px;">
+              <div class="font" style="width: 100%;font-size: 15px;">{{i.User_id['Name']}} {{i.User_id['LastName']}}</div>
+              <div class="" style="margin-top: 12px;font-size:13px ;">{{i.Note}}<i class="bi bi-star-fill" style="margin-left: 10px;color: rgb(237, 237, 22);"></i></div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-4" style="margin-bottom: 40px;">
+          <div class="col col-12" style="font-family: sans-serif;letter-spacing: 1.5px;word-spacing: 2px;font-size: 13px;text-decoration: none !important;">
+          {{i.Content}}
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+      </div>
+    </ng-container>
+  <ng-template #elseBlock>
+    <div class="no-review text-center">
+        <h2>No reviews is available.</h2>
+    </div>
+  </ng-template>
+
+
+  <button mat-fab  color="primary" aria-label="Example icon button with a delete icon" class="float-end" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
+    <mat-icon> near_me</mat-icon>
+  </button>
+
+
+  <!-- ----------------------modal---------------------------------- -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">New review</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="mb-3">
+                <mat-form-field class="example-full-width" style="width: 100%;">
+                  <mat-label>Leave your message</mat-label>
+                  <textarea matInput placeholder="Your opinion is important..."  [(ngModel)]="content"></textarea>
+                </mat-form-field>
+
+            </div>
+            <div class="mb-3 text-center">
+              <ng-container *ngFor="let index of starIndexes; let i = index">
+                <mat-icon
+                  class="star"
+                  style="font-size: 25px;"
+                  (mouseover)="setRating(i + 1)"
+                  (mouseout)="clearRating()"
+                  (click)="toggleSelection()"
+                  [ngClass]="{ 'selected': selectedStars[i] }"
+                >
+                  star_border
+                </mat-icon>
+              </ng-container>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="addReview()" data-bs-dismiss="modal">Post</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

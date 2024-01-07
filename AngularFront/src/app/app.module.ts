@@ -49,6 +49,13 @@ import { ListProductsFournisseurComponent } from './Fournissuer/list-products-fo
 import { ContractComponent } from './Fournissuer/contract/contract.component';
 import { EditProfileComponent } from './EditProfile/edit-profile/edit-profile.component';
 import { EditProfileBodyComponent } from './EditProfile/edit-profile-body/edit-profile-body.component';
+
+import { ReviewComponent } from './Review/review.component';
+import { StatsComponent } from './Fournissuer/statistiques/stats.component';
+import { CardRecommandationComponent } from './home/card-recommandation/card-recommandation.component';
+import { Chart } from 'chart.js';
+
+
 import { StockAdminComponent } from './AdminCompoenent/stock-admin/stock-admin.component';
 import { ImageProductComponent } from './AdminCompoenent/image-product/image-product.component';
 import { KeycloakAngularModule } from 'keycloak-angular';
@@ -59,6 +66,7 @@ import { NgxsModule } from '@ngxs/store';
 import { AuthStore } from './Store/action';
 import { InterceptorGlobaleServiceService } from './interceptor/interceptor-globale-service.service';
 import { DetailsProductComponent } from './AccueilClient/details-product/details-product.component';
+
 
 function initialiserKeycloak(keycloak:_KeycloakService){
   return()=>{
@@ -123,9 +131,15 @@ function initialiserKeycloak(keycloak:_KeycloakService){
     ContractComponent,
     EditProfileComponent,
     EditProfileBodyComponent,
+
+    ReviewComponent,
+    StatsComponent,
+    CardRecommandationComponent,
+
     StockAdminComponent,
     ImageProductComponent,
     DetailsProductComponent
+
   ],
   imports: [
     BrowserModule,
@@ -140,7 +154,7 @@ function initialiserKeycloak(keycloak:_KeycloakService){
     DragDropModule,
     HttpClientModule,
     MatDialogModule,
-    CommonModule
+    CommonModule,
   ],
   providers: [
     IsAuthGuard,
