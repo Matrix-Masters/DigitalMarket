@@ -25,4 +25,12 @@ export class UserServiceService {
   getUserByIdKeyCloak(id:any){
     return this.http.get(`${port}/INFOUSER-SERVICE/users/getUserByIdKeyCloak?id=${id}`);
   }
+
+  getUserByMail(email:any){
+    return this.http.get(`${port}/INFOUSER-SERVICE/users/getUserByMail?email=${email}`);
+  }
+
+  updateWelcome(email:any){
+    return this.http.post(`${port}/INFOUSER-SERVICE/users/updateWelcome?email=${email}`,{});
+  }
 }

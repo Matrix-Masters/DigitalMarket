@@ -6,8 +6,7 @@
       <button class="delete-button" (click)="toggleFavorite(item.productDetails.id)">
         <i class="fas fa-minus"></i>
       </button>
-      <img src="https://i.ibb.co/g3cNNkG/shoes1.jpg">
-      <!-- [src]="item.productDetails?.image" -->
+      <img width="200px" height="200px" [src]="'http://localhost:8888/PRODUCT-SERVICE/products/images/'+item.productDetails?.image">
       <div> 
         <h2>{{ item.productDetails?.name }}</h2>
         <p class="price">

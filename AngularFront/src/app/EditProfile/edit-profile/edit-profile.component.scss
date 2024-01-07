@@ -228,4 +228,25 @@ cursor: pointer;
 
 
 
+:root {
+  --avatar-size: 18rem;
+}
+
+.circle {
+  background-color: #fff;
+  border-radius: 50%;
+  padding: 8px 5px;
+  height: var(--avatar-size);
+  text-align: center;
+  width: var(--avatar-size);
+}
+
+.initials {
+  font-size: calc(var(--avatar-size) / 2); 
+  line-height: 1;
+  position: relative;
+  top: calc(var(--avatar-size) / 4); 
+}
+
+
 

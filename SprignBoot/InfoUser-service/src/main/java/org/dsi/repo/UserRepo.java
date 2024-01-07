@@ -5,16 +5,19 @@ import org.dsi.entity.InfoUser;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.rest.core.annotation.RestResource;
 
-
+@RestResource
 public interface UserRepo extends JpaRepository<InfoUser,Long> {
 
 	@Query(value = "SELECT * FROM info_user WHERE email = :email", nativeQuery = true)
 	Optional<InfoUser> findByEmail(@Param("email") String email);
+	
 	
 	@Query(value = "SELECT * FROM info_user WHERE keycloak_id = :keycloak_id", nativeQuery = true)
 	InfoUser getUserByIdKeyCloak(String keycloak_id);

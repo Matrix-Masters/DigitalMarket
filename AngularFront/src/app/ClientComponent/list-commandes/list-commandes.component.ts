@@ -5,6 +5,8 @@ import { ProductServiceService } from 'src/app/Service/product-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponentComponent } from 'src/app/superAdminComponents/Employers/confirm-dialog-component/confirm-dialog-component.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { User } from 'src/app/Model/User_Store';
+import { Store } from '@ngxs/store';
 @Component({
   selector: 'app-list-commandes',
   templateUrl: './list-commandes.component.html',
@@ -18,6 +20,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   ]
 })
 export class ListCommandesComponent implements OnInit{
+
+  user:User;
   productDataMap: { [key: string]: any } = {};
   selectedCommandes=-1;
   pagesArray: number[] = [];
@@ -27,20 +31,20 @@ export class ListCommandesComponent implements OnInit{
   pages = 0;
   total=0;
   commandes:any;
-    constructor(private CommandeService :  CommandeServiceService , private productService:ProductServiceService,private dialog: MatDialog,private snackbar:MatSnackBar) { }
+    constructor( private store:Store,private CommandeService :  CommandeServiceService , private productService:ProductServiceService,private dialog: MatDialog,private snackbar:MatSnackBar) {
+      this.user=this.store.selectSnapshot(s=>s.AuthStore?.User)
+     }
     ngOnInit(): void {
       this.getCommandeByIdClient();
     }
     getCommandeByIdClient(){
-      this.CommandeService.getCommandeByIdClient(1,this.page,this.limit).subscribe((res:any)=>{
+      this.CommandeService.getCommandeByIdClient(this.user?.iduser,this.page,this.limit).subscribe((res:any)=>{
           this.commandes=res.docs;
           this.total=res.total;
           this.pages=res.pages;
           this.page=res.page;
           this.limit=res.limit;
           this.pagesArray = Array.from({ length: this.pages }, (_, index) => index + 1);
-          console.log(this.pages);
-
       }),
       (error:any)=>{
         console.log(error);

@@ -1,10 +1,14 @@
 package com.example.digitalmarket.api
 import UserResponse
 import com.example.digitalmarket.Models.User
+
 import com.example.digitalmarket.Models.VerifyEmail
+import com.example.digitalmarket.listProduct.Product
+import com.example.digitalmarket.product_data
 import com.example.digitalmarket.Models.credentials
 import okhttp3.ResponseBody
 import okhttp3.MultipartBody
+import retrofit2.Response
 import retrofit2.http.*
 import retrofit2.Response
 interface RestApi {
@@ -16,6 +20,10 @@ interface RestApi {
     @POST("/PYTHON-SERVICE/api/upload")
     suspend fun ExtractData(@Part image: MultipartBody.Part):ResponseBody
 
+
     @POST("/INFOUSER-SERVICE/auth/verifyMail")
     suspend fun verify(@Body data:VerifyEmail) : Response<ResponseBody>
+
+    @GET("/PRODUCT-SERVICE/products/getAllProducts")
+    suspend fun getProducts():Response<MutableList<Product>>
 }
