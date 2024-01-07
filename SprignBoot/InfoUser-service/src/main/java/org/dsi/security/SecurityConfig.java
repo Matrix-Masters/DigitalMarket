@@ -68,8 +68,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) {
 		try {
-			/*auth.authenticationProvider(authenticationProvider());
-			auth.userDetailsService(userDetailsService);*/
+			auth.authenticationProvider(authenticationProvider());
+			auth.userDetailsService(userDetailsService);
 			auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
@@ -90,8 +90,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/contract/**", "/GererEmployer/**", "/GererSupplier/**").permitAll()
             .antMatchers("/auth/**").permitAll() 
             .antMatchers("/users/**").permitAll() 
-            .anyRequest().authenticated()
-            .and()
+            .anyRequest().authenticated();
+        
+           http
             .oauth2ResourceServer()
             .jwt()
             .jwtAuthenticationConverter(jwtAuthenticationConverter());
