@@ -1,9 +1,14 @@
 package org.dsi.service;
 
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.mail.MessagingException;
+
 import org.dsi.entity.InfoUser;
+import org.dsi.mail.MailService;
 import org.dsi.payload.UserInfo;
 import org.dsi.repo.NodeSync;
 import org.dsi.repo.UserRepo;
@@ -21,7 +26,24 @@ public class UserInfoService {
 	@Autowired
 	NodeSync nodeSync;
 	
+	@Autowired
+	MailService mailService;
 	
+	private static final String ALLOWED_CHARACTERS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    private static final int STRING_LENGTH = 6;
+	
+    public static String generateRandomString() {
+        SecureRandom random = new SecureRandom();
+        StringBuilder stringBuilder = new StringBuilder(STRING_LENGTH);
+
+        for (int i = 0; i < STRING_LENGTH; i++) {
+            int randomIndex = random.nextInt(ALLOWED_CHARACTERS.length());
+            char randomChar = ALLOWED_CHARACTERS.charAt(randomIndex);
+            stringBuilder.append(randomChar);
+        }
+
+        return stringBuilder.toString();
+    }
 	
 	public InfoUser getInfoUserByEmail(String email) throws Exception {
 	    InfoUser user = userRepo.getUserByemail(email);
@@ -69,7 +91,9 @@ public class UserInfoService {
 				newuser.setKeycloak_id(user.getKeycloak_id()==null ? null : user.getKeycloak_id());
 				newuser.setSexe(user.getSexe());
 				newuser.setPhotoCin(user.getPhotoCin());
+				newuser.setCode(generateRandomString());
 				newuser.setRole(user.getRole());
+			    mailService.sendVerificationEmail(newuser);
 				userRepo.save(newuser);
 				JSONObject jsoUser=new JSONObject();
 	  			jsoUser.appendField("Name",user.getFirstName());
@@ -87,7 +111,7 @@ public class UserInfoService {
 	    	}
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
-		}	
+		}
 	}
 	
 
