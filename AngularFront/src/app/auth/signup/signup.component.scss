@@ -6,6 +6,12 @@
     width: 100%;
 }
 
+span{
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .content{
     display: flex;
     justify-content: center;
