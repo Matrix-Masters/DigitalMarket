@@ -9,6 +9,15 @@ export class User{
          public emailVerified:any,
          public enabled:boolean,
          public createdTimestamp:any,
-         public attributes:any
+         public attributes:any,
+         public iduser:any,
+         public welcome_field:any,
+         public status:any,
+         public role:any,
+         public contract:any,
+         public sexe:any,
+         public numTlf:any,
+         public cin:any,
+         public photo:any
         ){}
 }
