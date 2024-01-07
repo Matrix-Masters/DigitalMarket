@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/GererEmployer")
 public class gererEmployerController {
+	
 	@Autowired
 	GererEmployersService gererEmployersService;
+	
 	@GetMapping("/getAllEmployers")
 	public ResponseEntity<List<InfoUser>> getAllEmployers(@RequestParam(required = false) String search) {
 	    if (search != null && !search.isEmpty()) {
@@ -46,6 +48,7 @@ public class gererEmployerController {
 	}
 	return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
+	
 	@PutMapping("/RefuseEmployer")
 	public ResponseEntity<InfoUser> RefuseEmployer(@RequestParam long id){
 		InfoUser emp=gererEmployersService.RefuseEmployer(id);

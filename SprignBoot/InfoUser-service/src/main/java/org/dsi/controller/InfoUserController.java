@@ -10,6 +10,7 @@ import org.dsi.mail.MailService;
 import org.dsi.payload.InfoEmail;
 import org.dsi.payload.UserInfo;
 import org.dsi.repo.UserRepo;
+import org.dsi.security.SecurityConfig;
 import org.dsi.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -34,6 +35,9 @@ public class InfoUserController {
 	
 	@Autowired
 	UserInfoService userInfoService;
+	
+	@Autowired
+	SecurityConfig SecurityConfig;
 	
 	@Autowired
 	MailService mailSender;
@@ -73,9 +77,8 @@ public class InfoUserController {
 	@PostMapping(value="/addUserInfo")
 	public ResponseEntity<?> addUserInfo(@RequestBody UserInfo user){
 		try {
-
+			user.setPassword(SecurityConfig.passwordEncoder().encode(user.getPassword()));
             userInfoService.addInfoUser(user);
-
             /*String keycloakUrl = keycloakBaseUrl;
 
             KeyCloackUser keycloakUser = new KeyCloackUser(user.getEmail(), user.getFirstName(), user.getLastName(),
@@ -140,6 +143,7 @@ public class InfoUserController {
 	 				return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
 	 			}
 		    }
+	 	   
 	
 	
 

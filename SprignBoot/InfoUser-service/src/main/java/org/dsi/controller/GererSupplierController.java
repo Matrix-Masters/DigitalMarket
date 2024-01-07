@@ -22,7 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/GererSupplier")
 public class GererSupplierController {
-	  @Autowired
+	
+	   @Autowired
 	    private GererSupplierService Gerersupplierservice;
 
 	    @GetMapping("/suppliers")
@@ -52,6 +53,7 @@ public class GererSupplierController {
 	    	}
 	    	return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
 	    }
+	    
 	    @GetMapping("/filter")
 	    public ResponseEntity<List<InfoUser>> filterUsers(@RequestParam(required = false) String search,
 	                                      @RequestParam(required = false) int status,
