@@ -10,4 +10,4 @@ data class User (
     val sexe: String? = null,
     val photo:String? = null,
     val role:String? = null,
-);
+)
