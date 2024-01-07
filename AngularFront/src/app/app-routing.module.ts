@@ -37,7 +37,7 @@ const routes: Routes = [
      component: ClasserProductComponent,
      canActivate: [IsAuthGuard, guardRoleGuard],
      data: {
-        role: ['Admin Organisator']
+        role: ['AdminOrganisator']
      }
   },
   {
@@ -45,21 +45,39 @@ const routes: Routes = [
      component: DashboardComponent,
      canActivate: [IsAuthGuard, guardRoleGuard],
      data: {
-        role: ['Super Admin']
+        role: ['SuperAdmin']
      }
   },
-  { path: 'gererSupplier', component: GererSupplierComponent, canActivate: [IsAuthGuard, guardRoleGuard],
+  {
+      path: 'gererProduit',
+      component: GererProduitComponent,
+      canActivate: [IsAuthGuard, guardRoleGuard],
+      data: {
+         role: ['AdminTechnique']
+      }
+   },
+   { 
+     path: 'gererSupplier',
+     component: GererSupplierComponent, 
+     canActivate: [IsAuthGuard, guardRoleGuard],
      data: {
-        role: ['Admin Technique']
+        role: ['AdminTechnique']
      }
   },
-  { path: 'listCategory', component: CategoryListComponent },
+  { 
+      path: 'listCategory', 
+      component: CategoryListComponent,
+      canActivate: [IsAuthGuard, guardRoleGuard],
+      data: {
+         role: ['AdminOrganisator']
+      }
+  },
   {
      path: 'Commandes',
      component: GererCommandeComponent,
      canActivate: [IsAuthGuard, guardRoleGuard],
      data: {
-        role: ['Admin Commande']
+        role: ['AdminCommande']
      }
   },
   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
@@ -85,17 +103,31 @@ const routes: Routes = [
   { path: 'ListProductsFournisseur', component: ListProductsFournisseurComponent, canActivate: [IsAuthGuard] },
   { path: 'ContractComponent', component: ContractComponent, canActivate: [IsAuthGuard] },
   { path: 'editProfile', component: EditProfileComponent, canActivate: [IsAuthGuard] },
-  { 
-      path: 'stockadmin', 
-      component: StockAdminComponent, 
+  {
+      path: 'stockadmin',
+      component: StockAdminComponent,
       canActivate: [IsAuthGuard, guardRoleGuard],
       data: {
-            role: ['Admin Stock']
+            role: ['AdminStock']
       } 
    },
-  { path: 'ImageProduct/:id', component: ImageProductComponent, canActivate: [IsAuthGuard] },
+  { 
+      path: 'ImageProduct/:id',
+      component: ImageProductComponent,
+      canActivate: [IsAuthGuard, guardRoleGuard],
+      data: {
+            role: ['AdminStock']
+      } 
+   },
   { path: 'DetailProduct/:id', component: DetailsProductComponent },
-  { path: 'statsFournisseur/:id', component: StatsComponent, canActivate: [IsAuthGuard] },
+  { 
+      path: 'statsFournisseur/:id',
+      component: StatsComponent,
+      canActivate: [IsAuthGuard, guardRoleGuard],
+      data: {
+         role: ['AdminStock']
+      }  
+  },
   { path: '**', component: NotFoundComponentComponent }
 ];
 
