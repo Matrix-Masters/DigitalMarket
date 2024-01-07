@@ -62,6 +62,18 @@ public class InfoUserController {
 		}
 	}
 	
+	@GetMapping(value="/getUserByIdKeyCloak")
+	public ResponseEntity<?> getUserByIdKeyCloak(@RequestParam("id") String id){
+		try {
+			InfoUser user = userInfoService.getUserByIdKeyCloak(id);
+			JSONObject json=new JSONObject();
+			json.appendField("user",user);
+			return ResponseEntity.ok(json);
+		} catch (Exception e) {
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
+		}
+	}
+	
 	
 	@GetMapping(value="/getUserById")
 	public ResponseEntity<?> getUserById(@RequestParam("id") Long id){

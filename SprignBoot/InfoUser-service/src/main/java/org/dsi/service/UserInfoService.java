@@ -31,6 +31,14 @@ public class UserInfoService {
 	    return user;
 	}
 	
+	public InfoUser getUserByIdKeyCloak(String id) throws Exception {
+	    InfoUser user = userRepo.getUserByIdKeyCloak(id);
+	    if (user == null) {
+	        throw new Exception("User not found for KeyCloakId: " + id);
+	    }
+	    return user;
+	}
+	
 	
 	public InfoUser getInfoUserById(Long id) throws Exception {
 	    InfoUser user = userRepo.getUserById(id);
