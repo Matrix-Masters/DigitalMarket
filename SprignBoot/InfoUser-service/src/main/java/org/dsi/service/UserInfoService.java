@@ -95,7 +95,7 @@ public class UserInfoService {
 				newuser.setPhotoCin(user.getPhotoCin());
 				newuser.setCode(generateRandomString());
 				newuser.setRole(user.getRole());
-			  mailService.sendVerificationEmail(newuser));
+			    mailService.sendVerificationEmail(newuser);
 				newuser.setKeycloak_id(user.getKeycloak_id());
 				userRepo.save(newuser);
 				JSONObject jsoUser=new JSONObject();

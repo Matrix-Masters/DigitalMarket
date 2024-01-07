@@ -49,8 +49,6 @@ public class AuthController {
 	@Autowired
 	UserDetailsImpl userservice;
 
-	@Autowired
-	UserInfoService userInfoService;
 	
 	@Autowired
 	SecurityConfig SecurityConfig;
