@@ -159,7 +159,7 @@ export class SignupComponent implements OnInit {
   role:any='';
 
   LoginUser(){
-    this.SecurityServiceService.logout();
+    this.keycloakService.logout();
     this.keycloakService.login({
       redirectUri: window.location.origin
     });
@@ -182,8 +182,6 @@ export class SignupComponent implements OnInit {
 
   SignUp(){
     if(this.SignUpForm.valid){
-    
-      
       if(this.SignUpForm.value['RoleFor']=="Supplier"){
         if(this.image.length>0){
           this.imageError="";
@@ -206,8 +204,8 @@ export class SignupComponent implements OnInit {
               this.MatSnackBar.open(res.data,'',{
                  duration:2000,
                })
-                this.SignUpForm.reset();
-                console.log(res);
+               this.store.dispatch(new Logout());
+               this.keycloakService.logout();
             },(error)=>{
               this.MatSnackBar.open(error.error.error,'',{
                 duration:2000,
@@ -217,7 +215,6 @@ export class SignupComponent implements OnInit {
             this.MatSnackBar.open(err.error.error,'',{
               duration:2000,
             })
-
           })
         }else{
           this.imageError="You must upload an image";
@@ -239,7 +236,8 @@ export class SignupComponent implements OnInit {
             this.MatSnackBar.open(res.data,'',{
               duration:2000,
            })
-            this.SignUpForm.reset();
+           this.store.dispatch(new Logout());
+           this.keycloakService.logout();
         },(error)=>{
           console.log(error);
           this.MatSnackBar.open(error.error,'',{
@@ -250,11 +248,6 @@ export class SignupComponent implements OnInit {
     }else{
       this.SignUpForm.markAllAsTouched();
     }
-    /*this.keycloakService.logout();
-    this.store.dispatch(new Logout());
-    this.keycloakService.login({
-      redirectUri: window.location.origin
-    })*/
   }
 
 }

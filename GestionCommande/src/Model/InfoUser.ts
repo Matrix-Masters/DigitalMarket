@@ -4,7 +4,6 @@ let UserSchema=new mongoose.Schema({
     _id: {
         type: Number,
         required: false,
-        default: 0
     },
     Name:{
         type:String,
