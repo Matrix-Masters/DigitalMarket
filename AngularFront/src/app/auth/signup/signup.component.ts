@@ -19,8 +19,6 @@ export class SignupComponent implements OnInit {
 
   user:any;
   ngOnInit(): void {
-   
-   // this.router.navigate(['auth/signup']);
     this.user=this.store.selectSnapshot(s=>s.AuthStore?.User);
   }
 
@@ -184,6 +182,8 @@ export class SignupComponent implements OnInit {
 
   SignUp(){
     if(this.SignUpForm.valid){
+    
+      
       if(this.SignUpForm.value['RoleFor']=="Supplier"){
         if(this.image.length>0){
           this.imageError="";
@@ -203,6 +203,9 @@ export class SignupComponent implements OnInit {
                 "keycloak_id":this.user._id
               }
             ).subscribe((res:any)=>{
+              this.MatSnackBar.open(res.data,'',{
+                 duration:2000,
+               })
                 this.SignUpForm.reset();
                 console.log(res);
             },(error)=>{
@@ -247,11 +250,11 @@ export class SignupComponent implements OnInit {
     }else{
       this.SignUpForm.markAllAsTouched();
     }
-    this.keycloakService.logout();
+    /*this.keycloakService.logout();
     this.store.dispatch(new Logout());
     this.keycloakService.login({
       redirectUri: window.location.origin
-    })
+    })*/
   }
 
 }

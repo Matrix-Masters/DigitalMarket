@@ -35,6 +35,8 @@ public class SecurityConfig {
 			    .antMatchers("/products/**").permitAll()
 			    .antMatchers("/categories/**").permitAll()
 			    .antMatchers("/products/images/**").permitAll()
+			    .antMatchers("/recommandations/**").permitAll()
+			    .antMatchers("/codeQr/**").permitAll()
 				.anyRequest().authenticated();
 
 	    	  http
