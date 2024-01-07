@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Store } from '@ngxs/store';
 import { ProductServiceService } from 'src/app/Service/product-service.service';
 
 @Component({
@@ -12,15 +13,15 @@ export class AddProductComponent implements OnInit {
 
   AddProductForm:FormGroup;
 
-
-  constructor(private ProductsService: ProductServiceService,private formBuilder:FormBuilder,private MatSnackBar:MatSnackBar){
+   user:any;
+  constructor(private store:Store, private ProductsService: ProductServiceService,private formBuilder:FormBuilder,private MatSnackBar:MatSnackBar){
     this.AddProductForm = this.formBuilder.group({
       Name:this.NameForm,
       Description:this.DescriptionForm,
       Prix:this.PrixForm,
       Quantite:this.QuantiteForm
     });
-
+    this.user=this.store.selectSnapshot(s=>s.AuthStore?.User)
   }
 
   NameForm=new FormControl('',[Validators.required,Validators.minLength(5),Validators.maxLength(20)]);
@@ -98,6 +99,7 @@ export class AddProductComponent implements OnInit {
     if (this.AddProductForm.valid) {
         if (this.image){
             this.ProductsService.addProduct(
+                this.user?.iduser,
                 this.image,
                 this.AddProductForm.value['Name'],
                 this.AddProductForm.value['Description'],
@@ -105,7 +107,6 @@ export class AddProductComponent implements OnInit {
                 this.AddProductForm.value['Prix']
             ).subscribe(
               res=>{
-                console.log(res);
                 this.AddProductForm.reset();
                 this.MatSnackBar.open('Product added with success', '', {
                   duration: 3000,

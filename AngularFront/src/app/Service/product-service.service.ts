@@ -21,10 +21,10 @@ export class ProductServiceService{
     return this.http.get(`${port}/PRODUCT-SERVICE/products/getMaxPrice`);
   }
 
-  addProduct(image:any,name:any,description:any,prix:any,quantite:any){
+  addProduct(id:any,image:any,name:any,description:any,prix:any,quantite:any){
       const formData = new FormData();
       formData.append('file', image);
-      return this.http.post(`${port}/PRODUCT-SERVICE/products/AddProduct?name=${name}&description=${description}&prix=${prix}&quantite=${quantite}`,formData);
+      return this.http.post(`${port}/PRODUCT-SERVICE/products/AddProduct?name=${name}&description=${description}&prix=${prix}&id=${id}&quantite=${quantite}`,formData);
   }
 
   getProductById(id:any){

@@ -47,6 +47,7 @@ public class ProductService {
 				prod.setImageProduct(fileName);
 				prod.setName(info.getName());
 				prod.setPrix(info.getPrix());
+				prod.setIdUser(info.getId());
 				prod.setDescription(info.getDescription());
 				prod.setQuantite(info.getQuantite());
 				ProductRepo.save(prod);

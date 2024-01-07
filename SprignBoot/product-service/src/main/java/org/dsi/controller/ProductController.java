@@ -55,8 +55,9 @@ public class ProductController {
 	public ResponseEntity<?> AddProduct(@RequestParam("file") MultipartFile file,
 			@RequestParam("description") String desc,
 			@RequestParam("name") String name,@RequestParam("quantite") int Quantite,
+			@RequestParam("id") long id,
 			@RequestParam("prix") double prix,@RequestParam(name="category",required = false) Category category){
-		  			ProducInfo product=new ProducInfo(name,Quantite,prix,category,desc);
+		  			ProducInfo product=new ProducInfo(name,Quantite,prix,category,desc,id);
 		  			ProductService.AddProductService(product,file);
 		  			return new ResponseEntity<ProducInfo>(product,HttpStatus.OK);
 	 }

@@ -18,7 +18,7 @@
   </div>
   <div class="right-side">
     <div>
-      <p class="title">Fournisseur</p>
+      <p class="title">{{user?.firstName}}</p>
     </div>
     <div class="action">
       <button mat-button [matMenuTriggerFor]="menu">
@@ -31,7 +31,7 @@
         <button mat-menu-item>
           <mat-icon>settings</mat-icon>Setting
         </button>
-        <button mat-menu-item>
+        <button mat-menu-item (click)="Logout()">
           <mat-icon>logout</mat-icon> Logout
         </button>
       </mat-menu>
