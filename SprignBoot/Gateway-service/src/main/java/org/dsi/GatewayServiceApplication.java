@@ -26,6 +26,16 @@ public class GatewayServiceApplication {
 	         .build();
 	}*/
 	
+	/*@Bean
+	RouteLocator routesLogin(RouteLocatorBuilder builder) {
+		return builder.routes()
+				.route(r -> r.path(
+						"/api/Commande/**")
+						.filters(f -> f.dedupeResponseHeader("Access-Control-Allow-Origin",
+								"RETAIN_UNIQUE"))
+						.uri("http://localhost:3000"))
+				.build();
+	}*/
 
     @Bean
 	DiscoveryClientRouteDefinitionLocator dynamicRoutes(ReactiveDiscoveryClient rdc,DiscoveryLocatorProperties dlp) {
