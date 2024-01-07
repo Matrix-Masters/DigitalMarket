@@ -45,7 +45,7 @@ export class SecurityServiceService {
               });
             }
             this.isLoggedin=this.Store.selectSnapshot(s=>s.AuthStore?.User) ? true : false;
-            console.log(this.isLoggedin);
+            //console.log(this.isLoggedin);
           },
           error : err => {
             console.log(err);
