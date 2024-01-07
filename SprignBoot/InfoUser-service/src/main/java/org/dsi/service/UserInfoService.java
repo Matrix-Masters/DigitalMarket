@@ -2,6 +2,7 @@ package org.dsi.service;
 
 import java.io.IOException;
 import java.security.SecureRandom;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import javax.mail.MessagingException;
 import org.dsi.entity.InfoUser;
 import org.dsi.mail.MailService;
 import org.dsi.payload.UserInfo;
+import org.dsi.payload.VerifyEmail;
 import org.dsi.repo.NodeSync;
 import org.dsi.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -136,7 +138,15 @@ public class UserInfoService {
 		
 	}
 	
-	
+	public void verifyEmail(VerifyEmail data) throws Exception {
+		InfoUser user = userRepo.verifyEmail(data.getEmail(),data.getCode());
+		if(user==null) {
+			throw new Exception("email or code invalid");
+		}else {
+			user.setEmail_verified_at(new Date());
+			userRepo.save(user);
+		}
+	}
    
 
 }
