@@ -29,5 +29,7 @@ public class UserInfo {
 	private String PhotoCin;
 	
 	private String role;
+	
+	private String keycloak_id; 
 
 }
