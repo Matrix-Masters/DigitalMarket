@@ -1,9 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/root"
     tools:context=".signup.VerifyMail">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="310dp"
+        android:src="@drawable/emailverify" />
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:text="Verify your email and complete your registration." />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_marginTop="40dp"
+        android:padding="25px"
+        android:layout_height="50dp"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/edittext_border"
+        android:hint="Confirm your Email" />
+
+    <EditText
+        android:id="@+id/code"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_marginTop="40dp"
+        android:padding="25px"
+        android:layout_height="50dp"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/edittext_border"
+        android:hint="Enter your verification code." />
+
+
+
+    <Button
+        android:id="@+id/Confirm"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:textColor="@color/white"
+        android:layout_margin="45px"
+        android:padding="25px"
+        android:layout_marginTop="21dp"
+        android:backgroundTint="@color/black"
+        android:text="Verify"
+        android:textStyle="bold"
+        />
+</LinearLayout>
