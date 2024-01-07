@@ -85,7 +85,14 @@ const routes: Routes = [
   { path: 'ListProductsFournisseur', component: ListProductsFournisseurComponent, canActivate: [IsAuthGuard] },
   { path: 'ContractComponent', component: ContractComponent, canActivate: [IsAuthGuard] },
   { path: 'editProfile', component: EditProfileComponent, canActivate: [IsAuthGuard] },
-  { path: 'stockadmin', component: StockAdminComponent, canActivate: [IsAuthGuard] },
+  { 
+      path: 'stockadmin', 
+      component: StockAdminComponent, 
+      canActivate: [IsAuthGuard, guardRoleGuard],
+      data: {
+            role: ['Admin Stock']
+      } 
+   },
   { path: 'ImageProduct/:id', component: ImageProductComponent, canActivate: [IsAuthGuard] },
   { path: 'DetailProduct/:id', component: DetailsProductComponent },
   { path: 'statsFournisseur/:id', component: StatsComponent, canActivate: [IsAuthGuard] },
