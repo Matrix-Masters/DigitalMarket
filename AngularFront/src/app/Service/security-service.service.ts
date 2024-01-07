@@ -2,7 +2,7 @@ import {Injectable, OnInit} from "@angular/core";
 import {KeycloakProfile} from "keycloak-js";
 import {KeycloakEventType, KeycloakService} from "keycloak-angular";
 import { Store } from "@ngxs/store";
-import { SetIsAuth, SetUser } from "../Store/state";
+import { Logout, SetIsAuth, SetUser } from "../Store/state";
 import { User } from "../Model/User_Store";
 import { UserServiceService } from "./user-service.service";
 import { Router } from "@angular/router";
@@ -21,14 +21,14 @@ export class SecurityServiceService {
     this.init();
   }
 
-  init() {
+   init() {
        var user_store:any;
         this.kcService.keycloakEvents$.subscribe({
-          next: (e)  => {
+          next: async (e)  => {
             if (e.type == KeycloakEventType.OnAuthSuccess)  {
-              this.kcService.loadUserProfile().then((profile:any)=>{
-                  this.userService.getUserByIdKeyCloak(profile.id).subscribe((user:any)=>{
-                  user_store=new User(
+              this.kcService.loadUserProfile().then(async (profile:any)=> {
+                 await this.userService.getUserByIdKeyCloak(profile.id).subscribe((user:any)=>{
+                    user_store=new User(
                     profile.id,
                     profile.username,
                     user['user'].firstName,
@@ -55,15 +55,22 @@ export class SecurityServiceService {
                     new SetIsAuth(true),
                   ]);
                   if(user['user'].role=="Supplier"){
-                    console.log("supplier");
-                    this.router.navigate(['/fournisseur'])
+                    if(user['user'].status==0){
+                      this.kcService.logout();
+                      this.Store.dispatch([
+                        new Logout()
+                      ])
+                      window.alert('SORRY YOU CAN NOT ACCESS THIS PAGE');
+                    }else{
+                      this.router.navigate(['/fournisseur'])
+                    }
                   }else if(user['user'].role=="Client"){
                     this.router.navigate(['/'])
                   }else if(user['user'].role=="Super Admin"){
                     this.router.navigate(['/dash'])
                   }
-                 },(err:any)=>{
-                  user_store = new User(
+                 },(error:any)=>{
+                    user_store = new User(
                     profile.id,
                     profile.username,
                     profile.firstName,
@@ -89,10 +96,10 @@ export class SecurityServiceService {
                     ),
                     new SetIsAuth(true),
                   ]);
+                   console.log(error.error);
                  })
               });
             }
-            console.log(user_store);
             this.isLoggedin=this.Store.selectSnapshot(s=>s.AuthStore?.User) ? true : false;
           },
           error : err => {
@@ -113,3 +120,5 @@ export class SecurityServiceService {
   }
   
 }
+
+               
