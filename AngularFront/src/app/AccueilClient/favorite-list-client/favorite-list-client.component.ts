@@ -2,25 +2,29 @@ import { Component } from '@angular/core';
 import { WishlistService } from 'src/app/Service/wishlist.service';
 import { CommandeServiceService } from 'src/app/Service/commande-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Store } from '@ngxs/store';
 @Component({
   selector: 'app-favorite-list-client',
   templateUrl: './favorite-list-client.component.html',
   styleUrls: ['./favorite-list-client.component.scss']
 })
 export class FavoriteListClientComponent {
-  constructor(private wishlistService: WishlistService , private commandeService: CommandeServiceService,private snackBar: MatSnackBar) { }
-
+  user:any;
+  constructor(private store:Store,private wishlistService: WishlistService , private commandeService: CommandeServiceService,private snackBar: MatSnackBar) { 
+    this.user=this.store.selectSnapshot(s=>s.AuthStore?.User)
+  }
+ 
   isFavorite: boolean = false;
   wishlist: any[] = [];
 
   ngOnInit(): void {
     
     this.loadWishlist();
-   this.getNotificationsByIdRecu(2);
+    this.getNotificationsByIdRecu(this.user?.iduser);
   }
 
   loadWishlist() {
-    const idUser = 2; 
+    const idUser =   this.user?.iduser; 
     this.wishlistService.showList(idUser).subscribe(
       (response: any) => {
         this.wishlist = response;
@@ -46,7 +50,7 @@ export class FavoriteListClientComponent {
   toggleFavorite(id: any): void {
     this.wishlistService
       .addToWishlist({
-        idUser: 2,
+        idUser:   this.user?.iduser,
         idProduct: id,
       })
       .subscribe(
@@ -77,7 +81,7 @@ export class FavoriteListClientComponent {
 
   notifications: string[] = [];
   getNotificationsByIdRecu(idRecu: any) {
-    this.commandeService.getNotificationsByIdRecu(2).subscribe(
+    this.commandeService.getNotificationsByIdRecu(this.user?.iduser).subscribe(
       (res: any) => {
        
         this.notifications = res;

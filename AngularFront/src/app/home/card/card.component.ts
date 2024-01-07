@@ -3,6 +3,7 @@ import { ProductsServiceLocalStorageService } from 'src/app/Service/products-ser
 import { WishlistService } from 'src/app/Service/wishlist.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductServiceService } from 'src/app/Service/product-service.service';
+import { Store } from '@ngxs/store';
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -11,8 +12,12 @@ import { ProductServiceService } from 'src/app/Service/product-service.service';
 
 export class CardComponent  implements OnInit{
 isFavorite:boolean = false;
-user_id:any=21
-constructor(public productServiceStorage:ProductsServiceLocalStorageService, private snackBar:MatSnackBar,private wishlistService: WishlistService,private productService:ProductServiceService){}
+user_id:any;
+user:any;
+constructor(private store:Store,public productServiceStorage:ProductsServiceLocalStorageService, private snackBar:MatSnackBar,private wishlistService: WishlistService,private productService:ProductServiceService){
+  this.user=this.store.selectSnapshot(s=>s.AuthStore?.User)
+  this.user_id=this.user?.iduser;
+}
 
 @Input() products:any
 @Input() productsRecommandations:any
@@ -23,7 +28,7 @@ constructor(public productServiceStorage:ProductsServiceLocalStorageService, pri
   toggleFavorite(id: any): void {
     this.wishlistService
       .addToWishlist({
-        idUser: 2,
+        idUser:this.user?.iduser,
         idProduct: id,
       })
       .subscribe(
