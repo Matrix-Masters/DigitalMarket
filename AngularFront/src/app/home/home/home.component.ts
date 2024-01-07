@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   user:User;
   constructor(private store:Store,public categoriesService : CategoryServiceService,private UserService:UserServiceService){
     this.user=this.store.selectSnapshot(s=>s.AuthStore?.User);
-    if(this.user){
+    if(this?.user?.role!=null){
       this.greeting();
     }
   }
