@@ -5,6 +5,7 @@ import { Store } from "@ngxs/store";
 import { SetIsAuth, SetUser } from "../Store/state";
 import { User } from "../Model/User_Store";
 import { UserServiceService } from "./user-service.service";
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class SecurityServiceService {
   public isLoggedin: boolean = false;
   public profile? : KeycloakProfile;
 
-  constructor (public kcService: KeycloakService,private Store:Store,private userService:UserServiceService) {
+  constructor (private router:Router, public kcService: KeycloakService,private Store:Store,private userService:UserServiceService) {
     this.isLoggedin=this.Store.selectSnapshot(s=>s.AuthStore?.User) ? true : false;
     this.init();
   }
@@ -53,6 +54,14 @@ export class SecurityServiceService {
                     ),
                     new SetIsAuth(true),
                   ]);
+                  if(user['user'].role=="Supplier"){
+                    console.log("supplier");
+                    this.router.navigate(['/fournisseur'])
+                  }else if(user['user'].role=="Client"){
+                    this.router.navigate(['/'])
+                  }else if(user['user'].role=="Super Admin"){
+                    this.router.navigate(['/dash'])
+                  }
                  },(err:any)=>{
                   user_store = new User(
                     profile.id,

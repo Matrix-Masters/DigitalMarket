@@ -18,15 +18,15 @@ export class guardRoleGuard implements CanActivate {
 		| UrlTree {
 
 		var isAuthorized = false;
-		var authStore = this.store.selectSnapshot(state => state.AuthStore);
+		var user = this.store.selectSnapshot(s=>s.AuthStore?.User);
 		
 		for (var compt in route.data['role']) {
-      if (authStore.user.role.includes(route.data['role'][compt])) {
-        isAuthorized = true;
-      }
+      	if (user['role'].includes(route.data['role'][compt])) {
+        	isAuthorized = true;
+      	}
 		}
 		if (!isAuthorized) {
-			window.alert('you are not authorized');
+			window.alert('SORRY YOU CAN NOT ACCESS THIS PAGE');
 		}
 		return isAuthorized || false;
 	}
