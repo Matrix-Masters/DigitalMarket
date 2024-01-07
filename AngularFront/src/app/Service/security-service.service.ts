@@ -65,9 +65,7 @@ export class SecurityServiceService {
                       this.router.navigate(['/fournisseur'])
                     }
                   }else if(user['user'].role=="Client"){
-                    this.router.navigate(['/'])
-                  }else if(user['user'].role=="Super Admin"){
-                    this.router.navigate(['/dash'])
+                      this.router.navigate(['/'])
                   }
                  },(error:any)=>{
                     user_store = new User(
@@ -96,6 +94,17 @@ export class SecurityServiceService {
                     ),
                     new SetIsAuth(true),
                   ]);
+                  if(this.hasRoleIn(['SuperAdmin'])){
+                    this.router.navigate(['/dash'])
+                  }else if(this.hasRoleIn(['AdminTechnique'])){
+                   this.router.navigate(['/gererSupplier'])
+                  }else if(this.hasRoleIn(['AdminCommande'])){
+                   this.router.navigate(['/Commandes'])
+                  }else if(this.hasRoleIn(['AdminOrganisator'])){
+                   this.router.navigate(['/classer'])
+                  }else if(this.hasRoleIn(['AdminStock'])){
+                   this.router.navigate(['/stockadmin'])
+                  }
                    console.log(error.error);
                  })
               });
