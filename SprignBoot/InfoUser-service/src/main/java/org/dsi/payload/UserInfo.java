@@ -1,5 +1,7 @@
 package org.dsi.payload;
 
+import java.util.UUID;
+
 import javax.persistence.Column;
 
 import lombok.AllArgsConstructor;
@@ -29,5 +31,8 @@ public class UserInfo {
 	private String PhotoCin;
 	
 	private String role;
+	
+	private String keycloak_id; 
+
 
 }

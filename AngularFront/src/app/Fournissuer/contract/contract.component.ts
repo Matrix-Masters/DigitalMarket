@@ -5,6 +5,7 @@ import autoTable from 'jspdf-autotable'
 import { ContractServiceService } from 'src/app/Service/contract-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DatePipe } from '@angular/common';
+import { Store } from '@ngxs/store';
 @Component({
   selector: 'app-contract',
   templateUrl: './contract.component.html',
@@ -12,8 +13,13 @@ import { DatePipe } from '@angular/common';
 })
 
 export class ContractComponent implements OnInit {
-
-  constructor(private ContractServiceService:ContractServiceService,private MatSnackBar:MatSnackBar,private datePipe: DatePipe) { }
+  user:any;
+  constructor(private store:Store, private ContractServiceService:ContractServiceService,private MatSnackBar:MatSnackBar,private datePipe: DatePipe) {
+    this.user=this.store.selectSnapshot(s=>s.AuthStore?.User);
+    this.name=this.user?.firstName;
+    this.last=this.user?.lastName;
+    this.email=this.user?.email;
+   }
   canvas: any;
   c: p5.Color[] = [];
 
@@ -133,7 +139,7 @@ export class ContractComponent implements OnInit {
           nameContract,
           new Date(this.date),
           this.products,
-          1
+          this.user?.iduser,
     ).subscribe((res:any)=>{
         this.MatSnackBar.open("Contract added successfully","Close",
           {

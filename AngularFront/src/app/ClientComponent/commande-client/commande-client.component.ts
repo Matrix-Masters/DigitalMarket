@@ -19,7 +19,6 @@ export class CommandeClientComponent  implements OnInit  {
 
   ChangerLocationLivreur(location:any,num:any){
     this.CommandeServiceService.ChangerLocationLivreur(location,num).subscribe((res:any)=>{
-     
     })
   }
  

@@ -40,7 +40,7 @@ public class ContractController {
 			   @RequestParam("nameContract") String nameContract,
 			   @RequestParam("DoneWorkDate") Date DoneWorkDate,
 			   @RequestParam("products") List<String> product,
-			   @RequestParam("idUer") Long idUer
+			   @RequestParam("idUser") Long idUer
 			){		
 		try {
 			contractInfo contr=new contractInfo(nameContract,DoneWorkDate,product,idUer);

@@ -1,0 +1,37 @@
+
+<div class="cards" style="width: 280px;">
+  <li class="product-item" >
+    <figure class="product-info">
+        <div class="product-info-img">
+            <img [src]="'http://localhost:8888/PRODUCT-SERVICE/products/images/'+productsRecommandations.product['imageProduct']" alt="description image" width="100%">
+        </div>
+        <figcaption class="product-info-description">
+            <div class="d-flex justify-content-between">
+              <h2 class="title mt-2">{{productsRecommandations.product['name']}}</h2>
+              <button mat-icon-button  class="" (click)="toggleFavorite(productsRecommandations['product']['id'])">
+                <mat-icon [style.color]="isFavorite? 'red' : 'gray'" mat-fab>favorite</mat-icon>
+              </button>
+            </div>
+            <p class="py-1 comic category">{{productsRecommandations['product']['category']['nom']}}</p>
+            <ul class="star-ranking d-flex justify-content-center align-content-center">
+                <li class="qtd-votes">
+                    <span>
+                      <span class="new" *ngIf="new;else recommended">New</span>
+                      <ng-template class="Recommended" #recommended>Recommended</ng-template>
+                    </span>
+                </li>
+            </ul>
+
+        </figcaption>
+        <div class="price-box">
+            <div class="price">
+                <div>
+                    <del>400dt</del>
+                    <ins class="d-block">{{productsRecommandations['product']['prix']}} TND</ins>
+                </div>
+            </div>
+            <button href="#" class="btn btn-buy" (click)="addProduct(productsRecommandations['product'])">Buy now <i class="fas fa-arrow-right"></i></button>
+        </div>
+    </figure>
+  </li>
+</div>

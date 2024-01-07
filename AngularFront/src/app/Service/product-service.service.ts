@@ -21,10 +21,10 @@ export class ProductServiceService{
     return this.http.get(`${port}/PRODUCT-SERVICE/products/getMaxPrice`);
   }
 
-  addProduct(image:any,name:any,description:any,prix:any,quantite:any){
+  addProduct(id:any,image:any,name:any,description:any,prix:any,quantite:any){
       const formData = new FormData();
       formData.append('file', image);
-      return this.http.post(`${port}/PRODUCT-SERVICE/products/AddProduct?name=${name}&description=${description}&prix=${prix}&quantite=${quantite}`,formData);
+      return this.http.post(`${port}/PRODUCT-SERVICE/products/AddProduct?name=${name}&description=${description}&prix=${prix}&id=${id}&quantite=${quantite}`,formData);
   }
 
   getProductById(id:any){
@@ -38,6 +38,15 @@ export class ProductServiceService{
   GenerateCodeQr(commande:any){
       return this.http.put(`${port}/PRODUCT-SERVICE/codeQr/GenerateCodeQr`,commande);
   }
+
+
+  getRecommandations(id:any){
+    return this.http.get(`${port}/PRODUCT-SERVICE/recommandations/getRecommandations?id=${id}`);
+  }
+  addCount(user_id:any,product_id:any,count:any){
+    return this.http.post(`${port}/PRODUCT-SERVICE/recommandations/addRecommandation?user_id=${user_id}&product_id=${product_id}&count=${count}`,{});
+  }
+
 
   getProductsByIdUser(id:any){
     return this.http.get(`${port}/PRODUCT-SERVICE/products/getProductsByIdUser?id=${id}`);
@@ -72,5 +81,5 @@ export class ProductServiceService{
   IncrementQteProd(id:number,qte:number){
     return this.http.put(`${port}/PRODUCT-SERVICE/products/IncrementQteProd?id=${id}&qte=${qte}`,{});
   }
-  
+
 }

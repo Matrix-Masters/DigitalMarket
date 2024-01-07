@@ -24,13 +24,17 @@ import javax.mail.internet.MimeMessage;
 
 @Service
 public class GererSupplierService {
+	
 	 	@Autowired
 	    private JavaMailSender emailSender;
 		private TemplateEngine templateEngine;
+		
 	    @Autowired
 	    private UserRepo Userrepo;
+	    
 	    @Autowired
 		NodeSync nodeSync;
+	    
 	    @Autowired
 	    public GererSupplierService(JavaMailSender emailSender, TemplateEngine templateEngine) {
 	        this.emailSender = emailSender;

@@ -19,7 +19,10 @@ export class InterceptorGlobaleServiceService implements HttpInterceptor{
     if(user){
        final_request=req.clone(
         {
-           withCredentials: true 
+          setHeaders: {
+            "Content-Type": "application/json"
+          },
+           //withCredentials: true 
         }
       );
     }else{
@@ -28,7 +31,7 @@ export class InterceptorGlobaleServiceService implements HttpInterceptor{
           setHeaders: {
             "Content-Type": "application/json"
           },
-          withCredentials: true 
+         // withCredentials: true 
         }
       );
     }

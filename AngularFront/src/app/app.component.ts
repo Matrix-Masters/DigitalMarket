@@ -18,10 +18,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     Aos.init();
-    this.SecurityServiceService.init();
+    //this.SecurityServiceService.init();
     if(this.keycloakService.isLoggedIn()){
       this.keycloakService.loadUserProfile().then( async profile=>{
-        console.log(profile);
         this.userProfile=profile.username;
       });
     }  

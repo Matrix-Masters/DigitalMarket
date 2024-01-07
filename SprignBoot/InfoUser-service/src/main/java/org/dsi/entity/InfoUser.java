@@ -1,18 +1,17 @@
 package org.dsi.entity;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,8 +26,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-@Entity@Data@AllArgsConstructor@NoArgsConstructor
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class InfoUser {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,7 +39,8 @@ public class InfoUser {
 	
 	private String LastName;
 	
-	private String Email;
+	@Column(name = "email")
+	private String email;
 	
 	private String Password;
 	
@@ -70,14 +72,17 @@ public class InfoUser {
 
 	private String role;
 	
-	@Nullable
-	@OneToOne(cascade = CascadeType.ALL)
+	
+	@OneToOne( fetch = FetchType.EAGER )
 	@JoinColumn(name = "contract_id")
 	private Contract contract;
-	
+
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@ColumnDefault(value = "null")
 	private Date email_verified_at;
+	
+	private String keycloak_id; 
 
 	
 }

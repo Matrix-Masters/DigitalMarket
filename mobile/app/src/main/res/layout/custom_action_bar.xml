@@ -18,6 +18,7 @@
             />
         <TextView
             android:layout_marginStart="50dp"
+            android:id="@+id/textDigital"
             android:textSize="22dp"
             android:textColor="@color/black"
             android:layout_width="wrap_content"

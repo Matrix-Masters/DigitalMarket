@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { Store } from '@ngxs/store';
 import confetti from 'canvas-confetti';
+import { User } from 'src/app/Model/User_Store';
 import { CommandeServiceService } from 'src/app/Service/commande-service.service';
 import { ProductServiceService } from 'src/app/Service/product-service.service';
 import { ProductsServiceLocalStorageService } from 'src/app/Service/products-service-local-storage.service';
@@ -14,9 +16,9 @@ import { ProductsServiceLocalStorageService } from 'src/app/Service/products-ser
   styleUrls: ['./commande.component.scss']
 })
 export class CommandeComponent {
-
-  constructor(private productService:ProductServiceService, private router:Router,private localStorageProduct:ProductsServiceLocalStorageService, private MatSnackBar:MatSnackBar,private _formBuilder: FormBuilder,private CommandeServiceService:CommandeServiceService) {
-    
+  user:User;
+  constructor(  private store:Store,private productService:ProductServiceService, private router:Router,private localStorageProduct:ProductsServiceLocalStorageService, private MatSnackBar:MatSnackBar,private _formBuilder: FormBuilder,private CommandeServiceService:CommandeServiceService) {
+    this.user=this.store.selectSnapshot(s=>s.AuthStore?.User)
     this.FormInfo = this._formBuilder.group({
         Name:this.NameForm,
         Cin:this.CinForm,
@@ -26,11 +28,10 @@ export class CommandeComponent {
     })
    
    // Init Form
-    this.NameForm.setValue("Talel");
-    this.LastNameForm.setValue("Mejri");
-    this.CinForm.setValue("12345678");
-    this.phoneForm.setValue("12345678");
-    this.emailForm.setValue("talel@gmail.com")
+    this.NameForm.setValue(this.user?.firstName.toString());
+    this.LastNameForm.setValue(this.user?.lastName.toString());
+    this.phoneForm.setValue(this.user?.numTlf.toString());
+    this.emailForm.setValue(this.user?.email.toString())
   } 
 
   NameForm=new FormControl('',[Validators.required,Validators.minLength(3)]);
@@ -163,7 +164,7 @@ getEmailError(){
           "phone":this.FormInfo.value['phone'],
           "LastName":this.FormInfo.value['LastName'],
           "email":this.FormInfo.value['email'],
-          "Client_id":1,
+          "Client_id":this?.user.iduser,
           "location":{
             "latitude":this.Location.lat,
             "longitude":this.Location.lng,

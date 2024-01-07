@@ -21,4 +21,16 @@ export class UserServiceService {
   SendEmailChanged(email_old:any,email_new:any){
     return this.http.get(`${port}/INFOUSER-SERVICE/users/SendEmailChanged?email_new=${email_new}&email_old=${email_old}`);
   }
+
+  getUserByIdKeyCloak(id:any){
+    return this.http.get(`${port}/INFOUSER-SERVICE/users/getUserByIdKeyCloak?id=${id}`);
+  }
+
+  getUserByMail(email:any){
+    return this.http.get(`${port}/INFOUSER-SERVICE/users/getUserByMail?email=${email}`);
+  }
+
+  updateWelcome(email:any){
+    return this.http.post(`${port}/INFOUSER-SERVICE/users/updateWelcome?email=${email}`,{});
+  }
 }

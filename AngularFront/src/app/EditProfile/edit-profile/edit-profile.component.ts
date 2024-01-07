@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngxs/store';
+import { User } from 'src/app/Model/User_Store';
 import { AuthServiceService } from 'src/app/Service/auth-service.service';
 import { CategoryServiceService } from 'src/app/Service/category-service.service';
 import { ProductsServiceLocalStorageService } from 'src/app/Service/products-service-local-storage.service';
@@ -15,10 +17,12 @@ export class EditProfileComponent {
   id:any
   products:any
   nbrArticle:number=0
+  user:User;
 
 
-
-  constructor(public AuthServiceService:AuthServiceService, public categoriesService : CategoryServiceService,private route: ActivatedRoute , private router: Router,private productStorage:ProductsServiceLocalStorageService){}
+  constructor(  private store:Store,public AuthServiceService:AuthServiceService, public categoriesService : CategoryServiceService,private route: ActivatedRoute , private router: Router,private productStorage:ProductsServiceLocalStorageService){
+    this.user=this.store.selectSnapshot(s=>s.AuthStore?.User)
+  }
 
   getListProducts(){
     const productString = localStorage.getItem('products');

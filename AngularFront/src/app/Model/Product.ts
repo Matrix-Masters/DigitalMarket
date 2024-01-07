@@ -2,7 +2,7 @@ export class Product{
  id:any;
  name: any;
  desc:any;
- imageSrc:any;
+ imageProduct:any;
  quantity:any;
  prix:any;
  status:any

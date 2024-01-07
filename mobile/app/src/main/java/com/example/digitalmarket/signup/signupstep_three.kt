@@ -185,23 +185,13 @@ class signupstep_three : AppCompatActivity() {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK) {
             val selectedImageUri = data?.data
             imageView.setImageURI(selectedImageUri)
-
-            // Use ContentResolver to open an InputStream for the selected image URI
             try {
                 val inputStream = contentResolver.openInputStream(selectedImageUri!!)
-                // Now you can use the inputStream to read the content of the selected image
-                // For example, you can use BitmapFactory to decode the stream into a Bitmap
-                // val bitmap = BitmapFactory.decodeStream(inputStream)
-
-                // Your further processing with the inputStream...
-
                 imageFile = File(getRealPathFromURI(selectedImageUri))
                 upload = true
                 clearError()
             } catch (e: Exception) {
                 e.printStackTrace()
-                // Handle any exceptions that may occur when opening the input stream
-                // For example, you can show an error message to the user
                 Toast.makeText(this, "Error opening image", Toast.LENGTH_SHORT).show()
             }
         }

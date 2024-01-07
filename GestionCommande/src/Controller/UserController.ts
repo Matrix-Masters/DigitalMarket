@@ -2,7 +2,6 @@
 import { Request, Response } from "express";
 import InfoUser from "../Model/InfoUser";
 
-
 export const getAllUsers = async (req: Request, res: Response) => {
   try {
     const users = await InfoUser.find();
@@ -23,9 +22,6 @@ export const AddUser = async (req: Request, res: Response) => {
     res.status(500).json({ error: err });
   }
 }
-
-
-
 
 export const GetUserByEmail = async (req: Request, res: Response) => {
   try {
@@ -51,7 +47,7 @@ export const RefuseSupplier = async (req: Request, res: Response) => {
     var user = await InfoUser.findOneAndUpdate({email:req.body.email},{$set:{status:2}});
     return res.status(200).json(user);
   } catch (error) {
-    console.error('Error accepting user: ', error);
+    console.error('Error Refused user: ', error);
     return res.status(500).json({ error: 'Internal server error' });
   }
 };

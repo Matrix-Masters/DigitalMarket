@@ -3,6 +3,8 @@ package org.dsi.service;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
+
 import org.dsi.entity.InfoUser;
 import org.dsi.payload.UserInfo;
 import org.dsi.repo.NodeSync;
@@ -20,9 +22,7 @@ public class UserInfoService {
 	
 	@Autowired
 	NodeSync nodeSync;
-	
-	
-	
+
 	public InfoUser getInfoUserByEmail(String email) throws Exception {
 	    InfoUser user = userRepo.getUserByemail(email);
 	    if (user == null) {
@@ -31,6 +31,13 @@ public class UserInfoService {
 	    return user;
 	}
 	
+	public InfoUser getUserByIdKeyCloak(String id) throws Exception {
+	    InfoUser user = userRepo.getUserByIdKeyCloak(id);
+	    if (user == null) {
+	        throw new Exception("User not found for KeyCloakId: " + id);
+	    }
+	    return user;
+	}
 	
 	public InfoUser getInfoUserById(Long id) throws Exception {
 	    InfoUser user = userRepo.getUserById(id);
@@ -61,6 +68,7 @@ public class UserInfoService {
 				newuser.setSexe(user.getSexe());
 				newuser.setPhotoCin(user.getPhotoCin());
 				newuser.setRole(user.getRole());
+				newuser.setKeycloak_id(user.getKeycloak_id());
 				userRepo.save(newuser);
 				JSONObject jsoUser=new JSONObject();
 	  			jsoUser.appendField("Name",user.getFirstName());
@@ -70,6 +78,7 @@ public class UserInfoService {
 	  				jsoUser.appendField("cin",user.getCin());
 				}
 	  			jsoUser.appendField("status",0);
+	  			jsoUser.appendField("_id",newuser.getId());
 	  			jsoUser.appendField("Photo",null);
 	  			jsoUser.appendField("roles",roleData);
 	  			nodeSync.addInfoUser(jsoUser);

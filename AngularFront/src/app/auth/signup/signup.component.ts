@@ -1,9 +1,13 @@
 import { Component,OnInit } from '@angular/core';
 import { FormGroup,FormBuilder, FormControl, Validators } from '@angular/forms';
 import {MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngxs/store';
+import { KeycloakService } from 'keycloak-angular';
 import { AuthServiceService } from 'src/app/Service/auth-service.service';
 import { PythonServiceService } from 'src/app/Service/python-service.service';
+import { SecurityServiceService } from 'src/app/Service/security-service.service';
+import { Logout } from 'src/app/Store/state';
 
 @Component({
   selector: 'app-signup',
@@ -13,31 +17,36 @@ import { PythonServiceService } from 'src/app/Service/python-service.service';
 
 export class SignupComponent implements OnInit {
 
-
+  user:any;
   ngOnInit(): void {
-    this.ActivatedRoute.params.subscribe((res)=>{
-      if(res['role']!='null'){
-           this.role=res['role'];
-        }
-      })
+    this.user=this.store.selectSnapshot(s=>s.AuthStore?.User);
   }
-  constructor(private formBuilder:FormBuilder,
+
+  constructor(
+      private formBuilder:FormBuilder,
       private AuthServiceService:AuthServiceService,
       private PythonServiceService:PythonServiceService,
       private MatSnackBar:MatSnackBar,
-      private ActivatedRoute:ActivatedRoute)
-       {
-
+      private SecurityServiceService:SecurityServiceService,
+      private keycloakService: KeycloakService,
+      private router:Router,
+      private store:Store
+    )
+    {
+    this.user=this.store.selectSnapshot(s=>s.AuthStore?.User);
+    //this.SecurityServiceService.init();
     this.SignUpForm=this.formBuilder.group({
       FirstName:this.FirstNameForm,
       LastName:this.LastNameForm,
       Email:this.EmailForm,
-      Password:this.passwordForm,
+      //Password:this.passwordForm,
       NumTlf:this.NumTlfForm,
       Sex:this.SexForm,
-      //RoleFor:this.RoleForFrom,
+      RoleFor:this.RoleForFrom,
     });
-
+    this.FirstNameForm.setValue(this.user?.firstName);
+    this.LastNameForm.setValue(this.user?.lastName);
+    this.EmailForm.setValue(this?.user?.email);
   }
 
 
@@ -48,7 +57,7 @@ export class SignupComponent implements OnInit {
   EmailForm=new FormControl('',[Validators.required,Validators.email]);
   passwordForm=new FormControl('',[Validators.required,Validators.minLength(8)]);
   SexForm=new FormControl('',[Validators.required]);
- // RoleForFrom=new FormControl('',[Validators.required]);
+  RoleForFrom=new FormControl('',[Validators.required]);
 
   getFirstNameFormError(){
     if(this.FirstNameForm.touched){
@@ -79,8 +88,8 @@ export class SignupComponent implements OnInit {
     }
 
       geRoleForFromError(){
-        if(this.LastNameForm.touched){
-          if(this.LastNameForm.hasError("required")){
+        if(this.RoleForFrom.touched){
+          if(this.RoleForFrom.hasError("required")){
              return 'You must enter a Role';
           }
           }
@@ -115,7 +124,7 @@ export class SignupComponent implements OnInit {
           }
           return '';
         }
-
+     
         getSexFormError(){
           if(this.SexForm.touched){
             if(this.SexForm.hasError("required")){
@@ -149,6 +158,13 @@ export class SignupComponent implements OnInit {
 
   role:any='';
 
+  LoginUser(){
+    this.keycloakService.logout();
+    this.keycloakService.login({
+      redirectUri: window.location.origin
+    });
+  }
+
   onFileChanged(event: any) {
     const file = event.target.files[0];
     this.imageCin=file;
@@ -166,13 +182,13 @@ export class SignupComponent implements OnInit {
 
   SignUp(){
     if(this.SignUpForm.valid){
-      if(this.role=="Supplier"){
+      if(this.SignUpForm.value['RoleFor']=="Supplier"){
         if(this.image.length>0){
           this.imageError="";
           this.PythonServiceService.AddPhoto(this.imageCin).subscribe((res:any)=>{
           this.AuthServiceService.AdddUser(
               {
-                "password": this.SignUpForm.value['Password'],
+                "password": "empty",
                 "photoCin": this.image,
                 "lastName": this.SignUpForm.value['LastName'],
                 "cin": res['Number'],
@@ -181,11 +197,18 @@ export class SignupComponent implements OnInit {
                 "sexe":this.SignUpForm.value['Sex'],
                 "firstName":this.SignUpForm.value['FirstName'],
                 "photo":null,
-                "role":this.role
+                "role":this.SignUpForm.value['RoleFor'],
+                "keycloak_id":this.user._id
               }
             ).subscribe((res:any)=>{
-                this.SignUpForm.reset();
-                console.log(res);
+              this.MatSnackBar.open(res.data,'',{
+                 duration:2000,
+               })
+               setTimeout(()=>{
+                this.store.dispatch(new Logout());
+                this.keycloakService.logout();
+                this.router.navigate(['/']);
+               },2000)
             },(error)=>{
               this.MatSnackBar.open(error.error.error,'',{
                 duration:2000,
@@ -195,7 +218,6 @@ export class SignupComponent implements OnInit {
             this.MatSnackBar.open(err.error.error,'',{
               duration:2000,
             })
-
           })
         }else{
           this.imageError="You must upload an image";
@@ -203,24 +225,30 @@ export class SignupComponent implements OnInit {
       }else{
         this.AuthServiceService.AdddUser(
           {
-            "password": this.SignUpForm.value['Password'],
+            "password": "empty",
             "lastName": this.SignUpForm.value['LastName'],
             "email": this.SignUpForm.value['Email'],
             "numTlf":this.SignUpForm.value['NumTlf'],
             "sexe":this.SignUpForm.value['Sex'],
             "firstName":this.SignUpForm.value['FirstName'],
             "photo":null,
-            "role":this.role
+            "role":this.SignUpForm.value['RoleFor'],
+            "keycloak_id":(this.user._id).toString()
           }
         ).subscribe((res:any)=>{
-            console.log(res);
-            this.SignUpForm.reset();
+            this.MatSnackBar.open(res.data,'',{
+              duration:2000,
+           })
+           setTimeout(()=>{
+            this.store.dispatch(new Logout());
+            this.keycloakService.logout();
+            this.router.navigate(['/']);
+           },2000)
         },(error)=>{
           console.log(error);
-
-           this.MatSnackBar.open(error.error,'',{
-             duration:2000,
-          })
+          this.MatSnackBar.open(error.error,'',{
+            duration:2000,
+         })
         })
       }
     }else{

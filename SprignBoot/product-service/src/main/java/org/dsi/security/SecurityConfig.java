@@ -25,22 +25,25 @@ public class SecurityConfig {
 	
 	 	@Bean
 	    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-	    	
+
 	    	 JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
 	         jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(new JwtAuthConverter());
 
-	    	
+	          
 	    	  http.cors().and().csrf().disable()
 				.authorizeRequests()
 			    .antMatchers("/products/**").permitAll()
 			    .antMatchers("/categories/**").permitAll()
 			    .antMatchers("/products/images/**").permitAll()
+			    .antMatchers("/recommandations/**").permitAll()
+			    .antMatchers("/codeQr/**").permitAll()
 				.anyRequest().authenticated();
 
-
-	    	 http.oauth2ResourceServer()
-	         .jwt()
-	         .jwtAuthenticationConverter(jwtAuthenticationConverter);
+	    	  http
+	    	    .oauth2ResourceServer()
+	    	    .jwt()
+	    	    .jwtAuthenticationConverter(jwtAuthenticationConverter);
+	    
 
 	    	 http
 	         .sessionManagement()

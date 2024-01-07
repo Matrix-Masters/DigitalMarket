@@ -6,17 +6,23 @@ import android.os.Bundle
 import android.widget.Button
 import android.app.AlertDialog
 import androidx.activity.OnBackPressedCallback
+import com.example.digitalmarket.Client.DashboardClient
+import com.example.digitalmarket.StorageUser.SharedUser
 import com.example.digitalmarket.signup.SignUpStepOne
 
 class HomeActivity : AppCompatActivity() {
     lateinit var btnClient:Button
     lateinit var btnSupplier:Button
+    lateinit var sharedPreference: SharedUser
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home)
         supportActionBar?.hide()
         btnClient = findViewById(R.id.btnClient)
+        sharedPreference=SharedUser(this);
+        checkUserAuth();
         btnSupplier = findViewById(R.id.btnSupplier)
+
         onBackPressedDispatcher.addCallback(this,onBackPressedCallback)
         btnClient.setOnClickListener {
             btnClient.animate()
@@ -57,6 +63,19 @@ class HomeActivity : AppCompatActivity() {
                         .alpha(1.0f)
                         .rotation(0f)
                         .setDuration(0)
+                }
+        }
+    }
+
+    fun checkUserAuth(){
+        var shared=sharedPreference.getUser("user");
+        if(shared!=null){
+                if(shared?.user?.role=="Supplier"){
+                    val intent=Intent(this,fournisseur_profile::class.java);
+                    startActivity(intent);
+                }else{
+                    val intent=Intent(this,DashboardClient::class.java);
+                    startActivity(intent);
                 }
         }
     }

@@ -3,14 +3,24 @@ package org.dsi.repo;
 import org.dsi.entity.InfoUser;
 
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.repository.query.Param;
+import org.springframework.data.rest.core.annotation.RestResource;
 
-@EnableJpaRepositories
+@RestResource
 public interface UserRepo extends JpaRepository<InfoUser,Long> {
+
+	@Query(value = "SELECT * FROM info_user WHERE email = :email", nativeQuery = true)
+	Optional<InfoUser> findByEmail(@Param("email") String email);
+	
+	
+	@Query(value = "SELECT * FROM info_user WHERE keycloak_id = :keycloak_id", nativeQuery = true)
+	InfoUser getUserByIdKeyCloak(String keycloak_id);
 	
 	@Query(value="select * from info_user where email=:email",nativeQuery=true)
 	InfoUser getUserByemail(String email);
@@ -20,8 +30,6 @@ public interface UserRepo extends JpaRepository<InfoUser,Long> {
 	
 	@Query(value="select * from info_user where role=:role",nativeQuery=true)
 	InfoUser GetSuppliers(String role);
-	
-	
 
 	List<InfoUser> findByRole(String string);
 	

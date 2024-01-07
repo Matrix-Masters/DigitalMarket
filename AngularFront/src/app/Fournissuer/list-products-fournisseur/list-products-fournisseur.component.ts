@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngxs/store';
 import { FournisseurServiceService } from 'src/app/Service/fournisseur-service.service';
 
 @Component({
@@ -8,17 +9,18 @@ import { FournisseurServiceService } from 'src/app/Service/fournisseur-service.s
 })
 export class ListProductsFournisseurComponent implements OnInit {
 
-
-  constructor(private FournisseurServiceService:FournisseurServiceService){
-    
+  user:any;
+  constructor(private store:Store,private FournisseurServiceService:FournisseurServiceService){
+    this.user=this.store.selectSnapshot(s=>s.AuthStore?.User)
   }
 
   ngOnInit(): void {
       this.getProduct();
+    
   }
 
   Products:any;
-  
+
   pagination={
     currentpage:0,
     per_page:5,
@@ -33,7 +35,7 @@ export class ListProductsFournisseurComponent implements OnInit {
 
   getProduct(){
     this.FournisseurServiceService.getProductFournisseur(
-        3,this.pagination.currentpage,this.pagination.per_page,this.search,this.Status
+      this.user['iduser'],this.pagination.currentpage,this.pagination.per_page,this.search,this.Status
     ).subscribe((res:any)=>{
        this.Products=res.data.content;
        this.pagination.currentpage=res.page;
@@ -56,7 +58,7 @@ export class ListProductsFournisseurComponent implements OnInit {
     this.getProduct();
   }
 
-  selectedPerPage: number=5; 
+  selectedPerPage: number=5;
 
   onPerPageChange() {
     this.pagination.per_page=this.selectedPerPage;
