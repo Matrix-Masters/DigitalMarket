@@ -121,7 +121,7 @@ public class InfoUserController {
 	    		}catch(MessagingException  e) {
 					return new ResponseEntity<String>("Error Connexion",HttpStatus.CONFLICT);
 				}catch(java.io.UnsupportedEncodingException e) {
-					return new ResponseEntity<String>("Unsupported Forme",HttpStatus.CONFLICT);
+					return new ResponseEntity<String>("Unsupported Forme",HttpStatus.CONFLICT);	
 				}
 
 	    	    return  ResponseEntity.ok().body("Send Mail For Confirm");
@@ -143,7 +143,18 @@ public class InfoUserController {
 	 			}
 		    }
 	 	   
-	
-	
+	 	   
+	 	    @PostMapping("/updateWelcome")
+	 	    public ResponseEntity<?> updateFiledWelcome(@RequestParam("email")String email){
+				try {
+					 InfoUser user = userInfoService.getInfoUserByEmail(email);
+					 user.setWelcome_field(true);
+		 	    	 UserRepo.save(user);
+		 	    	 return  ResponseEntity.ok().body("Email Modified");
+				} catch (Exception e) {
+					return ResponseEntity.ok().body("Welcome field changed");
+			
+				}
+	 	    }
 
 }
