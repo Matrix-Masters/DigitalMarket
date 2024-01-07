@@ -58,4 +58,25 @@ public class AuthController {
     	return  ResponseEntity.ok().body(json);
     }
 	
+	 /*@PostMapping("/ForgotPassword")
+	    public ResponseEntity<?> forgotPassword(@RequestParam(name="email")String email){
+	    	try {
+	    		userService.forgotPassword(email);
+	    	}catch(Exception e) {
+	    		return new ResponseEntity<String>(e.getMessage(),HttpStatus.CONFLICT);
+	    	}
+	    	return ResponseEntity.ok().body("Mail Send With Token");
+	    }
+	    
+	    
+	    @PostMapping("/ChangerPassword")
+	    public ResponseEntity<?> ResetPassword(@RequestBody ChangerPassword parametre){
+	    	String password_hash=SecurityConfig.passwordEncoder().encode(parametre.getPassword());
+	    	try {
+	    		userService.ChangerPassword(parametre.getEmail(), parametre.getToken(), password_hash);
+	    	}catch(Exception e) {
+	    		return new ResponseEntity<String>(e.getMessage(),HttpStatus.CONFLICT);
+	    	}
+	    	return ResponseEntity.ok().body("Password has been changed");
+	    }*/
 }
