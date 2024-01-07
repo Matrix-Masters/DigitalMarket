@@ -39,6 +39,8 @@ class LoginActivity : AppCompatActivity(){
         Password=findViewById(R.id.password)
         root=findViewById(R.id.root)
         errorText=findViewById(R.id.error)
+        val email_verified = intent.getStringExtra("email")
+        Email.setText(email_verified)
         val Message =intent.getStringExtra("message")
         if(Message!=null){
             Snackbar

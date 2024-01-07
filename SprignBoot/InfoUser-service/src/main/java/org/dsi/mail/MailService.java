@@ -1,5 +1,6 @@
 package org.dsi.mail;
 
+import org.dsi.entity.InfoUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -40,6 +41,32 @@ public class MailService {
 			helper.setFrom(fromAddress, senderName);
 			helper.setTo(toAddress);
 			helper.setSubject("Confirm Change Email");
+
+			helper.setText(body, true);
+
+			javamailSender.send(message);
+		}
+		
+		
+		//verify email
+		public void sendVerificationEmail(InfoUser user)
+				throws MessagingException, UnsupportedEncodingException {
+
+			Context context=new Context();
+			context.setVariable("name", user.getLastName());
+			context.setVariable("code", user.getCode());
+			String body=templateEngine.process("VerifyEmail", context);
+			
+			String fromAddress = "villageconnectt@gmail.com";
+			String senderName = "DigitalMarket";
+	         
+			MimeMessage message = javamailSender.createMimeMessage();
+			
+			MimeMessageHelper helper = new MimeMessageHelper(message,true);
+			String toAddress = user.getEmail();
+			helper.setFrom(fromAddress, senderName);
+			helper.setTo(toAddress);
+			helper.setSubject("Email address Verification");
 
 			helper.setText(body, true);
 

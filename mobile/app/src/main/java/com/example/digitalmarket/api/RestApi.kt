@@ -1,6 +1,8 @@
 package com.example.digitalmarket.api
 import UserResponse
 import com.example.digitalmarket.Models.User
+
+import com.example.digitalmarket.Models.VerifyEmail
 import com.example.digitalmarket.listProduct.Product
 import com.example.digitalmarket.product_data
 import com.example.digitalmarket.Models.credentials
@@ -17,6 +19,11 @@ interface RestApi {
     @Multipart
     @POST("/PYTHON-SERVICE/api/upload")
     suspend fun ExtractData(@Part image: MultipartBody.Part):ResponseBody
+
+
+    @POST("/INFOUSER-SERVICE/auth/verifyMail")
+    suspend fun verify(@Body data:VerifyEmail) : Response<ResponseBody>
+
     @GET("/PRODUCT-SERVICE/products/getAllProducts")
     suspend fun getProducts():Response<MutableList<Product>>
 }
