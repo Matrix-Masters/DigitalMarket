@@ -33,12 +33,12 @@ export class FournisseurNavbarCompComponent {
     })
   }
 
-  Logout(){
+  logout(){
     this.KeycloakSrvice.logout();
     this.Store.dispatch([
       new Logout()
     ]);
-    this.Router.navigate(['']);
+    this.Router.navigate(['/']);
   }
 
   getTotalPrix(prod:any){

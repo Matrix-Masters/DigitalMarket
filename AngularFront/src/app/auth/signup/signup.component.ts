@@ -204,8 +204,11 @@ export class SignupComponent implements OnInit {
               this.MatSnackBar.open(res.data,'',{
                  duration:2000,
                })
-               this.store.dispatch(new Logout());
-               this.keycloakService.logout();
+               setTimeout(()=>{
+                this.store.dispatch(new Logout());
+                this.keycloakService.logout();
+                this.router.navigate(['/']);
+               },2000)
             },(error)=>{
               this.MatSnackBar.open(error.error.error,'',{
                 duration:2000,
@@ -236,8 +239,11 @@ export class SignupComponent implements OnInit {
             this.MatSnackBar.open(res.data,'',{
               duration:2000,
            })
-           this.store.dispatch(new Logout());
-           this.keycloakService.logout();
+           setTimeout(()=>{
+            this.store.dispatch(new Logout());
+            this.keycloakService.logout();
+            this.router.navigate(['/']);
+           },2000)
         },(error)=>{
           console.log(error);
           this.MatSnackBar.open(error.error,'',{
