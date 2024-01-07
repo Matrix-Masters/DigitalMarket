@@ -7,8 +7,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule,ReactiveFormsModule } from "@angular/forms";
 
 const routes: Routes = [
-  {path:'',redirectTo:"signup/:role",pathMatch:'full'},
-  {path:'signup/:role',component:SignupComponent},
+  {path:'',redirectTo:"signup",pathMatch:'full'},
+  {path:'signup',component:SignupComponent},
   {path: '', component: AuthComponent }
 ];
 
