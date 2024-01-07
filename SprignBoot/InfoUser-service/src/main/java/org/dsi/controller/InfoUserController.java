@@ -150,7 +150,9 @@ public class InfoUserController {
 					 InfoUser user = userInfoService.getInfoUserByEmail(email);
 					 user.setWelcome_field(true);
 		 	    	 UserRepo.save(user);
-		 	    	 return  ResponseEntity.ok().body("Email Modified");
+		 	    	 JSONObject json=new JSONObject();
+		 	    	 json.appendField("message","Welcome Modified");
+		 	    	 return  ResponseEntity.ok().body(json);
 				} catch (Exception e) {
 					return ResponseEntity.ok().body("Welcome field changed");
 			
