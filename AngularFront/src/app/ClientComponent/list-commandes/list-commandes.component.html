@@ -49,7 +49,7 @@
                         <tr *ngFor="let ligneCommande of commande.LigneCommandes">
                           <td>{{ ligneCommande.Quantity }}</td>
                           <td>{{ ligneCommande.prix }}</td>
-                          <td> <img alt="prod_image" [src]="'http://localhost:8888/PRODUCT-SERVICE/products/images/'+ getProductById(ligneCommande.Product_id)?.image"
+                          <td> <img alt="prod_image" width="100px" height="100px" [src]="'http://localhost:8888/PRODUCT-SERVICE/products/images/'+ getProductById(ligneCommande.Product_id)?.image"
                             >
                           </td>
                           <td>

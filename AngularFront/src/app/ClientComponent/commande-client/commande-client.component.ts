@@ -4,6 +4,8 @@ import L  from 'leaflet';
 import 'leaflet';
 import 'leaflet-routing-machine';
 import { CommandeServiceService } from 'src/app/Service/commande-service.service';
+import { User } from 'src/app/Model/User_Store';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'app-commande-client',
@@ -12,7 +14,9 @@ import { CommandeServiceService } from 'src/app/Service/commande-service.service
 })
 export class CommandeClientComponent  implements OnInit  {
 
-  constructor(private CommandeServiceService:CommandeServiceService,private _snackBar: MatSnackBar){
+  user:User;
+  constructor(private store:Store,private CommandeServiceService:CommandeServiceService,private _snackBar: MatSnackBar){
+    this.user=this.store.selectSnapshot(s=>s.AuthStore?.User)
   }
 
   map :any;
@@ -57,7 +61,7 @@ export class CommandeClientComponent  implements OnInit  {
       icon: L.icon({ iconUrl: '../../../assets/location.svg', iconSize: [30, 40] }),
     })
     .addTo(this.map)
-    .bindPopup('Your Location Talel')
+    .bindPopup('Your Location '+ this.user?.firstName)
     .openPopup();
    
      L.Routing.control({
@@ -126,7 +130,7 @@ locationsMatch(coord1: any, coord2: any): boolean {
   }
 
   getCommandes(){
-    this.CommandeServiceService.getCommandeByUser(1).subscribe((res:any)=>{
+    this.CommandeServiceService.getCommandeByUser(this?.user.iduser).subscribe((res:any)=>{
        this.Listcommandes=res;
     })
   }
@@ -143,8 +147,8 @@ locationsMatch(coord1: any, coord2: any): boolean {
 
   GetLocationForLivreaurr(){
     this.CommandeServiceService.GetLivraisonByNumCommande(this.SelectCommande.NumCommande).subscribe((res:any)=>{
-        this.LivreurLocation.lat=res.Location.latitude;
-        this.LivreurLocation.lng=res.Location.longitude;
+      this.LivreurLocation.lat=res[0].Location.latitude;
+        this.LivreurLocation.lng=res[0].Location.longitude;
         this.InitMap();
     })
   }
