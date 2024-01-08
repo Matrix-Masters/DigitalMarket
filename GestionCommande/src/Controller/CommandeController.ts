@@ -306,7 +306,7 @@ export const CalculerWalletSupplier=async (req:Request,res:Response)=>{
            var walletDigital=0;
            var wallet=0;
            const commandes = await Commande.find({
-                Status: "Taken",
+                Status: "Shipped",
             }).populate('LigneCommandes').exec();
             var pourcentage=0;
             if (commandes.length > 0) {

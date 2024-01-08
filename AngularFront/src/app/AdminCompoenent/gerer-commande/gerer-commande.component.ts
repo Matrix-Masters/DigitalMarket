@@ -172,7 +172,7 @@ export class GererCommandeComponent {
       body: body
     })
    
-    const toWords = new ToWords({ localeCode: 'fr-FR', });
+    const toWords = new ToWords({ localeCode: 'en-US', });
     let total = toWords.convert(commande.PrixTotal as any);
     doc.setFont("times", "bold");
     doc.setFontSize(12);

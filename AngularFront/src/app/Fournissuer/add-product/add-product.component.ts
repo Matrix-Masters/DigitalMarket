@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngxs/store';
+import { User } from 'src/app/Model/User_Store';
 import { ProductServiceService } from 'src/app/Service/product-service.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class AddProductComponent implements OnInit {
 
   AddProductForm:FormGroup;
 
-   user:any;
+   user:User;
   constructor(private store:Store, private ProductsService: ProductServiceService,private formBuilder:FormBuilder,private MatSnackBar:MatSnackBar){
     this.AddProductForm = this.formBuilder.group({
       Name:this.NameForm,
