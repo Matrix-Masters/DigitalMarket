@@ -143,6 +143,7 @@ public class InfoUserController {
 	 			}
 		    }
 	 	   
+
 	 	   
 	 	    @PostMapping("/updateWelcome")
 	 	    public ResponseEntity<?> updateFiledWelcome(@RequestParam("email")String email){
@@ -158,5 +159,6 @@ public class InfoUserController {
 			
 				}
 	 	    }
+
 
 }

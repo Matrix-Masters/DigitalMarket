@@ -6,9 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".Client.DashboardClient">
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/custom_action_bar" />
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="?attr/actionBarTheme"
+        tools:ignore="MissingConstraints"
+
+        />
 
     <FrameLayout
         android:id="@+id/frame_layout"
@@ -18,8 +24,10 @@
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
     </FrameLayout>
+
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"

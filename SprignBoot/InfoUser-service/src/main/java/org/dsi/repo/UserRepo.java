@@ -47,4 +47,7 @@ public interface UserRepo extends JpaRepository<InfoUser,Long> {
             " OR LOWER(u.last_name) LIKE LOWER(CONCAT('%', :search, '%'))" +
             " OR LOWER(u.email) LIKE LOWER(CONCAT('%', :search, '%')) AND (u.role='Admin technique' OR u.role='Admin organisateur' OR u.role='Admin commande' OR u.role='livreur')", nativeQuery=true)
 	List<InfoUser> searchEmployeesByName(String search);
+	
+	@Query(value="select * from info_user where email =:email and code=:code",nativeQuery=true)
+	InfoUser verifyEmail(String email,String code);
 }

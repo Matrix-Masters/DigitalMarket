@@ -108,10 +108,14 @@ class signupstep_three : AppCompatActivity() {
                     Log.i("Errror",e.toString());
                 }
             }
-            var message=name.toString() + " Added With Success";
+          /* var message=name.toString() + " Added With Success";
             val intent= Intent(this,LoginActivity::class.java)
             intent.putExtra("message",message);
+            startActivity(intent);*/
+            val intent= Intent(this,VerifyMail::class.java)
+            intent.putExtra("email",email);
             startActivity(intent);
+
         }
 
         signupbtn.setOnClickListener {
