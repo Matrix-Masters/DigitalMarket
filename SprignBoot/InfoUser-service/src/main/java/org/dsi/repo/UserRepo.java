@@ -50,4 +50,7 @@ public interface UserRepo extends JpaRepository<InfoUser,Long> {
 	
 	@Query(value="select * from info_user where email =:email and code=:code",nativeQuery=true)
 	InfoUser verifyEmail(String email,String code);
+	
+	@Query(value="select * from info_user where password_token=:token",nativeQuery=true)
+	InfoUser CheckToken(String token);
 }
