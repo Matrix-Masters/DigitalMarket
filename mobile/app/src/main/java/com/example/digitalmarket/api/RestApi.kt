@@ -9,6 +9,7 @@ import com.example.digitalmarket.product_data
 import com.example.digitalmarket.Models.credentials
 import okhttp3.ResponseBody
 import okhttp3.MultipartBody
+import retrofit2.Response
 import retrofit2.http.*
 interface RestApi {
     @POST("/INFOUSER-SERVICE/users/addUserInfo")
