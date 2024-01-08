@@ -20,20 +20,28 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".signup.VerifyMail"
-            android:exported="true" >
+            android:name=".signup.ChangePassword"
+            android:exported="false" />
+        <activity
+            android:name=".signup.ForgotPassword"
+            android:exported="true">
         </activity>
-        <!-- Remove duplicate declaration -->
+        <activity
+            android:name=".signup.VerifyMail"
+            android:exported="true"></activity> <!-- Remove duplicate declaration -->
         <activity
             android:name=".HomeActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.DigitalMarket">
-            <intent-filter>
+
+
+            <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
+
         </activity>
         <activity
             android:name=".signup.SignUpStepOne"
@@ -54,17 +62,21 @@
         <activity android:name=".IntroScreen2" />
         <activity android:name=".IntroScreen3" />
         <activity android:name=".IntroScreen4" />
-        <activity android:name=".FournisseurDashboard" />
+        <activity android:name=".FournisseurDashboard"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".listProduct.ListProduct"
             android:exported="true" />
         <activity
             android:name=".Client.DashboardClient"
             android:exported="true"
-            android:theme="@style/Theme.DigitalMarket"
-            >
-        </activity>
-
+            android:theme="@style/Theme.DigitalMarket" />
 
         <meta-data
             android:name="preloaded_fonts"
