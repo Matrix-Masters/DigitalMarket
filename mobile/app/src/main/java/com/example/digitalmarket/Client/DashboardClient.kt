@@ -12,6 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import com.example.digitalmarket.FournisseurAddProduct
 import com.example.digitalmarket.FournisseurDashboard
@@ -27,22 +28,14 @@ import com.google.android.material.navigation.NavigationView
 
 class DashboardClient : AppCompatActivity() {
     lateinit var sharedPreference: SharedUser
-
+    lateinit var root:ConstraintLayout
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard_client)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-        registerForContextMenu(toolbar)
         sharedPreference=SharedUser(this);
-
-        /*menu_img.setOnClickListener {
-            sharedPreference.clearSharedPreference()
-            val intent=Intent(this,HomeActivity::class.java);
-            startActivity(intent);
-        }*/
-
         replaceFragment(Panier())
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
@@ -74,7 +67,7 @@ class DashboardClient : AppCompatActivity() {
     }
 
 
-    override fun onContextItemSelected(item: MenuItem): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             // Handle context menu items here
             R.id.editProfile -> {
@@ -86,7 +79,7 @@ class DashboardClient : AppCompatActivity() {
                 return true
             }
             R.id.logOut -> {
-                // Action for item 2
+                goHome()
                 return true
             }
             else -> return super.onContextItemSelected(item)
@@ -96,6 +89,11 @@ class DashboardClient : AppCompatActivity() {
     override fun onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenu.ContextMenuInfo?) {
         super.onCreateContextMenu(menu, v, menuInfo)
         menuInflater.inflate(R.menu.barclient, menu)
+    }
+
+    fun goHome(){
+        sharedPreference.clearSharedPreference();
+        startActivity(Intent(this, HomeActivity::class.java));
     }
 
 }
