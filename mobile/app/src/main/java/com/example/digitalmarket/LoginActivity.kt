@@ -14,6 +14,7 @@ import com.example.digitalmarket.Client.sharedPreferncesConfig
 import com.example.digitalmarket.Models.credentials
 import com.example.digitalmarket.StorageUser.SharedUser
 import com.example.digitalmarket.api.ServiceBuilder
+import com.example.digitalmarket.signup.ForgotPassword
 import com.example.digitalmarket.signup.SignUpStepOne
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
@@ -27,6 +28,7 @@ class LoginActivity : AppCompatActivity(){
     lateinit var errorText:TextView;
     lateinit var signupBtn:Button
     lateinit var root:LinearLayout
+    lateinit var forgetPassword:TextView
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -38,6 +40,11 @@ class LoginActivity : AppCompatActivity(){
         signupBtn=findViewById(R.id.signup)
         Password=findViewById(R.id.password)
         root=findViewById(R.id.root)
+        forgetPassword = findViewById(R.id.forgetPassword)
+        forgetPassword.setOnClickListener {
+            val intent = Intent(this,ForgotPassword::class.java)
+            startActivity(intent)
+        }
         errorText=findViewById(R.id.error)
         val email_verified = intent.getStringExtra("email")
         Email.setText(email_verified)
