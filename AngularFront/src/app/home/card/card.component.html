@@ -3,7 +3,7 @@
   <ng-container>
     <li class="product-item">
       <figure class="product-info">
-          <div [routerLink]="['/DetailProduct/'+products['id']]"   class="product-info-img">
+          <div [routerLink]="['/DetailProduct/'+products['id']]"   class="product-info-img" (click)="addCount(products['id'],30)">
               <img [src]="'http://localhost:8888/PRODUCT-SERVICE/products/images/'+products['imageProduct']" alt="description image" width="100%">
           </div>
           <figcaption class="product-info-description">

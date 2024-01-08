@@ -2,7 +2,7 @@
 <div class="cards" style="width: 280px;">
   <li class="product-item" >
     <figure class="product-info">
-        <div class="product-info-img">
+        <div class="product-info-img" (click)="addCount(products['id'],30)">
             <img [src]="'http://localhost:8888/PRODUCT-SERVICE/products/images/'+productsRecommandations.product['imageProduct']" alt="description image" width="100%">
         </div>
         <figcaption class="product-info-description">
