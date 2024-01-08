@@ -5,7 +5,7 @@ import javax.mail.MessagingException;
 import org.dsi.entity.InfoUser;
 import org.dsi.mail.MailService;
 import org.dsi.payload.Credentials;
-
+import org.dsi.payload.ForgotPassword;
 import org.dsi.payload.VerifyEmail;
 
 import org.dsi.payload.InfoEmail;
@@ -103,35 +103,37 @@ public class AuthController {
 	}
 	
 	
+
 	
-	
-	
-	
-	
-	
-	
-	
-	 /*@PostMapping("/ForgotPassword")
-	    public ResponseEntity<?> forgotPassword(@RequestParam(name="email")String email){
+	 @PostMapping("/ForgotPassword")
+	    public ResponseEntity<?> forgotPassword(@RequestBody ForgotPassword data){
 	    	try {
-	    		userService.forgotPassword(email);
+	    		if(data.getEmail()==null) {
+	    			
+	    			return new ResponseEntity<String>("Email Not Found.",HttpStatus.NOT_FOUND);
+	    		}else {
+	    			userInfoService.forgotPassword(data.getEmail());
+	    			return ResponseEntity.ok().body("Mail Send With Token.");
+	    		}
+	    		
 	    	}catch(Exception e) {
-	    		return new ResponseEntity<String>(e.getMessage(),HttpStatus.CONFLICT);
+	    		return new ResponseEntity<String>("Email Not Found.",HttpStatus.NOT_FOUND);
 	    	}
-	    	return ResponseEntity.ok().body("Mail Send With Token");
+	    	
 	    }
 	    
 	    
 	    @PostMapping("/ChangerPassword")
-	    public ResponseEntity<?> ResetPassword(@RequestBody ChangerPassword parametre){
-	    	String password_hash=SecurityConfig.passwordEncoder().encode(parametre.getPassword());
+	    public ResponseEntity<?> ResetPassword(@RequestBody ForgotPassword data){
+	    	String password_hash=SecurityConfig.passwordEncoder().encode(data.getPassword());
 	    	try {
-	    		userService.ChangerPassword(parametre.getEmail(), parametre.getToken(), password_hash);
+	    		userInfoService.ChangerPassword(data.getEmail(), data.getToken(), password_hash);
+	    		return ResponseEntity.ok().body("Password has been changed");
 	    	}catch(Exception e) {
-	    		return new ResponseEntity<String>(e.getMessage(),HttpStatus.CONFLICT);
+	    		return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
 	    	}
-	    	return ResponseEntity.ok().body("Password has been changed");
-	    }*/
+	    	
+	    }
 
 
 
