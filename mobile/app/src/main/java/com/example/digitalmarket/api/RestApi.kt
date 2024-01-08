@@ -8,7 +8,6 @@ import okhttp3.ResponseBody
 import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.*
-import retrofit2.Response
 interface RestApi {
     @POST("/INFOUSER-SERVICE/users/addUserInfo")
     suspend fun CreateAnAccount(@Body User: User);
