@@ -73,4 +73,27 @@ public class MailService {
 			javamailSender.send(message);
 		}
 		
+		public void SendForgotPassword(InfoUser user,String Token)
+				throws MessagingException, UnsupportedEncodingException {
+
+			Context context=new Context();
+			context.setVariable("token", Token);
+			String body=templateEngine.process("ForgotPassword", context);
+			
+			String fromAddress = "villageconnectt@gmail.com";
+			String senderName = "DigitalMarket";
+	         
+			MimeMessage message = javamailSender.createMimeMessage();
+			
+			MimeMessageHelper helper = new MimeMessageHelper(message,true);
+			String toAddress = user.getEmail();
+			helper.setFrom(fromAddress, senderName);
+			helper.setTo(toAddress);
+			helper.setSubject("Email Forgot Password");
+
+			helper.setText(body, true);
+
+			javamailSender.send(message);
+		}
+		
 }
