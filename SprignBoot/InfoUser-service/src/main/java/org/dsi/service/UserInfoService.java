@@ -18,6 +18,7 @@ import org.dsi.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import net.bytebuddy.utility.RandomString;
 import net.minidev.json.JSONObject;
 
 @Service
@@ -149,6 +150,40 @@ public class UserInfoService {
 			userRepo.save(user);
 		}
 	}
-   
+	
+	
+	 public void forgotPassword(String email)throws Exception {
+		  InfoUser user=userRepo.getUserByemail(email);
+		  System.out.println(user);
+		  if(user==null) {
+			  throw new Exception("Email Not Found");
+		  }else {
+			  String Token=RandomString.make(8);
+			  user.setPassword_token(Token);
+			  userRepo.save(user);
+			  mailService.SendForgotPassword(user, Token);
+		   }
+	  }
+	 
+	 public void ChangerPassword(String email,String Token,String password)throws Exception {
+		  InfoUser user=userRepo.getUserByemail(email);
+		  if(user==null) {
+			  throw new Exception("Email Not Found");
+		  }else {
+			  if(userRepo.CheckToken(Token)==null) {
+				  throw new Exception("Token Not Found");
+			  }else {
+				  if(user.getPassword_token().equals(Token)) {
+					  user.setPassword(password);
+					  user.setPassword_token(null);
+					  userRepo.save(user);
+				  }else {
+					  throw new Exception("Token doesn't match");
+				  }
+			  }
+		   }
+	  }
+
+	
 
 }
