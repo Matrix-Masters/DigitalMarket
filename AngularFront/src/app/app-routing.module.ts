@@ -125,7 +125,7 @@ const routes: Routes = [
       component: StatsComponent,
       canActivate: [IsAuthGuard, guardRoleGuard],
       data: {
-         role: ['AdminStock','SuperAdmin']
+         role: ['Supplier']
       }  
   },
   { path: '**', component: NotFoundComponentComponent }

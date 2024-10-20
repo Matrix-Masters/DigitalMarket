@@ -21,6 +21,7 @@ export class guardRoleGuard implements CanActivate {
 
 		var isAuthorized = false;
 		var user:User
+
 		user = this.store.selectSnapshot(s=>s.AuthStore?.User);
 		if(user?.role!=null){
 			console.log(user);
@@ -30,6 +31,7 @@ export class guardRoleGuard implements CanActivate {
 				}
 		  }
 		}
+		
 		if(!isAuthorized){
 			 if(this.SecurityServiceService.hasRoleIn(route.data['role'])){
 				isAuthorized = true;

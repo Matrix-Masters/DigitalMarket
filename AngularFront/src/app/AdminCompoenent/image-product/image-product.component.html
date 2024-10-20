@@ -26,7 +26,7 @@
    
             <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
                 <div class="example-box" cdkDrag *ngFor="let item of products" class="text-center">
-                     <img [src]="'http://localhost:8888/PRODUCT-SERVICE/products/images/'+item.imageProduct" width="300px" height="100px" alt="">
+                     <img [src]="'http://localhost:8888/PRODUCT-SERVICE/products/images/'+item.imageProduct" width="100px" height="100px" alt="">
                       &nbsp;
                      <button mat-mini-fab color="warn" (click)="deleteImage(item.id)" data-bs-toggle="modal" data-bs-target="#exampleModal">
                           <mat-icon>delete</mat-icon>
